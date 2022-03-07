@@ -1,0 +1,48 @@
+/* pages/mine/set/set.wxss */
+.container-set {
+  background: #ffffff;
+}
+
+.brand {
+  text-align: center;
+  height: 388rpx;
+}
+
+.brand image {
+  margin-top: 80rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.brand .name {
+  margin-top: 20rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.list-box {
+  padding: 0 24rpx;
+}
+
+.cell {
+  height: 98rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #333333;
+  border-top: 2rpx solid #EEEEEE;
+}
+
+.cell:last-child {
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
+.cell .right {}
+
+.cell .right image {
+  margin: 0 16rpx 0 14rpx;
+  width: 10rpx;
+  height: 20rpx;
+}

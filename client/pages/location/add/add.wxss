@@ -1,0 +1,94 @@
+/* pages/location/add/add.wxss */
+.container-location-add {
+  background-color: #ffffff;
+}
+
+.content .form-section {
+  padding: 0 24rpx;
+}
+
+.content .form-section .form-item {
+  display: flex;
+  height: 106rpx;
+  border-bottom: 2rpx solid #EEEEEE;
+  align-items: center;
+
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.content .form-section .form-item label {
+  font-size: 32rpx;
+  color: #333333;
+  width: 196rpx;
+}
+
+.content .form-section .form-item .placeholder {
+  font-size: 30rpx;
+  color: #999999;
+}
+
+.content .form-section .form-item input {
+  height: 100%;
+  width: calc(100% - 196rpx);
+}
+
+.content .form-section .form-item .input-placeholder {
+  line-height: 106rpx;
+}
+
+.content .form-section .form-item.form-item-address {
+  position: relative;
+}
+
+.content .form-section .form-item.form-item-address::after {
+  content: '';
+  width: 15rpx;
+  height: 15rpx;
+  border: 3rpx solid #999999;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotateZ(45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 14rpx;
+}
+
+.van-switch--on {
+  background-color: var(--primary-color) !important;
+}
+
+.content .form-section .form-item.form-item-default {
+  display: block;
+}
+
+.content .form-section .form-item.form-item-default .l1 {
+  margin-top: 46rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content .form-section .form-item.form-item-default .l2 {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.btn-submit {
+  margin-top: 40rpx;
+  width: 616rpx !important;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(90deg, var(--primary-linear-start) 0%, var(--primary-linear-end) 100%);
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  font-weight: 400;
+}
+
+.btn-del {
+  margin-top: 44rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+}

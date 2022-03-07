@@ -1,0 +1,206 @@
+/* pages/profile/profile.wxss */
+.container-profile {}
+
+.header {
+  display: inline-block;
+  width: 100vw;
+  height: 448rpx;
+  position: relative;
+}
+
+.header .icon-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.header .userInfo {
+  margin-top: 153rpx;
+  padding-left: 20rpx;
+  display: flex;
+}
+
+.header .userInfo .avatar {
+  width: 104rpx;
+  height: 104rpx;
+  border: 3rpx solid #FFFFFF;
+  border-radius: 50%;
+  margin-right: 22rpx;
+}
+
+.header .userInfo .btn-box {
+  /* padding-top: 18rpx; */
+}
+
+.header .userInfo .btn-box .login-text {
+  font-size: 32rpx;
+  color: #FFFFFF;
+  width: auto;
+  background: transparent;
+  font-weight: normal;
+  text-align: left;
+  line-height: 1;
+  padding: 18rpx 0 16rpx;
+}
+
+.header .userInfo .btn-box .tip {
+  /* margin-top: 16rpx; */
+  font-size: 20rpx;
+  color: #FFFFFF;
+  opacity: 0.66;
+}
+
+.header .userInfo .userinfo-box {
+  padding-top: 18rpx;
+}
+
+.header .userInfo .userinfo-box .l1 {
+  display: flex;
+  /* align-items: center; */
+}
+
+.header .userInfo .userinfo-box .l1 .icon-badge-vip {
+  margin-left: 12rpx;
+  width: 94rpx;
+  height: 34rpx;
+}
+
+.header .userInfo .userinfo-box .l1 .icon-badge-business {
+  margin-left: 10rpx;
+  width: 111rpx;
+  height: 35rpx;
+}
+
+.header .userInfo .userinfo-box .l1 .nickname {
+  font-size: 32rpx;
+  color: #FFFFFF;
+}
+
+.header .userInfo .userinfo-box .l2 {
+  font-size: 20rpx;
+  color: #FFFFFF;
+  margin-top: 16rpx;
+}
+
+.header .options {
+  margin-top: 44rpx;
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  text-align: center;
+}
+
+.col view:nth-of-type(1) {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.col view:nth-of-type(2) {
+  margin-top: 18rpx;
+  font-size: 22rpx;
+  color: #FFF1E8;
+}
+
+.header .vip {
+  position: relative;
+  margin: 46rpx 0 0 24rpx;
+  width: 702rpx;
+  height: 94rpx;
+}
+
+.header .icon-vip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.header .vip .text {
+  margin-left: 234rpx;
+  font-size: 24rpx;
+  line-height: 94rpx;
+  color: #AF690A;
+}
+
+.header .vip .icon-arrow {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 24rpx;
+}
+
+.body .l1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 81rpx 24rpx 0;
+  height: 160rpx;
+}
+
+.body .l1 .item {
+  text-align: center;
+}
+
+.body .l1 .item .icon-option1 {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.body .l1 .item view {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.contact-item .btn-contact image {
+  vertical-align: top;
+}
+
+.btn-contact {
+  width: 100% !important;
+  background: #FFFFFF;
+}
+
+.btn-contact view {
+  color: #888888 !important;
+  font-size: 24rpx !important;
+  line-height: 1;
+}
+
+.body .l2 {
+  display: flex;
+  flex-wrap: wrap;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 20rpx 24rpx 0;
+  padding-bottom: 40rpx;
+}
+
+.body .l2 .item {
+  margin-top: 40rpx;
+  width: 25%;
+  text-align: center;
+}
+
+.body .l2 .item .icon-option2 {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.body .l2 .item view {
+  margin-top: 22rpx;
+  font-size: 24rpx;
+  color: #666666;
+}

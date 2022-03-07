@@ -1,0 +1,19 @@
+<!--components/DropdownMenu/category.wxml-->
+<!-- <text>components/DropdownMenu/category.wxml</text> -->
+<view class="dropdown-item-down {{opened?'opened':''}}">
+  <view class="mask"></view>
+  <view class="dropdown-item-down__content" style="{{opened?'transform:translateY('+height+'px)':''}}"
+    catchtap="dropdownItemTapHandle">
+    <view class="l1">
+      <view class="tit">全部分类</view>
+      <view class="collapse" data-item="collapse">收起</view>
+    </view>
+    <view class="l2" bindtap="firstCategoryHandle">
+      <view class="dropdown-item-down__item {{currentFirstCategoryId===item.id?'category-active':''}}"
+        wx:for="{{categoryData}}" wx:key="unique" data-item="{{item}}">
+        <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-item="{{item}}"></image>
+        <view class="text-category" data-item="{{item}}">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

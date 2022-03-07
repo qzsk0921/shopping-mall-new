@@ -1,0 +1,60 @@
+/* pages/authorization/identity.wxss */
+
+.container-identity {
+  text-align: center;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.l1 {
+  margin-top: 179rpx;
+  font-size: 48rpx;
+  color: #222222;
+  letter-spacing: 2rpx;
+}
+
+.l2 {
+  margin-top: 24rpx;
+  height: 167rpx;
+}
+
+.l3 {
+  margin-top: -39rpx;
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.l4 {
+  margin-top: 72rpx;
+  font-size: 36rpx;
+  color: #444444;
+}
+
+.l5 {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: #C4C4C4;
+}
+
+.l6 {
+  margin-top: 124rpx;
+}
+
+.btn-login {
+  width: 474rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(90deg, #11D363 0%, #00B86C 100%);
+  box-shadow: 0rpx 6rpx 18rpx rgba(2, 167, 72, 0.37);
+  border-radius: 44rpx;
+  font-size: 34rpx;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+}
+
+.l7 {
+  margin-top: 40rpx;
+  font-size: 30rpx;
+  color: #999999;
+  letter-spacing: 2rpx;
+}

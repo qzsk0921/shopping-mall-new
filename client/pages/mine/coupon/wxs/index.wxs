@@ -1,0 +1,29 @@
+module.exports = {
+  // 0:领取 1:立刻使用 2:已抢光 3:已领取 4:已使用
+  parsePouponStatus: function (x) {
+    var text = ''
+    switch (x) {
+      case 0:
+        text = "领取"
+        break;
+      case 1:
+        text = "立即使用"
+        break;
+      case 2:
+        text = "已抢光"
+        break;
+      case 3:
+        text = "已领取"
+        break;
+      case 4:
+        text = "已使用"
+        break;
+      default:
+        console.log('nothing match')
+    }
+    return text
+  },
+  parseInt: function (val) {
+    return parseInt(val)
+  },
+}

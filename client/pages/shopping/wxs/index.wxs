@@ -1,0 +1,13 @@
+module.exports = {
+  checkedCheck: function (idDotUnit_id, ids) {
+    var flag = false
+    if (ids.length) {
+      for (var i = 0; i < ids.length; i++) {
+        if (ids[i] == idDotUnit_id) {
+          flag = true
+        }
+      }
+    }
+    return flag
+  }
+}

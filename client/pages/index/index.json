@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "top-navigation": "/components/navigation/commonnav",
+    "json-add": "/components/Dialog/json-add"
+  },
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

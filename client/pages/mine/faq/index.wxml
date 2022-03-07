@@ -1,0 +1,12 @@
+<!--pages/mine/faq/index.wxml-->
+<!-- <text>pages/mine/faq/index.wxml</text> -->
+<view class="container container-faq">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content" bindtap="toQAHandle">
+    <view wx:for="{{faqList}}" wx:key="unique" class="cell" data-id="{{item.id}}">
+      <view class="text one-txt-cut" data-id="{{item.id}}">{{item.title}}</view>
+    </view>
+  </view>
+</view>

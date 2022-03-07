@@ -1,0 +1,10 @@
+module.exports = {
+  // 过滤出首先可用的优惠券id
+  checkedCheck: function (couponList) {
+    for (var i = 0; i < couponList.length; i++) {
+      if (couponList[i].is_can_use) {
+        return couponList[i].id
+      }
+    }
+  }
+}

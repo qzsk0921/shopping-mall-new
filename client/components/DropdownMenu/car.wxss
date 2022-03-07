@@ -1,0 +1,173 @@
+/* components/DropdownMenu/car.wxss */
+.active {
+  background: #FFF8F5 !important;
+  border: 2rpx solid #FB7039 !important;
+  color: #FB7039 !important;
+}
+
+.dropdown-item-down {
+  transition: all .2s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.opened.dropdown-item-down {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mask {
+  transition: all .2s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, .5);
+}
+
+.dropdown-item-down__content {
+  padding: 0 24rpx 24rpx;
+  width: 100%;
+  text-align: center;
+  transition: all .2s;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #ffffff;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  overflow: hidden;
+
+  /* height: 668rpx; */
+  background: #FFFFFF;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+}
+
+.l1 {
+  display: flex;
+  padding: 34rpx 0 30rpx;
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
+.l1 image {
+  width: 154rpx;
+  height: 154rpx;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 10rpx;
+}
+
+.l1 .right {
+  margin-left: 30rpx;
+  text-align: left;
+}
+
+.l1 .right .l1-1 {
+  margin-top: 24rpx;
+}
+
+.l1 .right .l1-1 text:first-child {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+.l1 .right .l1-1 {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #FE1D28;
+}
+
+.l1 .right .l1-2 {
+  margin-top: 22rpx;
+  font-size: 26rpx;
+  color: #AAAAAA;
+}
+
+.l1 .right .l1-2 text {
+  text-decoration: line-through;
+}
+
+.l2 {
+  text-align: left;
+  padding: 30rpx 0 40rpx;
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
+.l2 .l2-1 {
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.l2 .l2-2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.l2 .l2-2 .btn-spec {
+  margin-top: 28rpx;
+  width: 338rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  /* background: #FFF8F5; */
+  /* border: 2rpx solid #FB7039; */
+  background: #F7F7F7;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333333;
+  border: 2rpx solid transparent;
+}
+
+.l2 .l2-2 .btn-spec:nth-of-type(2n) {
+  margin-left: 26rpx;
+}
+
+.l3 {
+  padding-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.l3 .left {
+  margin-top: 15rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.l3 .right {
+  display: flex;
+}
+
+.l3 .right image {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.l3 .right input { 
+  margin: 0 8rpx;
+  width: 85rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  background: #F2F2F2;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333
+}
+
+.l4 {
+  margin-top: 84rpx;
+  width: 702rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: var(--primary-color);
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+}

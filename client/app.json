@@ -1,0 +1,82 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/authorization/identity",
+    "pages/authorization/phone",
+    "pages/authorization/forbidden",
+    "pages/logs/logs",
+    "pages/profile/profile",
+    "pages/category/category",
+    "pages/shopping/shopping",
+    "pages/search/search",
+    "pages/search/searchRes",
+    "pages/location/index/index",
+    "pages/location/add/add",
+    "pages/couponCenter/couponCenter",
+    "pages/goods/detail",
+    "pages/shop/shopType",
+    "pages/shop/order/myOrder",
+    "pages/shop/order/detailOrder",
+    "pages/shop/order/confirmOrder",
+    "pages/shop/order/goods",
+    "pages/shop/coupon/coupon",
+    "pages/shop/remark",
+    "pages/mine/collection/collection",
+    "pages/mine/history/history",
+    "pages/mine/vip/vip",
+    "pages/mine/coupon/coupon",
+    "pages/mine/coupon/detail",
+    "pages/mine/coupon/center",
+    "pages/mine/expensesRecord/expensesRecord",
+    "pages/mine/certification/certification",
+    "pages/mine/customer/customer",
+    "pages/mine/faq/index",
+    "pages/mine/faq/detail",
+    "pages/mine/set/set"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#FF723A",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/images/btn_home.png",
+        "selectedIconPath": "/assets/images/btn_home_focus.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "/assets/images/btn_classify.png",
+        "selectedIconPath": "/assets/images/btn_classify_focus.png"
+      },
+      {
+        "pagePath": "pages/shopping/shopping",
+        "text": "购物车",
+        "iconPath": "/assets/images/btn_car.png",
+        "selectedIconPath": "/assets/images/btn_car_focus.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人中心",
+        "iconPath": "/assets/images/btn_my.png",
+        "selectedIconPath": "/assets/images/btn_my_focus.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<!--pages/mine/expensesRecord/expensesRecord.wxml-->
+<!-- <text>pages/mine/expensesRecord/expensesRecord.wxml</text> -->
+<view class="container container-expensesrecord">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#FFFFFF" bgColor="#FF723A" />
+  </view>
+  <view class="content" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+compatibleInfo.navHeight)+'px':compatibleInfo.systemInfo.screenHeight-(compatibleInfo.navHeight)+'px'}}">
+    <view class="l1">
+      <view class="l1-1">总消费</view>
+      <view class="l1-2"><text>{{data.total_money}}</text><text>元</text></view>
+    </view>
+    <view class="l2">
+      <view class="top">
+        <!-- <view class="separator"></view> -->
+        <view class="left flex">
+          <picker bindchange="dateChandeHandle" value="{{index}}" range="{{yearArr}}">
+            <view class="picker">
+              <image class="icon-calendar" src="/assets/images/consume_icon_date.png" mode="aspectFill"></image>
+              <view class="year">{{yearArr[index]}}年</view>
+              <view class="arrow"></view>
+            </view>
+          </picker>
+        </view>
+        <view class="right flex">
+          <view class="right-l1">
+            <text>消费：</text>
+            <text>{{data.pay_money}}元</text>
+          </view>
+          <view class="right-l2">
+            <text>优惠：</text>
+            <text>{{data.discount_money}}元</text>
+          </view>
+        </view>
+      </view>
+      <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+contTop)+'px':compatibleInfo.systemInfo.screenHeight-(contTop)+'px'}}">
+        <block wx:if="{{data.list.length===0}}">
+          <view class="no-data">
+            <image mode="aspectFill" src="/assets/images/empty.png"></image>
+            <view class="text">暂无记录</view>
+          </view>
+        </block>
+        <block wx:else></block>
+        <view class="item" wx:for="{{data.list}}" wx:key="unique">
+          <view class="l1">{{item.month}}月</view>
+          <view class="l2">
+            <view class="flex">消费：{{item.pay_money}}元</view>
+            <view class="flex">优惠：{{item.discount_money}}元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

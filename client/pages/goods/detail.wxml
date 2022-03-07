@@ -1,0 +1,90 @@
+<!--pages/goods/detail.wxml-->
+<!-- <text>pages/goods/detail.wxml</text> -->
+<view class="container container-goods-detail">
+  <!-- 购物车下拉弹窗 -->
+  <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}"></dropdown-car>
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
+  </view>
+  <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px':compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px'}}">
+    <view class="swiper-box section1">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255, 255, 255, .6)" indicator-active-color="#ffffff" circular="true" bindchange="bindchangeHandle">
+        <block wx:for="{{goodsDetail.goods_banner_arr}}" wx:key="*this">
+          <swiper-item>
+            <!-- <view class="swiper-item {{item}}"></view> -->
+            <image class="icon-banner" src="{{item}}" mode="aspectFill" bindtap="previewImg" data-urls="{{goodsDetail.goods_banner_arr}}" data-url="{{item}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="tip">
+        {{goodsDetail.goods_banner_arr.length?currentSwiperIndex:0}} / {{goodsDetail.goods_banner_arr.length}}
+      </view>
+    </view>
+    <view class="section2">
+      <!-- <view class="l1">
+        <text>￥</text><text>{{goodsDetail.price}}</text>
+        <view wx:if="{{goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
+        <text>￥{{goodsDetail.market_price}}</text>
+      </view> -->
+
+      <!-- 已授权未资质认证的非会员 -->
+      <view class="l1 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+        <text>￥</text><text>***</text>
+      </view>
+      <!-- 授权且资质认证的非会员 -->
+      <view class="l1" wx:elif="{{!userInfo.is_vip&&!userInfo.is_sale}}">
+        <text>￥</text><text>{{goodsDetail.market_price}}</text>
+        <view wx:if="{{goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
+      </view>
+      <!-- 授权且资质认证的会员 -->
+      <view class="l1" wx:else>
+        <text>￥</text><text>{{goodsDetail.price}}</text>
+        <view wx:if="{{goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
+        <text>￥{{goodsDetail.market_price}}</text>
+      </view>
+
+      <view class="l2">{{goodsDetail.goods_name}}</view>
+      <view class="l3">{{goodsDetail.goods_content}}</view>
+    </view>
+    <view class="section3">
+      <view class="l1">详情</view>
+      <view class="l2">
+        <view class="col1 col">
+          <text class="name">配送</text>
+          <text class="val">{{goodsDetail.pay_delivery_day}}日后配送</text>
+        </view>
+        <view class="col2 col">
+          <text class="name">品牌</text>
+          <text class="val">{{goodsDetail.brand_name}}</text>
+        </view>
+      </view>
+      <view class="l3">
+        <view class="col1 col">
+          <text class="name">规格</text>
+          <text class="val">{{goodsDetail.spec}}</text>
+        </view>
+        <view class="col2 col">
+          <text class="name">单位</text>
+          <text class="val">{{goodsDetail.unit_arr[0].unitName}}</text>
+        </view>
+      </view>
+      <view class="l4">
+        <image wx:for="{{goodsDetail.goods_image_arr}}" wx:key="unique" class="icon-goods" src="{{item}}" mode="aspectFill" bindtap="previewImg" data-urls="{{goodsDetail.goods_image_arr}}" data-url="{{item}}"></image>
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="col1" bindtap="toCartHandle">
+      <view class="shopcart-box">
+        <image class="icon-shopcart" mode="aspectFill" src="/assets/images/goods_btn_car.png"></image>
+        <view wx:if="{{goodsDetail.cart_number}}" class="shopcart-info">{{goodsDetail.cart_number}}</view>
+      </view>
+      <view>购物车</view>
+    </view>
+    <view class="col2" bindtap="collectionHandle">
+      <image src="{{goodsDetail.is_like?'/assets/images/goods_btn_collection_focus.png':'/assets/images/goods_btn_collection.png'}}"></image>
+      <view>收藏</view>
+    </view>
+    <view class="col3 btn btn-car" bindtap="awakenCarHandle">加入购物车</view>
+  </view>
+</view>

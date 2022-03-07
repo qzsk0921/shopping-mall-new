@@ -1,0 +1,271 @@
+/* pages/shop/order/detailOrder.wxss */
+.content {
+  padding-bottom: 25rpx;
+  overflow: auto;
+}
+
+.section1 {
+  padding-bottom: 30rpx;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section1 .left {
+  padding-left: 30rpx;
+}
+
+.section1 .left .row1 {
+  margin-top: 42rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #0DAA4F;
+}
+
+.section1 .left .row2 {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.section1 .right {
+  padding-right: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.section1 .right .btn {
+  text-align: center;
+  width: 152rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border: 2rpx solid #DDDDDD;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  /* color: #333333; */
+}
+
+.section1 .right .btn:last-child {
+  margin-left: 20rpx;
+}
+
+.section2 {
+  margin: 20rpx auto 0;
+  padding: 25rpx 24rpx 30rpx;
+  width: 702rpx;
+  /* height: 142rpx; */
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.section2 .row1 {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+  line-height: 40rpx;
+}
+
+.section2 .row2 {
+  margin-top: 19rpx;
+}
+
+.section2 .row2 .icon-head {
+  width: 29rpx;
+  height: 29rpx;
+}
+
+.section2 .row2 text {
+  font-size: 28rpx;
+  color: #888888;
+  vertical-align: middle;
+}
+
+.section2 .row2 text:nth-of-type(1) {
+  margin-left: 8rpx;
+}
+
+.section2 .row2 text:nth-of-type(2) {
+  margin-left: 16rpx;
+}
+
+.section3 {
+  margin: 20rpx auto 0;
+  width: 702rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.section3 .l1 {
+  margin-top: 30rpx;
+  padding: 30rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section3 .l1 .left {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.section3 .l1 .right {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.section3 .l1 .right .icon-arrow {
+  margin-left: 18rpx;
+  width: 13rpx;
+  height: 24rpx;
+}
+
+.section3 .l1 .right {
+  font-size: 28rpx;
+}
+
+.section3 .l1 .right .icon-arrow {
+  margin-left: 18rpx;
+  width: 13rpx;
+  height: 24rpx;
+}
+
+.section3 .l2 {
+  padding: 0 24rpx;
+  overflow: scroll;
+  width: calc(100% - 48rpx);
+  /* height: 134rpx; */
+}
+
+.section3 .l2 .image-box {
+  display: flex;
+}
+
+.section3 .l2 image {
+  width: 134rpx;
+  height: 134rpx;
+  border-radius: 8rpx;
+}
+
+.section3 .l2 image:not(:first-child) {
+  margin-left: 20rpx;
+}
+
+.section3 .l3 {
+  margin-top: 31rpx;
+}
+
+.section3 .l3 text:last-child {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.section3 .l {
+  padding: 0 24rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.section3 .l4 {
+  margin-top: 42rpx;
+}
+
+.section3 .l4 text:last-child {
+  font-size: 30rpx;
+  color: #999999;
+}
+
+.section3 .l4 .discount,
+.section3 .l5 .discount {
+  color: #FC4953;
+}
+
+.section3 .l5 {
+  margin-top: 42rpx;
+}
+
+.section3 .l5 text:last-child {
+  font-size: 30rpx;
+}
+
+.section3 .l6 {
+  text-align: right;
+  padding: 33rpx 0 25rpx;
+  border-top: 2rpx solid #F2F2F2;
+  margin: 31rpx 24rpx 0;
+}
+
+.section3 .l6 text:first-child {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.section3 .l6 text:last-child {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FC4953;
+  margin-left: 12rpx;
+}
+
+.section4 {
+  padding: 30rpx 24rpx;
+  margin: 20rpx auto 0;
+  width: 702rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.section4 .l {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #888888;
+}
+
+.section4 .l:not(:first-child) {
+  margin-top: 40rpx;
+}
+
+.section4 .l1 {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.section4 .l1 .sn-box {
+  display: flex;
+  align-items: center;
+}
+
+.section4 .l1 .sn-box .btn-copy {
+  margin-left: 14rpx;
+  text-align: center;
+  width: 78rpx;
+  height: 34rpx;
+  border: 1rpx solid #FF959B;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  line-height: 32rpx;
+  color: #FC4953;
+}
+
+.section5 {
+  padding: 30rpx 24rpx;
+  margin: 20rpx auto 0;
+  background: #FFFFFF;
+  width: 702rpx;
+  height: 224rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.section5 .l1 {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.section5 .l2 {
+  margin-top: 30rpx;
+  color: #999999;
+  /* color: #333333; */
+}

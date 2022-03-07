@@ -1,0 +1,59 @@
+<!--pages/mine/certification/certification.wxml-->
+<!-- <text>pages/mine/certification/certification.wxml</text> -->
+<view class="container container-certification">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#fff" />
+  </view>
+  <view wx:if="{{status===-2}}" class="content">
+    <view class="tip">当您申请通过后，方可明文查看商品价格</view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="form-section">
+        <view class="form-item form-item-shopname">
+          <label>店铺名称</label>
+          <input name="name" placeholder="请输入您的店铺名称" placeholder-class="input-placeholder" value="{{certificationInfo.name}}" bindblur="handleInputChange" disabled="{{generateOrderSuccess}}" />
+        </view>
+        <view class="form-item form-item-shoptype arrow">
+          <label>店铺类型</label>
+          <input class="one-txt-cut" name="shop_type_str" placeholder="请选择" placeholder-class="input-placeholder" value="{{type}}" bindtap="chooseShopTypeHandle" disabled="true" />
+        </view>
+        <view class="form-item form-item-leader_name">
+          <label>负责人</label>
+          <input name="leader_name" placeholder="请输入店铺负责人名称" placeholder-class="input-placeholder" value="{{certificationInfo.leader_name}}" />
+        </view>
+        <view class="form-item form-item-phone">
+          <label>联系方式</label>
+          <input type="digit" name="phone" placeholder="请输入店铺负责人联系方式" placeholder-class="input-placeholder" name="leader_phone" value="{{certificationInfo.phone}}" bindblur="handleInputChange" disabled="{{generateOrderSuccess}}" maxlength="11" />
+        </view>
+        <view class="form-item form-item-address arrow">
+          <label>收货地址</label>
+          <input type="digit" name="address_id" placeholder="请填写收货地址" placeholder-class="input-placeholder" value="{{shop_address_str}}" disabled="true" bindtap="addressHandle" />
+        </view>
+        <!-- <view class="form-item form-item-number">
+          <label>门牌号</label>
+          <input type="digit" name="number" placeholder="例：10号楼808室" placeholder-class="input-placeholder"
+            value="{{certificationInfo.number}}" bindblur="handleInputChange" disabled="{{generateOrderSuccess}}" />
+        </view> -->
+      </view>
+      <button class="btn-submit btn" form-type="submit">提交申请</button>
+    </form>
+  </view>
+  <!-- 审核中 -->
+  <view wx:if="{{status===0}}" class="certing">
+    <image src="/assets/images/certification_img_audit.png" mode="aspectFill"></image>
+    <text>您的申请正在审核中</text>
+    <text>请稍后再来查看结果</text>
+  </view>
+  <!-- 已通过 -->
+  <view wx:if="{{status===1}}" class="certed">
+    <image src="/assets/images/certification_img_pass.png" mode="aspectFill"></image>
+    <text>恭喜您，审核通过</text>
+  </view>
+  <!-- 已删除 -->
+  <view wx:if="{{status===-1}}"></view>
+  <!-- 未通过 -->
+  <view wx:if="{{status===2}}" class="nocert">
+    <image src="/assets/images/certification_img_lose.png" mode="aspectFill"></image>
+    <text>很遗憾，审核失败</text>
+    <view class="btn btn-reset" bindtap="resetHandle">重新认证</view>
+  </view>
+</view>

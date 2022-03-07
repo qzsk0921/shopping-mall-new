@@ -1,0 +1,16 @@
+<!--pages/shop/shopType.wxml-->
+<!-- <text>pages/shop/shopType.wxml</text> -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+<!-- 店铺类型 -->
+<view class="container container-shop-type">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
+  </view>
+  <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}" bindtap="selectHandle">
+    <view wx:for="{{shops.cache}}" wx:key="unique" class="item" data-item="{{item}}">
+      {{item.name}}
+      <image class="icon-right {{tools.matchId(item.id,currentIds)?'active':''}}" src="/assets/images/add_icon_on.png" mode="aspectFill"></image>
+    </view>
+    <view class="btn btn-use" bindtap="useHandle">使用</view>
+  </view>
+</view>

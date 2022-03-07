@@ -1,0 +1,167 @@
+/* pages/mine/expensesRecord/expensesRecord.wxss */
+.content {
+  overflow: hidden;
+  background: #F8F8F8;
+}
+
+.content>.l1 {
+  padding-top: 54rpx;
+  text-align: center;
+  width: 750rpx;
+  /* height: 257rpx; */
+  height: 291rpx;
+  background: var(--primary-color);
+}
+
+.content>.l1 .l1-1 {
+  font-size: 26rpx;
+  color: #FFFFFF;
+}
+
+.content>.l1 .l1-2 {
+  margin-top: 22rpx;
+}
+
+.content>.l1 .l1-2 text:first-child {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.content>.l1 .l1-2 text:last-child {
+  margin-left: 8rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+}
+
+.content>.l2 {
+  margin-top: -34rpx;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0rpx -3rpx 16rpx rgba(0, 0, 0, 0.16);
+  border-radius: 24rpx 16rpx 0rpx 0rpx;
+}
+
+.content>.l2 .top {
+  height: 144rpx;
+  display: flex;
+  position: relative;
+  border-bottom: 2rpx solid #E6E6E6;
+}
+
+.content>.l2 .top>.flex {
+  flex: 1;
+}
+
+.content>.l2 .top .left {
+  display: flex;
+  align-items: center;
+}
+
+.content>.l2 .top .left .picker {
+  display: flex;
+}
+
+.content>.l2 .top .left .icon-calendar {
+  margin-left: 38rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.content>.l2 .top .left .year {
+  margin-left: 8rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.content>.l2 .top .left .arrow {
+  margin: 12rpx 0 0 10rpx;
+  width: 0;
+  height: 0;
+  border-top: 12rpx solid transparent;
+  border-bottom: 12rpx solid transparent;
+  border-left: 9rpx solid transparent;
+  border-right: 9rpx solid transparent;
+  border-top-color: #AAAAAA;
+}
+
+.content>.l2 .top .right {
+  margin: 34rpx 0;
+  border-left: 2rpx solid #DDDDDD;
+  padding: 0 40rpx 0 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content>.l2 .top .right .right-l1 {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content>.l2 .top .right .right-l2 {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.l2 .cont {
+  overflow: auto;
+}
+
+.l2 .cont .l1 {
+  height: 52rpx;
+  line-height: 52rpx;
+  background: #F8F8F8;
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.l2 .cont .l1 {
+  padding-left: 40rpx;
+}
+
+.l2 .cont .l2 {
+  padding-left: 40rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  background: #FFFFFF;
+  display: flex;
+  border-bottom: 2rpx solid #E6E6E6;
+}
+
+.l2 .cont .l2 .flex {
+  flex: 1;
+}
+
+.l2 .cont .l2 .flex:nth-of-type(1) {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.l2 .cont .l2 .flex:nth-of-type(2) {
+  font-size: 28rpx;
+  color: var(--primary-color);
+}
+
+.no-data {
+  text-align: center;
+}
+
+.no-data image {
+  margin-top: 48rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}

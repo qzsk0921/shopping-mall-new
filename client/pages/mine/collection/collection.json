@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "top-navigation": "../../../components/navigation/commonnav",
+    "confirm": "/components/Dialog/confirm"
+  },
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 100
+}

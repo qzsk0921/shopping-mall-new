@@ -1,0 +1,63 @@
+<!--pages/profile/profile.wxml-->
+<!-- <text>pages/profile/profile.wxml</text> -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
+<view class="container container-profile">
+  <view class="header">
+    <image class="icon-bg" src="/assets/images/my_bk.png" mode="aspectFill"></image>
+    <view class="userInfo l1">
+      <block wx:if="{{!userInfo.avatar_url}}">
+        <image class="avatar" src="/assets/images/my_head_default.png" mode="aspectFill"></image>
+        <view class="btn-box">
+          <button class="login-text" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">未登录</button>
+          <button class="login-text" wx:else open-type="getUserInfo" bindgetuserinfo="getUserProfile">未登录</button>
+          <view class="tip">点击登录，获价格</view>
+        </view>
+      </block>
+      <block wx:else>
+        <image class="avatar" mode="aspectFill" src="{{userInfo.avatar_url}}"></image>
+        <view class="userinfo-box">
+          <view class="l1">
+            <text class="nickname">{{userInfo.nick_name}}</text>
+            <image wx:if="{{userInfo.is_vip}}" class="icon-badge-vip" src="/assets/images/my_members.png" mode="aspectFill"></image>
+            <image wx:if="{{userInfo.is_sale}}" class="icon-badge-business" src="/assets/images/my_business.png" mode="aspectFill"></image>
+          </view>
+          <view wx:if="{{userInfo.phone}}" class="phone l2">{{tools.filterNumber(userInfo.phone)}}</view>
+        </view>
+      </block>
+    </view>
+    <view class="options l2">
+      <view class="col col{{index+1}}" wx:for="{{options}}" wx:key="unique" bindtap="optionsTapHandle" data-name="{{item.name}}" data-id="{{item.id}}">
+        <view>{{item.value}}</view>
+        <view>{{item.name}}</view>
+      </view>
+    </view>
+    <view class="l3 vip" bindtap="toVipHandle">
+      <image class="icon-vip" src="/assets/images/my_members_bk.png" mode="aspectFill"></image>
+      <view class="text">尽享更多会员专属优惠</view>
+      <image class="icon-arrow" src="/assets/images/my_members_right.png" mode="aspectFill"></image>
+    </view>
+  </view>
+  <view class="body">
+    <view class="l1">
+      <view class="item" wx:for="{{options1}}" wx:key="unique" bindtap="option1Handle" data-id="{{item.id}}">
+        <image class="icon-option1" src="/assets/images/{{item.imgName}}.png" mode="aspectFill"></image>
+        <view>{{item.name}}</view>
+      </view>
+    </view>
+    <view class="l2">
+      <block wx:for="{{options2}}" wx:key="unique">
+        <view wx:if="{{item.id==9}}" class="item contact-item">
+          <button class="btn-contact" open-type="contact">
+            <image class="icon-option2" src="/assets/images/{{item.imgName}}.png" mode="aspectFill"></image>
+            <view>{{item.name}}</view>
+          </button>
+        </view>
+        <view wx:else class="item" bindtap="option2Handle" data-id="{{item.id}}">
+          <image class="icon-option2" src="/assets/images/{{item.imgName}}.png" mode="aspectFill"></image>
+          <view>{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

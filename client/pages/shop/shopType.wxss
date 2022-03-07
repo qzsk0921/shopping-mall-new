@@ -1,0 +1,43 @@
+/* pages/shop/shopType.wxss */
+.content {
+  padding: 0 24rpx;
+  background: #FFFFFF;
+  overflow: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 98rpx;
+  /* line-height: 98rpx; */
+  font-size: 30rpx;
+  color: #333333;
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
+.item .icon-right {
+  background: #FFFFFF;
+  width: 0;
+  height: 0;
+}
+
+.item .icon-right.active {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.btn-use {
+  position: fixed;
+  bottom: 48rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 616rpx;
+  height: 80rpx;
+  background: linear-gradient(90deg, #FF9B74 0%, #FF521D 100%);
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #FFFFFF;
+}

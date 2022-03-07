@@ -1,0 +1,14 @@
+<!--pages/authorization/phone.wxml-->
+<!-- <text>pages/authorization/phone.wxml</text> -->
+<view class="container container-phone">
+  <image src="/assets/images/login_bk.png" mode="aspectFill"></image>
+  <view class="content">
+    <button class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">手机授权登录</button>
+    <view class="right">
+      <text>登录注册即代表你同意与</text>
+      <text>《服务协议》</text>
+      <text>与</text>
+      <text>《隐私协议》</text>
+    </view>
+  </view>
+</view>

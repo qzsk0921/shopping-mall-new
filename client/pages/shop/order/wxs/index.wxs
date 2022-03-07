@@ -1,0 +1,14 @@
+module.exports = {
+  //计算商品件数
+  calc: function (list) {
+    var num = 0
+    list.forEach(function (item, index) {
+      num += (item.cart_number - 0)
+    })
+    return num
+  },
+  // 计算我的订单页 宽度
+  calcW: function (len) {
+    return 124+(len-1)*144
+  }
+}

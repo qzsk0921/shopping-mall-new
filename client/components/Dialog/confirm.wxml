@@ -1,0 +1,19 @@
+<!--components/Dialog/comfirm.js.wxml-->
+<!-- <text>components/Dialog/comfirm.js.wxml</text> -->
+
+<view class="dialog-wrap {{dialogVisible?'':'fadeout'}}">
+  <view class="mask" bindtap="dialogTapHandle"></view>
+  <view class="dialog">
+    <view class="modal">
+      <view wx:if="{{title}}" class="l1 tit">
+        <text>{{title}}</text>
+      </view>
+      <view class="l2 content">{{content}}</view>
+      <view class="l3 footer">
+        <view class="btn-cancel btn" style="background:{{cancelBgColor}}" bindtap="cancelHandle">{{cancelText}}</view>
+        <view class="btn-confirm btn" style="background:{{confirmBgColor}}" bindtap="confirmHandle">{{confirmText}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

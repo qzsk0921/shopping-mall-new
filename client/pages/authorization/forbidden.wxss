@@ -1,0 +1,49 @@
+/* pages/authorization/forbidden.wxss */
+
+.container-forbidden {
+  text-align: center;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.l1 {
+  margin-top: 203rpx;
+  height: 400rpx;
+  width: 400rpx;
+}
+
+.l2 {
+  margin-top: 49rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.l2 text {
+  color: #FC4953;
+}
+
+.l3 {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.l6 {
+  margin-top: 104rpx;
+}
+
+.btn-confirm {
+  margin: auto;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 34rpx;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+  width: 314rpx;
+  height: 88rpx;
+  background: linear-gradient(90deg, #FF9B74 0%, #FF521D 100%);
+  font-weight: 400;
+}

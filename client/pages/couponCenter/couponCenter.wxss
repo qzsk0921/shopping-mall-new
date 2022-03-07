@@ -1,0 +1,105 @@
+/* pages/couponCenter/couponCenter.wxss */
+.container-couponcenter {}
+.section2 {
+  overflow: hidden;
+}
+.card {
+  position: relative;
+  display: flex;
+  width: 702rpx;
+  height: 196rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 20rpx auto 0;
+}
+
+.card .btn {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 136rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+}
+
+.btn1 {
+  background: #FF723B;
+  color: #FFFFFF;
+}
+
+.btn2 {
+  background: #27C068;
+  color: #FFFFFF;
+}
+
+.btn3 {
+  color: #FFFFFF;
+  background: #C4C4C4;
+}
+
+.card .line {
+  position: absolute;
+  left: 202rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rpx;
+  height: 116rpx;
+  background: #eeeeee;
+}
+
+.card .left {
+  width: 202rpx;
+  text-align: center;
+}
+
+.card .left .l1 {
+  margin-top: 42rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+.card .left .l1>text {
+  font-size: 70rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+.card .left .l2 {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.card .right {
+  padding: 40rpx 0 40rpx 44rpx;
+}
+
+.card .right .l1 {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.card .right .l2 {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #777777;
+}
+
+.card .right .l3 {
+  margin-top: 19rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.nothing {
+  text-align: center;
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  color: #999999;
+}

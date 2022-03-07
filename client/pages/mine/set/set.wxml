@@ -1,0 +1,22 @@
+<!--pages/mine/set/set.wxml-->
+<!-- <text>pages/mine/set/set.wxml</text> -->
+<view class="container container-set">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <view class="brand">
+      <image src="/assets/images/set_logo.png" mode="aspectFill"></image>
+      <view class="name">旺莱联采</view>
+    </view>
+    <view class="list-box">
+      <view wx:for="{{setList}}" wx:key="unique" class="cell" data-id="{{item.id}}" bindtap="cellHandle">
+        <view class="left">{{item.name}}</view>
+        <view class="right">
+          <text wx:if="{{item.val}}">{{item.val}}</text>
+          <image src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,46 @@
+module.exports = {
+  // 1:永久有效 2:限时
+  // parseActivityGoodsType: function (activity_goods) {
+  //   console.log(activity_goods)
+  //   var text = ''
+  //   if (activity_goods.type === 1) {
+  //     text = activity_goods.short_name
+  //   } else if (activity_goods.type === 2) {
+  //     var last = activity_goods.end_time - activity_goods.start_time
+  //     text = parseInt(last / (3600 * 24)) + '天后结束'
+  //   }
+  //   return text
+  // },
+  parseCategory: function (list, type) {
+    var res
+    if (list) {
+      if (type === 'even') {
+        res = list.filter(function (item, index) {
+          return index % 2 === 0
+        })
+      } else if (type === 'odd') {
+        res = list.filter(function (item, index) {
+          return index % 2 === 1
+        })
+      } else if (type === 'firstLine') {
+        res = list.filter(function (item, index) {
+          return index < parseInt(list.length / 2)
+        })
+      } else if (type === 'lastLine') {
+        res = list.filter(function (item, index) {
+          return index >= parseInt(list.length / 2)
+        })
+      }
+    }
+    return res
+  },
+  parseTabbar: function (group_goods) {
+    if (group_goods) {
+      var res = null
+      res = group_goods.map(function (item) {
+        return item
+      })
+      return res
+    }
+  }
+}

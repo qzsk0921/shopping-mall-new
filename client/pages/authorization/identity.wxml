@@ -1,0 +1,14 @@
+<!--pages/authorization/identity.wxml-->
+<!-- <text>pages/authorization/identity.wxml</text> -->
+<view class="container container-identity">
+  <view class="l1">欢迎使用旺莱联采</view>
+  <image class="l2" src="/assets/images/accredit_bk.png" mode="aspectFill"></image>
+  <image class="l3" src="/assets/images/logo.png" mode="aspectFill"></image>
+  <view class="l4">该程序将获取以下授权:</view>
+  <view class="l5">获得您的公开信息（昵称、头像等）</view>
+  <view class="l6 btn-box">
+    <button class="btn btn-login login-text" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">允许</button>
+    <button class="btn btn-login login-text" wx:else open-type="getUserInfo" bindgetuserinfo="getUserProfile">允许</button>
+  </view>
+  <view class="l7" bindtap="cancelHandle">拒绝</view>
+</view>

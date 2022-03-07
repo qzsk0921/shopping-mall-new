@@ -1,0 +1,39 @@
+<!--pages/mine/customer/customer.wxml-->
+<!-- <text>pages/mine/customer/customer.wxml</text> -->
+<wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
+
+<view class="container container-customer">
+  <button open-type="share" class="tip">
+    <image src="/assets/images/customer_btn_font.png" mode="aspectFill"></image>
+  </button>
+
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <view class="no-data" wx:if="{{customerList.cache.length==0}}">
+      <image mode="aspectFill" src="/assets/images/empty.png"></image>
+      <view class="text">还没有客户，快去开发客户吧</view>
+    </view>
+    <block wx:else>
+      <view class="l1">
+        <image src="/assets/images/customer_icon.png" mode="aspectFill"></image>
+        <text>现有客户:{{customerTotal}}</text>
+      </view>
+      <view class="l2 scroll" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+scrollTop)+'px':compatibleInfo.systemInfo.screenHeight-(scrollTop)+'px'}}">
+        <view class="card" wx:for="{{customerList.cache}}" wx:key="unique" data-customerid="{{item.user_id}}" bindtap="cardHandle">
+          <image class="arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+          <view class="left">
+            <image src="{{item.user_info.avatar_url}}" mode="aspectFill"></image>
+          </view>
+          <view class="right">
+            <view class="row1">{{item.user_info.nick_name}}</view>
+            <view class="row2">{{item.shop_info.name}}</view>
+            <view class="row3"><text>负责人名称</text><text>{{item.shop_info.leader_name}}</text></view>
+            <view class="row4">关联时间：{{commontools.formatTime(item.bind_time*1000)}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

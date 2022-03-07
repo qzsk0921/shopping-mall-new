@@ -1,0 +1,12 @@
+module.exports = {
+  parsePrice: function (id, list) {
+    var res
+    list.some(function (item) {
+      if (item.id === id) {
+        res = item.price
+      }
+    })
+
+    return res
+  }
+}

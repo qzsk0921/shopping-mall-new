@@ -1,0 +1,34 @@
+/* pages/mine/faq/index.wxss */
+.content {
+  padding: 0 24rpx;
+}
+
+.cell {
+  margin-top: 20rpx;
+  padding-left: 24rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  background: #F9F9F9;
+  color: #333333;
+  font-size: 30rpx;
+  position: relative;
+  border-radius: 12rpx;
+}
+
+.cell::after {
+  content: '';
+  width: 15rpx;
+  height: 15rpx;
+  border: 3rpx solid #B2B2B2;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotateZ(45deg);
+  position: absolute;
+  top: 43rpx;
+  right: 24rpx;
+  transition: transform .5s;
+}
+
+.cell .text {
+  width: 90%;
+}

@@ -1,0 +1,17 @@
+<!--pages/shop/remark.wxml-->
+<!-- <text>pages/shop/remark.wxml</text> -->
+<view class="container container-remark">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}"
+      navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}"
+      status="{{navStatus}}" color="#333" />
+  </view>
+  <view class="textarea-box">
+    <textarea placeholder-class="placeholder-style" placeholder="请输入您的需求" value="{{content}}" name="content" bindinput="inputHandle" maxlength="100" />
+    <text>{{currentCount}}/100字</text>
+  </view>
+  <view class="reserves">
+    <view class="item" wx:for="{{prepareList}}" wx:key="unique" data-text="{{item}}" bindtap="remarkFillHandle">{{item}}</view>
+  </view>
+  <view class="btn btn-submit" bindtap="submitHandle">确定</view>
+</view>

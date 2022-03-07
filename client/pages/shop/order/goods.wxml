@@ -1,0 +1,79 @@
+<!--pages/shop/order/goods.wxml-->
+<!-- <text>pages/shop/order/goods.wxml</text> -->
+<!-- 订单商品页 -->
+<view class="container container-order-goods">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <!-- 普通商品 -->
+    <view class="section1">
+      <view class="l1">
+        <view></view>
+        <text>普通商品</text>
+        <view></view>
+      </view>
+      <view class="l2">
+        <view class="item" wx:for="{{normalList}}" wx:key="unique">
+          <view class="left">
+            <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
+          </view>
+          <view class="right">
+            <view class="l12-box">
+              <view class="l1">
+                <!-- <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view> -->
+                {{item.goods_name}} {{item.spec}}
+              </view>
+              <view class="unit">数量：{{item.cart_number}}件</view>
+            </view>
+            <!-- 授权且资质认证的非会员 -->
+            <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
+              <view class="price">
+                <text>￥</text><text>{{item.market_price}}</text>
+              </view>
+            </view>
+            <!-- 授权且资质认证的会员 -->
+            <view class="l4" wx:else>
+              <text>￥</text><text>{{item.price}}</text>
+              <text>￥{{item.market_price}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 折扣商品 -->
+    <view class="section2">
+      <view class="l1">
+        <view></view>
+        <text>折扣商品</text>
+        <view></view>
+      </view>
+      <view class="l2">
+        <view class="item" wx:for="{{discountList}}" wx:key="unique">
+          <view class="left">
+            <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
+          </view>
+          <view class="right">
+            <view class="l12-box">
+              <view class="l1 txt-cut">
+                <!-- <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view> -->{{item.goods_name}} {{item.spec}}
+              </view>
+              <view class="unit">数量：{{item.cart_number}}件</view>
+            </view>
+            <!-- 授权且资质认证的非会员 -->
+            <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
+              <view class="price">
+                <text>￥</text><text>{{item.market_price}}</text>
+              </view>
+            </view>
+            <!-- 授权且资质认证的会员 -->
+            <view class="l4" wx:else>
+              <text>￥</text><text>{{item.price}}</text>
+              <text>￥{{item.market_price}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

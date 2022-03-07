@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "top-navigation": "/components/navigation/commonnav",
+    "van-switch": "@vant/weapp/switch/index",
+    "confirm": "/components/Dialog/confirm"
+  },
+  "navigationStyle": "custom"
+}

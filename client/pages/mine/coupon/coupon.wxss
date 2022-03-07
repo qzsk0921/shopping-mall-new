@@ -1,0 +1,194 @@
+/* pages/mine/coupon/coupon.wxss */
+.container-coupon {}
+
+.tabs-nav {
+  display: flex;
+  position: relative;
+  background: #ffffff;
+  white-space: nowrap;
+}
+
+.tabs-nav .tab {
+  /* width: 33.33%;
+  display: inline-block; */
+  padding: 22rpx 0;
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  position: relative;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.tabs-nav .tab.active {
+  color: #333333;
+}
+
+.tabs-nav .tab>view {
+  display: inline-block;
+}
+
+.tabs-nav .tab .num {
+  margin-top: 8rpx;
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  position: relative;
+}
+
+.tabs-nav .tabs-line {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition-duration: .3s;
+  width: 55rpx;
+  height: 8rpx;
+  border-radius: 10rpx;
+  background: #333333;
+}
+
+.section2 {}
+
+.section2 .no-data {
+  text-align: center;
+}
+
+.section2 .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.section2 .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.btn1 {
+  background: #FF723B;
+  color: #FFFFFF;
+}
+
+.btn2 {
+  border: 2rpx solid #BBBBBB;
+  color: #666666;
+}
+
+.btn3 {
+  color: #FFFFFF;
+  background: #C4C4C4;
+}
+
+.card {
+  margin: 20rpx auto 0;
+  width: 702rpx;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.card .left {
+  width: 202rpx;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.card .left .l1 {}
+
+.card .left .l1 text:first-child {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+.card .left .l1 text:last-child {
+  font-size: 70rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+
+.card .left .l2 {
+  margin-top: 13rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.card .center {
+  width: 3rpx;
+  height: 116rpx;
+  background: #EEEEEE;
+}
+
+.card .right {
+  box-sizing: content-box;
+  width: 300rpx;
+  padding: 35rpx 0 40rpx 44rpx;
+}
+
+.card .right .l1 {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.card .right .l2 {
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  color: #777777;
+}
+
+.card .right .l3 {
+  margin-top: 19rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.card .btn-coupon {
+  text-align: center;
+  width: 136rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  color: #FFFFFF;
+}
+
+/* 0:领取 */
+.status0 {
+  background: #27C068;
+}
+
+/* 1:立刻使用 */
+.status1 {
+  background: #FF723B;
+}
+
+/* 2:已抢光 */
+.status2 {
+  background: #C4C4C4;
+}
+
+/* 3:已领取 */
+.status3 {
+  background: #C4C4C4;
+}
+
+/* 4:已使用 */
+.status4 {
+  background: #FFFFFF;
+  border: 2rpx solid #DDDDDD;
+  color: #666666;
+}
+
+.nothing {
+  text-align: center;
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  color: #999999;
+}

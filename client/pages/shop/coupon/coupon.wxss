@@ -1,0 +1,143 @@
+/* pages/shop/coupon/coupon.wxss */
+.container-coupon-select {}
+
+.scroll-box {
+  overflow: hidden;
+}
+
+.content {
+  overflow: hidden;
+}
+
+.card-box {
+  padding-bottom: 120rpx;
+}
+
+.card {
+  position: relative;
+  margin: 20rpx auto 0;
+  width: 702rpx;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.card .left {
+  width: 202rpx;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.card .left .l1 {}
+
+.card .left .l1 text:first-child {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+.card .left .l1 text:last-child {
+  font-size: 70rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+
+.card .left .l2 {
+  margin-top: 13rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.card .center {
+  width: 3rpx;
+  height: 116rpx;
+  background: #EEEEEE;
+}
+
+.card .right {
+  box-sizing: content-box;
+  width: 300rpx;
+  padding: 35rpx 0 40rpx 44rpx;
+}
+
+.card .right .l1 {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.card .right .l2 {
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  color: #777777;
+}
+
+.card .right .l3 {
+  margin-top: 19rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.no-data {
+  text-align: center;
+}
+
+.no-data image {
+  margin-top: 184rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.card .rright {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card .rright .radio-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card .rright .radio-box image {
+  width: 0;
+  height: 0;
+}
+
+.card .rright .radio-box.checked image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 34rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.card .rright .radio-box::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  transform: translateY(-50%);
+  right: 34rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border: 3rpx solid #e5e5e5;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.card .rright .radio-box .radio {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

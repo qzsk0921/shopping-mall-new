@@ -1,0 +1,86 @@
+<!--pages/shop/order/detailOrder.wxml-->
+<!-- <text>pages/shop/order/detailOrder.wxml</text> -->
+<wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
+<view class="container container-order-detail">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
+    <view class="section1 status{{orderData.status}}">
+      <view class="left">
+        <!-- 状态 0:待支付 1:已支付 2:已取消 -->
+        <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':'已取消'}}</view>
+        <view class="row2">{{orderData.status===0?'逾期未支付订单将自动取消':orderData.status===1?'订单已成功支付':'订单已经取消'}}</view>
+      </view>
+      <view class="right">
+        <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
+        <view class="btn btn-pay" bindtap="payOrderHandle">{{orderData.status===0?'立即支付':'再来一单'}}</view>
+      </view>
+    </view>
+    <view class="section2">
+      <view class="row1">{{orderData.receiving_address_name}}{{orderData.receiving_address_user_name}}</view>
+      <view class="row2">
+        <image class="icon-head" src="/assets/images/order_head.png" mode="aspectFill"></image>
+        <text>{{orderData.receiving_name}}</text>
+        <text>{{orderData.receiving_phone}}</text>
+      </view>
+    </view>
+    <view class="section3">
+      <view class="l1" bindtap="toOrderGoodsHandle">
+        <view class="left">商品信息</view>
+        <view class="right">
+          <text>共{{orderData.goods_list.length}}件</text>
+          <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="l2">
+        <view class="image-box" style="width:{{tools.calcW(orderData.goods_list.length)}}rpx">
+          <image wx:for="{{orderData.goods_list}}" wx:key="unique" wx:for-item="itemName" src="{{itemName.thumb}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="l3 l">
+        <text>商品总额</text>
+        <text>￥{{orderData.goods_money}}</text>
+      </view>
+      <view class="l4 l">
+        <text>会员优惠</text>
+        <text class="{{orderData.vip_discount=='0.00'?'':'discount'}}">{{orderData.vip_discount=="0.00"?'':'-'}}￥{{orderData.vip_discount}}</text>
+      </view>
+      <view class="l5 l">
+        <text>优惠券抵扣</text>
+        <text class="{{orderData.coupon_discount=='0.00'?'':'discount'}}">{{orderData.coupon_discount=='0.00'?'':'-'}}￥{{orderData.coupon_discount}}</text>
+      </view>
+      <view class="l6">
+        <text>实付:</text>
+        <text> ￥{{orderData.pay_money}}</text>
+      </view>
+    </view>
+    <view class="section4">
+      <view class="l1 l">
+        <text>订单编号</text>
+        <view class="sn-box">
+          <text>{{orderData.order_sn}}</text>
+          <view class="btn btn-copy" bindtap="copyHandle">复制</view>
+        </view>
+      </view>
+      <view class="l2 l">
+        <text>下单时间</text>
+        <text>{{commontools.formatTime(orderData.create_time*1000)}}</text>
+      </view>
+      <view wx:if="{{orderData.status!=0}}" class="l3 l">
+        <text>支付时间</text>
+        <text>{{commontools.formatTime(orderData.pay_time*1000)}}</text>
+      </view>
+      <view wx:if="{{orderData.status!=0}}" class="l4 l">
+        <text>支付方式</text>
+        <text>微信支付</text>
+      </view>
+    </view>
+    <view class="section5">
+      <view class="l1">备注</view>
+      <view class="l2">{{orderData.remark?orderData.remark:'可以告诉我您的需求'}}</view>
+    </view>
+  </view>
+</view>

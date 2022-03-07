@@ -1,0 +1,97 @@
+/* pages/mine/coupon/detail.wxss */
+.container-coupon-detail {
+  background: #FFFFFF;
+}
+
+.content {
+  overflow: hidden;
+  background: #F5F5F5;
+}
+
+.card {
+  margin: 20rpx auto 0;
+  width: 702rpx;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.card .left {
+  width: 202rpx;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.card .left .l1 {}
+
+.card .left .l1 text:first-child {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+.card .left .l1 text:last-child {
+  font-size: 70rpx;
+  font-weight: bold;
+  color: #FC4953;
+}
+
+
+.card .left .l2 {
+  margin-top: 13rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.card .center {
+  width: 3rpx;
+  height: 116rpx;
+  background: #EEEEEE;
+}
+
+.card .right {
+  padding: 35rpx 44rpx 40rpx 44rpx;
+}
+
+.card .right .l1 {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.card .right .l2 {
+  width: 412rpx;
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  color: #777777;
+}
+
+.card .right .l3 {
+  margin-top: 19rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+.specify {
+  margin-top: 20rpx;
+  padding: 30rpx 0 0 40rpx;
+  background: #FFFFFF;
+}
+
+.specify .tit {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 30rpx;
+}
+
+.specify .l {
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.specify .l:nth-of-type(n+3) {
+  margin-top: 39.5rpx;
+}

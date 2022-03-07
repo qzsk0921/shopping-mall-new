@@ -1,0 +1,93 @@
+<!--pages/category/category.wxml-->
+<!-- <text>pages/category/category.wxml</text> -->
+<view class="container container-category hide-scrollbar">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#333" bgColor="#fff" />
+  </view>
+  <view class="content">
+    <view class="section1 hide-scrollbar" bindtap='dropdownMenuItemTap'>
+      <dropdown-menu-category opened="{{categoryOpened}}" bindsubClickable="subClickableHandle" bindsubFirstCategoryHandle="subFirstCategoryHandle" categoryData="{{firstCategory}}" currentFirstCategoryId="{{currentFirstCategoryId}}" />
+      <!-- <view class="category-box hide-scrollbar" bindtap="firstCategoryHandle" style="width:{{categoryBoxW}}rpx"> -->
+      <view class="category-box hide-scrollbar" bindtap="firstCategoryHandle">
+        <scroll-view scroll-x="true" scroll-into-view="{{currentScrollTopId}}" scroll-with-animation="true" enhanced="true" show-scrollbar="{{false}}">
+          <view class="item-box" style="width:{{categoryBoxW}}rpx;">
+            <view class="item {{currentFirstCategoryId===item.id?'category-active':''}}" wx:for="{{firstCategory}}" data-clickable="1" data-id="{{item.id}}" id="a{{item.id}}">
+              <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1" data-id="{{item.id}}"></image>
+              <view class="text-category" data-clickable="1" data-id="{{item.id}}">{{item.name}}</view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="extend" bindtap="extendHandle" data-clickable="1">
+          <view class="text-box" data-clickable="1"><text data-clickable="1">全</text><text data-clickable="1">部</text>
+          </view>
+          <view class="arrow" data-clickable="1"></view>
+        </view>
+      </view>
+    </view>
+    <view class="section2">
+      <view class="tree-select {{compatibleInfo.isIphoneX?'isIphoneX':''}}">
+        <view class="tree-select__nav hide-scrollbar" bindtap="itemTapHandle" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}}">
+          <view class="sidebar-item tree-select__nav-item {{currentSecondCategoryId===item.id?'sidebar-item--select': ''}}" wx:for="{{secondCategory}}" wx:key="unique" data-id="{{item.id}}" data-index="{{index}}">{{item.name}}</view>
+        </view>
+        <view wx:if="{{secondCategory.length}}" class="tree-select__content hide-scrollbar">
+          <view class="tree-select__tip">
+            <view class="left">
+              {{secondCategory[currentSecondCategoryIndex].name}}
+            </view>
+            <view class="right" bindtap="changeTab">
+              <view class="btn btn-sale {{tabIndex==1?'active-color':''}}" data-index="1">销量</view>
+              <view class="btn btn-price" data-index="2">
+                <view data-index="2">价格</view>
+                <view class="arrow-box {{currentPriceSort===4?'active-t':currentPriceSort===3?'active-b':''}}" data-index="2">
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="tree-select__item-box hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+32+section1H+fixed+contentTipH)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed+contentTipH)+'px'}}">
+            <view class="no-data" wx:if="{{currentGoodsList.cache.length==0}}">
+              <image mode="aspectFill" src="/assets/images/empty.png"></image>
+              <view class="text">暂无更多内容</view>
+            </view>
+            <block wx:else>
+              <view class="tree-select__item" wx:for="{{currentGoodsList.cache}}" wx:key="unique" id="{{item.id}}" data-id="{{item.id}}" bindtap="goodsDetailHandle">
+                <view class="shopcart-box" data-item="{{item}}" data-index="{{index}}" catchtap="addArtHandle">
+                  <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
+                  <view wx:if="{{item.cart_number}}" class="shopcart-info">{{item.cart_number}}</view>
+                </view>
+
+                <view class="left">
+                  <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
+                </view>
+                <view class="right">
+                  <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 95rpx;':''}}">
+                    <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
+                    <view>{{item.goods_name}} {{item.spec}}</view>
+                  </view>
+                  <view class="l2 txt-cut">{{item.goods_content}}</view>
+                  <view class="l3">{{item.unitName}}</view>
+                  <!-- <view class="l4">
+                  <text>￥</text><text>{{item.price}}</text>
+                  <text>￥{{item.market_price}}</text>
+                </view> -->
+                  <!-- 未授权或未资质认证的非会员 -->
+                  <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+                    <text>请登录查看价格</text>
+                  </view>
+                  <!-- 授权且资质认证的非会员 -->
+                  <view class="l4" wx:elif="{{!userInfo.is_vip&&!userInfo.is_sale}}">
+                    <text>￥</text><text>{{item.market_price}}</text>
+                  </view>
+                  <!-- 授权且资质认证的会员 -->
+                  <view class="l4" wx:else>
+                    <text>￥</text><text>{{item.price}}</text>
+                    <text>￥{{item.market_price}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+module.exports = {
+  matchId: function (id, ids) {
+    // console.log(id)
+    var res = false
+    for (var index = 0; index < ids.length; index++) {
+      if (id === ids[index].id) res = true
+    }
+    return res
+  }
+}

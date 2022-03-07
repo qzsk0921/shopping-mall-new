@@ -1,0 +1,60 @@
+<!--pages/location/index/index.wxml-->
+<!-- <text>pages/location/index/index.wxml</text> -->
+<wxs module="tools" src="../../../wxs/common.wxs"></wxs>
+
+<view class="container-location container">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#fff" />
+  </view>
+  <view wx:if="{{navigationBarTitleText==='选择收货地址'}}" class="section1">
+    <input class="search" name="search" placeholder="搜索小区/写字楼等" placeholder-class="search-placeholder" value="{{searchKeyword}}" bindinput="inputHandle" confirm-type="search" bindconfirm="bindconfirmHandle" />
+    <view wx:if="{{!searchKeyword}}" class="btn btn-search" bindtap="searchClickHandle">搜索</view>
+    <image wx:else class="btn btn-close" src="/assets/images/search_icon_close.png" mode="aspectFill" bindtap="searchCloseHandle"></image>
+  </view>
+  <view wx:if="{{searchKeyword}}" class="list" style="height:{{listH}}px">
+    <view class="btn-item btn-poi {{availablePoi?'btn-active':''}}" wx:for="{{pois}}" wx:key="unique" bindtap='poiTapHandle' data-index='{{index}}' data-item="{{item}}">
+      <view class="btn-item-l">
+        <view class="title" data-index='{{index}}'>{{item.title}}</view>
+        <view class='address' data-index='{{index}}'>{{tools.parseAddress(item.address,item.province, item.city)}}
+        </view>
+      </view>
+      <view class="btn-item-r">
+        {{tools.parseMeter(item._distance)}}
+      </view>
+    </view>
+  </view>
+  <block wx:else>
+    <view wx:if="{{navigationBarTitleText==='选择收货地址'}}" class="section2">
+      <view class="l1">当前地址</view>
+      <view class="l2" bindtap="locationClickHandle">
+        <view class="l2-l">
+          <view class="l2-l-l1 tit">{{location.formatted_addresses.recommend}}</view>
+          <view class="l2-l-l2 number">
+            {{location.address_component.district}}{{location.address_component.street_number}}</view>
+        </view>
+        <view class="l2-r">
+          <image class="icon-location" src="/assets/images/add_icon_location.png" mode="aspectFill"></image>
+          <view class="btn btn-relocate" catchtap="repositionHandle">重新定位</view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{deliveryAddress.length}}" class="section3">
+      <view wx:if="{{navigationBarTitleText==='选择收货地址'}}" class="l1">我的收货地址</view>
+      <view class="deliveryAddress-box hide-scrollbar" style="height:{{deliveryAddressBoxH}}px;">
+        <view wx:for="{{deliveryAddress}}" wx:key="unique" class="l2" data-id="{{item.id}}" data-item="{{item}}" bindtap="addrClickHandle">
+          <image class="icon-edit" src="/assets/images/add_icon_edit.png" mode="aspectFill" bindtap="addrEditHandle" data-type="edit" data-id="{{item.id}}">
+          </image>
+          <view class="l2-l">
+            <view class="l2-l-l1 tit {{item.id===address_id?'addr-active': ''}}">{{item.name}}</view>
+            <view class="l2-l-l2 number">{{item.user_address}}</view>
+            <view class="l2-l-l3 phone">{{item.consignee_name}} {{item.consignee_phone}}</view>
+          </view>
+          <!-- <view class="l2-r">
+            <view class="symbol-hook" wx:if="{{item.id===currentAddressId||item.current}}"></view>
+          </view> -->
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class="footer" wx:if="{{!searchKeyword}}" bindtap="addAddrHandle">添加新地址</view>
+</view>

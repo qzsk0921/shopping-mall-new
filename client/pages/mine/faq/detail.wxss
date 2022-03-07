@@ -1,0 +1,17 @@
+/* pages/mine/faq/detail.wxss */
+.container-faq-detail {
+  background: #ffffff
+}
+
+rich-text {
+  box-sizing: border-box;
+  padding: 20rpx;
+  width: 100vw;
+  display: block;
+}
+
+.p_class {
+  line-height: 46rpx;
+  text-indent: 60rpx;
+  margin-bottom: 20rpx;
+}

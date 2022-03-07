@@ -1,0 +1,119 @@
+/* pages/shop/order/goods.wxss */
+
+.content {}
+
+.section1>.l1,
+.section2>.l1 {
+  height: 84rpx;
+  font-size: 28rpx;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section1 .l1 text,
+.section2 .l1 text {
+  margin: 0 20rpx;
+}
+
+.section1 .l1 view,
+.section2 .l1 view {
+  width: 70rpx;
+  height: 2rpx;
+  background: #DDDDDD;
+}
+
+.section1 .l2,
+.section2 .l2 {
+  width: 702rpx;
+  margin: auto;
+}
+
+.section1 .l2 .item,
+.section2 .l2 .item {
+  padding: 0 30rpx;
+  display: flex;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  position: relative;
+}
+
+.section1 .l2 .item:not(:first-child),
+.section2 .l2 .item:not(:first-child) {
+  margin-top: 20rpx;
+}
+
+.section1 .l2 .item .left,
+.section2 .l2 .item .left {
+  display: flex;
+  align-items: center;
+}
+
+.section1 .l2 .item .right,
+.section2 .l2 .item .right {
+  margin-left: 24rpx;
+  padding: 25rpx 0 18rpx;
+}
+
+.section1 .l2 .item .right .l1,
+.section2 .l2 .item .right .l1 {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 38rpx;
+  color: #333333;
+}
+
+.section1 .l2 .item .right .l3,
+.section2 .l2 .item .right .l3 {
+  font-size: 22rpx;
+  line-height: 37rpx;
+  color: #999999;
+}
+
+.section1 .l2 .item .right .l4,
+.section2 .l2 .item .right .l4 {
+  /* margin: 24rpx 0 18rpx; */
+}
+
+.section1 .l2 .item .right .l4 text:first-child,
+.section2 .l2 .item .right .l4 text:first-child {
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 41rpx;
+  color: #FC4953;
+}
+
+.section1 .l2 .item .right .l4 text:nth-of-type(2),
+.section2 .l2 .item .right .l4 text:nth-of-type(2) {
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 58rpx;
+  color: #FC4953;
+}
+
+.section1 .l2 .item .right .l4 text:nth-of-type(3),
+.section2 .l2 .item .right .l4 text:nth-of-type(3) {
+  margin-right: 2rpx;
+  font-size: 22rpx;
+  line-height: 37rpx;
+  color: #888888;
+  text-decoration: line-through;
+}
+
+.icon-goods {
+  width: 172rpx;
+  height: 172rpx;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 16rpx;
+}
+
+.unit {
+  font-size: 22rpx;
+  line-height: 37rpx;
+  color: #999999;
+}
+
+.l12-box {
+  height: 124rpx;
+}
