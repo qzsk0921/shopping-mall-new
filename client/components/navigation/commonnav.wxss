@@ -114,3 +114,10 @@
   font-size: 28rpx;
   color: #999999;
 }
+
+.groupbargain {}
+
+.icon-groupbargain {
+  width: 182rpx;
+  height: 42rpx;
+}

@@ -45,7 +45,7 @@
         <view>{{item.name}}</view>
       </view>
     </view>
-    <view class="l2">
+    <view wx:if="{{option2Show}}" class="l2">
       <block wx:for="{{options2}}" wx:key="unique">
         <view wx:if="{{item.id==9}}" class="item contact-item">
           <button class="btn-contact" open-type="contact">

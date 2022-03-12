@@ -1,0 +1,6 @@
+/* pages/groupbargain/list.wxss */
+.block {
+  width: 100%;
+  height: 284rpx;
+  background: linear-gradient(180deg, #FF503F 0%, #F6F6F6 100%);
+}

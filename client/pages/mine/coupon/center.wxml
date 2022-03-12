@@ -28,7 +28,7 @@
         <view class="text">暂无更多内容</view>
       </view>
       <view class='card-box' wx:elif="{{couponMarketList.cache.length}}">
-        <view class="card" wx:for="{{couponMarketList.cache}}" wx:key="unique">
+        <view class="card" wx:for="{{couponMarketList.cache}}" wx:key="unique" data-coupon_id="{{item.id}}" bindtap="toDetailHandle">
           <view class="left">
             <view class="l1">
               <text>￥</text>
@@ -44,7 +44,7 @@
             <view class="l2 l one-txt-cut">{{item.content}}</view>
             <view class="l3 l">{{item.time_str}}</view>
           </view>
-          <view class="rright btn btn-coupon status{{item.coupon_status}}" bindtap="getCouponHandle" data-item="{{item}}" data-index="{{index}}">
+          <view class="rright btn btn-coupon status{{item.coupon_status}}" catchtap="getCouponHandle" data-item="{{item}}" data-index="{{index}}">
             {{tools.parsePouponStatus(item.coupon_status)}}
           </view>
         </view>

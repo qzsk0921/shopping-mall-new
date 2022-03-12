@@ -379,6 +379,7 @@ create(store, {
   },
   getGoodsList(dataObj) {
     const tempData = {
+      category_id: this.data.category_id,
       keyword: this.data.searchKeyword,
       activity_id: this.data.activity_id, //活动
       page_size: this.data.page_size,
@@ -445,13 +446,15 @@ create(store, {
 
     const {
       keyword,
-      activity_id
+      activity_id,
+      category_id
     } = options
 
     // console.log(keyword)
     this.setData({
       activity_id: activity_id ? activity_id : '',
-      searchKeyword: keyword ? keyword : ''
+      searchKeyword: keyword ? keyword : '',
+      category_id: category_id ? category_id : ''
     })
 
     // this.data.searchKeyword = keyword

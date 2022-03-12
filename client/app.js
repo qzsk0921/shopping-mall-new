@@ -13,13 +13,6 @@ import store from './store/common'
 
 App({
   onLaunch() {
-    // 统计时长埋点
-    setTrack({
-      type: 1
-    }).then(res => {
-      this.globalData.page_id = res.data.page_id
-    })
-
     const token = wx.getStorageSync('token')
     if (!token) {
       wx.login().then(res => {
@@ -62,6 +55,20 @@ App({
     }
 
     this.init()
+  },
+  onShow() {
+    // 统计时长埋点
+    setTrack({
+      type: 1
+    }).then(res => {
+      this.globalData.page_id = res.data.page_id
+    })
+  },
+  onHide() {
+    setTrack({
+      type: 2,
+      page_id: this.globalData.page_id
+    }).then(res => {})
   },
   init() {
     // 全局分享

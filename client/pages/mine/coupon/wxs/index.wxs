@@ -13,7 +13,8 @@ module.exports = {
         text = "已抢光"
         break;
       case 3:
-        text = "已领取"
+        // text = "已领取"
+        text = "立即使用"
         break;
       case 4:
         text = "已使用"
@@ -24,6 +25,7 @@ module.exports = {
     return text
   },
   parseInt: function (val) {
-    return parseInt(val)
+    return Math.floor(val * 100) / 100
+    // return parseInt(val)
   },
 }

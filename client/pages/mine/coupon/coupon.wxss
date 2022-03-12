@@ -26,6 +26,7 @@
 
 .tabs-nav .tab>view {
   display: inline-block;
+  vertical-align: middle;
 }
 
 .tabs-nav .tab .num {
@@ -106,7 +107,7 @@
 }
 
 .card .left .l1 text:last-child {
-  font-size: 70rpx;
+  font-size: 60rpx;
   font-weight: bold;
   color: #FC4953;
 }
@@ -191,4 +192,18 @@
   margin-top: 40rpx;
   font-size: 32rpx;
   color: #999999;
+}
+
+.floating-window {
+  position: fixed;
+  right: 0;
+  bottom: 80rpx;
+  width: 164rpx;
+  height: 164rpx;
+  z-index: 999;
+  transition: transform .2s;
+}
+
+.shrink {
+  transform: translateX(164rpx);
 }

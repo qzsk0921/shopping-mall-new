@@ -32,7 +32,9 @@
     "pages/mine/customer/customer",
     "pages/mine/faq/index",
     "pages/mine/faq/detail",
-    "pages/mine/set/set"
+    "pages/mine/focus/index",
+    "pages/mine/set/set",
+    "pages/groupbargain/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

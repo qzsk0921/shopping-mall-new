@@ -4,5 +4,5 @@
     "json-add": "/components/Dialog/json-add"
   },
   "navigationStyle": "custom",
-  "disableScroll": true
+  "disableScroll": false
 }

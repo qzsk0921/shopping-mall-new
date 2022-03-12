@@ -11,7 +11,7 @@
       <input class="search" name="search" placeholder="蔬菜" placeholder-class="search-placeholder" value="{{searchKeyword}}" confirm-type="search" bindconfirm="bindconfirmHandle" disabled="true" />
       <view class="btn btn-search" bindtap="btnSearchCancelHandle">搜索</view>
     </view>
-    <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}}">
+    <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}};" bindtouchstart="touchStart" bindtouchmove="touchMove">
       <view class="bg">
       </view>
       <view class="section2" bindtap="swiperHandle">
@@ -59,8 +59,12 @@
         </view>
       </view>
       <!-- 火热拼团 -->
-      <!-- <view class="section9 collage">
+      <view class="section9 collage">
         <image class="t icon-collage-bg" src="/assets/images/pd_bk.png" mode="aspectFill"></image>
+        <view class="btn btn-shopping">
+          <text>进去逛逛</text>
+          <image class="icon-shopping" src="/assets/images/nav_btn_return.png" mode="aspectFill"></image>
+        </view>
         <view class="b hide-scrollbar">
           <view class="item">
             <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
@@ -171,7 +175,7 @@
             <view class="btn-collage">拼</view>
           </view>
         </view>
-      </view> -->
+      </view>
       <!-- 预收专栏 -->
       <view class="section5" wx:if="{{shopData.pre_goods.length}}">
         <image class="t icon-presale" src="/assets/images/home_booking.png" mode="aspectFill"></image>
@@ -234,7 +238,7 @@
                 <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                 <view>{{item.goods_name}} {{item.spec}}</view>
               </view>
-              <view class="unit">{{item.unitName}}</view>
+              <view class="unit">{{item.goods_content}}</view>
             </view> -->
       <!-- 未授权或未资质认证的非会员 -->
       <!-- <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
@@ -280,7 +284,7 @@
                     <view wx:if="{{itemName.is_pre_sale===1 || itemName.activity_info.activity_name}}" class="tag {{itemName.is_pre_sale===1?'pre_sale':itemName.activity_info.activity_name?'new_activity':''}}">{{itemName.is_pre_sale===1?'预售专区':itemName.activity_info.activity_name?'新品上市':''}}</view>
                     {{itemName.goods_name}} {{itemName.spec}}
                   </view>
-                  <view class="unit">{{itemName.unitName}}</view>
+                  <view class="unit">{{itemName.goods_content}}</view>
                 </view>
                 未授权或未资质认证的非会员
                 <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
@@ -312,7 +316,7 @@
           </view> -->
           <view class="tit-box">
             <view class="tit">{{item.name}}</view>
-            <view class="recommend" bindtap="toSearchResHandle">
+            <view class="recommend" bindtap="toSearchResHandle" data-id="{{item.id}}">
               <view>更多推荐</view>
               <image src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
             </view>
@@ -322,11 +326,11 @@
               <image class="icon-pri" src="{{itemName.thumb}}" mode="aspectFill"></image>
               <view class="cont">
                 <view class="l12-box">
-                  <view class="l1 txt-cut" style="overflow: hidden;{{compatibleInfo.isIphone?'display: block !important;max-height: 80rpx;':''}}">
+                  <view class="l1 txt-cut" style="overflow: hidden;{{compatibleInfo.isIphone?'display: block !important;max-height: 76rpx;':''}}">
                     <view wx:if="{{itemName.is_pre_sale===1 || itemName.activity_info.activity_name}}" class="tag {{itemName.is_pre_sale===1?'pre_sale':itemName.activity_info.activity_name?'new_activity':''}}">{{itemName.is_pre_sale===1?'预售专区':itemName.activity_info.activity_name?'新品上市':''}}</view>
-                    {{itemName.goods_name}} {{itemName.spec}}
+                    <view>{{itemName.goods_name}} {{itemName.spec}}</view>
                   </view>
-                  <view class="unit">{{itemName.unitName}}</view>
+                  <view class="unit">{{itemName.goods_content}}</view>
                 </view>
                 <!-- 未授权 -->
                 <view class="l2 no-sign" wx:if="{{!userInfo.phone}}">
@@ -368,7 +372,7 @@
                   <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                   <view>{{item.goods_name}} {{item.spec}}</view>
                 </view>
-                <view class="unit">{{item.unitName}}</view>
+                <view class="unit">{{item.goods_content}}</view>
               </view>
               <!-- 未授权 -->
               <view class="l2 no-sign" wx:if="{{!userInfo.phone}}">
@@ -398,3 +402,6 @@
 </view>
 
 <json-add dialogVisible="{{jsonAddDialogVisibile}}" navHeight="{{compatibleInfo.navHeight}}" />
+
+<!-- 领券中心浮窗 -->
+<image wx:if="{{tabbarH}}" class="floating-window {{shrink?'shrink':''}}" src="/assets/images/home_img_coupon.png" mode="aspectFill" bindtap="toCouponHandle" style="bottom:{{tabbarH+40}}px;"></image>

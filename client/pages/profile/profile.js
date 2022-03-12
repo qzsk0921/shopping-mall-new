@@ -92,7 +92,8 @@ create(store, {
       {
         id: 7,
         imgName: 'my_icon_focus',
-        name: '关注公众号'
+        name: '关注公众号',
+        url: '/pages/mine/focus/index'
       },
       {
         id: 8,
@@ -102,7 +103,7 @@ create(store, {
       },
       {
         id: 9,
-        imgName: 'my_icon_set',
+        imgName: 'my_icon_service',
         name: '联系客服',
         url: '/pages/mine/set/set?from=mine'
       }
@@ -267,6 +268,7 @@ create(store, {
           }
 
           myData.options2 = this.data.options2
+          myData.option2Show = true
         })
       }
 

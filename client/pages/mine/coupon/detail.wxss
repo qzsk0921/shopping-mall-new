@@ -21,6 +21,7 @@
   width: 202rpx;
   background: #FFFFFF;
   text-align: center;
+  flex: 1;
 }
 
 .card .left .l1 {}
@@ -52,6 +53,7 @@
 
 .card .right {
   padding: 35rpx 44rpx 40rpx 44rpx;
+  flex: 1;
 }
 
 .card .right .l1 {
