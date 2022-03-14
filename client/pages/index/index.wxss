@@ -797,6 +797,7 @@
 
 .section8 .item .cont {
   padding: 12rpx 0 24rpx;
+  position: relative;
 }
 
 .section8 .item .cont .l1 {
@@ -828,8 +829,6 @@
 
 .section8 .item .cont .l2 {
   margin-top: 14rpx;
-  display: flex;
-  align-items: flex-end;
 }
 
 .section8 .item .cont .l2 .price {
@@ -845,16 +844,16 @@
 }
 
 .section8 .item .cont .l2 .origin-price {
-  margin-left: 2rpx;
+  margin: 3rpx 2rpx 0 0;
   font-size: 22rpx;
-  color: #888888;
   text-decoration: line-through;
+  color: #999999;
 }
 
 .section8 .item .shopcart-box {
   position: absolute;
   right: 0;
-  bottom: 24rpx;
+  top: 127rpx;
   width: 48rpx;
   height: 48rpx;
 }

@@ -24,7 +24,7 @@
                 <!-- <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view> -->
                 {{item.goods_name}} {{item.spec}}
               </view>
-              <view class="unit">数量：{{item.cart_number}}件</view>
+              <view class="unit">数量：{{item.cart_number||item.goods_num}}件</view>
             </view>
             <!-- 授权且资质认证的非会员 -->
             <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
@@ -58,7 +58,7 @@
               <view class="l1 txt-cut">
                 <!-- <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view> -->{{item.goods_name}} {{item.spec}}
               </view>
-              <view class="unit">数量：{{item.cart_number}}件</view>
+              <view class="unit">数量：{{item.cart_number||item.goods_num}}件</view>
             </view>
             <!-- 授权且资质认证的非会员 -->
             <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">

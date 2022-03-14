@@ -270,6 +270,9 @@ create(store, {
           myData.options2 = this.data.options2
           myData.option2Show = true
         })
+      } else {
+        myData.options2 = this.data.options2
+        myData.option2Show = true
       }
 
       this.setData(myData)

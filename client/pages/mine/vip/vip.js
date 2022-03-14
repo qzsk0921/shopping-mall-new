@@ -7,6 +7,10 @@ import {
   addVip
 } from '../../../api/vip'
 
+import {
+  getUserDetail
+} from '../../../api/user.js'
+
 // Page({
 create(store, {
 
@@ -103,7 +107,6 @@ create(store, {
     this.setData({
       btnDisable: this.data.myVipPrice > dataset.item.price
     })
-
   },
   certCheck() {
     // 若用户没有通过资质认证，显示弹窗如下图
@@ -168,8 +171,22 @@ create(store, {
         'success': function (res) {
           console.log(res)
           // 支付成功后，返回个人中心，刷新个人中心页面
-          wx.navigateBack({
-            delta: 0,
+          getUserDetail().then(res => {
+            // 业务代码 1:正常 0:禁用 -1:不存在-------------------------------------------------
+            if (res.data.status === 0) {
+              wx.reLaunch({
+                url: '/pages/authorization/forbidden',
+              })
+            }
+
+            getApp().globalData.userInfo = res.data
+            store.data.userInfo = res.data
+            store.update()
+            
+            // 支付成功后，返回个人中心，刷新个人中心页面
+            wx.navigateBack({
+              delta: 0,
+            })
           })
           // 获取消息下发权限(只在支付回调或tap手势事件能调用)
           // wx.requestSubscribeMessage({

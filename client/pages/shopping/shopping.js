@@ -783,6 +783,17 @@ create(store, {
         if (![2, 3].includes(item.status) && item.is_stock) {
           if (this.data.select_all) arr = arr.concat(item.id + '.' + item.unit_id)
         }
+
+        // 返回该页面更新猜你喜欢的购物车数量
+        this.data.recommendList.cache.forEach((it, index) => {
+          if (item.id === it.id) {
+            this.setData({
+              [`recommendList.cache[${index}].cart_number`]: item.cart_number
+            })
+            return true
+          }
+          return false
+        })
       })
 
       this.setData({

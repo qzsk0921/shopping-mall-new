@@ -64,7 +64,7 @@
                     <view>{{item.goods_name}} {{item.spec}}</view>
                   </view>
                   <view class="l2 txt-cut">{{item.goods_content}}</view>
-                  <view class="l3">{{item.unitName}}</view>
+                  <view class="l3">{{item.spec}}</view>
                   <!-- <view class="l4">
                   <text>￥</text><text>{{item.price}}</text>
                   <text>￥{{item.market_price}}</text>

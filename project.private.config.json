@@ -203,6 +203,12 @@
           "pathName": "pages/groupbargain/list",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/coupon/center",
+          "query": "",
+          "scene": null
         }
       ]
     }

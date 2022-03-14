@@ -1,0 +1,5 @@
+module.exports = {
+  parsePercentage: function (total, num) {
+    return parseInt(num / total * 100) + '%'
+  }
+}
