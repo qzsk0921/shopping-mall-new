@@ -2,7 +2,8 @@
 import store from '../../../store/common'
 import create from '../../../utils/create'
 import {
-  addOrder
+  addOrder,
+  rePay
 } from '../../../api/order'
 // Page({
 create(store, {
@@ -141,7 +142,8 @@ create(store, {
     let orderData = {
       shop_id: this.store.data.shop_id,
       address_id: this.store.data.address_id,
-      goods: []
+      goods: [],
+      remark: this.data.remark
     }
 
     if (this.data.currentCouponId) {
@@ -163,11 +165,35 @@ create(store, {
       }
       orderData.goods.push(temp)
     })
-    this.addOrder(orderData).then(res => {
-      console.log(res)
-      // 调起微信支付
-      this.wxPay(res.data)
-    })
+
+    if (this.data.order_id) {
+      this.rePay({
+        order_id: this.data.order_id
+      }).then(res => {
+        console.log(res)
+        // 支付金额为0元时，可直接支付成功进入订单详情页，无需调起支付
+        if (res.data.pay_status === 1) {
+          wx.navigateTo({
+            url: `/pages/shop/order/detailOrder?order_id=${res.data.order_id}`,
+          })
+        }
+        // 调起微信支付
+        this.wxPay(res.data)
+      })
+    } else {
+      this.addOrder(orderData).then(res => {
+        console.log(res)
+        this.data.order_id = res.data.order_id
+        // 支付金额为0元时，可直接支付成功进入订单详情页，无需调起支付
+        if (res.data.pay_status === 1) {
+          wx.navigateTo({
+            url: `/pages/shop/order/detailOrder?order_id=${res.data.order_id}`,
+          })
+        }
+        // 调起微信支付
+        this.wxPay(res.data)
+      })
+    }
   },
   // 微信支付
   wxPay(payModel) {
@@ -180,9 +206,14 @@ create(store, {
       'success': function (res) {
         console.log(res)
         // 支付成功后，返回个人中心，刷新个人中心页面
-        wx.switchTab({
-          url: '/pages/profile/profile',
+        // wx.switchTab({
+        //   url: '/pages/profile/profile',
+        // })
+
+        wx.navigateTo({
+          url: `/pages/shop/order/detailOrder?order_id=${payModel.order_id}`,
         })
+
         // 获取消息下发权限(只在支付回调或tap手势事件能调用)
         // wx.requestSubscribeMessage({
         //   tmplIds: ['mtwGRB07oFL2fJgoiIipKVCYFFHS0vytiw2rTHqtAz8', 'gB9gMYOrOkLl-yTHdBP5vUS5rgwsTW1hjUYNml-57Go'],
@@ -202,17 +233,25 @@ create(store, {
           title: msg,
           icon: 'none'
         })
-        
+
         console.log(res)
       }
-    }).catch(res => {
-      console.log(res)
     })
   },
 
   addOrder(data) {
     return new Promise((resolve, reject) => {
       addOrder(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+
+  rePay(data) {
+    return new Promise((resolve, reject) => {
+      rePay(data).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)

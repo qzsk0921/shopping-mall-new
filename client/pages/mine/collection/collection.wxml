@@ -14,7 +14,8 @@
         <view class="text">暂无更多内容</view>
       </view>
       <block wx:elif="{{collectionList.cache.length}}">
-        <view class="item {{item.status===2?'mask-box':item.is_stock?'':'mask-box'}}" wx:for="{{collectionList.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="itemHandle" data-disabled="{{item.status===2?0:item.is_stock?1:0}}">
+        <!-- <view class="item {{item.status===2?'mask-box':item.is_stock?'':'mask-box'}}" wx:for="{{collectionList.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="itemHandle" data-disabled="{{item.status===2?0:item.is_stock?1:0}}"> -->
+        <view class="item {{item.status===2?'mask-box':item.cart_number>item.stock?'mask-box':''}}" wx:for="{{collectionList.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="itemHandle" data-disabled="{{item.status===2?0:item.is_stock?1:0}}">
           <!-- 关闭按钮 -->
           <image class="btn-close" src="/assets/images/car_icon_del.png" mode="aspectFill" catchtap="delGoodsHandle" data-item="{{item}}" data-index="{{index}}">
           </image>
@@ -25,7 +26,8 @@
 
           <view class="left">
             <view class="icon-goods-box">
-              <view class="mask">{{(item.status===2||item.status===3)?'已下架':item.is_stock?'':'库存不足'}}</view>
+              <!-- <view class="mask">{{(item.status===2||item.status===3)?'已下架':item.is_stock?'':'库存不足'}}</view> -->
+              <view class="mask">{{(item.status===2||item.status===3)?'已下架':item.cart_number>item.stock?'库存不足':''}}</view>
               <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
             </view>
           </view>
@@ -35,9 +37,9 @@
                 <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                 <view>{{item.goods_name}} {{item.spec}}</view>
               </view>
-              <view class="l2">{{item.unitName}}</view>
+              <!-- <view class="l2">{{item.unitName}}</view> -->
+              <view class="l3 one-txt-cut">{{item.goods_content}}</view>
             </view>
-            <view class="l3">{{item.spec}}</view>
             <!-- <view class="l4">
                   <text>￥</text><text>{{item.price}}</text>
                   <text>￥{{item.market_price}}</text>

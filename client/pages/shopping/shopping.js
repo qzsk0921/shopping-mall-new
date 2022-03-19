@@ -20,7 +20,8 @@ import {
   getMyCouponList
 } from '../../api/coupon'
 
-let timerSearchObject = null
+let timerSearchObject = null,
+  btnflag = true //按钮截流
 
 // Page({
 create(store, {
@@ -149,7 +150,7 @@ create(store, {
               if (nv.includes(item.id + '.' + item.unit_id)) {
                 // 有库存并且未下架或删除
                 if (![2, 3].includes(item.status) && item.is_stock) {
-                  if (this.store.data.userInfo.is_vip) {
+                  if (this.store.data.userInfo.is_vip || this.store.data.userInfo.is_sale) {
                     // 会员
                     totalPrice += (item.price * 1000 * item.cart_number)
                     discountPrice += ((item.market_price * 1000 - item.price * 1000) * item.cart_number)
@@ -161,11 +162,20 @@ create(store, {
                 }
               }
             })
-            this.setData({
+
+            let tempData = {
               totalPrice,
               discountPrice,
               'cartData.total': total
-            })
+            }
+
+            if (!this.data.select_all) {
+              if (nv.length === this.data.cartData.cache.length) {
+                tempData.select_all = true
+              }
+            }
+
+            this.setData(tempData)
           } else {
             this.setData({
               totalPrice: 0,
@@ -191,7 +201,7 @@ create(store, {
           nv.forEach((item, index) => {
             // 有库存并且未下架或删除
             if (![2, 3].includes(item.status) && item.is_stock && this.data.checkedIds.includes(item.id + '.' + item.unit_id)) {
-              if (this.store.data.userInfo.is_vip) {
+              if (this.store.data.userInfo.is_vip || this.store.data.userInfo.is_sale) {
                 // 会员
                 totalPrice += (item.price * 1000 * item.cart_number)
                 discountPrice += ((item.market_price * 1000 - item.price * 1000) * item.cart_number)
@@ -228,61 +238,79 @@ create(store, {
   },
   // 增加商品数量
   addHandle(e) {
-    const item = e.currentTarget.dataset.item
+    if (btnflag) {
+      btnflag = false
 
-    const cartData = {
-      type: item.type,
-      shop_id: this.store.data.shop_id,
-      goods_id: item.id,
-      goods_num: Number(item.cart_number) + 1,
-      // goods_num: 1, //-1为扣减
-      unit_id: item.unit_id
-    }
+      const item = e.currentTarget.dataset.item
 
-    this.addNumCart(cartData).then(res => {
-      this.getCartData()
-      // 更新猜你喜欢
-      this.data.recommendList.cache.forEach((it, index) => {
-        if (item.id === it.id) {
-          this.setData({
-            [`recommendList.cache[${index}].cart_number`]: item.cart_number + 1
-          })
-          return true
-        }
-        return false
+      const cartData = {
+        type: item.type,
+        shop_id: this.store.data.shop_id,
+        goods_id: item.id,
+        goods_num: Number(item.cart_number) + 1,
+        // goods_num: 1, //-1为扣减
+        unit_id: item.unit_id
+      }
+      this.addNumCart(cartData).then(res => {
+        this.getCartData()
+        // 更新猜你喜欢
+        this.data.recommendList.cache.forEach((it, index) => {
+          if (item.id === it.id) {
+            this.setData({
+              [`recommendList.cache[${index}].cart_number`]: ++it.cart_number,
+            })
+          }
+
+          if (index == this.data.recommendList.cache.length - 1) {
+            setTimeout(() => {
+              btnflag = true
+            }, 300)
+          }
+        })
+      }).catch(err => {
+        console.log(err.msg)
+        this.getCartData()
+        btnflag = true
       })
-    }).catch(err => {
-      console.log(err.msg)
-      this.getCartData()
-    })
+    }
   },
   // 减少商品数量
   reduceHandle(e) {
-    const item = e.currentTarget.dataset.item
-    // 不能小于0
-    if (item.cart_number - 1 <= -1) return
-    const cartData = {
-      type: item.type,
-      shop_id: this.store.data.shop_id,
-      goods_id: item.id,
-      goods_num: item.cart_number - 1,
-      // goods_num: -1, //-1为扣减
-      unit_id: item.unit_id
-    }
+    if (btnflag) {
+      btnflag = false
+      const item = e.currentTarget.dataset.item
+      // 不能小于0
+      if (item.cart_number - 1 <= -1) return
+      const cartData = {
+        type: item.type,
+        shop_id: this.store.data.shop_id,
+        goods_id: item.id,
+        goods_num: item.cart_number - 1,
+        // goods_num: -1, //-1为扣减
+        unit_id: item.unit_id
+      }
 
-    this.addNumCart(cartData).then(res => {
-      this.getCartData()
-      // 更新猜你喜欢
-      this.data.recommendList.cache.forEach((it, index) => {
-        if (item.id === it.id) {
-          this.setData({
-            [`recommendList.cache[${index}].cart_number`]: item.cart_number - 1
-          })
-          return true
-        }
-        return false
+      this.addNumCart(cartData).then(res => {
+        this.getCartData()
+        // 更新猜你喜欢
+        this.data.recommendList.cache.forEach((it, index) => {
+          if (item.id === it.id) {
+            this.setData({
+              [`recommendList.cache[${index}].cart_number`]: it.cart_number - 1,
+              [`recommendList.cache[${index}].one_cart_number`]: it.cart_number - 1
+            })
+          }
+
+          if (index == this.data.recommendList.cache.length - 1) {
+            setTimeout(() => {
+              btnflag = true
+            }, 250)
+          }
+        })
+      }).catch(err => {
+        btnflag = true
       })
-    })
+    }
   },
   // 输入商品数量
   // inputBlurHandle(e) {
@@ -319,7 +347,7 @@ create(store, {
     // 授权校验
     if (!this.checkAuth()) return
     // 资质校验
-    // if (!this.certCheck()) return
+    if (!this.certCheck()) return
 
     // 1.有购物券 跳转至我的购物券 2.没购物券 跳转至领券中心页面
     if (this.data.cartData.coupon_total) {
@@ -337,7 +365,7 @@ create(store, {
     // 授权校验
     if (!this.checkAuth()) return
     // 资质校验
-    // if (!this.certCheck()) return
+    if (!this.certCheck()) return
 
     // if(checkedIds)
 
@@ -358,7 +386,6 @@ create(store, {
       if (this.store.data.address_id) {
         orderData.address_id = this.store.data.address_id
       }
-
       this.data.cartData.cache.forEach(item => {
         const temp = {
           "goods_id": item.id,
@@ -374,7 +401,11 @@ create(store, {
       })
 
       this.preOrder(orderData).then(res => {
+        // 进入订单确认页若开通会员返回订单确认页需要更新数据
+        getApp().globalData.orderData = orderData
+
         const pre = JSON.stringify(res.data)
+
         wx.navigateTo({
           url: `/pages/shop/order/confirmOrder?preData=${pre}`,
         })
@@ -466,7 +497,16 @@ create(store, {
   diaConfirmHandle(params) {
     this.delCart(this.data.tempDelGoodsData).then(res => {
       // 更新购物车数据
-      this.getCartData()
+      this.getCartData().then(res => {
+        // 更新checkedIds全选按钮
+        const checkedIds = this.data.checkedIds.filter((item, index) => {
+          return item.split('.')[0] !== this.data.tempDelGoodsData.goods_id && item.split('.')[1] !== this.data.tempDelGoodsData.unit_id
+        })
+
+        this.setData({
+          checkedIds
+        })
+      })
 
       // 更新猜你喜欢的购物车数量
       this.data.recommendList.cache.forEach((it, index) => {
@@ -551,31 +591,38 @@ create(store, {
       type: dataset.item.type ? dataset.item.type : 1,
       shop_id: this.store.data.shop_id,
       goods_id: dataset.item.id,
-      goods_num: dataset.item.cart_number + 1
+      // goods_num: dataset.item.cart_number + 1,
+      goods_num: dataset.item.one_cart_number + 1
       // goods_num: 1
     }
 
     this.addNumCart(myData).then(res => {
-      // this.getCartData()
+
       wx.showToast({
         icon: 'none',
         title: '加入购物车成功',
       })
+
       // 更新购物车数据
       const ress = this.data.cartData.cache.some((item, index) => {
-        if (item.id === dataset.item.id) {
+        if (item.id === dataset.item.id && item.unit_id === dataset.item.unit_arr[0].id) {
           this.setData({
-            [`cartData.cache[${index}].cart_number`]: dataset.item.cart_number + 1
+            [`cartData.cache[${index}].cart_number`]: dataset.item.cart_number + 1,
+            [`cartData.cache[${index}].one_cart_number`]: dataset.item.cart_number + 1,
           })
           return true
         }
         return false
       })
 
-      // 购物车需要新增一个商品
-      if (!ress) {
-        this.getCartData()
-      }
+      this.getCartData().then(res => {
+        // 购物车需要新增一个商品
+        if (!ress) {
+          this.setData({
+            checkedIds: this.data.checkedIds.length ? this.data.checkedIds.concat([`${dataset.item.id}.${dataset.item.unit_arr[0].id}`]) : [`${dataset.item.id}.${dataset.item.unit_arr[0].id}`]
+          })
+        }
+      })
 
       // 猜你喜欢 同步数据
       let indexArr = [],
@@ -587,6 +634,7 @@ create(store, {
 
       indexArr.forEach(ind => {
         tempData[`recommendList.cache[${ind}].cart_number`] = dataset.item.cart_number + 1
+        tempData[`recommendList.cache[${ind}].one_cart_number`] = dataset.item.cart_number + 1
       })
 
       this.setData(tempData)
@@ -777,6 +825,14 @@ create(store, {
 
     this.getCartData().then(res => {
       let arr = []
+
+      for (let i = 0; i < res.data.list.length; i++) {
+        for (let j = i + 1; j < res.data.list.length; j++) {
+          if (res.data.list[i].id === res.data.list[j].id) {
+            res.data.list[j].cart_number = res.data.list[i].cart_number += res.data.list[j].cart_number
+          }
+        }
+      }
       // 全选或全不选 的处理
       res.data.list.forEach(item => {
         // 有库存并且未下架或删除
@@ -788,11 +844,9 @@ create(store, {
         this.data.recommendList.cache.forEach((it, index) => {
           if (item.id === it.id) {
             this.setData({
-              [`recommendList.cache[${index}].cart_number`]: item.cart_number
+              [`recommendList.cache[${index}].cart_number`]: item.cart_number,
             })
-            return true
           }
-          return false
         })
       })
 

@@ -14,7 +14,8 @@ module.exports = {
         break;
       case 3:
         // text = "已领取"
-        text = "立即使用"
+        // text = "立即使用"
+        text = "已失效"
         break;
       case 4:
         text = "已使用"

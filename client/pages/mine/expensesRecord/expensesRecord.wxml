@@ -7,7 +7,7 @@
   <view class="content" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+compatibleInfo.navHeight)+'px':compatibleInfo.systemInfo.screenHeight-(compatibleInfo.navHeight)+'px'}}">
     <view class="l1">
       <view class="l1-1">总消费</view>
-      <view class="l1-2"><text>{{data.total_money}}</text><text>元</text></view>
+      <view class="l1-2"><text>{{expensesData.total_money}}</text><text>元</text></view>
     </view>
     <view class="l2">
       <view class="top">
@@ -24,23 +24,23 @@
         <view class="right flex">
           <view class="right-l1">
             <text>消费：</text>
-            <text>{{data.pay_money}}元</text>
+            <text>{{expensesData.pay_money}}元</text>
           </view>
           <view class="right-l2">
             <text>优惠：</text>
-            <text>{{data.discount_money}}元</text>
+            <text>{{expensesData.discount_money}}元</text>
           </view>
         </view>
       </view>
       <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+contTop)+'px':compatibleInfo.systemInfo.screenHeight-(contTop)+'px'}}">
-        <block wx:if="{{data.list.length===0}}">
+        <block wx:if="{{expensesData.list.length===0}}">
           <view class="no-data">
             <image mode="aspectFill" src="/assets/images/empty.png"></image>
             <view class="text">暂无记录</view>
           </view>
         </block>
         <block wx:else></block>
-        <view class="item" wx:for="{{data.list}}" wx:key="unique">
+        <view class="item" wx:for="{{expensesData.list}}" wx:key="unique">
           <view class="l1">{{item.month}}月</view>
           <view class="l2">
             <view class="flex">消费：{{item.pay_money}}元</view>

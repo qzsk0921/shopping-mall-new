@@ -11,6 +11,10 @@ import {
   getUserDetail
 } from '../../../api/user.js'
 
+import {
+  preOrder
+} from '../../../api/order'
+
 // Page({
 create(store, {
 
@@ -60,6 +64,7 @@ create(store, {
 
     btnDisable: false,
     btnText: '', //立即开通 立即续费 立即升级
+    myVipPrice: 0
   },
   watch: {
     currentVipId: {
@@ -100,7 +105,8 @@ create(store, {
   vipItemHandle(e) {
     const dataset = e.currentTarget.dataset
     this.setData({
-      currentVipId: dataset.item.id
+      currentVipId: dataset.item.id,
+      currentVipPrice: dataset.item.price
     })
     // 选择比自己等级低的会员不能续费
     // myVipPrice
@@ -158,6 +164,9 @@ create(store, {
     if (!this.certCheck()) return
 
     if (this.data.btnDisable) return
+
+    const that = this
+
     this.addVip({
       id: this.data.currentVipId
     }).then(res => {
@@ -170,6 +179,7 @@ create(store, {
         'paySign': payModel.paySign,
         'success': function (res) {
           console.log(res)
+
           // 支付成功后，返回个人中心，刷新个人中心页面
           getUserDetail().then(res => {
             // 业务代码 1:正常 0:禁用 -1:不存在-------------------------------------------------
@@ -179,14 +189,44 @@ create(store, {
               })
             }
 
-            getApp().globalData.userInfo = res.data
-            store.data.userInfo = res.data
-            store.update()
-            
-            // 支付成功后，返回个人中心，刷新个人中心页面
-            wx.navigateBack({
-              delta: 0,
+            const title = that.data.btnText === '立即续费' ? '续费成功' : that.data.btnText === '立即升级' ? '升级成功' : '开通成功'
+
+            // v2用户开通或续费成功后，停留再当前页面，并刷新当前页面
+            that.setData({
+              userInfo: res.data,
+              myVipPrice: that.data.currentVipPrice,
+              // currentVipId: that.data.currentVipId,
+              btnText: '立即续费'
             })
+
+            getApp().globalData.userInfo = store.data.userInfo = res.data
+            store.update()
+
+            wx.showToast({
+              title,
+              icon: 'none'
+            })
+
+            const pages = getCurrentPages() //获取加载的页面
+            const prevPage = pages[pages.length - 2] //获取上个页面的对象
+            if (prevPage.route === 'pages/shop/order/confirmOrder') {
+              // 如果上一页是订单确认页，开通之后更新订单确认页数据
+              if (getApp().globalData.orderData) {
+                that.preOrder(getApp().globalData.orderData, 'noload').then(res => {
+                  prevPage.setData({
+                    orderData: res.data
+                  })
+                  // wx.navigateBack({
+                  //   delta: 0,
+                  // })
+                })
+              }
+            } else {
+              // // 支付成功后，返回个人中心，刷新个人中心页面
+              // wx.navigateBack({
+              //   delta: 0,
+              // })
+            }
           })
           // 获取消息下发权限(只在支付回调或tap手势事件能调用)
           // wx.requestSubscribeMessage({
@@ -208,8 +248,6 @@ create(store, {
           })
           console.log(res)
         }
-      }).catch(res => {
-        console.log(res)
       })
     })
   },
@@ -225,6 +263,15 @@ create(store, {
   addVip(data) {
     return new Promise((resolve, reject) => {
       addVip(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  preOrder(data, load) {
+    return new Promise((resolve, reject) => {
+      preOrder(data, load).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)
@@ -248,7 +295,8 @@ create(store, {
       this.setData({
         vipList: res.data.data,
         currentVipId: currentVip ? currentVip.id : res.data.data[0].id,
-        myVipPrice: currentVip ? currentVip.price : 0
+        myVipPrice: currentVip ? currentVip.price : 0,
+        currentVipPrice: res.data.data[0].price
       })
     })
 

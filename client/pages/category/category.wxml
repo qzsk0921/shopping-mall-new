@@ -1,5 +1,7 @@
 <!--pages/category/category.wxml-->
 <!-- <text>pages/category/category.wxml</text> -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
 <view class="container container-category hide-scrollbar">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#333" bgColor="#fff" />
@@ -26,8 +28,12 @@
     </view>
     <view class="section2">
       <view class="tree-select {{compatibleInfo.isIphoneX?'isIphoneX':''}}">
-        <view class="tree-select__nav hide-scrollbar" bindtap="itemTapHandle" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}}">
+        <view wx:if="{{secondCategory.length}}" class="tree-select__nav hide-scrollbar" bindtap="itemTapHandle" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}}">
           <view class="sidebar-item tree-select__nav-item {{currentSecondCategoryId===item.id?'sidebar-item--select': ''}}" wx:for="{{secondCategory}}" wx:key="unique" data-id="{{item.id}}" data-index="{{index}}">{{item.name}}</view>
+        </view>
+        <view wx:else style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}};width:100%;" class="no-data">
+          <image style="width:483rpx;height:400rpx;" src="/assets/images/empty.png" mode="aspectFill"></image>
+          <view class="text" style="font-size:30rpx;">暂无更多内容</view>
         </view>
         <view wx:if="{{secondCategory.length}}" class="tree-select__content hide-scrollbar">
           <view class="tree-select__tip">
@@ -63,8 +69,8 @@
                     <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                     <view>{{item.goods_name}} {{item.spec}}</view>
                   </view>
-                  <view class="l2 txt-cut">{{item.goods_content}}</view>
-                  <view class="l3">{{item.spec}}</view>
+                  <view class="l2 one-txt-cut">{{item.goods_content}}</view>
+                  <view class="l3 one-txt-cut">{{tools.parseUnit(item.unit_arr)}}</view>
                   <!-- <view class="l4">
                   <text>￥</text><text>{{item.price}}</text>
                   <text>￥{{item.market_price}}</text>

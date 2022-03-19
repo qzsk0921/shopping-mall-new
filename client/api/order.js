@@ -10,11 +10,12 @@ import request from '../utils/request'
  * @param {object} goods require i	是	int	商品index 0-n
  *  {"goods_id": "2","goods_num": "2","type": "1","is_pre_goods": "0","unit_id": "1"}
  */
-export function preOrder(data) {
+export function preOrder(data, load) {
   return request({
     url: '/Order/pre_order',
     method: 'post',
-    data
+    data,
+    load
   })
 }
 
@@ -34,7 +35,7 @@ export function getRemarkList() {
  * @param {string} address_id require 用户选择地址id
  * @param {int} is_use_coupon require	1:使用优惠券 0：不使用优惠券
  * @param {int} coupon_id	用户的优惠券id
- * @param {object} goods require i	是	int	商品index 0-n
+ * @param {int} goods require i	是	商品index 0-n
  *  {"goods_id": "2","goods_num": "2","type": "1","is_pre_goods": "0","unit_id": "1"}
  */
 export function addOrder(data) {
@@ -101,6 +102,18 @@ export function cancelOrder(data) {
 export function getOrderList(data) {
   return request({
     url: '/Order/order_list',
+    method: 'get',
+    data
+  })
+}
+
+/**
+ * 订单重新支付 order/re_pay
+ * @param {int} order_id require 订单id
+ */
+export function rePay(data) {
+  return request({
+    url: '/order/re_pay',
     method: 'get',
     data
   })

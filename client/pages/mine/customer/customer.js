@@ -116,8 +116,8 @@ create(store, {
           this.setData({
             // 测试数据
             // [`customerList.cache`]: [].concat(res.data.data).concat(res.data.data).concat(res.data.data).concat(res.data.data),
-            // 'customerList.cache': res.data.data,
-            // 'customerList.total_page': res.data.last_page
+            'customerList.cache': res.data.data,
+            'customerList.total_page': res.data.last_page,
             customerTotal: res.data.total
           })
           resolve(res)

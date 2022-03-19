@@ -16,9 +16,10 @@ export function getCustomerList() {
  * @param {string} year require 年
  * @param {int} user_id require 需要统计的客户id
  */
-export function getCustomerInfo() {
+export function getCustomerInfo(data) {
   return request({
     url: '/Sales/get_my_custom_order',
     method: 'get',
+    data
   })
 }

@@ -33,7 +33,7 @@
 }
 
 .card .left .l1 text:last-child {
-  font-size: 70rpx;
+  font-size: 60rpx;
   font-weight: bold;
   color: #FC4953;
 }
@@ -65,13 +65,14 @@
 
 .card .right .l2 {
   width: 412rpx;
-  margin-top: 15rpx;
+  margin-top: 6rpx;
   font-size: 24rpx;
   color: #777777;
+  line-height: 41rpx;
 }
 
 .card .right .l3 {
-  margin-top: 19rpx;
+  margin-top: 10rpx;
   font-size: 22rpx;
   color: #777777;
 }

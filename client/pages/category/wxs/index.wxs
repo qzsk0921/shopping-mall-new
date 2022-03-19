@@ -1,0 +1,9 @@
+module.exports = {
+  parseUnit: function (units) {
+    var res = units.map(function (item) {
+      return item.unitName
+    })
+
+    return res.join(' ')
+  }
+}

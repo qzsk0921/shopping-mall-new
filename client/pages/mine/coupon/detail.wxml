@@ -1,5 +1,7 @@
 <!--pages/mine/coupon/detail.wxml-->
 <!-- <text>pages/mine/coupon/detail.wxml</text> -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
 <!-- 优惠券详情 -->
 <view class="container container-coupon-detail">
   <view class="fixed">
@@ -10,16 +12,21 @@
       <view class="left">
         <view class="l1">
           <text>￥</text>
-          <text>{{couponData.discount}}</text>
+          <text>{{tools.parseInt(couponData.discount)}}</text>
         </view>
-        <view class="l2">
+        <!-- 满减金额类型 1:有门槛 2:无门槛 -->
+        <view wx:if="{{couponData.money_limit_type===1}}" class="l2">
           满{{couponData.money_limit}}可用
+        </view>
+        <view wx:if="{{couponData.money_limit_type===2}}" class="l2">
+          无门槛
         </view>
       </view>
       <view class="center separator"></view>
       <view class="right">
         <view class="l1 l">{{couponData.name}}</view>
-        <view class="l2 l one-txt-cut">{{couponData.content}}</view>
+        <!-- <view class="l2 l one-txt-cut">{{couponData.content}}</view> -->
+        <view class="l2 l">{{couponData.content}}</view>
         <view class="l3 l">{{couponData.time_str}}</view>
       </view>
     </view>

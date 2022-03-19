@@ -80,7 +80,7 @@
     </view>
     <view class="section5">
       <view class="l1">备注</view>
-      <view class="l2">{{orderData.remark?orderData.remark:'可以告诉我您的需求'}}</view>
+      <view class="l2">{{orderData.remark}}</view>
     </view>
   </view>
 </view>

@@ -5,6 +5,11 @@ import create from '../../../utils/create'
 import {
   getExpenseList
 } from '../../../api/order'
+
+import {
+  getCustomerInfo
+} from '../../../api/customer'
+
 // Page({
 create(store, {
 
@@ -18,21 +23,23 @@ create(store, {
     index: 10,
 
     data: {
-      "total_money": 0,
-      "pay_money": 0,
-      "discount_money": 0,
-      "list": [
-        // {
-        //   "month": "08",
-        //   "pay_money": "2170.00",
-        //   "discount_money": "10.00"
-        // },
-        // {
-        //   "month": "12",
-        //   "pay_money": "2170.00",
-        //   "discount_money": "10.00"
-        // },
-      ]
+      expensesData: {
+        "total_money": 0,
+        "pay_money": 0,
+        "discount_money": 0,
+        "list": [
+          // {
+          //   "month": "08",
+          //   "pay_money": "2170.00",
+          //   "discount_money": "10.00"
+          // },
+          // {
+          //   "month": "12",
+          //   "pay_money": "2170.00",
+          //   "discount_money": "10.00"
+          // },
+        ]
+      },
     }
   },
   watch: {
@@ -52,11 +59,17 @@ create(store, {
 
           if (this.data.user_id) {
             tempData.user_id = this.data.user_id
+            getCustomerInfo(tempData).then(res => {
+              this.setData({
+                expensesData: res.data,
+              })
+            })
+            return
           }
 
           getExpenseList(tempData).then(res => {
             this.setData({
-              list: res.data.list
+              expensesData: res.data,
             })
           })
         }, 0)

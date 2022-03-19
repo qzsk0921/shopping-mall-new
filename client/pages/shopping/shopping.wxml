@@ -55,11 +55,13 @@
               </view>
             </view>
             <view class="right" data-id="{{item.id}}" bindtap="toGoodsDetail" data-disabled="{{item.status===2?0:item.is_stock?1:0}}">
-              <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 80rpx;':''}}">
-                <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
-                {{item.goods_name}} {{item.spec}}
+              <view class="block">
+                <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 80rpx;':''}}">
+                  <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
+                  {{item.goods_name}} {{item.spec}}
+                </view>
+                <view class="unit">{{item.unitName}}</view>
               </view>
-              <view class="unit">{{item.unitName}}</view>
               <!-- 未授权或未资质认证的非会员 -->
               <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
                 请登录查看价格
@@ -99,7 +101,7 @@
                 <view wx:if="{{itemName.is_pre_sale===1 || itemName.activity_info.activity_name}}" class="tag {{itemName.is_pre_sale===1?'pre_sale':itemName.activity_info.activity_name?'new_activity':''}}">{{itemName.is_pre_sale===1?'预售专区':itemName.activity_info.activity_name?'新品上市':''}}</view>
                 {{itemName.goods_name}} {{itemName.spec}}
               </view>
-              <view class="unit">{{item.unitName}}</view>
+              <view class="unit one-txt-cut">{{itemName.goods_content}}</view>
             </view>
             <!-- 未授权或未资质认证的非会员 -->
             <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">

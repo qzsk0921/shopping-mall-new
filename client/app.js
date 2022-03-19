@@ -58,17 +58,23 @@ App({
   },
   onShow() {
     // 统计时长埋点
-    setTrack({
-      type: 1
-    }).then(res => {
-      this.globalData.page_id = res.data.page_id
-    })
+    if (store.data.shop_id) {
+      setTrack({
+        type: 1,
+        shop_id: store.data.shop_id
+      }).then(res => {
+        this.globalData.page_id = res.data.page_id
+      })
+    }
   },
   onHide() {
-    setTrack({
+    let param = {
       type: 2,
       page_id: this.globalData.page_id
-    }).then(res => {})
+    }
+    if (store.data.shop_id) param.shop_id = store.data.shop_id
+
+    setTrack(param).then(res => {})
   },
   init() {
     // 全局分享

@@ -199,7 +199,8 @@ create(store, {
       type: item.type ? item.type : 1,
       shop_id: this.store.data.shop_id,
       goods_id: item.id,
-      goods_num: item.cart_number + 1
+      // goods_num: item.cart_number + 1
+      goods_num: item.one_cart_number + 1
     }
     this.addNumCart(myData).then(res => {
       // 更新详情页购物车数据
@@ -209,8 +210,10 @@ create(store, {
         icon: 'none',
         title: '加入购物车成功',
       })
+
       this.setData({
-        [`currentGoodsList.cache[${index}].cart_number`]: item.cart_number + 1
+        [`currentGoodsList.cache[${index}].cart_number`]: item.cart_number + 1,
+        [`currentGoodsList.cache[${index}].one_cart_number`]: item.one_cart_number + 1,
       })
     })
   },
@@ -278,11 +281,9 @@ create(store, {
           secondCategory: res.data
         })
 
-        if (res.data.length) {
-          this.getGoodsList({
-            category_id: res.data[0].id
-          })
-        }
+        this.getGoodsList({
+          category_id: res.data[0].id
+        })
       } else {
         this.setData({
           secondCategory: []
@@ -320,11 +321,9 @@ create(store, {
           secondCategory: res.data
         })
 
-        if (res.data.length) {
-          this.getGoodsList({
-            category_id: res.data[0].id
-          })
-        }
+        this.getGoodsList({
+          category_id: res.data[0].id
+        })
       } else {
         this.setData({
           secondCategory: []

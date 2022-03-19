@@ -273,10 +273,10 @@ scroll-view.isIphoneX {
 }
 
 .tree-select__content .tree-select__item .l1 {
-  margin-top: 20rpx;
+  margin-top: 25rpx;
   font-size: 28rpx;
   font-weight: bold;
-  line-height: 48rpx;
+  line-height: 38rpx;
   color: #333333;
 }
 
@@ -301,6 +301,7 @@ scroll-view.isIphoneX {
 }
 
 .tree-select__content .tree-select__item .l2 {
+  margin-top: 4rpx;
   font-size: 22rpx;
   line-height: 37rpx;
   color: #999999;
@@ -359,6 +360,7 @@ scroll-view.isIphoneX {
 
 .tree-select__content .tree-select__item .right {
   padding-left: 24rpx;
+  width: calc(100% - 172rpx);
 }
 
 .section2 .no-data {

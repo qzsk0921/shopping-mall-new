@@ -92,7 +92,7 @@ create(store, {
           prevPage.setData({
             currentCouponId: item.id,
             'orderData.coupon_discount_total': item.discount,
-            'orderData.price_total': this.toFixed(prevPageData.market_price_total, item.discount, 2), //底部待支付金额
+            'orderData.price_total': this.toFixed(prevPageData.market_price_total, item.discount, 2) < 0 ? 0 : this.toFixed(prevPageData.market_price_total, item.discount, 2), //底部待支付金额
             'orderData.discount_total': item.discount //底部已优惠金额
           })
           wx.navigateBack({

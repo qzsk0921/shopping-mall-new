@@ -1,5 +1,5 @@
 export default {
-  // baseUrl: 'https://wms.wljkxys.com',
+  // baseUrl: 'https://liancai.xxhychn.cn',
   baseUrl:'https://liancai.xcmbkj.com', //测试
   contentType: 'application/json',
   tencentKey: 'NMUBZ-KWM6V-E5IPZ-UARUF-6CKRH-FFBM2',

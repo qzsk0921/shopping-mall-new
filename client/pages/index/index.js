@@ -18,6 +18,11 @@ import {
 import {
   addNumCart
 } from '../../api/cart'
+
+import {
+  setTrack
+} from '../../api/data'
+
 let timerSearchObject = null
 
 // Page({
@@ -26,6 +31,8 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    aBroadcastCount: 0, //跑马灯计数
+    aBroadcast: null, //广播动画
     isOverShare: true,
 
     userInfo: null,
@@ -349,7 +356,6 @@ create(store, {
         // this.getOrderList({
         //   status: this.parseStatus(nv)
         // })
-
       },
       // immediate: true
     },
@@ -364,6 +370,16 @@ create(store, {
           this.setData({
             shop_id: res.data.shop_id
           })
+
+          if (!getApp().globalData.page_id) {
+            // 统计时长埋点
+            setTrack({
+              type: 1,
+              shop_id: res.data.shop_id
+            }).then(res => {
+              getApp().globalData.page_id = res.data.page_id
+            })
+          }
           // 通过shop_id获取商城商品
         }).catch(err => {
           console.log('err' + err)
@@ -384,9 +400,9 @@ create(store, {
         clearTimeout(timerSearchObject)
         timerSearchObject = setTimeout(() => {
           if (nv) {
+            const that = this;
+            const query = wx.createSelectorQuery();
             if (!this.data.section1H) {
-              const that = this;
-              const query = wx.createSelectorQuery();
               query.select('.section1').boundingClientRect(function (rect) {
                 that.setData({
                   section1H: rect.height,
@@ -394,13 +410,31 @@ create(store, {
               }).exec();
             }
 
-            this.getShopData({
+            let paramData = {
               shop_id: nv
-            }).then(res => {
+            }
+
+            if (this.data.sale_id) {
+              paramData.sale_id = this.data.sale_id
+            }
+
+            this.getShopData(paramData).then(res => {
               // console.log(res)
+              // 广播跑马灯
+              if (res.data.notice_list.length > 1) {
+                const ele = res.data.notice_list[0]
+                res.data.notice_list.push.apply(res.data.notice_list, [ele])
+              }
+
               this.setData({
                 shopData: res.data,
               })
+
+              query.select('.broadcast').boundingClientRect(function (rect) {
+                that.data.broadcastH = rect.height
+                that.startABroadcast()
+              }).exec()
+
             })
           }
         }, 1000)
@@ -484,7 +518,7 @@ create(store, {
     console.log('toSearchResHandle')
     console.log(e)
     const id = e.currentTarget.dataset.id
-    if(id) {
+    if (id) {
       wx.navigateTo({
         url: `/pages/search/searchRes?category_id=${id}`,
       })
@@ -587,7 +621,8 @@ create(store, {
       type: 1,
       shop_id: this.store.data.shop_id,
       goods_id: item.id,
-      goods_num: item.cart_number + 1
+      // goods_num: item.cart_number + 1
+      goods_num: item.one_cart_number + 1
     }
     this.addNumCart(myData).then(res => {
       // 更新详情页购物车数据
@@ -606,6 +641,41 @@ create(store, {
       })
     })
   },
+  startABroadcast() {
+    const aBroadcast = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear',
+      delay: 3000
+    })
+
+    this.data.aBroadcastCount += 1
+
+    aBroadcast.translateY(-((this.data.aBroadcastCount - 1) * this.data.broadcastH)).step()
+
+    this.setData({
+      aBroadcast: aBroadcast.export(),
+    })
+  },
+  aBroadcastEnd() {
+    if (this.data.aBroadcastCount === this.data.shopData.notice_list.length) {
+
+      this.data.aBroadcastCount = 1
+
+      const aBroadcast = wx.createAnimation({
+        duration: 0,
+        timingFunction: 'linear',
+        delay: 0
+      })
+
+      aBroadcast.translateY(0).step()
+      this.setData({
+        aBroadcast: aBroadcast.export(),
+      })
+      this.startABroadcast()
+    } else {
+      this.startABroadcast()
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -617,6 +687,7 @@ create(store, {
       sale_id
     } = options
     if (sale_id) {
+      this.data.sale_id = sale_id
       this.store.data.sale_id = sale_id
       this.update()
     }
@@ -700,6 +771,11 @@ create(store, {
         userInfo: this.store.data.userInfo
       })
     }
+
+    // 兼容广播
+    this.setData({
+      aBroadcastCount: 1
+    })
   },
   addNumCart(data) {
     return new Promise((resolve, reject) => {

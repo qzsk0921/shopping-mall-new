@@ -117,6 +117,10 @@
   display: flex;
 }
 
+.section3 .l3 {
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
 .section3 .l2 .col,
 .section3 .l3 .col {
   flex: 1;

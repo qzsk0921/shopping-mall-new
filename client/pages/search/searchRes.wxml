@@ -55,9 +55,12 @@
               <view wx:if="{{item.cart_number}}" class="shopcart-info">{{item.cart_number}}</view>
             </view>
             <!-- <view class="l1 txt-cut">{{item.goods_name}} {{item.spec}}</view> -->
-            <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 95rpx;':''}}">
-              <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
-              <view>{{item.goods_name}} {{item.spec}}</view>
+            <view class="l12-box">
+              <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 95rpx;':''}}">
+                <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
+                <view>{{item.goods_name}} {{item.spec}}</view>
+              </view>
+              <view class="unit one-txt-cut">{{item.goods_content}}</view>
             </view>
             <!-- 未授权或未资质认证的非会员 -->
             <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">

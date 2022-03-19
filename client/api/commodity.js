@@ -4,6 +4,7 @@ import request from '../utils/request'
 /**
  * 商城首页 Index/home
  * @param {string} shop_id require 设置地址返回的店铺id
+ * @param {string} sale_id 业务员分享带过来的业务员id
  */
 export function getShopData(data) {
   return request({

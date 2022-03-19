@@ -151,7 +151,8 @@ create(store, {
       type: item.type ? item.type : 1,
       shop_id: this.store.data.shop_id,
       goods_id: item.id,
-      goods_num: item.cart_number + 1
+      // goods_num: item.cart_number + 1
+      goods_num: item.one_cart_number + 1
       // goods_num: 1
     }
     this.addNumCart(myData).then(
@@ -174,6 +175,7 @@ create(store, {
         this.data.goodsList[this.data.tabIndex].cache.some((it, index) => {
           if (it.id === item.id) {
             it.cart_number += 1
+            it.one_cart_number += 1
             this.setData({
               [`goodsList[${this.data.tabIndex}].cache[${index}]`]: it
             })
@@ -510,7 +512,7 @@ create(store, {
             const ress = res.data.list.some(it => {
               if (item.id === it.id) {
                 this.setData({
-                  [`goodsList[${this.data.tabIndex}].cache[${index}].cart_number`]: it.cart_number
+                  [`goodsList[${this.data.tabIndex}].cache[${index}].cart_number`]: item.cart_number
                 })
                 return true
               }

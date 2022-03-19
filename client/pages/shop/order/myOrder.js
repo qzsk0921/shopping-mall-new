@@ -6,7 +6,8 @@ import {
   getOrderList,
   cancelOrder,
   delOrder,
-  addOrder
+  addOrder,
+  rePay
 } from '../../../api/order'
 // Page({
 create(store, {
@@ -456,7 +457,10 @@ create(store, {
       //   orderData.goods.push(temp)
       // })
 
-      this.addOrder(orderData).then(res => {
+      // this.addOrder(orderData).then(res => {
+      this.rePay({
+        order_id: item.id
+      }).then(res => {
         console.log(res)
         // 调起微信支付
         this.wxPay(res.data)
@@ -529,6 +533,15 @@ create(store, {
   addOrder(data) {
     return new Promise((resolve, reject) => {
       addOrder(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  rePay(data) {
+    return new Promise((resolve, reject) => {
+      rePay(data).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)

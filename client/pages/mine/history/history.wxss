@@ -143,5 +143,6 @@
 }
 
 .l12-box {
-  height: 127rpx;
+  /* height: 127rpx; */
+  height: 138rpx;
 }

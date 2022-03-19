@@ -100,13 +100,21 @@
 }
 
 .content .l2 .card .right .row4 {
-  margin-top: 20rpx;
-  padding: 20rpx 0;
+  margin: 20rpx 0;
   font-size: 22rpx;
-  border-top: 2px solid #EEEEEE;
   color: #999999;
 }
 
+.content .l2 .card .right .row5 {
+  border-top: 2px solid #EEEEEE;
+  font-size: 24rpx;
+  color: #FF723A;
+  padding: 20rpx 0;
+}
+
+.content .l2 .card .right .row5 text:first-child {
+  margin-right: 20rpx;
+}
 
 .no-data {
   text-align: center;

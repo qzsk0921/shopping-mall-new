@@ -26,6 +26,12 @@
           </swiper>
         </view>
       </view>
+      <view wx:if="{{shopData.notice_list.length}}" class="broadcast">
+        <image class="icon-broadcast" src="/assets/images/home_notice.png" mode="aspectFill"></image>
+        <view class="broadcast-list" animation="{{aBroadcast}}" bindtransitionend="aBroadcastEnd">
+          <view wx:for="{{shopData.notice_list}}" wx:key="unique" class="item one-txt-cut">{{item.content}}</view>
+        </view>
+      </view>
       <view class="section3 hide-scrollbar">
         <view class="category-box hide-scrollbar">
           <view class="l1">
@@ -330,7 +336,7 @@
                     <view wx:if="{{itemName.is_pre_sale===1 || itemName.activity_info.activity_name}}" class="tag {{itemName.is_pre_sale===1?'pre_sale':itemName.activity_info.activity_name?'new_activity':''}}">{{itemName.is_pre_sale===1?'预售专区':itemName.activity_info.activity_name?'新品上市':''}}</view>
                     <view>{{itemName.goods_name}} {{itemName.spec}}</view>
                   </view>
-                  <view class="unit">{{itemName.goods_content}}</view>
+                  <view class="unit one-txt-cut">{{itemName.goods_content}}</view>
                 </view>
                 <!-- 未授权 -->
                 <view class="l2 no-sign" wx:if="{{!userInfo.phone}}">
@@ -372,7 +378,7 @@
                   <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                   <view>{{item.goods_name}} {{item.spec}}</view>
                 </view>
-                <view class="unit">{{item.goods_content}}</view>
+                <view class="unit one-txt-cut">{{item.goods_content}}</view>
               </view>
               <!-- 未授权 -->
               <view class="l2 no-sign" wx:if="{{!userInfo.phone}}">

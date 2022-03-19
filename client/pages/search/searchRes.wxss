@@ -81,7 +81,7 @@
 
 .section2 .l1 {
   display: flex;
-  height: 72rpx;
+  /* height: 72rpx; */
 }
 
 .section2 .tabs-nav>view {
@@ -210,6 +210,16 @@
 .section2 .scroll-box .list .item .item-content .l2 {
   display: flex;
   justify-content: space-between;
+}
+
+.section2 .scroll-box .list .item .item-content .l12-box {
+  height: 138rpx;
+}
+
+.unit {
+  font-size: 24rpx;
+  line-height: 41rpx;
+  color: #888888;
 }
 
 .section2 .scroll-box .list .item .item-content .l2 .price-box {

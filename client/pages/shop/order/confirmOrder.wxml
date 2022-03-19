@@ -36,9 +36,10 @@
         <text>商品金额</text>
         <text>￥{{orderData.market_price_total}}</text>
       </view>
-      <view wx:if="{{userInfo.is_vip}}" class="l2-4">
+      <!-- <view wx:if="{{userInfo.is_vip}}" class="l2-4"> -->
+      <view class="l2-4">
         <text>会员优惠</text>
-        <text class="{{currentCouponId?'':'active'}}">￥{{currentCouponId?'0.00(不可用)':orderData.vip_discount_total}}</text>
+        <text class="{{currentCouponId||!userInfo.is_vip?'':'active'}}">￥{{currentCouponId||!userInfo.is_vip?'0.00(不可用)':orderData.vip_discount_total}}</text>
       </view>
       <view class="l2-5" bindtap="toCouponSelectHandle">
         <view><text>优惠券</text><text class="l2-5-tip">(不可与会员优惠叠加使用)</text></view>
@@ -60,21 +61,27 @@
     <view class="foot">
       <!-- 开通会员 -->
       <!-- 开通 -->
-      <view class="l5 register">
+      <!-- 1:非vip 2:正常vip 3:快到期的vip -->
+      <view class="l5 {{orderData.show_vip_notice===3?'register1':'register'}}" wx:if="{{orderData.show_vip_notice!=2}}">
         <view class="left">
-          <image class="icon-member" src="/assets/images/order_members.png" mode="aspectFill"></image>
-          <!-- <text>开通会员，本单最高立减</text> -->
-          <text>{{userInfo.is_vip?'已为您累计节省':'开通会员，本单最高立减'}}</text>
-          <text>￥</text>
-          <text>{{userInfo.is_vip?orderData.user_total_discount:'20'}}</text>
+          <view class="left-r1">
+            <image class="icon-member" src="/assets/images/order_members.png" mode="aspectFill"></image>
+            <!-- <text>开通会员，本单最高立减</text> -->
+            <!-- <text>{{userInfo.is_vip?'已为您累计节省':'开通会员，本单最高立减'}}</text> -->
+            <text>{{orderData.show_vip_notice===3?'已为您累计节省':'开通会员，本单最高立减'}}</text>
+            <text>￥</text>
+            <text>{{userInfo.is_vip?orderData.user_total_discount:orderData.vip_discount_money}}</text>
+          </view>
+          <view wx:if="{{orderData.show_vip_notice===3}}" class="left-r2">还有<text>{{orderData.vip_remain_day}}</text> 天，你的优惠权益即将过期</view>
         </view>
-        <view class="right btn btn-register" bindtap="vipHandle">{{userInfo.is_vip?'立即续费':'立即开通'}}</view>
+        <!-- <view class="right btn btn-register" bindtap="vipHandle">{{userInfo.is_vip?'立即续费':'立即开通'}}</view> -->
+        <view class="right btn btn-register" bindtap="vipHandle">{{orderData.show_vip_notice===3?'我要优惠':'立即开通'}}</view>
       </view>
       <!-- 去支付 -->
       <view class="l6">
         <view class="left">
           <view class="amount"><text>待支付</text><text>￥</text><text>{{orderData.price_total}}</text></view>
-          <view class="preferential-price">已优惠{{orderData.discount_total}}</view>
+          <view wx:if="{{currentCouponId||userInfo.is_vip}}" class="preferential-price">已优惠{{orderData.discount_total}}</view>
         </view>
         <view class="right btn btn-pay" bindtap="payHandle">去支付</view>
       </view>

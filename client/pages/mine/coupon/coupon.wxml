@@ -45,7 +45,13 @@
               <text>￥</text>
               <text>{{tools.parseInt(item.discount)}}</text>
             </view>
-            <view class="l2">满{{item.money_limit}}可用</view>
+            <!-- 满减金额类型 1:有门槛 2:无门槛 -->
+            <view wx:if="{{item.money_limit_type===1}}" class="l2">
+              满{{item.money_limit}}可用
+            </view>
+            <view wx:if="{{item.money_limit_type===2}}" class="l2">
+              无门槛
+            </view>
           </view>
           <view class="center separator"></view>
           <view class="right">

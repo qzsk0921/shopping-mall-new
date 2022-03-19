@@ -52,9 +52,16 @@ create(store, {
           icon: 'none',
           title: res.msg,
         })
+
+        // 更新我的我的优惠券
+        const pages = getCurrentPages();
+        const prevPage = pages[pages.length - 2]; //上一个页面
+        if (prevPage.route === 'pages/mine/coupon/coupon') {
+          prevPage.getMyCouponList()
+        }
       })
 
-    } else if ([1,3].includes(dataset.item.coupon_status)) {
+    } else if ([1, 3].includes(dataset.item.coupon_status)) {
       // 立即使用||已领取
       // 跳转至分类页面
       wx.switchTab({
@@ -112,7 +119,7 @@ create(store, {
     this.setData({
       'couponMarketList.count': ++couponMarketList.count
     })
-    this.getcouponMarketList('scrollToLower')
+    this.getCouponMarketList('scrollToLower')
   },
   /**
    * 生命周期函数--监听页面加载

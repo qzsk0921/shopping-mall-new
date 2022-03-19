@@ -108,8 +108,8 @@
 
 /* 3:已领取 */
 .status3 {
-  /* background: #C4C4C4; */
-  background: #FF723B;
+  background: #C4C4C4;
+  /* background: #FF723B; */
 }
 
 /* 4:已使用 */

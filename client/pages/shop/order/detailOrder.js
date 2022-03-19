@@ -5,8 +5,10 @@ import {
   getOrderDetail,
   cancelOrder,
   delOrder,
-  addOrder
+  addOrder,
+  rePay
 } from '../../../api/order'
+
 // Page({
 create(store, {
   /**
@@ -92,8 +94,12 @@ create(store, {
     })
   },
   // 取消订单 删除订单
-  delOrderHandle(e) {
+  async delOrderHandle(e) {
     const myOrderData = this.data.orderData
+
+    const pages = getCurrentPages();
+    const prevPage = pages[pages.length - 2]; //上一个页面
+
     // 0:待支付 1:已支付 2:已取消
     if (myOrderData.status === 0) {
       this.cancelOrder({
@@ -103,6 +109,13 @@ create(store, {
           icon: 'none',
           title: '取消成功',
         })
+
+        // 如果上一页是订单列表需要更新订单列表
+        if (prevPage.route === 'pages/shop/order/myOrder') {
+          prevPage.setData({
+            tabIndex: prevPage.data.tabIndex
+          })
+        }
 
         // toast结束后 返回上一个页面
         setTimeout(() => {
@@ -119,6 +132,13 @@ create(store, {
           icon: 'none',
           title: '删除成功',
         })
+
+        // 如果上一页是订单列表需要更新订单列表
+        if (prevPage.route === 'pages/shop/order/myOrder') {
+          prevPage.setData({
+            tabIndex: prevPage.data.tabIndex
+          })
+        }
 
         // toast结束后 返回上一个页面
         setTimeout(() => {
@@ -152,7 +172,10 @@ create(store, {
         orderData.is_use_coupon = 0
       }
 
-      this.addOrder(orderData).then(res => {
+      // this.addOrder(orderData).then(res => {
+      this.rePay({
+        order_id: myOrderData.id
+      }).then(res => {
         console.log(res)
         // 调起微信支付
         this.wxPay(res.data)
@@ -250,6 +273,15 @@ create(store, {
   getOrderDetail(data) {
     return new Promise((resolve, reject) => {
       getOrderDetail(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  rePay(data) {
+    return new Promise((resolve, reject) => {
+      rePay(data).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)

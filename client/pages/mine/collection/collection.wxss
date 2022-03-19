@@ -39,6 +39,7 @@
   height: 56rpx;
   top: 0;
   right: 0;
+  padding: 0 0 15rpx 15rpx;
 }
 
 .content .item .shopcart-box {
@@ -194,6 +195,7 @@
 .content .item .right {
   padding-left: 24rpx;
   min-height: 232rpx;
+  width: calc(100% - 202rpx);
 }
 
 .l12-box {

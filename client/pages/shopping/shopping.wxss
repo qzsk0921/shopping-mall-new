@@ -66,6 +66,7 @@
   background: #FFFFFF;
   border-radius: 16rpx;
   position: relative;
+  height: 232rpx;
 }
 
 .section2 .item .btn-close {
@@ -75,6 +76,7 @@
   top: 0;
   right: 0;
   z-index: 1;
+  padding: 0 0 15rpx 15rpx;
 }
 
 /* .section2 .item .btn-close {
@@ -107,8 +109,10 @@
 /* 选择商品数量 */
 .section2 .item .goods-quantity-control {
   position: absolute;
-  right: 24rpx;
-  bottom: 30rpx;
+  /* right: 24rpx;
+  bottom: 30rpx; */
+  right: 0;
+  bottom: 15rpx;
   display: flex;
   align-items: center;
 }
@@ -152,10 +156,11 @@
 .reduce {
   width: 44rpx;
   height: 44rpx;
+  padding: 15rpx 8rpx 15rpx 15rpx;
 }
 
 .quantity {
-  margin: 0 8rpx;
+  /* margin: 0 8rpx; */
   text-align: center;
   width: 75rpx;
   height: 44rpx;
@@ -168,6 +173,7 @@
 .add {
   width: 44rpx;
   height: 44rpx;
+  padding: 15rpx 15rpx 15rpx 8rpx;
 }
 
 .section2 .item .center {
@@ -185,8 +191,10 @@
 }
 
 .section2 .item .center .icon-goods {
-  width: 100%;
-  height: 100%;
+  width: 172rpx;
+  height: 172rpx;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 16rpx;
 }
 
 .section2 .item.mask-box .center .icon-goods-box .mask {
@@ -207,6 +215,10 @@
   margin-left: 24rpx;
   width: 426rpx;
   padding-top: 22rpx;
+}
+
+.section2 .item .right .block {
+  min-height: 110rpx;
 }
 
 .section2 .item.mask-box .right {
@@ -249,7 +261,7 @@
 }
 
 .section2 .item .right .l4 {
-  margin: 24rpx 0 18rpx;
+  margin: 24rpx 0 30rpx;
 }
 
 .section2 .item .right .l4 text:first-child {
@@ -674,8 +686,10 @@
 }
 
 .section3 .l12-box {
-  height: 127rpx;
+  /* height: 127rpx; */
+  height: 138rpx;
 }
+
 .section3 .no-sign {
   font-size: 24rpx;
   color: #888888
