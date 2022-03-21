@@ -14,6 +14,7 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    isOverShare: 1,
     userInfo: null,
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '商品详情',
@@ -214,6 +215,12 @@ create(store, {
       ['dialog.car.opened']: 1
     })
   },
+  // 拼团规则 
+  collapseHandle() {
+    this.setData({
+      collapse: !this.data.collapse
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -304,6 +311,16 @@ create(store, {
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: `${this.data.goodsDetail.brand_name}`,
+      path: '/pages/index/index', //若无path 默认跳转分享页
+      imageUrl: `${this.data.goodsDetail.goods_image_arr}`, //若无imageUrl 截图当前页面
+      success(res) {
+        console.log('分享成功', res)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    }
   }
 })

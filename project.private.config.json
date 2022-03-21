@@ -81,7 +81,7 @@
         {
           "name": "pages/goods/detail",
           "pathName": "pages/goods/detail",
-          "query": "",
+          "query": "id=129",
           "scene": null
         },
         {
@@ -207,6 +207,12 @@
         {
           "name": "",
           "pathName": "pages/mine/coupon/center",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/groupbargain/list",
+          "pathName": "pages/groupbargain/list",
           "query": "",
           "scene": null
         }

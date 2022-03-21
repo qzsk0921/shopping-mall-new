@@ -26,7 +26,10 @@
         <view wx:if="{{goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
         <text>￥{{goodsDetail.market_price}}</text>
       </view> -->
-
+      <button open-type="share" class="btn-share">
+        <image class="icon-share" src="/assets/images/details_icon_share.png" mode="aspectFill"></image>
+        <text>推荐给朋友</text>
+      </button>
       <!-- 已授权未资质认证的非会员 -->
       <view class="l1 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
         <text>￥</text><text>***</text>
@@ -46,7 +49,80 @@
       <view class="l2">{{goodsDetail.goods_name}}</view>
       <view class="l3">{{goodsDetail.goods_content}}</view>
     </view>
+    <!-- 火热拼团 -->
+    <view class="groupbargain">
+      <view class="bg1"></view>
+      <view class="bg2"></view>
+      <view class="r1">
+        <view class="r1-l">
+          <image class="icon-groupbargain" src="/assets/images/nav_pd_img.png" mode="aspectFill"></image>
+          <text>已有2344人参与拼团</text>
+        </view>
+        <view class="r1-r">
+          <text>距结束</text>
+          <view class="countdowns">
+            <view class="h">23</view><text>:</text>
+            <view class="m">59</view><text>:</text>
+            <view class="s">59</view>
+          </view>
+        </view>
+      </view>
+      <view class="r2">
+        <view class="group-head">
+          <view class="c1">团长</view>
+          <image class="c2" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132" mode="aspectFill"></image>
+          <view class="c3">团长昵称sdsad</view>
+        </view>
+        <view class="r2-r1">
+          <view class="r2-r1-l">
+            <image class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+            <image class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+            <image class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+            <image class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+            <image class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+          </view>
+          <view class="r2-r1-r">
+            <text>2/10</text>
+            <text>查看全部</text>
+          </view>
+        </view>
+        <view class="r2-r2">拼团成功，未取得购买资格，可得平台幸运奖</view>
+      </view>
+      <view class="r3">
+        <view class="arrow {{collapse?'collapse one-txt-cut':'extend'}}" bindtap="collapseHandle"></view>
+        <view class="r3-tit">拼团规则</view>
+        <view class="r3-content {{collapse?'collapse one-txt-cut':'extend'}}">1.发团:拼团活动期间,用户可在周末酒店APP、微信公众号、遛娃指南Lite小程序等发起拼团。
+          2.参团:参加朋友发起的拼团。
+          3.限量:每个拼团活动进行期间,每位用户限参团一次。若拼团失败后可重新开团或参团。多个拼团在规定时间内满足拼团成功,视第一个完成的拼团订单为有效订单。
+          4.拼团人数:拼团人数可大于拼团要求人数。即拼团成功后,新参与者可继续参与拼团,直到倒计时结束。</view>
+      </view>
+    </view>
     <view class="section3">
+      <view class="shopinfo">
+        <view class="r1">
+          <view class="left">
+            <view class="left-r1">
+              <image class="r1-c1" src="/assets/images/order_icon_store.png" mode="aspectFill"></image>
+              <view class="r1-c2">店铺信息</view>
+            </view>
+            <view class="left-r2">信友客来生鲜超市</view>
+          </view>
+          <view class="right">
+            <view class="right-c1">
+              <image src="/assets/images/order_icon_call.png"></image>
+              <view>电话</view>
+            </view>
+            <view class="line"></view>
+            <view class="right-c2">
+              <image src="/assets/images/order_icon_location.png"></image>
+              <view>地址</view>
+            </view>
+          </view>
+        </view>
+        <view class="r2">
+          温馨提示：请注意您购买的商品是否能到店进行消费
+        </view>
+      </view>
       <view class="l1">详情</view>
       <view class="l2">
         <view class="col1 col">
@@ -74,17 +150,36 @@
     </view>
   </view>
   <view class="footer">
-    <view class="col1" bindtap="toCartHandle">
-      <view class="shopcart-box">
-        <image class="icon-shopcart" mode="aspectFill" src="/assets/images/goods_btn_car.png"></image>
-        <view wx:if="{{goodsDetail.cart_number}}" class="shopcart-info">{{goodsDetail.cart_number}}</view>
+    <block wx:if="{{!isGroupbargain}}">
+      <view class="groupbargain-col1" bindtap="collectionHandle">
+        <image src="{{goodsDetail.is_like?'/assets/images/goods_btn_collection_focus.png':'/assets/images/goods_btn_collection.png'}}"></image>
+        <view>收藏</view>
       </view>
-      <view>购物车</view>
-    </view>
-    <view class="col2" bindtap="collectionHandle">
-      <image src="{{goodsDetail.is_like?'/assets/images/goods_btn_collection_focus.png':'/assets/images/goods_btn_collection.png'}}"></image>
-      <view>收藏</view>
-    </view>
-    <view class="col3 btn btn-car" bindtap="awakenCarHandle">加入购物车</view>
+      <view class="groupbargain-col2">
+        <view class="groupbargain-col2-l btn btn-single">
+          <text>￥22.7</text>
+          <text>单独购买</text>
+        </view>
+        <view class="groupbargain-col2-r btn btn-join">
+          <text>￥16.7</text>
+          <text>参与拼团</text>
+        </view>
+      </view>
+      <view class="groupbargain-col3 btn btn-launch" bindtap="launchHandle">发起拼团</view>
+    </block>
+    <block wx:else>
+      <view class="col1" bindtap="toCartHandle">
+        <view class="shopcart-box">
+          <image class="icon-shopcart" mode="aspectFill" src="/assets/images/goods_btn_car.png"></image>
+          <view wx:if="{{goodsDetail.cart_number}}" class="shopcart-info">{{goodsDetail.cart_number}}</view>
+        </view>
+        <view>购物车</view>
+      </view>
+      <view class="col2" bindtap="collectionHandle">
+        <image src="{{goodsDetail.is_like?'/assets/images/goods_btn_collection_focus.png':'/assets/images/goods_btn_collection.png'}}"></image>
+        <view>收藏</view>
+      </view>
+      <view class="col3 btn btn-car" bindtap="awakenCarHandle">加入购物车</view>
+    </block>
   </view>
 </view>
