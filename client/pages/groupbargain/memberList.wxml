@@ -1,0 +1,25 @@
+<!--pages/groupbargain/memberList.wxml-->
+<!-- <text>pages/groupbargain/memberList.wxml</text> -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
+<view class="container-groupbargain-memberlist container">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333333" bgColor="#ffffff" />
+  </view>
+  <view class="content">
+    <view class="r1">
+      <view class="progress">
+        <view class="txt">还差7人拼成</view>
+        <view class="percentage" style="width:{{tools.parsePercentage(10,2)}}"></view>
+      </view>
+      <view class="num"><text>3</text>/10</view>
+    </view>
+    <view class="r2">
+      <view class="item">
+        <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132" mode="aspectFill"></image>
+        <view class="nickname"></view>
+        <view class="time"></view>
+      </view>
+    </view>
+  </view>
+</view>

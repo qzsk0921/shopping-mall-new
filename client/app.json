@@ -34,7 +34,8 @@
     "pages/mine/faq/detail",
     "pages/mine/focus/index",
     "pages/mine/set/set",
-    "pages/groupbargain/list"
+    "pages/groupbargain/list",
+    "pages/groupbargain/memberList"
   ],
   "window": {
     "backgroundTextStyle": "light",

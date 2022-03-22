@@ -1,0 +1,45 @@
+/* pages/groupbargain/memberList.wxss */
+.r1 {
+  height: 96rpx;
+  display: flex;
+  padding: 0 24rpx;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+
+.progress {
+  width: 610rpx;
+  height: 40rpx;
+  background: #FFC0B3;
+  border-radius: 24rpx;
+  font-size: 26rpx;
+  position: relative;
+  margin-right: 24rpx;
+}
+
+.progress .txt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #FFFFFF;
+  padding-left: 23rpx;
+  line-height: 40rpx;
+}
+
+.percentage {
+  height: 40rpx;
+  background: #FF723A;
+  border-radius: 24rpx;
+}
+
+.r1 .num {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.r1 .num text {
+  font-size: 38rpx;
+  font-weight: 500;
+  color: #FC4953;
+}

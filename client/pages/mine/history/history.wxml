@@ -24,22 +24,17 @@
               </view>
               <view class="unit one-txt-cut">{{item.goods_content}}</view>
             </view>
-            <!-- 未授权或未资质认证的非会员 -->
-            <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+            <!-- 未授权 -->
+            <!-- <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
               请登录查看价格
-            </view>
-            <!-- 授权且资质认证的非会员 -->
-            <view class="l2" wx:elif="{{!userInfo.is_vip&&!userInfo.is_sale}}">
-              <view class="price">
-                <text>￥</text>{{item.market_price}}
-              </view>
-            </view>
-            <!-- 授权且资质认证的会员 -->
-            <view class="l2" wx:else>
+            </view> -->
+            <!-- 授权 -->
+            <!-- <view class="l2" wx:else> -->
+            <view class="l2">
               <view class="price">
                 <text>￥</text>{{item.price}}
               </view>
-              <view class="origin-price">￥{{item.market_price}}</view>
+              <view wx:if="{{item.market_price}}" class="origin-price">￥{{item.market_price}}</view>
             </view>
           </view>
           <view class="shopcart-box" catchtap="addArtHandle" data-item="{{item}}" data-index="{{index}}">

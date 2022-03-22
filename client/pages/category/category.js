@@ -245,35 +245,36 @@ create(store, {
   firstCategoryHandle(e) {
     // console.log(e)
     console.log('firstCategoryHandle')
-    const id = e.target.dataset.id
+    const item = e.target.dataset.item
 
     // 不是分类选项则不执行
-    if (!id) return
+    if (!item.id) return
 
-    this.firstCategorySwitch(id)
+    this.firstCategorySwitch(item)
   },
-  firstCategorySwitch(id) {
+  firstCategorySwitch(item) {
     let currentScrollTopId ///content滚动id
     // 滚动居中处理
-    const myArr = this.data.firstCategory.map(item => item.id)
-    if (myArr.includes(id - 2)) {
-      currentScrollTopId = 'a' + (id - 2)
-    } else if (myArr.includes(id - 1)) {
-      currentScrollTopId = 'a' + (id - 1)
+    const myArr = this.data.firstCategory.map(item => item.index)
+    if (myArr.includes(item.index - 2)) {
+      currentScrollTopId = 'a' + (item.index - 2)
+    } else if (myArr.includes(item.index - 1)) {
+      currentScrollTopId = 'a' + (item.index - 1)
     } else {
-      currentScrollTopId = 'a' + id
+      currentScrollTopId = 'a' + item.index
     }
 
     this.setData({
-      currentFirstCategoryId: id,
+      currentFirstCategoryId: item.id,
       currentScrollTopId,
     })
 
-    this.store.data.currentFirstCategoryId = id
+    this.store.data.currentFirstCategoryId = item.id
+    this.store.data.currentFirstCategory = item
     this.update()
 
     this.getCategoryList({
-      pid: id
+      pid: item.id
     }).then(res => {
       if (res.data.length) {
         this.setData({
@@ -294,26 +295,30 @@ create(store, {
   // 子组件切换一级分类
   subFirstCategoryHandle(e) {
     // console.log('subFirstCategoryHandle')
-    const id = e.detail
+    const item = e.detail
 
     // 滚动居中处理
     let currentScrollTopId ///content滚动id
-    const myArr = this.data.firstCategory.map(item => item.id)
-    if (myArr.includes(id - 2)) {
-      currentScrollTopId = 'a' + (id - 2)
-    } else if (myArr.includes(id - 1)) {
-      currentScrollTopId = 'a' + (id - 1)
+    const myArr = this.data.firstCategory.map(item => item.index)
+    if (myArr.includes(item.index - 2)) {
+      currentScrollTopId = 'a' + (item.index - 2)
+    } else if (myArr.includes(item.index - 1)) {
+      currentScrollTopId = 'a' + (item.index - 1)
     } else {
-      currentScrollTopId = 'a' + id
+      currentScrollTopId = 'a' + item.index
     }
 
     this.setData({
-      currentFirstCategoryId: id,
+      currentFirstCategoryId: item.id,
       currentScrollTopId
     })
 
+    this.store.data.currentFirstCategoryId = item.id
+    this.store.data.currentFirstCategory = item
+    this.update()
+
     this.getCategoryList({
-      pid: id
+      pid: item.id
     }).then(res => {
       if (res.data.length) {
         this.setData({
@@ -530,24 +535,30 @@ create(store, {
         pid: 0
       }).then(res => {
 
+        const myfirstCategory = res.data.map((item, index) => {
+          item.index = index
+          return item
+        })
+
         this.setData({
-          firstCategory: res.data,
+          firstCategory: myfirstCategory,
           currentFirstCategoryId: res.data[0].id
         })
+        console.log(this.data.firstCategory)
         // 计算第一分类宽度
         this.calcCategoryW(res.data.length)
 
-        if (this.store.data.currentFirstCategoryId) {
-          this.firstCategorySwitch(this.store.data.currentFirstCategoryId)
+        if (this.store.data.currentFirstCategory) {
+          this.firstCategorySwitch(this.store.data.currentFirstCategory)
         } else {
-          this.firstCategorySwitch(res.data[0].id)
+          this.firstCategorySwitch(res.data[0])
         }
       })
     } else {
-      if (this.store.data.currentFirstCategoryId) {
-        this.firstCategorySwitch(this.store.data.currentFirstCategoryId)
+      if (this.store.data.currentFirstCategory) {
+        this.firstCategorySwitch(this.store.data.currentFirstCategory)
       } else {
-        this.firstCategorySwitch(this.data.firstCategory[0].id)
+        this.firstCategorySwitch(this.data.firstCategory[0])
       }
     }
 

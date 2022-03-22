@@ -71,23 +71,29 @@ create(store, {
         name: '消费记录',
         url: '/pages/mine/expensesRecord/expensesRecord?from=mine'
       },
-      {
-        id: 4,
-        imgName: 'my_icon_certification',
-        name: '资质认证',
-        url: '/pages/mine/certification/certification?from=mine'
-      },
-      {
-        id: 5,
-        imgName: 'my_icon_customer',
-        name: '我的客户',
-        url: '/pages/mine/customer/customer?from=mine'
-      },
+      // {
+      //   id: 4,
+      //   imgName: 'my_icon_certification',
+      //   name: '资质认证',
+      //   url: '/pages/mine/certification/certification?from=mine'
+      // },
+      // {
+      //   id: 5,
+      //   imgName: 'my_icon_customer',
+      //   name: '我的客户',
+      //   url: '/pages/mine/customer/customer?from=mine'
+      // },
       {
         id: 6,
         imgName: 'my_icon_problem',
         name: '常见问题',
         url: '/pages/mine/faq/index?from=mine'
+      },
+      {
+        id: 9,
+        imgName: 'my_icon_service',
+        name: '联系客服',
+        url: '/pages/mine/set/set?from=mine'
       },
       {
         id: 7,
@@ -101,12 +107,6 @@ create(store, {
         name: '设置',
         url: '/pages/mine/set/set?from=mine'
       },
-      {
-        id: 9,
-        imgName: 'my_icon_service',
-        name: '联系客服',
-        url: '/pages/mine/set/set?from=mine'
-      }
     ]
   },
   optionsTapHandle(e) {

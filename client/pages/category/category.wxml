@@ -13,9 +13,9 @@
       <view class="category-box hide-scrollbar" bindtap="firstCategoryHandle">
         <scroll-view scroll-x="true" scroll-into-view="{{currentScrollTopId}}" scroll-with-animation="true" enhanced="true" show-scrollbar="{{false}}">
           <view class="item-box" style="width:{{categoryBoxW}}rpx;">
-            <view class="item {{currentFirstCategoryId===item.id?'category-active':''}}" wx:for="{{firstCategory}}" data-clickable="1" data-id="{{item.id}}" id="a{{item.id}}">
-              <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1" data-id="{{item.id}}"></image>
-              <view class="text-category" data-clickable="1" data-id="{{item.id}}">{{item.name}}</view>
+            <view class="item {{currentFirstCategoryId===item.id?'category-active':''}}" wx:for="{{firstCategory}}" data-clickable="1" data-item="{{item}}" data-id="{{item.id}}" id="a{{item.index}}">
+              <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1" data-item="{{item}}"></image>
+              <view class="text-category" data-clickable="1" data-item="{{item}}">{{item.name}}</view>
             </view>
           </view>
         </scroll-view>
@@ -71,22 +71,15 @@
                   </view>
                   <view class="l2 one-txt-cut">{{item.goods_content}}</view>
                   <view class="l3 one-txt-cut">{{tools.parseUnit(item.unit_arr)}}</view>
-                  <!-- <view class="l4">
-                  <text>￥</text><text>{{item.price}}</text>
-                  <text>￥{{item.market_price}}</text>
-                </view> -->
-                  <!-- 未授权或未资质认证的非会员 -->
-                  <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+                  <!-- 未授权 -->
+                  <!-- <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
                     <text>请登录查看价格</text>
-                  </view>
-                  <!-- 授权且资质认证的非会员 -->
-                  <view class="l4" wx:elif="{{!userInfo.is_vip&&!userInfo.is_sale}}">
-                    <text>￥</text><text>{{item.market_price}}</text>
-                  </view>
-                  <!-- 授权且资质认证的会员 -->
-                  <view class="l4" wx:else>
+                  </view> -->
+                  <!-- 授权 -->
+                  <!-- <view class="l4" wx:else> -->
+                  <view class="l4">
                     <text>￥</text><text>{{item.price}}</text>
-                    <text>￥{{item.market_price}}</text>
+                    <text wx:if="{{item.market_price}}">￥{{item.market_price}}</text>
                   </view>
                 </view>
               </view>

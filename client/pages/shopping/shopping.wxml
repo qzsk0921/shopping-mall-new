@@ -62,20 +62,15 @@
                 </view>
                 <view class="unit">{{item.unitName}}</view>
               </view>
-              <!-- 未授权或未资质认证的非会员 -->
-              <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+              <!-- 未授权 -->
+              <!-- <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
                 请登录查看价格
-              </view>
-              <!-- 授权且资质认证的非会员 -->
-              <view class="l4" wx:elif="{{!userInfo.is_vip&&!userInfo.is_sale}}">
-                <view class="price">
-                  <text>￥</text><text>{{item.market_price}}</text>
-                </view>
-              </view>
-              <!-- 授权且资质认证的会员 -->
-              <view class="l4" wx:else>
+              </view> -->
+              <!-- 授权 -->
+              <!-- <view class="l4" wx:else> -->
+              <view class="l4">
                 <text>￥</text><text>{{item.price}}</text>
-                <text>￥{{item.market_price}}</text>
+                <text wx:if="{{item.market_price}}">￥{{item.market_price}}</text>
               </view>
             </view>
           </view>
@@ -103,22 +98,17 @@
               </view>
               <view class="unit one-txt-cut">{{itemName.goods_content}}</view>
             </view>
-            <!-- 未授权或未资质认证的非会员 -->
-            <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+            <!-- 未授权 -->
+            <!-- <view class="l2 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
               请登录查看价格
-            </view>
-            <!-- 授权且资质认证的非会员 -->
-            <view class="l2" wx:elif="{{!userInfo.is_vip&&!userInfo.is_sale}}">
-              <view class="price">
-                <text>￥</text>{{itemName.market_price}}
-              </view>
-            </view>
-            <!-- 授权且资质认证的会员 -->
-            <view class="l2" wx:else>
+            </view> -->
+            <!-- 授权 -->
+            <!-- <view class="l2" wx:else> -->
+            <view class="l2">
               <view class="price">
                 <text>￥</text>{{itemName.price}}
               </view>
-              <view class="origin-price">￥{{itemName.market_price}}</view>
+              <view wx:if="{{itemName.market_price}}" class="origin-price">￥{{itemName.market_price}}</view>
             </view>
           </view>
           <view class="shopcart-box" catchtap="addArtHandle" data-item="{{itemName}}" data-index="{{idx}}">

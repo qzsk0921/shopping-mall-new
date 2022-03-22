@@ -221,6 +221,12 @@ create(store, {
       collapse: !this.data.collapse
     })
   },
+  // 查看拼团成员
+  toGroupbargainMemberlistHandle() {
+    wx.navigateTo({
+      url: '/pages/groupbargain/memberList',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

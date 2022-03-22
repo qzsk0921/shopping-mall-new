@@ -42,11 +42,11 @@ Component({
   methods: {
     firstCategoryHandle(e) {
       // console.log(e)
-      const id = e.target.dataset.item.id
+      const item = e.target.dataset.item
       this.setData({
         opened: 0,
       })
-      this.triggerEvent('subFirstCategoryHandle', id)
+      this.triggerEvent('subFirstCategoryHandle', item)
     },
     dropdownItemTapHandle(e) {
       // 分类下拉弹窗代理事件

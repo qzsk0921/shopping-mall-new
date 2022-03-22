@@ -107,7 +107,7 @@
   color: #FFF1E8;
 }
 
-.header .vip {
+/* .header .vip {
   position: relative;
   margin: 46rpx 0 0 24rpx;
   width: 702rpx;
@@ -137,7 +137,7 @@
   top: 50%;
   transform: translateY(-50%);
   right: 24rpx;
-}
+} */
 
 .body .l1 {
   display: flex;
@@ -145,7 +145,8 @@
   align-items: center;
   background: #FFFFFF;
   border-radius: 16rpx;
-  margin: 81rpx 24rpx 0;
+  /* margin: 81rpx 24rpx 0; */
+  margin: -34rpx 24rpx 0;
   height: 160rpx;
 }
 

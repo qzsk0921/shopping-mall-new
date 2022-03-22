@@ -19,8 +19,8 @@
         <view class="userinfo-box">
           <view class="l1">
             <text class="nickname">{{userInfo.nick_name}}</text>
-            <image wx:if="{{userInfo.is_vip}}" class="icon-badge-vip" src="/assets/images/my_members.png" mode="aspectFill"></image>
-            <image wx:if="{{userInfo.is_sale}}" class="icon-badge-business" src="/assets/images/my_business.png" mode="aspectFill"></image>
+            <!-- <image wx:if="{{userInfo.is_vip}}" class="icon-badge-vip" src="/assets/images/my_members.png" mode="aspectFill"></image> -->
+            <!-- <image wx:if="{{userInfo.is_sale}}" class="icon-badge-business" src="/assets/images/my_business.png" mode="aspectFill"></image> -->
           </view>
           <view wx:if="{{userInfo.phone}}" class="phone l2">{{tools.filterNumber(userInfo.phone)}}</view>
         </view>
@@ -32,11 +32,11 @@
         <view>{{item.name}}</view>
       </view>
     </view>
-    <view class="l3 vip" bindtap="toVipHandle">
+    <!-- <view class="l3 vip" bindtap="toVipHandle">
       <image class="icon-vip" src="/assets/images/my_members_bk.png" mode="aspectFill"></image>
       <view class="text">尽享更多会员专属优惠</view>
       <image class="icon-arrow" src="/assets/images/my_members_right.png" mode="aspectFill"></image>
-    </view>
+    </view> -->
   </view>
   <view class="body">
     <view class="l1">

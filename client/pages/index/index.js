@@ -467,7 +467,7 @@ create(store, {
     // 授权校验
     if (!this.checkAuth()) return
     // 资质校验
-    if (!this.certCheck()) return
+    // if (!this.certCheck()) return
 
     wx.navigateTo({
       url: '/pages/mine/coupon/center',
