@@ -16,9 +16,18 @@
     </view>
     <view class="r2">
       <view class="item">
-        <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132" mode="aspectFill"></image>
-        <view class="nickname"></view>
-        <view class="time"></view>
+        <view class="left">
+          <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132" mode="aspectFill"></image>
+          <view class="nickname">弗萨勒夫</view>
+        </view>
+        <view class="right time">拼团时间：2021-2-12 12:27:32</view>
+      </view>
+      <view class="item">
+        <view class="left">
+          <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132" mode="aspectFill"></image>
+          <view class="nickname">弗萨勒夫</view>
+        </view>
+        <view class="right time">拼团时间：2021-2-12 12:27:32</view>
       </view>
     </view>
   </view>

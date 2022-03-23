@@ -43,3 +43,35 @@
   font-weight: 500;
   color: #FC4953;
 }
+
+.r2 .item {
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  justify-content: space-between;
+  height: 112rpx;
+  margin-top: 12rpx;
+  background: #ffffff;
+}
+
+.r2 .item .left {
+  display: flex;
+  align-items: center;
+}
+
+.r2 .item .left .avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
+
+.r2 .item .left .nickname {
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.r2 .item .time {
+  font-size: 22rpx;
+  color: #999999
+}

@@ -341,3 +341,143 @@
   font-size: 34rpx;
   color: #FFFFFF;
 }
+
+/* 拼团 */
+.shopinfo .r1 {
+  display: flex;
+  justify-content: space-between;
+  height: 142rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 20rpx 24rpx 0;
+  padding: 0 20rpx 0 24rpx;
+}
+
+.shopinfo .r1 .left {}
+
+.shopinfo .r1 .left .left-r1 {
+  margin-top: 32rpx;
+  display: flex;
+}
+
+.shopinfo .r1 .left .left-r2 {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  font-weight: 550;
+  color: #333333;
+}
+
+.shopinfo .r1 .left .left-r1 .r1-c2 {
+  margin-left: 8rpx;
+}
+
+.shopinfo .r1 .left .left-r1 .r1-c1 {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.shopinfo .r1 .left .left-r1 .r1-c1 view {
+  margin-left: 8rpx;
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.shopinfo .r1 .left .left-r1 .r1-c2 {
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.shopinfo .r1 .left .left-r2 {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.shopinfo .r1 .right {
+  display: flex;
+  align-items: center;
+}
+
+.shopinfo .r1 .right .right-c1,
+.shopinfo .r1 .right .right-c2 {
+  text-align: center;
+}
+
+.shopinfo .r1 .right .right-c2 {
+  margin-right: 20rpx;
+}
+
+.shopinfo .r1 .right .right-c1 image {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.shopinfo .r1 .right .right-c2 image {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.shopinfo .r1 .right view {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: #999999;
+}
+
+.shopinfo .r1 .right .line {
+  width: 2rpx;
+  height: 54rpx;
+  background: #EEEEEE;
+  margin: 0 44rpx;
+}
+
+.shopinfo .r2 {
+  text-align: center;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #FFF2F0;
+  font-size: 24rpx;
+  color: #FF6040;
+}
+
+.content>.l2 .l2-2.groupbargain {
+  padding-right: 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-left {
+  display: flex;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-left .cont {
+  margin-left: 20rpx;
+  flex: 1;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-left .cont .tit {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-left .cont .des {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  line-height: 30rpx;
+  color: #AAAAAA;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-right {
+  text-align: right;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-right .price {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.content>.l2 .l2-2.groupbargain .l2-2-right .num {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #AAAAAA;
+}

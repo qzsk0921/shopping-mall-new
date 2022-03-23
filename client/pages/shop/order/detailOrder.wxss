@@ -15,6 +15,14 @@
   padding-left: 30rpx;
 }
 
+.section1.status0 .left .row1 {
+  color: #FF723A;
+}
+
+.section1.status2 .left .row1 {
+  color: #666666;
+}
+
 .section1 .left .row1 {
   margin-top: 42rpx;
   font-size: 38rpx;
@@ -43,6 +51,12 @@
   border-radius: 28rpx;
   font-size: 26rpx;
   /* color: #333333; */
+}
+
+.section1.status0 .right .btn-pay {
+  background: #FF723A;
+  font-size: 26rpx;
+  color: #FFFFFF;
 }
 
 .section1 .right .btn:last-child {

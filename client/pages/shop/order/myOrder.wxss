@@ -5,7 +5,7 @@
 
 .section1 {
   background: #ffffff;
-  padding-bottom: 8rpx;
+  padding: 20rpx 0 10rpx;
 }
 
 
@@ -226,4 +226,55 @@
   background: #FFFFFF;
   font-weight: bold;
   color: #333333;
+}
+
+/* 拼团 */
+.options-box {
+  background: #ffffff;
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
+.options {
+  width: 504rpx;
+  margin: 0 auto;
+  /* box-sizing: content-box; */
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.options .option {
+  padding: 24rpx 0;
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #999999;
+  width: 252rpx;
+  text-align: center;
+}
+
+.options .option.active {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.options-line {
+  background: #FF723A;
+  height: 10rpx;
+  border-radius: 5rpx;
+  position: absolute;
+  bottom: 16rpx;
+  left: 0;
+  z-index: 1;
+  transition-duration: .3s;
+  width: 128rpx;
+}
+
+.section2-groupbargain .tabs-nav {
+  overflow-x: scroll;
+}
+
+.section2-groupbargain .tabs-nav .tab {
+  width: 175rpx;
+  flex: none;
 }

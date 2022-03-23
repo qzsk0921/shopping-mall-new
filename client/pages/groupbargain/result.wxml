@@ -1,0 +1,29 @@
+<!--pages/groupbargain/result.wxml-->
+<!-- <text>pages/groupbargain/result.wxml</text> -->
+<!-- 拼团结果页 -->
+<view class="container container-result">
+  <view class="content">
+    <view wx:if="{{status===1}}" class="join cont">
+      <image class="icon-join" src="/assets/images/result_join.png" mode="aspectFill"></image>
+      <view class="tit">参与拼团成功</view>
+      <view class="des">请等待开团</view>
+      <view class="btn btn-check">查看订单</view>
+      <view class="btn btn-back">回首页</view>
+    </view>
+    <view wx:if="{{status===2}}" class="finish cont">
+      <image class="icon-finish" src="/assets/images/result_finish.png" mode="aspectFill"></image>
+      <view class="tit">开团成功</view>
+      <view class="des">恭喜您，拼得此商品</view>
+      <view class="btn btn-check">查看订单</view>
+      <view class="btn btn-back">回首页</view>
+    </view>
+    <view wx:if="{{status===3}}" class="fail cont">
+      <image class="icon-fail" src="/assets/images/result_unfinished.png" mode="aspectFill"></image>
+      <view class="tit">开团成功</view>
+      <view class="des des1">很遗憾，未获得此商品购买名额</view>
+      <view class="des des2">请前往钱包<text>领取幸运奖</text></view>
+      <view class="btn btn-check">查看钱包</view>
+      <view class="btn btn-back">回首页</view>
+    </view>
+  </view>
+</view>

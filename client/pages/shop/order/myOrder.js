@@ -16,13 +16,34 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    type: 'normal', //普通normal 拼团groupbargain
     keyword: '', //搜索关键字
 
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
-    navigationBarTitleText: '我的订单',
-    tabbar: ['全部', '待支付', '已支付', '已取消'],
-    tabIndex: 0, //0全部 1待支付 2已支付 3已取消
-    tabWidth: null,
+    // navigationBarTitleText: '我的订单',
+    navigationBarTitleText: '',
+    options: ['我的订单', '拼团订单'],
+    optionIndex: 0,
+    optionWidth: null,
+
+    tab1bar: ['全部', '待支付', '已支付', '已取消'],
+    tab1Index: 0, //0全部 1待支付 2已支付 3已取消
+    tab1Width: null,
+
+    tab2bar: ['全部', '待支付', '已支付', '已完成', '已取消'],
+    tab2Index: 0, //0全部 1待支付 2已支付 3已取消
+    tab2Width: null,
+    // tabbar: [{
+    //   type: 'normal',
+    //   tabIndex: 0,
+    //   tabWidth: null,
+    //   value: ['全部', '待支付', '已支付', '已取消']
+    // }, {
+    //   type: 'groupbargain',
+    //   tabIndex: 0,
+    //   tabWidth: null,
+    //   value: ['全部', '待支付', '已支付', '已完成', '已取消']
+    // }],
     orderList: [{
       cache: [], //couponNouseCache 未使用
       count: 1,
@@ -299,11 +320,20 @@ create(store, {
     page_size: 10,
   },
   watch: {
-    tabIndex: {
+    tab1Index: {
       handler(nv, ov, obj) {
         console.log(nv)
         this.getOrderList({
-          status: this.parseStatus(nv)
+          status: this.parseStatus(nv, this.data.type)
+        })
+      },
+      // immediate: true
+    },
+    tab2Index: {
+      handler(nv, ov, obj) {
+        console.log(nv)
+        this.getOrderList({
+          status: this.parseStatus(nv, this.data.type)
         })
       },
       // immediate: true
@@ -319,12 +349,42 @@ create(store, {
   changeTab(e) {
     console.log(e)
     const index = e.target.dataset.index
-
+    let objData
+    if (this.data.type === 'normal') {
+      if (index == this.data.tab1Index) return
+      objData = {
+        tab1Index: index,
+      }
+    } else if (this.data.type === 'groupbargain') {
+      if (index == this.data.tab2Index) return
+      objData = {
+        tab2Index: index,
+      }
+    }
+    this.setData(objData)
+  },
+  changeOption(e) {
+    const index = e.target.dataset.index
+    if (index == this.data.optionIndex) return
     let objData = {
-      tabIndex: index,
+      optionIndex: index,
+      type: index == 0 ? 'normal' : 'groupbargain'
     }
 
     this.setData(objData)
+
+    // 挂载拼团选项DOM后执行
+    if (index === 1) {
+      if (!this.data.tab2Width) {
+        const that = this
+        const query = wx.createSelectorQuery();
+        query.select('.tab2').boundingClientRect(function (rect) {
+          that.setData({
+            tab2Width: rect.width,
+          })
+        }).exec();
+      }
+    }
   },
   // 搜索框失去获取焦点
   blurHandle(e) {
@@ -333,26 +393,43 @@ create(store, {
     this.data.keyword = val
     this.getOrderList()
   },
-  parseStatus(tabIndex) {
-    // '':全部 0：待支付 1:已支付 2:已取消
+  parseStatus(tabIdx, type) {
+    // type: 普通 normal, 拼团 groupbargain
+    // 普通  '':全部 0：待支付 1:已支付 2:已取消
+    // 拼团  '':全部 0：待支付 1:已支付 2:已取消 3:已完成
     let myStatus
-    if (tabIndex == 0) {
-      myStatus = ''
-    } else if (tabIndex == 1) {
-      myStatus = 0
-    } else if (tabIndex == 2) {
-      myStatus = 1
-    } else if (tabIndex == 3) {
-      myStatus = 2
+    if (type === 'normal') {
+      if (tabIdx == 0) {
+        myStatus = ''
+      } else if (tabIdx == 1) {
+        myStatus = 0
+      } else if (tabIdx == 2) {
+        myStatus = 1
+      } else if (tabIdx == 3) {
+        myStatus = 2
+      }
+    } else if (type === 'groupbargain') {
+      if (tabIdx == 0) {
+        myStatus = ''
+      } else if (tabIdx == 1) {
+        myStatus = 0
+      } else if (tabIdx == 2) {
+        myStatus = 1
+      } else if (tabIdx == 3) {
+        myStatus = 2
+      } else if (tabIdx == 4) {
+        myStatus = 3
+      }
     }
+
 
     return myStatus
   },
   getOrderList(dataObj) {
     const tempData = {
-      page: this.data.orderList[this.data.tabIndex].count,
+      page: this.data.orderList[this.data.tab1Index].count,
       page_size: this.data.page_size,
-      status: this.parseStatus(this.data.tabIndex),
+      status: this.parseStatus(this.data.tab1Index, this.data.type),
       keyword: this.data.keyword
     }
 
@@ -367,8 +444,8 @@ create(store, {
         if (dataObj === 'scrollToLower') {
           this.data.orderList.cache.push(...res.data.data)
           this.setData({
-            [`orderList[${this.data.tabIndex}].cache`]: this.data.orderList.cache,
-            [`orderList[${this.data.tabIndex}].total_page`]: res.data.last_page
+            [`orderList[${this.data.tab1Index}].cache`]: this.data.orderList.cache,
+            [`orderList[${this.data.tab1Index}].total_page`]: res.data.last_page
           })
           resolve(res)
           console.log(this.data.orderList)
@@ -376,8 +453,8 @@ create(store, {
           this.setData({
             // 测试数据
             // [`orderList.cache`]: [].concat(res.data.data).concat(res.data.data).concat(res.data.data).concat(res.data.data),
-            [`orderList[${this.data.tabIndex}].cache`]: res.data.data,
-            [`orderList[${this.data.tabIndex}].total_page`]: res.data.last_page,
+            [`orderList[${this.data.tab1Index}].cache`]: res.data.data,
+            [`orderList[${this.data.tab1Index}].total_page`]: res.data.last_page,
             tabbarNum: [res.data.be_user_total, 0, 0]
           })
         }
@@ -400,7 +477,7 @@ create(store, {
         })
 
         this.setData({
-          tabIndex: this.data.tabIndex
+          tab1Index: this.data.tab1Index
         })
         // toast结束后 更新列表
         // setTimeout(() => {
@@ -420,7 +497,7 @@ create(store, {
 
         // toast结束后 更新列表
         this.setData({
-          tabIndex: this.data.tabIndex
+          tab1Index: this.data.tab1Index
         })
 
       })
@@ -560,7 +637,7 @@ create(store, {
     } = options
     if (from === 'mine') {
       this.setData({
-        tabIndex: type
+        tab1Index: type
       })
     }
   },
@@ -585,9 +662,15 @@ create(store, {
       })
     }).exec();
 
-    query.select('.tab').boundingClientRect(function (rect) {
+    query.select('.tab1').boundingClientRect(function (rect) {
       that.setData({
-        tabWidth: rect.width,
+        tab1Width: rect.width,
+      })
+    }).exec();
+
+    query.select('.option').boundingClientRect(function (rect) {
+      that.setData({
+        optionWidth: rect.width,
       })
     }).exec();
   },

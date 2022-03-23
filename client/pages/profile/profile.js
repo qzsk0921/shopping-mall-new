@@ -107,6 +107,30 @@ create(store, {
         name: '设置',
         url: '/pages/mine/set/set?from=mine'
       },
+      {
+        id: 9,
+        imgName: 'my_icon_invite',
+        name: '团长邀请',
+        url: '/pages/mine/set/set?from=mine'
+      },
+      {
+        id: 10,
+        imgName: 'my_icon_scan',
+        name: '扫码核销',
+        url: '/pages/mine/set/set?from=mine'
+      },
+      {
+        id: 11,
+        imgName: 'my_pt',
+        name: '我的拼团',
+        url: '/pages/mine/set/set?from=mine'
+      },
+      {
+        id: 12,
+        imgName: 'my_icon_wallet',
+        name: '钱包',
+        url: '/pages/mine/set/set?from=mine'
+      },
     ]
   },
   optionsTapHandle(e) {

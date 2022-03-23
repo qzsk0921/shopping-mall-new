@@ -164,9 +164,21 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.footer .offline-tip {
+  text-align: center;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #FFF2F0;
+  font-size: 24rpx;
+  color: #FF6040;
+}
+
+.footer .block {
   display: flex;
   align-items: center;
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .footer .col1 {
@@ -409,13 +421,24 @@
 .groupbargain .r2 .r2-r1 .r2-r1-r text:first-child {
   font-size: 24rpx;
   font-weight: 500;
-  color: #333333;
+  color: #FE1D28;
 }
 
 .groupbargain .r2 .r2-r1 .r2-r1-r text:last-child {
-  margin-top: 8rpx;
+  margin-top: 9rpx;
   font-size: 20rpx;
-  color: #FF723A;
+  color: #999999;
+}
+
+.groupbargain .r2 .r2-r1 .r2-r1-r text:last-child::after {
+  content: '';
+  display: inline-block;
+  width: 10rpx;
+  height: 10rpx;
+  border: 2rpx solid #999999;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
 }
 
 .groupbargain .r2 .r2-r2 {
@@ -570,7 +593,7 @@
 .shopinfo .r1 .left .left-r2 {
   margin-top: 20rpx;
   font-size: 30rpx;
-  font-weight: 500;
+  font-weight: 550;
   color: #333333;
 }
 
@@ -635,13 +658,4 @@
   height: 54rpx;
   background: #EEEEEE;
   margin: 0 44rpx;
-}
-
-.shopinfo .r2 {
-  text-align: center;
-  height: 64rpx;
-  line-height: 64rpx;
-  background: #FFF2F0;
-  font-size: 24rpx;
-  color: #FF6040;
 }

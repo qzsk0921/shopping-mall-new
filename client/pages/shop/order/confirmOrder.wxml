@@ -7,6 +7,31 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
   </view>
   <view class="content">
+    <!-- <view class="shopinfo">
+      <view class="r2">
+        温馨提示：请注意您购买的商品是否能到店进行消费
+      </view>
+      <view class="r1">
+        <view class="left">
+          <view class="left-r1">
+            <image class="r1-c1" src="/assets/images/order_icon_store.png" mode="aspectFill"></image>
+            <view class="r1-c2">店铺信息</view>
+          </view>
+          <view class="left-r2">信友客来生鲜超市</view>
+        </view>
+        <view class="right">
+          <view class="right-c1">
+            <image src="/assets/images/order_icon_call.png"></image>
+            <view>电话</view>
+          </view>
+          <view class="line"></view>
+          <view class="right-c2">
+            <image src="/assets/images/order_icon_location.png"></image>
+            <view>地址</view>
+          </view>
+        </view>
+      </view>
+    </view> -->
     <!-- 收货地址 -->
     <view class="l1 {{orderData.address_info.address?'':'noaddress'}}" bindtap="toAddressHandle">
       <block wx:if="{{orderData.address_info.address}}">
@@ -24,23 +49,43 @@
     </view>
     <!-- 商品信息 -->
     <view class="l2">
-      <view class="l2-1" bindtap="toOrderGoodsHandle">
-        <text>商品信息</text>
-        <text>共{{orderData.goods_list.length}}件</text>
-        <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
-      </view>
-      <view class="l2-2">
-        <image class="icon-goods" wx:for="{{orderData.goods_list.length}}" wx:key="unique" src="{{orderData.goods_list[index].thumb}}" mode="aspectFill"></image>
-      </view>
-      <view class="l2-3">
+      <!-- 拼团------- -->
+      <block wx:if="{{type==='groupbargain'}}">
+        <view class="l2-1 groupbargain" bindtap="toOrderGoodsHandle">
+          <text>商品信息</text>
+        </view>
+        <view class="l2-2 groupbargain">
+          <view class="l2-2-left">
+            <image class="icon-goods" src="{{orderData.goods_list[0].thumb}}" mode="aspectFill"></image>
+            <view class="cont">
+              <view class="tit">{{orderData.goods_list[0].goods_name}} {{orderData.goods_list[0].unitName}}*{{orderData.goods_list[0].cart_number}}</view>
+              <view class="des">{{orderData.goods_list[0].goods_content}}阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿</view>
+            </view>
+          </view>
+          <view class="l2-2-right">
+            <view class="price">￥2388.3</view>
+            <view class="num">x1</view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="l2-1" bindtap="toOrderGoodsHandle">
+          <text>商品信息</text>
+          <text>共{{orderData.goods_list.length}}件</text>
+          <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+        </view>
+        <view class="l2-2">
+          <image class="icon-goods" wx:for="{{orderData.goods_list.length}}" wx:key="unique" src="{{orderData.goods_list[index].thumb}}" mode="aspectFill"></image>
+        </view>
+      </block>
+      <!-- <view class="l2-3">
         <text>商品金额</text>
         <text>￥{{orderData.market_price_total}}</text>
-      </view>
-      <!-- <view wx:if="{{userInfo.is_vip}}" class="l2-4"> -->
-      <view class="l2-4">
+      </view> -->
+      <!-- <view class="l2-4">
         <text>会员优惠</text>
         <text class="{{currentCouponId||!userInfo.is_vip?'':'active'}}">￥{{currentCouponId||!userInfo.is_vip?'0.00(不可用)':orderData.vip_discount_total}}</text>
-      </view>
+      </view> -->
       <view class="l2-5" bindtap="toCouponSelectHandle">
         <view><text>优惠券</text><text class="l2-5-tip">(不可与会员优惠叠加使用)</text></view>
         <text class="preferential-amount {{currentCouponId?'':'normal'}}">{{currentCouponId?'-￥'+orderData.coupon_discount_total:'请选择'}}</text>

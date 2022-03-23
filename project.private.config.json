@@ -221,6 +221,12 @@
           "pathName": "pages/groupbargain/memberList",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/groupbargain/result",
+          "query": "",
+          "scene": null
         }
       ]
     }

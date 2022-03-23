@@ -1,0 +1,60 @@
+/* pages/groupbargain/result.wxss */
+.container-result {
+  background: #ffffff;
+  text-align: center;
+}
+
+.cont {}
+
+.cont image {
+  margin-top: 135rpx;
+  width: 240rpx;
+  height: 237rpx;
+}
+
+.cont .tit {
+  margin-top: 54rpx;
+  font-size: 40rpx;
+  font-weight: 550;
+  color: #333333;
+}
+
+.cont .des {
+  margin-top: 22rpx;
+  font-size: 34rpx;
+  color: #333333;
+}
+
+.cont .des2 {
+  margin-top: 16rpx;
+}
+
+.cont .btn-check {
+  margin: 100rpx auto 0;
+  width: 616rpx;
+  height: 80rpx;
+  background: #FF723A;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #FFFFFF;
+}
+
+.cont .btn-back {
+  margin: 30rpx auto 0;
+  width: 616rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #F6F6F6;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.fail .des2 text {
+  color: #FC4953;
+}
+
+.fail .btn-check {
+  margin-top: 50rpx;
+}

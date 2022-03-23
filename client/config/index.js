@@ -1,4 +1,5 @@
 export default {
+  // baseUrl: 'https://retailers.xcmbkj.com', //零售测试
   // baseUrl: 'https://liancai.xxhychn.cn',
   baseUrl:'https://liancai.xcmbkj.com', //测试
   contentType: 'application/json',

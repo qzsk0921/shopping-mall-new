@@ -8,13 +8,23 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
   </view>
   <view class="content">
+    <!-- <view class="options-box">
+      <view class="options" bindtap='changeOption'>
+        <view wx:for="{{options}}" wx:key="unique" data-index="{{index}}" class="option {{optionIndex==index?'active':''}}">
+          <view calss="text" data-index="{{index}}">{{item}}</view>
+        </view>
+        <view class="options-line" style="transform:translateX({{optionWidth*optionIndex+optionWidth/2+'px'}})translateX(-50%)">
+        </view>
+      </view>
+    </view> -->
     <view class="section1">
       <view class="input-box">
         <image class="icon-search" src="/assets/images/search_icon_search.png" mode="aspectFill"></image>
         <input class="search" placeholder="请输入商品名称、商品价格" placeholder-class="search-placeholder" type="text" bindblur="blurHandle" confirm-type="search" />
       </view>
     </view>
-    <scroll-view class="scroll-box hide-scrollbar section2" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true">
+    <!-- 普通订单 -->
+    <scroll-view wx:if="{{type==='normal'}}" class="scroll-box hide-scrollbar section2 section2-normal" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true">
       <!--这里是下拉显示的效果-->
       <view slot="refresher" class="refresh-container disf faic" style="display:block;width: 100%; height: 80px;  display: flex; align-items:center;justify-content:center;box-sizing: border-box;border-bottom:1px solid #f5f5f5">
         <view class="disf faic fc6" style="position: absolute;">
@@ -30,19 +40,77 @@
       </view>
 
       <view class="tabs-nav" bindtap='changeTab'>
-        <view wx:for="{{tabbar}}" wx:key="unique" data-index="{{index}}" class="tab {{tabIndex==index?'active':''}}">
+        <view wx:for="{{tab1bar}}" wx:key="unique" data-index="{{index}}" class="tab tab1 {{tab1Index==index?'active':''}}">
           <view calss="text" data-index="{{index}}">{{item}}</view>
         </view>
-        <view class="tabs-line" style="transform:translateX({{tabWidth*tabIndex+tabWidth/2+'px'}})translateX(-50%)">
+        <view class="tabs-line" style="transform:translateX({{tab1Width*tab1Index+tab1Width/2+'px'}})translateX(-50%)">
         </view>
       </view>
       <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+listTop)+'px':compatibleInfo.systemInfo.screenHeight-(listTop)+'px'}}">
-        <view class="no-data" wx:if="{{orderList[tabIndex].cache.length==0}}">
+        <view class="no-data" wx:if="{{orderList[tab1Index].cache.length==0}}">
           <image mode="aspectFill" src="/assets/images/empty.png"></image>
           <view class="text">暂无订单</view>
         </view>
-        <view class='order-list business' wx:elif="{{orderList[tabIndex].cache.length}}">
-          <view class="card" style="{{item.translateX}}" wx:for="{{orderList[tabIndex].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toOrderHandle">
+        <view class='order-list business' wx:elif="{{orderList[tab1Index].cache.length}}">
+          <view class="card" style="{{item.translateX}}" wx:for="{{orderList[tab1Index].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toOrderHandle">
+            <view class="l1">
+              <view class="left">{{commontools.formatTime(item.create_time*1000)}}</view>
+              <!-- 0:待支付 1:已支付 2:已取消 -->
+              <view class="right status{{item.status}}">
+                <text>{{item.status===0?'待支付':item.status===1?'已支付':'已取消'}}</text>
+                <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+              </view>
+            </view>
+            <view class="l2">
+              <view class="l2-1">
+                <view class="image-box" style="width:{{tools.calcW(item.goods_list.length)}}rpx">
+                  <image wx:for="{{item.goods_list}}" wx:key="unique" wx:for-item="itemName" src="{{itemName.thumb}}" mode="aspectFill"></image>
+                </view>
+              </view>
+              <view class="l2-2">
+                <text>共 {{item.goods_list.length}} 件</text>
+                <text>实付</text>
+                <text>￥{{item.pay_money}}</text>
+              </view>
+            </view>
+            <view class="l3">
+              <view class="btn btn-del" catchtap="delOrderHandle" data-item="{{item}}">{{item.status===0?'取消订单':'删除订单'}}</view>
+              <view class="btn btn-pay btnstatus{{item.status}}" data-item="{{item}}" catchtap="payOrderHandle">{{item.status===0?'立即支付':'再来一单'}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 拼团订单 -->
+    <scroll-view wx:if="{{type==='groupbargain'}}" class="scroll-box hide-scrollbar section2 section2-groupbargain" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true">
+      <!--这里是下拉显示的效果-->
+      <view slot="refresher" class="refresh-container disf faic" style="display:block;width: 100%; height: 80px;  display: flex; align-items:center;justify-content:center;box-sizing: border-box;border-bottom:1px solid #f5f5f5">
+        <view class="disf faic fc6" style="position: absolute;">
+          <view class="disf faic" style="width:70rpx">
+            <!-- <image animation="{{animation}}" class="top-arrow" mode="widthFix" src="/assets/images/my_icon_contact.png">
+          </image> -->
+          </view>
+          <view style="width:300rpx;padding-right:30rpx">
+            <view class="fz30 textac">{{refreshText}}</view>
+            <view class="fz22 textac">上次更新时间：{{lastRefresh3}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="tabs-nav hide-scrollbar" bindtap='changeTab'>
+        <view wx:for="{{tab2bar}}" wx:key="unique" data-index="{{index}}" class="tab tab2 {{tab2Index==index?'active':''}}">
+          <view calss="text" data-index="{{index}}">{{item}}</view>
+        </view>
+        <view class="tabs-line" style="transform:translateX({{tab2Width*tab2Index+tab2Width/2+'px'}})translateX(-50%)">
+        </view>
+      </view>
+      <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+listTop)+'px':compatibleInfo.systemInfo.screenHeight-(listTop)+'px'}}">
+        <view class="no-data" wx:if="{{orderList[tab2Index].cache.length==0}}">
+          <image mode="aspectFill" src="/assets/images/empty.png"></image>
+          <view class="text">暂无订单</view>
+        </view>
+        <view class='order-list business' wx:elif="{{orderList[tab2Index].cache.length}}">
+          <view class="card" style="{{item.translateX}}" wx:for="{{orderList[tab2Index].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toOrderHandle">
             <view class="l1">
               <view class="left">{{commontools.formatTime(item.create_time*1000)}}</view>
               <!-- 0:待支付 1:已支付 2:已取消 -->

@@ -74,7 +74,7 @@
             <image class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
           </view>
           <view class="r2-r1-r" bindtap="toGroupbargainMemberlistHandle">
-            <text>2/10</text>
+            <text>还差1人</text>
             <text>查看全部</text>
           </view>
         </view>
@@ -111,10 +111,8 @@
             </view>
           </view>
         </view>
-        <view class="r2">
-          温馨提示：请注意您购买的商品是否能到店进行消费
-        </view>
       </view> -->
+
       <view class="l1">详情</view>
       <view class="l2">
         <view class="col1 col">
@@ -142,7 +140,10 @@
     </view>
   </view>
   <view class="footer">
-    <block wx:if="{{isGroupbargain}}">
+    <view wx:if="{{isOffline}}" class="offline-tip">
+      温馨提示：请注意您购买的商品是否能到店进行消费
+    </view>
+    <view class="block" wx:if="{{isGroupbargain}}">
       <view class="groupbargain-col1" bindtap="collectionHandle">
         <image src="{{goodsDetail.is_like?'/assets/images/goods_btn_collection_focus.png':'/assets/images/goods_btn_collection.png'}}"></image>
         <view>收藏</view>
@@ -158,8 +159,8 @@
         </view>
       </view>
       <view class="groupbargain-col3 btn btn-launch" bindtap="launchHandle">发起拼团</view>
-    </block>
-    <block wx:else>
+    </view>
+    <view wx:else class="block">
       <view class="col1" bindtap="toCartHandle">
         <view class="shopcart-box">
           <image class="icon-shopcart" mode="aspectFill" src="/assets/images/goods_btn_car.png"></image>
@@ -172,6 +173,6 @@
         <view>收藏</view>
       </view>
       <view class="col3 btn btn-car" bindtap="awakenCarHandle">加入购物车</view>
-    </block>
+    </view>
   </view>
 </view>
