@@ -1,0 +1,14 @@
+<!--components/DropdownMenu/groupprivilege.wxml-->
+<!-- <text>components/DropdownMenu/groupprivilege.wxml</text> -->
+<!-- 团长特权 -->
+<view class="dropdown-item-down {{opened?'opened':''}}">
+  <view class="mask"></view>
+  <view class="dropdown-item-down__content" style="{{opened?'transform:translateY('+(-height)+'px)':''}}">
+    <view class="r1">团长特权</view>
+    <view class="r2 r">1.可独立发起拼团</view>
+    <view class="r3 r">2.拼团成功后，可获得佣金</view>
+    <view class="r4 r">3.佣金获得根据拼团活动规则，如十人团，假设商品成交价格为1000元，拼团购品资格比例为:6:4，佣金抽成比为:5%，即6个人有购买商品的资格，4个人没有;
+      佣金为:1000 x 6 x 5% = 300元</view>
+      <view class="btn btn-got" bindtap="gotitHandle">我知道了</view>
+  </view>
+</view>

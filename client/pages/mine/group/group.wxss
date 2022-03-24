@@ -1,0 +1,151 @@
+/* pages/mine/group/group.wxss */
+
+.content .no-data {
+  text-align: center;
+}
+
+.content .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.content .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.scroll-box {
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
+}
+
+.cont .item-box {
+  display: inline-block;
+  width:100%;
+}
+
+.cont .item {
+  margin-top: 20rpx;
+  background: #ffffff;
+}
+
+.cont .r1 {
+  height: 68rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #EEEEEE;
+  padding: 0 24rpx;
+}
+
+.cont .r1 .l1 {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+.cont .r1 .l2 {
+  font-size: 26rpx;
+  /* color: #FF723A; */
+}
+
+.cont .r2 {
+  padding: 30rpx 24rpx 24rpx;
+  display: flex;
+}
+
+.cont .r2 .left {}
+
+.cont .r2 .left .icon-good {
+  width: 134rpx;
+  height: 134rpx;
+  border-radius: 8rpx;
+}
+
+.cont .r2 .right {
+  padding-left: 24rpx;
+}
+
+.cont .r2 .right .r-r1>view,
+.cont .r2 .right .r-r2>view,
+.cont .r2 .right .r-r3>view {
+  display: inline-block;
+}
+
+.cont .r2 .right .r-r1-l {
+  width: 400rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.cont .r2 .right .r-r1-r {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.cont .r2 .right .r-r2 {
+  margin-top: 12rpx;
+  width: 400rpx;
+  font-size: 22rpx;
+  line-height: 30rpx;
+  color: #AAAAAA
+}
+
+.cont .r2 .right .r-r3 {
+  margin-top: 18rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cont .r2 .right .r-r3 .r-r3-l {
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.cont .r2 .right .r-r3 .r-r3-l text {
+  color: #FC4953;
+}
+
+.cont .r2 .right .r-r3 .r-r3-r {
+  font-size: 28rpx;
+  color: #FC4953;
+}
+
+.cont .r3 {
+  border-top: 1rpx solid #E6E6E6;
+  margin: 0 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 74rpx;
+}
+
+.cont .r3 image {
+  margin-left: -6rpx;
+  width: 38rpx;
+  height: 38rpx;
+  border: 2rpx solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.cont .r3 .right {
+  font-size: 24rpx;
+  color: #999999;
+  display: flex;
+  align-items: center;
+}
+
+.cont .r3 .right::after {
+  margin-left: 2rpx;
+  content: '';
+  display: inline-block;
+  width: 17rpx;
+  height: 17rpx;
+  border: 3rpx solid #CCCCCC;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotateZ(45deg);
+}

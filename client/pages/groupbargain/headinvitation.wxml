@@ -1,0 +1,21 @@
+<!--pages/groupbargain/headinvitation.wxml-->
+<!-- <text>pages/groupbargain/headinvitation.wxml</text> -->
+<!-- 团长邀请 -->
+<view class="container-headinvitation container">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <view class="icon-badge-box">
+      <image class="icon-badge" src="/assets/images/invite_bk.png" mode="aspectFill"></image>
+      <image class="icon-line l" src="/assets/images/invite_link.png" mode="aspectFill"></image>
+      <image class="icon-line r" src="/assets/images/invite_link.png" mode="aspectFill"></image>
+    </view>
+    <view class="specify">
+      <view class="r1">
+        <image src="/assets/images/invite_icon_state.png" mode="aspectFill"></image><text>佣金说明</text>
+      </view>
+      <view class="r2 hide-scrollbar">{{specify}}</view>
+    </view>
+  </view>
+</view>

@@ -2,6 +2,8 @@
 <!-- <text>pages/profile/profile.wxml</text> -->
 <wxs module="tools" src="./wxs/index.wxs"></wxs>
 
+<dropdown-groupprivilege bindtap="dropdownGroupprivilegeMaskTap" opened="{{dialog.groupprivilege.opened}}" />
+
 <view class="container container-profile">
   <view class="header">
     <image class="icon-bg" src="/assets/images/my_bk.png" mode="aspectFill"></image>
@@ -15,6 +17,7 @@
         </view>
       </block>
       <block wx:else>
+        <image class="icon-group_head" src="/assets/images/group_head.png" mode="aspectFill" bindtap="openGroupprivilegeHandle"></image>
         <image class="avatar" mode="aspectFill" src="{{userInfo.avatar_url}}"></image>
         <view class="userinfo-box">
           <view class="l1">
@@ -47,8 +50,18 @@
     </view>
     <view wx:if="{{option2Show}}" class="l2">
       <block wx:for="{{options2}}" wx:key="unique">
+        <!-- 联系客服 -->
         <view wx:if="{{item.id==9}}" class="item contact-item">
           <button class="btn-contact" open-type="contact">
+            <image class="icon-option2" src="/assets/images/{{item.imgName}}.png" mode="aspectFill"></image>
+            <view>{{item.name}}</view>
+          </button>
+        </view>
+        <!-- 团长邀请 -->
+        <!-- 1.点击调起微信分享功能 -->
+        <!-- 2.点击分享的邀请后，访问成为团长页面 -->
+        <view wx:elif="{{item.id==10}}" class="item share-item">
+          <button class="btn-contact" open-type="share">
             <image class="icon-option2" src="/assets/images/{{item.imgName}}.png" mode="aspectFill"></image>
             <view>{{item.name}}</view>
           </button>

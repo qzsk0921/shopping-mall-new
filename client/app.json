@@ -34,9 +34,12 @@
     "pages/mine/faq/detail",
     "pages/mine/focus/index",
     "pages/mine/set/set",
+    "pages/mine/group/group",
+    "pages/mine/wallet/wallet",
     "pages/groupbargain/list",
     "pages/groupbargain/memberList",
-    "pages/groupbargain/result"
+    "pages/groupbargain/result",
+    "pages/groupbargain/headinvitation"
   ],
   "window": {
     "backgroundTextStyle": "light",

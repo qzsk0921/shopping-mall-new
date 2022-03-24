@@ -1,0 +1,64 @@
+/* pages/groupbargain/headinvitation.wxss */
+.container-headinvitation {
+  background: linear-gradient(359deg, #FC964E 0%, #FC6C0B 100%);
+}
+
+.icon-badge-box {
+  position: relative;
+}
+
+.icon-badge {
+  width: 100%;
+  height: 609rpx;
+}
+
+.icon-line {
+  position: absolute;
+  bottom: -54rpx;
+  width: 26rpx;
+  height: 88rpx;
+  z-index: 1;
+}
+
+.icon-line.l {
+  left: 60rpx;
+}
+
+.icon-line.r {
+  right: 60rpx;
+}
+
+.specify {
+  margin: 20rpx auto 0;
+  width: 670rpx;
+  /* min-height: 297rpx; */
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.specify .r1 {
+  padding-top: 30rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+  letter-spacing: 1rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.specify .r1 image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 14rpx;
+}
+
+.specify .r2 {
+  margin-top: 21rpx;
+  font-size: 26rpx;
+  line-height: 44rpx;
+  color: #666666;
+  padding: 0 30rpx 30rpx;
+  max-height: 400rpx;
+  overflow-y: auto;
+}

@@ -1,11 +1,23 @@
 /* pages/groupbargain/list.wxss */
 
-.safe-area {
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
 .content {
   position: relative;
+}
+
+.content .no-data {
+  text-align: center;
+}
+
+.content .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.content .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
 }
 
 .block {
@@ -17,7 +29,10 @@
   background: linear-gradient(180deg, #FF503F 0%, #F6F6F6 100%);
 }
 
-.scroll-box {}
+.scroll-box {
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
+}
 
 .cont {}
 
@@ -28,7 +43,10 @@
   background: #FFFFFF;
   border-radius: 16rpx;
 }
-
+.item-box {
+  display: inline-block;
+  width:100%;
+}
 .item .r1 {
   display: flex;
   align-items: center;

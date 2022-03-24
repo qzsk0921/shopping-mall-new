@@ -4,7 +4,7 @@
 .header {
   display: inline-block;
   width: 100vw;
-  height: 448rpx;
+  height: calc(450rpx + env(safe-area-inset-bottom));
   position: relative;
 }
 
@@ -18,9 +18,10 @@
 }
 
 .header .userInfo {
-  margin-top: 153rpx;
+  margin-top: calc(153rpx + env(safe-area-inset-bottom));
   padding-left: 20rpx;
   display: flex;
+  position: relative;
 }
 
 .header .userInfo .avatar {
@@ -204,4 +205,13 @@
   margin-top: 22rpx;
   font-size: 24rpx;
   color: #666666;
+}
+
+/* 拼团 */
+.icon-group_head {
+  position: absolute;
+  right: 0;
+  top: 18rpx;
+  width: 176rpx;
+  height: 55rpx;
 }

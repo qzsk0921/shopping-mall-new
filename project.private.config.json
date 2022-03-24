@@ -227,6 +227,18 @@
           "pathName": "pages/groupbargain/result",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/groupbargain/headinvitation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/wallet/wallet",
+          "query": "",
+          "scene": null
         }
       ]
     }

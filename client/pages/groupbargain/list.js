@@ -122,13 +122,6 @@ create(store, {
         fixed: rect.height,
       })
     }).exec();
-
-    query.select('.safe-area').boundingClientRect(function (rect) {
-      // console.log(rect)
-      that.setData({
-        safeareaH: rect.height,
-      })
-    }).exec();
   },
 
   /**

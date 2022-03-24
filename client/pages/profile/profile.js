@@ -17,6 +17,14 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    isOverShare: 1,
+    dialog: {
+      // 团长特权弹窗
+      groupprivilege: {
+        opened: 0,
+      },
+    },
+
     canIUseGetUserProfile: false,
 
     userInfo: null,
@@ -108,28 +116,28 @@ create(store, {
         url: '/pages/mine/set/set?from=mine'
       },
       {
-        id: 9,
+        id: 10,
         imgName: 'my_icon_invite',
         name: '团长邀请',
         url: '/pages/mine/set/set?from=mine'
       },
       {
-        id: 10,
+        id: 11,
         imgName: 'my_icon_scan',
         name: '扫码核销',
         url: '/pages/mine/set/set?from=mine'
       },
       {
-        id: 11,
+        id: 12,
         imgName: 'my_pt',
         name: '我的拼团',
-        url: '/pages/mine/set/set?from=mine'
+        url: '/pages/mine/group/group?from=mine'
       },
       {
-        id: 12,
+        id: 13,
         imgName: 'my_icon_wallet',
         name: '钱包',
-        url: '/pages/mine/set/set?from=mine'
+        url: '/pages/mine/wallet/wallet?from=mine'
       },
     ]
   },
@@ -250,6 +258,18 @@ create(store, {
       }
     })
   },
+  // 打开团队特权
+  openGroupprivilegeHandle() {
+    this.setData({
+      'dialog.groupprivilege.opened': 1
+    })
+  },
+  // 关闭团长特权弹窗
+  dropdownGroupprivilegeMaskTap() {
+    this.setData({
+      'dialog.groupprivilege.opened': 0
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -339,6 +359,16 @@ create(store, {
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: ' ',
+      path: '/pages/groupbargain/headinvitation', //若无path 默认跳转分享页
+      imageUrl: '/assets/images/headinvitation.png', //若无imageUrl 截图当前页面
+      success(res) {
+        console.log('分享成功', res)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    }
   }
 })
