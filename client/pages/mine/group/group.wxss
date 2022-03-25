@@ -23,7 +23,7 @@
 
 .cont .item-box {
   display: inline-block;
-  width:100%;
+  width: 100%;
 }
 
 .cont .item {
@@ -136,6 +136,7 @@
   color: #999999;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .cont .r3 .right::after {

@@ -1,0 +1,119 @@
+/* pages/mine/wallet/withdrawAuto.wxss */
+.content>.r1 {
+  text-align: center;
+  padding: 40rpx 0 46rpx;
+  background: #FFFFFF;
+}
+
+.content>.r1 .r1-r1 {
+  color: #999999;
+}
+
+.content>.r1 .r1-r2 {
+  margin-top: 14rpx;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.content>.r2 {
+  margin: 20rpx 24rpx 0;
+  padding: 20rpx 9rpx 40rpx 30rpx;
+  /* width: 702px; */
+  border-radius: 16rpx;
+  display: flex;
+  flex-wrap: wrap;
+  background: #FFFFFF;
+}
+
+
+.content>.r2 .item.active {
+  border-color: #FF723A;
+  background: #FFF3EE;
+  color: #FF723A;
+}
+
+
+.content>.r2 .active.item image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 38rpx;
+  height: 34rpx;
+}
+
+
+.content>.r2 .item {
+  border: 3rpx solid transparent;
+  position: relative;
+  width: 200rpx;
+  height: 150rpx;
+  background: #F8F8F8;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  line-height: 150rpx;
+  text-align: center;
+  color: #333333;
+}
+
+
+.content>.r2 .item {
+  margin-top: 20rpx;
+}
+
+
+.content>.r2 .item:not(:last-child) {
+  margin-right: 21rpx;
+}
+
+.content>.r3 {
+  margin: 50rpx 24rpx 0;
+  /* width: 702px; */
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FF723A;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.withdraw-custom {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: all .2s;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 25rpx 24rpx 0;
+  padding: 40rpx;
+}
+
+.withdraw-custom.active {
+  visibility: visible;
+  opacity: 1;
+  height: 294rpx;
+}
+
+.withdraw-custom .r1 {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.withdraw-custom .r2 {
+  margin-top: 18rpx;
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #333333;
+  border-bottom: 2rpx solid #DDDDDD;
+  display: flex;
+  align-items: center;
+  height: 116rpx;
+}
+
+.withdraw-custom .r3 {
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: #999999;
+}

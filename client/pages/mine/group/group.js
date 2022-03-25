@@ -279,7 +279,12 @@ create(store, {
       ]
     },
   },
-
+  toMemberlistHandle() {
+    // 跳转到拼团人员
+    wx.navigateTo({
+      url: '/pages/groupbargain/memberList',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

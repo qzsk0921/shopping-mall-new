@@ -256,6 +256,15 @@ create(store, {
     let currentScrollTopId ///content滚动id
     // 滚动居中处理
     const myArr = this.data.firstCategory.map(item => item.index)
+
+    // 其他分类跳转到该页时匹配index（首页）
+    this.data.firstCategory.some(it => {
+      if (item.id === it.id) {
+        item.index = it.index
+        return true
+      } else return false
+    })
+
     if (myArr.includes(item.index - 2)) {
       currentScrollTopId = 'a' + (item.index - 2)
     } else if (myArr.includes(item.index - 1)) {

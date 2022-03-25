@@ -1,0 +1,23 @@
+module.exports = {
+  // 提现状态
+  parseWithdrawStatus: function (status) {
+    var res
+    switch (status) {
+      case 1:
+        res = '审核中'
+        break;
+      case 2:
+        res = '提现失败'
+        break;
+      case 3:
+        res = '提现成功'
+        break;
+      case 4:
+        res = '提现驳回'
+        break;
+      default:
+        break;
+    }
+    return res
+  },
+}

@@ -12,7 +12,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const {
+      member
+    } = options
+    // member all时为全部拼团人员 不要进度条
+    if (member) {
+      this.setData({
+        member
+      })
+    }
   },
 
   /**

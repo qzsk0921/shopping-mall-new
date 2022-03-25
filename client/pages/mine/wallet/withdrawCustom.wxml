@@ -1,0 +1,30 @@
+<!--pages/mine/wallet/withdrawCustom.wxml-->
+<!-- <text>pages/mine/wallet/withdrawCustom.wxml</text> -->
+<!-- 人工提现 -->
+<view class="container-withdraw-record container">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <view class="r1">
+      <view class="r1-r1">微信二维码：</view>
+      <image class="r1-r2" src="/assets/images/logo.png" mode="aspectFill" bindlongpress="qrPressHandle"></image>
+      <view class="r1-r3">点击二维码，保存至相册</view>
+      <view class="r1-r4">
+        <text>联系方式：15224165468</text>
+        <text class="copy" bindtap="copyHandle">复制</text>
+      </view>
+      <view class="r1-r5">请扫码或通过手机号添加客服微信后</view>
+      <view class="r1-r6">提交提现申请后<text>领取佣金</text>！</view>
+    </view>
+    <view class="r2 withdraw-custom">
+      <view class="r1">提现金额</view>
+      <view class="r2">
+        <text>￥</text>
+        <input type="digit" bindinput="inputHandle" />
+      </view>
+      <view class="r3">您最多可提现1666.6元</view>
+    </view>
+    <view class="r3 btn btn-withdraw" bindtap="withdrawHandle">提现</view>
+  </view>
+</view>

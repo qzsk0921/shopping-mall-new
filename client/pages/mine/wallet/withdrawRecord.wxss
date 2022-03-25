@@ -1,0 +1,89 @@
+/* pages/mine/wallet/withdrawRecord.wxss */
+.content .no-data {
+  text-align: center;
+}
+
+.content .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.content .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.scroll-box {
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.cont .item-box {
+  display: inline-block;
+  width: 100%;
+}
+
+.item-box .item {
+  margin: 0 24rpx;
+  padding: 30rpx 0;
+  position: relative;
+  border-bottom: 2rpx solid #F3F3F3;
+}
+
+.item-box .r1 {}
+
+.item-box .r1 .r1-l {}
+
+.item-box .r1 .r1-l-r1 {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333
+}
+
+.item-box .r1 .r1-l-r2 {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #777777;
+}
+
+.item-box .r1 .r1-r {
+  position: absolute;
+  right: 24rpx;
+  top: 44rpx;
+  width: 137rpx;
+  height: 48rpx;
+  font-size: 26rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  line-height: 45rpx;
+}
+
+.item-box .r1 .r1-r.status1 {
+  color: #FF723A;
+  border: 1rpx solid #FF723A;
+}
+
+.item-box .r1 .r1-r.status2,
+.item-box .r1 .r1-r.status4 {
+  color: #666666;
+  border: 1rpx solid #666666;
+}
+
+.item-box .r1 .r1-r.status3 {
+  background: #FF723A;
+  color: #FFFFFF;
+}
+
+.item-box .r2 {
+  /* width: 702rpx; */
+  margin-top: 20rpx;
+  height: 136rpx;
+  background: #F5F5F5;
+  padding: 21rpx 24rpx;
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 44rpx;
+}

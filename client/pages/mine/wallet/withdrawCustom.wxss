@@ -1,0 +1,95 @@
+/* pages/mine/wallet/withdrawCustom.wxss */
+.content>.r1 {
+  padding: 40rpx 0 50rpx;
+  margin: 20rpx 24rpx 0;
+  background: #FFFFFF;
+  text-align: center;
+  overflow: hidden;
+}
+
+.content>.r1 .r1-r1 {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.content>.r1 .r1-r2 {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 20rpx;
+}
+
+.content>.r1 .r1-r3 {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.content>.r1 .r1-r4 {
+  margin-top: 40rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.content>.r1 .r1-r4 .copy {
+  margin-left: 10rpx;
+  color: #FC4953;
+}
+
+.content>.r1 .r1-r5 {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #888888;
+}
+
+.content>.r1 .r1-r6 {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #888888;
+}
+
+.content>.r1 .r1-r6 text {
+  color: #FC4953;
+}
+
+.withdraw-custom {
+  height: 294rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 25rpx 24rpx 0;
+  padding: 40rpx;
+}
+
+.withdraw-custom .r1 {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.withdraw-custom .r2 {
+  margin-top: 18rpx;
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #333333;
+  border-bottom: 2rpx solid #DDDDDD;
+  display: flex;
+  align-items: center;
+  height: 116rpx;
+}
+
+.withdraw-custom .r3 {
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.content>.r3 {
+  margin: 50rpx 24rpx 0;
+  /* width: 702px; */
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FF723A;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+}

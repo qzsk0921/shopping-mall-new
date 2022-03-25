@@ -1,0 +1,34 @@
+<!--pages/mine/wallet/withdrawRecord.wxml-->
+<!-- <text>pages/mine/wallet/withdrawRecord.wxml</text> -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
+<!-- 提现记录 -->
+<view class="container-withdraw-record container">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <scroll-view class="scroll-box item-box" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true" enhanced="true" show-scrollbar="{{false}}" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}};">
+      <view class="cont">
+        <view class="no-data" wx:if="{{(withdrawData.cache.length==0)}}">
+          <image mode="aspectFill" src="/assets/images/empty.png"></image>
+          <view class="text">暂无更多内容</view>
+        </view>
+        <view class="item-box" wx:else>
+          <view class="item" wx:for="{{withdrawData.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGroupDetail">
+            <view class="r1">
+              <view class="r1-l">
+                <view class="r1-l-r1">￥{{item.price}}</view>
+                <view class="r1-l-r2">{{item.date}}</view>
+              </view>
+              <view class="r1-r status{{item.status}}">
+                {{tools.parseWithdrawStatus(item.status)}}
+              </view>
+            </view>
+            <view wx:if="{{item.remark}}" class="r2">{{item.remark}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

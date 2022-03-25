@@ -7,7 +7,7 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333333" bgColor="#ffffff" />
   </view>
   <view class="content">
-    <view class="r1">
+    <view wx:if="{{member!=='all'}}" class="r1">
       <view class="progress">
         <view class="txt">还差7人拼成</view>
         <view class="percentage" style="width:{{tools.parsePercentage(10,2)}}"></view>

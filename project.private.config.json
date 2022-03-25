@@ -239,6 +239,24 @@
           "pathName": "pages/mine/wallet/wallet",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/wallet/withdrawRecord",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/wallet/withdrawAuto",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/wallet/withdrawCustom",
+          "query": "",
+          "scene": null
         }
       ]
     }

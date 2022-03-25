@@ -531,6 +531,7 @@ create(store, {
   // 跳转至分类页面
   toCategoryHandle(e) {
     this.store.data.currentFirstCategoryId = e.currentTarget.dataset.item.id
+    this.store.data.currentFirstCategory = e.currentTarget.dataset.item
     this.update()
 
     wx.switchTab({
