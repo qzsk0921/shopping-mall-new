@@ -12,6 +12,7 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    type: 'groupbargain',
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '订单确认',
 

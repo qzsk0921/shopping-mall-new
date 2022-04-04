@@ -150,7 +150,7 @@
   height: 52rpx;
 }
 
-.l3 .right input { 
+.l3 .right input {
   margin: 0 8rpx;
   width: 85rpx;
   height: 52rpx;
@@ -163,6 +163,7 @@
 
 .l4 {
   margin-top: 84rpx;
+  margin-bottom: calc(24rpx + env(safe-area-inset-bottom));
   width: 702rpx;
   height: 80rpx;
   line-height: 80rpx;

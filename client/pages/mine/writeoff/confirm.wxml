@@ -1,0 +1,55 @@
+<!--pages/mine/writeoff/confirm.wxml-->
+<!-- <text>pages/mine/writeoff/confirm.wxml</text> -->
+<!-- 核销确认 -->
+<wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
+
+<view class="container container-writeoff">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <view class="section1">
+      <view class="l1">
+        <view class="left" bindtap="toOrderGoodsHandle">
+          <text>商品信息</text>
+        </view>
+      </view>
+      <view class="l2">
+        <view class="l2-2-left">
+          <image class="icon-goods" src="{{orderData.goods_list[0].thumb}}" mode="aspectFill"></image>
+          <view class="cont">
+            <view class="tit">{{orderData.goods_list[0].goods_name}} {{orderData.goods_list[0].unitName}}*{{orderData.goods_list[0].cart_number}}</view>
+            <view class="des">{{orderData.goods_list[0].goods_content}}阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿</view>
+          </view>
+        </view>
+        <view class="l2-2-right">
+          <view class="price">￥2388.3</view>
+          <view class="num">x1</view>
+        </view>
+      </view>
+    </view>
+    <view class="section2">
+      <view class="r1 r">
+        <text>订单编号</text>
+        <text>{{orderData.order_sn}}</text>
+      </view>
+      <view class="r2 r">
+        <text>下单时间</text>
+        <text>{{commontools.formatTime(orderData.create_time*1000)}}</text>
+      </view>
+      <view class="r3 r">
+        <text>支付时间</text>
+        <text>{{commontools.formatTime(orderData.pay_time*1000)}}</text>
+      </view>
+      <view class="r4 r">
+        <text>支付方式</text>
+        <text>微信支付</text>
+      </view>
+    </view>
+    <view class="section3">
+      <view class="tit">备注</view>
+      <textarea placeholder-class="placeholder-style" placeholder="可以告诉我您的需求" value="{{content}}" name="content" bindinput="inputHandle" maxlength="100" />
+    </view>
+    <view class="btn btn-writeoff" bindtap="writeoffHandle">核销订单</view>
+  </view>
+</view>

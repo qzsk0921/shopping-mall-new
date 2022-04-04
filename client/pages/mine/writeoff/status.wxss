@@ -1,0 +1,33 @@
+/* pages/mine/writeoff/status.wxss */
+.container-writeoff-status {
+  background: #FFFFFF;
+}
+
+.content {
+  text-align: center;
+}
+
+.icon-finish {
+  margin-top: 224rpx;
+  width: 240rpx;
+  height: 237rpx;
+}
+
+.r2 {
+  margin-top: 14rpx;
+  font-size: 40rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.r3 {
+  margin: 120rpx auto 0;
+  width: 616rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #FF723A;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+}

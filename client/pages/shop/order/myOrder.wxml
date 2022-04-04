@@ -8,7 +8,7 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
   </view>
   <view class="content">
-    <!-- <view class="options-box">
+    <view class="options-box">
       <view class="options" bindtap='changeOption'>
         <view wx:for="{{options}}" wx:key="unique" data-index="{{index}}" class="option {{optionIndex==index?'active':''}}">
           <view calss="text" data-index="{{index}}">{{item}}</view>
@@ -16,7 +16,7 @@
         <view class="options-line" style="transform:translateX({{optionWidth*optionIndex+optionWidth/2+'px'}})translateX(-50%)">
         </view>
       </view>
-    </view> -->
+    </view>
     <view class="section1">
       <view class="input-box">
         <image class="icon-search" src="/assets/images/search_icon_search.png" mode="aspectFill"></image>

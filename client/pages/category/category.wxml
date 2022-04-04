@@ -56,16 +56,16 @@
             </view>
             <block wx:else>
               <view class="tree-select__item" wx:for="{{currentGoodsList.cache}}" wx:key="unique" id="{{item.id}}" data-id="{{item.id}}" bindtap="goodsDetailHandle">
-                <view class="shopcart-box" data-item="{{item}}" data-index="{{index}}" catchtap="addArtHandle">
+                <!-- <view class="shopcart-box" data-item="{{item}}" data-index="{{index}}" catchtap="addArtHandle">
                   <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
                   <view wx:if="{{item.cart_number}}" class="shopcart-info">{{item.cart_number}}</view>
-                </view>
+                </view> -->
 
                 <view class="left">
                   <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
                 </view>
                 <view class="right">
-                  <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 95rpx;':''}}">
+                  <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 80rpx;':''}}">
                     <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                     <view>{{item.goods_name}} {{item.spec}}</view>
                   </view>

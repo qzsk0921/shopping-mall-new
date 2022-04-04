@@ -34,20 +34,46 @@ create({
 
         // 购物车默认数量是1，不是0
         const myGoodsDetail = deepClone(this.data.goodsDetail)
-        myGoodsDetail.unit_arr.forEach(item => {
-          if (!item.cart_number) {
-            item.cart_number = 1
-          }
+        let currentUnitIdsArr = [],
+          currentUnitIds = '',
+          myAttr = []
+        if (myGoodsDetail.attribute.attribute_arr.length) {
+          myGoodsDetail.attribute.attribute_arr.forEach((item, index) => {
+            myAttr[index] = {
+              aid: item.attribute_id
+            }
+            item.attribute_value_arr.some((it, idx) => {
+              if (idx === 0) {
+                myAttr[index].val = {
+                  id: it.id
+                }
+                currentUnitIdsArr.push(it.id)
+                return true
+              }
+              return false
+            })
+          })
+
+          this.data.myAttr = myAttr //[{aid:1,val:{id:4,id:5}},{aid:2,val:{id:6}}]
+          currentUnitIds = currentUnitIdsArr.sort((a, b) => a - b).join(',') //一组属性id，5,6,12 匹配库存 升序
+        } else {
+          currentUnitIds = Object.keys(myGoodsDetail.attribute.stock_arr)[0]
+        }
+
+
+        // 购物车数量显示 至少是1
+        Object.keys(myGoodsDetail.attribute.stock_arr).forEach(key => {
+          if (!myGoodsDetail.attribute.stock_arr[key].cart_number) myGoodsDetail.attribute.stock_arr[key].cart_number = 1
         })
 
         this.setData({
-          myGoodsDetail
+          myGoodsDetail,
         })
 
         // 没有初始化过才使用默认第一个规格
-        if (!this.data.currentUnitId) {
+        if (!this.data.currentUnitIds) {
           this.setData({
-            currentUnitId: this.data.goodsDetail.unit_arr[0].id
+            currentUnitIds
           })
         }
 
@@ -68,7 +94,7 @@ create({
 
     height: 0,
     currentUnitIndex: 0,
-    currentUnitId: null,
+    currentUnitIds: null,
     myGoodsDetail: null,
   },
 
@@ -78,26 +104,40 @@ create({
   methods: {
     specHandle(e) {
       console.log(e)
-      this.setData({
-        currentUnitIndex: e.target.dataset.index,
-        currentUnitId: e.target.dataset.id
+      const dataset = e.target.dataset
+      this.data.myAttr.some(item => {
+        if (item.aid === dataset.aid) {
+          item.val.id = dataset.id
+          return true
+        }
+        return false
       })
+
+      const currentUnitIds = this.parseCurrentUnitIds(this.data.myAttr)
+
+      this.setData({
+        currentUnitIds
+      })
+    },
+    // 解析成 '7,8,12'
+    parseCurrentUnitIds(myAttr) {
+      return myAttr.map(item => item.val.id).sort((a, b) => a - b).join(',')
     },
     dropdownItemTapHandle() {},
     addHandle() {
+      this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number += 1
       this.setData({
-        [`myGoodsDetail.unit_arr[${this.data.currentUnitIndex}].cart_number`]: Number(this.data.myGoodsDetail.unit_arr[this.data.currentUnitIndex].cart_number) + 1,
+        'myGoodsDetail.attribute.stock_arr': this.data.myGoodsDetail.attribute.stock_arr,
       })
     },
     reduceHandle() {
       // 不能小于0
-      if (this.data.myGoodsDetail.unit_arr[this.data.currentUnitIndex].cart_number - 1 <= 0) {
-        this.setData({
-          [`myGoodsDetail.unit_arr[${this.data.currentUnitIndex}].cart_number`]: this.data.myGoodsDetail.unit_arr[this.data.currentUnitIndex].cart_number,
-        })
+      if (this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number - 1 <= 0) {
+        // 不变
       } else {
+        this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number -= 1
         this.setData({
-          [`myGoodsDetail.unit_arr[${this.data.currentUnitIndex}].cart_number`]: this.data.myGoodsDetail.unit_arr[this.data.currentUnitIndex].cart_number - 1,
+          'myGoodsDetail.attribute.stock_arr': this.data.myGoodsDetail.attribute.stock_arr,
         })
       }
     },
@@ -123,21 +163,19 @@ create({
       })
 
       let myData = {
-        shop_id: store.data.shop_id,
         goods_id: this.data.myGoodsDetail.id,
-        goods_num: this.data.myGoodsDetail.unit_arr[this.data.currentUnitIndex].cart_number
-      }
-
-      if (this.data.myGoodsDetail.unit_arr.length === 1) {
-        // 单单位
-        myData.type = 1
-      } else {
-        // 多单位
-        myData.type = 2
-        myData.unit_id = this.data.myGoodsDetail.unit_arr[this.data.currentUnitIndex].id
+        goods_num: this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
+        attribute_value_str: this.data.currentUnitIds
       }
 
       this.addNumCart(myData).then(res => {
+
+        // 如果到店消费不加入购物车跳转到订单确认页 1:送货上门 2:到店消费
+        if (this.data.goodsDetail.delivery_type === 2) {
+          wx.navigateTo({
+            url: 'url',
+          })
+        }
 
         // 更新详情页购物车数据
         wx.showToast({

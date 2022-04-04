@@ -7,6 +7,11 @@ import {
   setGoodsCollection
 } from '../../api/commodity'
 
+import {
+  getCartData
+} from '../../api/cart'
+let prevPage = null
+
 // Page({
 create(store, {
 
@@ -30,76 +35,91 @@ create(store, {
     currentSwiperIndex: 1,
 
     goodsDetail: {
-      // "id": 1,
-      // "goods_name": "商品1",
-      // "brand_id": 1,
-      // "category_id": 1,
-      // "goods_banner": "[\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c49a5276.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4a327a7.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4aa422b.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4b1df9f.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4b9470d.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cd92eccf.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cd9a0546.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cda2b288.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cdab73ca.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742ce223965.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742ce288d48.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742d120b78b.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742d127b1a7.jpg\"]",
-      // "goods_image": "[\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c49a5276.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4a327a7.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4aa422b.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4b1df9f.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742c4b9470d.png\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cd92eccf.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cd9a0546.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cda2b288.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742cdab73ca.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742ce223965.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742ce288d48.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742d120b78b.jpg\",\"http:\\/\\/image.wms.wljkxys.com\\/202009305f742d127b1a5.jpg\"]",
-      // "goods_content": "商品详情1",
-      // "spec": "10g",
-      // "sort": 10,
-      // "is_pre_sale": 0,
-      // "pay_delivery_day": 1,
-      // "price": 10.49,
-      // "market_price": "99.00",
-      // "sale_number": 0,
-      // "status": 1,
-      // "create_time": 1638946959,
-      // "is_multi_unit": 1,
-      // "activity_info": [],
-      // "goods_banner_arr": [
-      //   "http://image.wms.wljkxys.com/202009305f742c49a5276.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4a327a7.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4aa422b.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4b1df9f.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4b9470d.png",
-      //   "http://image.wms.wljkxys.com/202009305f742cd92eccf.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742cd9a0546.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742cda2b288.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742cdab73ca.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742ce223965.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742ce288d48.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742d120b78b.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742d127b1a7.jpg"
-      // ],
-      // "goods_image_arr": [
-      //   "http://image.wms.wljkxys.com/202009305f742c49a5276.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4a327a7.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4aa422b.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4b1df9f.png",
-      //   "http://image.wms.wljkxys.com/202009305f742c4b9470d.png",
-      //   "http://image.wms.wljkxys.com/202009305f742cd92eccf.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742cd9a0546.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742cda2b288.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742cdab73ca.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742ce223965.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742ce288d48.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742d120b78b.jpg",
-      //   "http://image.wms.wljkxys.com/202009305f742d127b1a5.jpg"
-      // ],
-      // "brand_name": "品牌1",
-      // "is_like": 1,
-      // "unit_arr": [{
-      //     "id": 1,
-      //     "goods_id": 1,
-      //     "unitName": "个",
-      //     "price": 10.6,
-      //     "market_price": "20.00",
-      //     "cart_number": 0,
-      //     "number": 0,
-      //   },
-      //   {
-      //     "id": 2,
-      //     "goods_id": 1,
-      //     "unitName": "箱",
-      //     "price": 106,
-      //     "market_price": "200.00",
-      //     "cart_number": 0,
-      //     "number": 0,
-      //   },
-      // ],
-      // "cart_number": 0
+      "id": 538,
+      "goods_name": "测试",
+      "brand_id": 1,
+      "category_id": 6,
+      "goods_banner": "[\"https:\\/\\/retailers-qn.xcmbkj.com\\/admin\\/goods\\/shop_adm_2022-03-295856.png\"]",
+      "goods_image": "[\"https:\\/\\/retailers-qn.xcmbkj.com\\/admin\\/goods\\/shop_adm_2022-03-295843.png\"]",
+      "goods_content": "测试笔",
+      "unit_id": 2,
+      "sort": 1,
+      "is_pre_sale": 0,
+      "pay_delivery_day": 12,
+      "price": "3.00",
+      "cost_price": "2.00",
+      "market_price": "3.00",
+      "sale_number": 0,
+      "status": 2,
+      "create_time": 1648549325,
+      "is_multi_unit": 1,
+      "delivery_type": 1,
+      "original_price": "2.00",
+      "activity_info": [],
+      "goods_banner_arr": [
+        "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png"
+      ],
+      "goods_image_arr": [
+        "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295843.png"
+      ],
+      "brand_name": "品牌1",
+      "is_like": 0,
+      "spec": "单位二",
+      "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+      "attribute": {
+        "attribute_arr": [{
+            "attribute_id": 1,
+            "attribute_name": "色值",
+            "attribute_value_arr": [{
+                "id": 39,
+                "name": "蓝色"
+              },
+              {
+                "id": 40,
+                "name": "红色"
+              }
+            ]
+          },
+          {
+            "attribute_id": 3,
+            "attribute_name": "测试",
+            "attribute_value_arr": [{
+              "id": 45,
+              "name": "12"
+            }]
+          },
+          {
+            "attribute_id": 4,
+            "attribute_name": "帽子",
+            "attribute_value_arr": [{
+              "id": 47,
+              "name": "大"
+            }]
+          }
+        ],
+        "stock_arr": {
+          "39,45,47": {
+            "price": "2.00",
+            "stock": 2,
+            "cart_number": 0,
+            "attribute_value_name": "蓝色-12-大"
+          },
+          "40,45,47": {
+            "price": "3.00",
+            "stock": 5,
+            "cart_number": 0,
+            "attribute_value_name": "红色-12-大"
+          }
+        }
+      },
+      "shop_info": {
+        "name": "厦门会展中心",
+        "leader_phone": "13559570109",
+        "address": "福建省厦门市思明区软件园二期望海路10号楼之二,302-1室",
+        "latitude": 24.488806,
+        "longitude": 118.182724
+      },
+      "attribute_value_name": "蓝色-12-大"
     },
 
     dialog: {
@@ -108,6 +128,21 @@ create(store, {
         opened: 0
       },
     }, // 弹窗和下拉窗
+  },
+  // 拨打电话
+  callHandle(e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.goodsDetail.shop_info.leader_phone,
+    })
+  },
+  // 查看地址
+  addressHandle() {
+    wx.openLocation({
+      // latitude: 24.44579,
+      // longitude: 118.08243
+      latitude: this.data.goodsDetail.shop_info.latitude,
+      longitude: this.data.goodsDetail.shop_info.longitude
+    })
   },
   // 购物车
   toCartHandle() {
@@ -148,23 +183,76 @@ create(store, {
         goodsDetail: res.data
       })
 
+      const one_cart_number = res.data.unit_arr.filter(item => item.is_min_number)[0].cart_number
+
       // 更新上一个页面购物车数据(这里主要是购物车页面的猜你喜欢的购物车数量)
-      this.updatePrevpageData(this.data.goods_id, res.data.cart_number)
+      this.updatePrevpageData(this.data.goods_id, res.data.cart_number, one_cart_number)
     })
   },
   // 更新上一个页面购物车数据
-  updatePrevpageData(id, num) {
+  updatePrevpageData(id, num, one_number) {
     // 在提交成功后，返回上一页（带上参数）
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2]; //上一个页面
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-    prevPage.data.recommendList.cache.forEach((it, index) => {
-      if (id == it.id) {
-        prevPage.setData({
-          [`recommendList.cache[${index}].cart_number`]: num
-        })
-      }
-    })
+    // 购物车页面
+    if (prevPage.route === 'pages/shopping/shopping') {
+      prevPage.data.recommendList.cache.forEach((it, index) => {
+        if (id == it.id) {
+          prevPage.setData({
+            [`recommendList.cache[${index}].cart_number`]: num,
+            [`recommendList.cache[${index}].one_cart_number`]: one_number
+          })
+        }
+      })
+    } else if (prevPage.route === 'pages/category/category' || prevPage.route === 'pages/search/searchRes' || prevPage.route === 'pages/mine/history/history') {
+      getCartData({
+        shop_id: this.store.data.shop_id
+      }).then(res => {
+        // let arr = []
+        // for (let i = 0; i < res.data.list.length; i++) {
+        //   for (let j = i + 1; j < res.data.list.length; j++) {
+        //     if (res.data.list[i].id === res.data.list[j].id) {
+        //       res.data.list[j].cart_number = res.data.list[i].cart_number += res.data.list[j].cart_number
+        //     }
+        //   }
+        // }
+        this.store.data.cart = res.data.list
+        this.update()
+
+        if (prevPage.route === 'pages/category/category') {
+          // 更新分类信息(主要是购物车数量)
+          prevPage.data.currentGoodsList.cache.forEach((it, index) => {
+            if (id == it.id) {
+              prevPage.setData({
+                [`currentGoodsList.cache[${index}].cart_number`]: num,
+                [`currentGoodsList.cache[${index}].one_cart_number`]: one_number
+              })
+            }
+          })
+        } else if (prevPage.route === 'pages/search/searchRes') {
+          // 更新分类信息(主要是购物车数量)goodsList
+          prevPage.data.goodsList[prevPage.data.tabIndex].cache.forEach((it, index) => {
+            if (id == it.id) {
+              prevPage.setData({
+                [`goodsList[${prevPage.data.tabIndex}].cache[${index}].cart_number`]: num,
+                [`goodsList[${prevPage.data.tabIndex}].cache[${index}].one_cart_number`]: one_number
+              })
+            }
+          })
+        } else if (prevPage.route === 'pages/mine/history/history') {
+          // 更新分类信息(主要是购物车数量)
+          prevPage.data.historyList.cache.forEach((it, index) => {
+            if (id == it.id) {
+              prevPage.setData({
+                [`historyList.cache[${index}].cart_number`]: num,
+                [`historyList.cache[${index}].one_cart_number`]: one_number
+              })
+            }
+          })
+        }
+      })
+    }
   },
   /**
    * 图片点击事件
@@ -204,12 +292,12 @@ create(store, {
   // 唤起购物车弹窗
   awakenCarHandle() {
     // 未资质认证导航至认证页
-    if (this.data.userInfo.is_shop_check != 1) {
-      wx.navigateTo({
-        url: '/pages/mine/certification/certification',
-      })
-      return false
-    }
+    // if (this.data.userInfo.is_shop_check != 1) {
+    //   wx.navigateTo({
+    //     url: '/pages/mine/certification/certification',
+    //   })
+    //   return false
+    // }
 
     this.setData({
       ['dialog.car.opened']: 1
@@ -232,14 +320,25 @@ create(store, {
    */
   onLoad: function (options) {
     const {
-      id
+      id,
+      goods_group_bargaining_team_id
     } = options
 
     this.data.goods_id = id
 
-    this.getGoodsDetail({
+    let param = {
       id
-    }).then(res => {
+    }
+
+    // 拼团商品
+    if (goods_group_bargaining_team_id) {
+      this.setData({
+        goods_group_bargaining_team_id
+      })
+      param.goods_group_bargaining_team_id = goods_group_bargaining_team_id
+    }
+
+    this.getGoodsDetail(param).then(res => {
       this.setData({
         goodsDetail: res.data
       })
@@ -272,6 +371,9 @@ create(store, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const pages = getCurrentPages()
+    prevPage = pages[pages.length - 2]; //上一个页面
+
     if (!this.data.compatibleInfo.navHeight) {
       this.setData({
         compatibleInfo: this.store.data.compatibleInfo

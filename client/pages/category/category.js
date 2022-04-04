@@ -11,7 +11,8 @@ import {
 } from '../../api/commodity'
 
 import {
-  addNumCart
+  addNumCart,
+  getCartData
 } from '../../api/cart'
 
 // Page({
@@ -81,50 +82,50 @@ create(store, {
       //   url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
       // }
     ],
-    screenCategory: [{
-      // 导航名称
-      option: '蔬菜豆制品',
-      id: 'a1',
-      currentOptionId: '',
-      // 该导航下所有的可选项
-      content: [{
-        type: 1, //预售
-        option: '元宝优选调和油20L/捅',
-        desc: '商品描述，最多1行，超过显…',
-        id: 1,
-        price: '13.9',
-        originPrice: '25.9',
-        store: 1, //库存
-        url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
-      }, {
-        type: 2, //新品
-        option: '阿尔卑斯饮用天然矿泉水500ml*6',
-        desc: '商品描述，最多1行，超过显…',
-        id: 2,
-        price: '13.9',
-        originPrice: '25.9',
-        store: 0, //库存
-        url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
-      }, {
-        type: 2,
-        option: '阿尔卑斯饮用天然矿泉水500ml*6',
-        desc: '商品描述，最多1行，超过显…',
-        id: 3,
-        price: '13.9',
-        originPrice: '25.9',
-        store: 23, //库存
-        url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
-      }, {
-        type: 2,
-        option: '阿尔卑斯饮用天然矿泉水500ml*6',
-        desc: '商品描述，最多1行，超过显…',
-        id: 4,
-        price: '13.9',
-        originPrice: '25.9',
-        store: 0, //库存
-        url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
-      }]
-    }],
+    // screenCategory: [{
+    //   // 导航名称
+    //   option: '蔬菜豆制品',
+    //   id: 'a1',
+    //   currentOptionId: '',
+    //   // 该导航下所有的可选项
+    //   content: [{
+    //     type: 1, //预售
+    //     option: '元宝优选调和油20L/捅',
+    //     desc: '商品描述，最多1行，超过显…',
+    //     id: 1,
+    //     price: '13.9',
+    //     originPrice: '25.9',
+    //     store: 1, //库存
+    //     url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
+    //   }, {
+    //     type: 2, //新品
+    //     option: '阿尔卑斯饮用天然矿泉水500ml*6',
+    //     desc: '商品描述，最多1行，超过显…',
+    //     id: 2,
+    //     price: '13.9',
+    //     originPrice: '25.9',
+    //     store: 0, //库存
+    //     url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
+    //   }, {
+    //     type: 2,
+    //     option: '阿尔卑斯饮用天然矿泉水500ml*6',
+    //     desc: '商品描述，最多1行，超过显…',
+    //     id: 3,
+    //     price: '13.9',
+    //     originPrice: '25.9',
+    //     store: 23, //库存
+    //     url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
+    //   }, {
+    //     type: 2,
+    //     option: '阿尔卑斯饮用天然矿泉水500ml*6',
+    //     desc: '商品描述，最多1行，超过显…',
+    //     id: 4,
+    //     price: '13.9',
+    //     originPrice: '25.9',
+    //     store: 0, //库存
+    //     url: 'https://gw.alicdn.com/tps/i1/O1CN01PWx1at1LfLtyRhW1V_!!0-juitemmedia.jpg_140x10000Q75.jpg'
+    //   }]
+    // }],
 
     firstCategory: [], //第一分类
     secondCategory: [], //第二分类
@@ -147,9 +148,11 @@ create(store, {
           const query = wx.createSelectorQuery();
           query.select('.tree-select__tip').boundingClientRect(function (rect) {
             // console.log(rect)
-            that.setData({
-              contentTipH: rect.height,
-            })
+            if (rect) {
+              that.setData({
+                contentTipH: rect.height,
+              })
+            }
           }).exec();
         }
       },
@@ -199,9 +202,13 @@ create(store, {
       type: item.type ? item.type : 1,
       shop_id: this.store.data.shop_id,
       goods_id: item.id,
-      // goods_num: item.cart_number + 1
+      // goods_num: item.cart_number + 1,
       goods_num: item.one_cart_number + 1
     }
+
+    console.log(item.one_cart_number)
+    console.log(myData)
+
     this.addNumCart(myData).then(res => {
       // 更新详情页购物车数据
       // this.getGoodsList()
@@ -210,7 +217,6 @@ create(store, {
         icon: 'none',
         title: '加入购物车成功',
       })
-
       this.setData({
         [`currentGoodsList.cache[${index}].cart_number`]: item.cart_number + 1,
         [`currentGoodsList.cache[${index}].one_cart_number`]: item.one_cart_number + 1,
@@ -252,7 +258,7 @@ create(store, {
 
     this.firstCategorySwitch(item)
   },
-  firstCategorySwitch(item) {
+  firstCategorySwitch(item, render) {
     let currentScrollTopId ///content滚动id
     // 滚动居中处理
     const myArr = this.data.firstCategory.map(item => item.index)
@@ -282,24 +288,28 @@ create(store, {
     this.store.data.currentFirstCategory = item
     this.update()
 
-    this.getCategoryList({
-      pid: item.id
-    }).then(res => {
-      if (res.data.length) {
-        this.setData({
-          currentSecondCategoryId: res.data[0].id,
-          secondCategory: res.data
-        })
+    if (!render) {
+      this.getCategoryList({
+        pid: item.id
+      }).then(res => {
+        console.log(res)
+        if (res.data.length) {
+          this.setData({
+            currentSecondCategoryId: res.data[0].id,
+            secondCategory: res.data
+          })
 
-        this.getGoodsList({
-          category_id: res.data[0].id
-        })
-      } else {
-        this.setData({
-          secondCategory: []
-        })
-      }
-    })
+          this.getGoodsList({
+            category_id: res.data[0].id
+          })
+
+        } else {
+          this.setData({
+            secondCategory: []
+          })
+        }
+      })
+    }
   },
   // 子组件切换一级分类
   subFirstCategoryHandle(e) {
@@ -501,6 +511,26 @@ create(store, {
       categoryBoxW
     })
   },
+
+  getCartData(dataObj) {
+    const tempData = {
+      shop_id: this.store.data.shop_id
+    }
+
+    if (typeof dataObj === 'object') {
+      Object.keys(dataObj).forEach(key => {
+        tempData[key] = dataObj[key]
+      })
+    }
+
+    return new Promise((resolve, reject) => {
+      getCartData(tempData).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -553,7 +583,6 @@ create(store, {
           firstCategory: myfirstCategory,
           currentFirstCategoryId: res.data[0].id
         })
-        console.log(this.data.firstCategory)
         // 计算第一分类宽度
         this.calcCategoryW(res.data.length)
 
@@ -565,7 +594,56 @@ create(store, {
       })
     } else {
       if (this.store.data.currentFirstCategory) {
-        this.firstCategorySwitch(this.store.data.currentFirstCategory)
+        if (getApp().globalData.from === 'index') {
+          this.firstCategorySwitch(this.store.data.currentFirstCategory)
+        } else {
+          this.firstCategorySwitch(this.store.data.currentFirstCategory, true)
+          // 不刷新渲染时 其他switchtab页面切换到分类页时更新购物车数量
+          this.getCartData().then(res => {
+            for (let i = 0; i < res.data.list.length; i++) {
+              if (res.data.list[i].is_min_number) {
+                res.data.list[i].one_cart_number = res.data.list[i].cart_number
+              }
+
+              setTimeout(() => {
+                for (let j = i + 1; j < res.data.list.length; j++) {
+                  if (res.data.list[i].id === res.data.list[j].id) {
+                    res.data.list[j].cart_number = res.data.list[i].cart_number += res.data.list[j].cart_number
+                  }
+                }
+
+                this.data.currentGoodsList.cache.forEach((it, idx) => {
+                  let ress = false
+                  res.data.list.forEach((item) => {
+                    if (item.id === it.id) {
+                      ress = true
+                      this.setData({
+                        [`currentGoodsList.cache[${idx}].cart_number`]: item.cart_number,
+                      })
+
+                      if (item.is_min_number) {
+                        this.setData({
+                          [`currentGoodsList.cache[${idx}].one_cart_number`]: item.one_cart_number,
+                        })
+                      } else {
+                        this.setData({
+                          [`currentGoodsList.cache[${idx}].one_cart_number`]: 0,
+                        })
+                      }
+                    }
+                  })
+
+                  if (!ress) {
+                    this.setData({
+                      [`currentGoodsList.cache[${idx}].cart_number`]: 0,
+                      [`currentGoodsList.cache[${idx}].one_cart_number`]: 0,
+                    })
+                  }
+                })
+              }, 0)
+            }
+          })
+        }
       } else {
         this.firstCategorySwitch(this.data.firstCategory[0])
       }
@@ -582,43 +660,13 @@ create(store, {
         userInfo: this.store.data.userInfo
       })
     }
-
-    // 更新分类信息(主要是购物车数量)
-    if (this.data.currentGoodsList.cache.length) {
-      if (this.store.data.cart.length) {
-        this.data.currentGoodsList.cache.forEach((item, index) => {
-          const res = this.store.data.cart.some(it => {
-            if (item.id === it.id) {
-              this.setData({
-                [`currentGoodsList.cache[${index}].cart_number`]: it.cart_number
-              })
-              return true
-            }
-            return false
-          })
-
-          if (!res) {
-            this.setData({
-              [`currentGoodsList.cache[${index}].cart_number`]: 0
-            })
-          }
-        })
-      } else {
-        // 购物车为空，全部清零
-        this.data.currentGoodsList.cache.forEach((item, index) => {
-          this.setData({
-            [`currentGoodsList.cache[${index}].cart_number`]: 0
-          })
-        })
-      }
-    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    getApp().globalData.from === ''
   },
 
   /**

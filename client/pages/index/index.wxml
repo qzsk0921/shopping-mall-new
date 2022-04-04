@@ -14,7 +14,7 @@
     <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+section1H+fixed)+'px'}};" bindtouchstart="touchStart" bindtouchmove="touchMove">
       <view class="bg">
       </view>
-      <view class="section2" bindtap="swiperHandle">
+      <view wx:if="{{shopData.banner.length}}" class="section2" bindtap="swiperHandle">
         <view class="page-section page-section-spacing swiper">
           <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255, 255, 255, .6)" indicator-active-color="#ffffff" circular="true">
             <block wx:for="{{shopData.banner}}" wx:key="*this">
@@ -57,14 +57,32 @@
         </view>
       </view>
       <!-- 火热拼团 -->
-      <!-- <view class="section9 collage">
+      <view wx:if="{{shopData.bargaining_list.length}}" class="section9 collage">
         <image class="t icon-collage-bg" src="/assets/images/pd_bk.png" mode="aspectFill"></image>
         <view class="btn btn-shopping" bindtap="toGroupbargain">
           <text>进去逛逛</text>
           <image class="icon-shopping" src="/assets/images/nav_btn_return.png" mode="aspectFill"></image>
         </view>
         <view class="b hide-scrollbar">
-          <view class="item">
+          <view wx:for="{{shopData.bargaining_list}}" wx:key="unique" class="item" bindtap="toBargainGoodsDetail" data-item="{{item}}">
+            <image class="icon-collage" src="{{item.goods_info.thumb}}" mode="aspectFill"></image>
+            <view class="cont">
+              <view class="l1 txt-cut">
+                {{item.goods_info.goods_name}}
+              </view>
+              <view class="l2">
+                <text>团价</text><text>￥{{item.goods_info.bargaining_price}}</text>
+              </view>
+              <view class="l3">
+                ￥{{item.goods_info.price}}
+              </view>
+              <view class="l4">
+                还差<text>{{tools.parseFar(item.total_join_number,item.join_number)}}</text>人
+              </view>
+            </view>
+            <view class="btn-collage">拼</view>
+          </view>
+          <!-- <view class="item">
             <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
             <view class="cont">
               <view class="l1 txt-cut">
@@ -81,99 +99,9 @@
               </view>
             </view>
             <view class="btn-collage">拼</view>
-          </view>
-          <view class="item">
-            <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
-            <view class="cont">
-              <view class="l1 txt-cut">
-                天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷
-              </view>
-              <view class="l2">
-                <text>团价</text><text>￥86.6</text>
-              </view>
-              <view class="l3">
-                ￥99.6
-              </view>
-              <view class="l4">
-                还差<text>10</text>人
-              </view>
-            </view>
-            <view class="btn-collage">拼</view>
-          </view>
-          <view class="item">
-            <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
-            <view class="cont">
-              <view class="l1 txt-cut">
-                天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷
-              </view>
-              <view class="l2">
-                <text>团价</text><text>￥86.6</text>
-              </view>
-              <view class="l3">
-                ￥99.6
-              </view>
-              <view class="l4">
-                还差<text>10</text>人
-              </view>
-            </view>
-            <view class="btn-collage">拼</view>
-          </view>
-          <view class="item">
-            <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
-            <view class="cont">
-              <view class="l1 txt-cut">
-                天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷
-              </view>
-              <view class="l2">
-                <text>团价</text><text>￥86.6</text>
-              </view>
-              <view class="l3">
-                ￥99.6
-              </view>
-              <view class="l4">
-                还差<text>10</text>人
-              </view>
-            </view>
-            <view class="btn-collage">拼</view>
-          </view>
-          <view class="item">
-            <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
-            <view class="cont">
-              <view class="l1 txt-cut">
-                天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷
-              </view>
-              <view class="l2">
-                <text>团价</text><text>￥86.6</text>
-              </view>
-              <view class="l3">
-                ￥99.6
-              </view>
-              <view class="l4">
-                还差<text>10</text>人
-              </view>
-            </view>
-            <view class="btn-collage">拼</view>
-          </view>
-          <view class="item">
-            <image class="icon-collage" src="https://sharepuls.xcmbkj.com/shop_adm_2022-02-186988.png" mode="aspectFill"></image>
-            <view class="cont">
-              <view class="l1 txt-cut">
-                天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷天萃庭原切谷
-              </view>
-              <view class="l2">
-                <text>团价</text><text>￥86.6</text>
-              </view>
-              <view class="l3">
-                ￥99.6
-              </view>
-              <view class="l4">
-                还差<text>10</text>人
-              </view>
-            </view>
-            <view class="btn-collage">拼</view>
-          </view>
+          </view> -->
         </view>
-      </view> -->
+      </view>
       <!-- 预收专栏 -->
       <view class="section5" wx:if="{{shopData.pre_goods.length}}">
         <image class="t icon-presale" src="/assets/images/home_booking.png" mode="aspectFill"></image>
@@ -338,10 +266,10 @@
                   </view>
                   <view wx:if="{{itemName.market_price}}" class="origin-price">￥{{itemName.market_price}}</view>
                 </view>
-                <view class="shopcart-box" catchtap="addArtHandle" data-item="{{itemName}}">
+                <!-- <view class="shopcart-box" catchtap="addArtHandle" data-item="{{itemName}}">
                   <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
                   <view wx:if="{{itemName.cart_number}}" class="shopcart-info">{{itemName.cart_number}}</view>
-                </view>
+                </view> -->
               </view>
             </view>
           </view>
@@ -382,10 +310,10 @@
                 <view wx:if="{{item.market_price}}" class="origin-price">￥{{item.market_price}}</view>
               </view>
             </view>
-            <view class="shopcart-box" catchtap="addArtHandle" data-item="{{item}}">
+            <!-- <view class="shopcart-box" catchtap="addArtHandle" data-item="{{item}}">
               <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
               <view wx:if="{{item.cart_number}}" class="shopcart-info">{{item.cart_number}}</view>
-            </view>
+            </view> -->
           </view>
         </view>
         <view class="section7-1" wx:if="{{shopData.group_goods[0].goods_list.length}}" bindtap="toSearchResHandle">

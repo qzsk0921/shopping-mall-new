@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "top-navigation": "/components/navigation/commonnav"
+    "top-navigation": "/components/navigation/commonnav",
+    "dialog-writeoff": "/components/Dialog/writeoff"
   },
   "navigationStyle": "custom"
 }

@@ -131,13 +131,13 @@
     </checkbox-group>
     <view class="amount-box">
       <view class="left">
-        <block wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
+        <!-- <block wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
           <view class="left-t"><text>总计</text> <text class="price">￥***</text></view>
-        </block>
-        <block wx:else>
-          <view class="left-t"><text>总计</text> <text class="price">￥{{totalPrice/1000}}</text></view>
-          <view wx:if="{{discountPrice}}" class="left-b">已优惠{{discountPrice/1000}}</view>
-        </block>
+        </block> -->
+        <!-- <block wx:else> -->
+        <view class="left-t"><text>总计</text> <text class="price">￥{{totalPrice/1000}}</text></view>
+        <view wx:if="{{discountPrice}}" class="left-b">已优惠{{discountPrice/1000}}</view>
+        <!-- </block> -->
       </view>
       <view class="right">
         <view class="btn btn-pay" bindtap="confirmationOrderHandle">结算({{cartData.total}})</view>

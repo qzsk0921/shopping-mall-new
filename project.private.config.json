@@ -257,6 +257,18 @@
           "pathName": "pages/mine/wallet/withdrawCustom",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/writeoff/confirm",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/writeoff/status",
+          "query": "",
+          "scene": null
         }
       ]
     }

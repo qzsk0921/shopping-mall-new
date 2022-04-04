@@ -39,6 +39,8 @@
     "pages/mine/wallet/withdrawCustom",
     "pages/mine/wallet/withdrawAuto",
     "pages/mine/wallet/withdrawRecord",
+    "pages/mine/writeoff/confirm",
+    "pages/mine/writeoff/status",
     "pages/groupbargain/list",
     "pages/groupbargain/memberList",
     "pages/groupbargain/result",

@@ -15,6 +15,10 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    dialogVisible: false, //核销二维码
+    type: 'groupbargain',
+    online: 0, //1物流 0到店
+
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '订单详情',
     orderData: {
@@ -85,12 +89,32 @@ create(store, {
       //   ]
     }
   },
+  // 跳转到拼团进度
+  toMemberHandle() {
+    wx.navigateTo({
+      url: '/pages/groupbargain/memberList',
+    })
+  },
   // 进入订单商品页面
   toOrderGoodsHandle() {
     const preData = JSON.stringify(this.data.orderData.goods_list)
 
     wx.navigateTo({
       url: `/pages/shop/order/goods?preData=${preData}`,
+    })
+  },
+  // 一键核销 点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销
+  allWriteoffHandle() {
+    console.log('点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销')
+
+    this.setData({
+      dialogVisible: true
+    })
+  },
+  // 单个核销
+  oneWriteoffHandle(e) {
+    this.setData({
+      dialogVisible: true
     })
   },
   // 取消订单 删除订单
@@ -186,6 +210,12 @@ create(store, {
         url: '/pages/category/category',
       })
     }
+  },
+  // 去领奖(用户为未获得商品购买资格的情况下，显示该按钮点击跳转至钱包页面)
+  awardOrderHandle() {
+    wx.navigateTo({
+      url: '/pages/mine/wallet/wallet',
+    })
   },
   // 微信支付
   wxPay(payModel) {

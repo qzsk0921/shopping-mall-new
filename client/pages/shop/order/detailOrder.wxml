@@ -3,51 +3,147 @@
 <wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
 <wxs module="tools" src="./wxs/index.wxs"></wxs>
 
+<dialog-writeoff dialogVisible="{{dialogVisible}}" />
 <view class="container container-order-detail">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
   </view>
   <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
+    <view wx:if="{{orderData.status===0}}" class="tip tobepaid">请在00:29:52内支付，逾期订单将自动取消</view>
+    <view wx:if="{{type==='groupbargain'&&orderData.status===3}}" class="tip tobepaid">未获得商品购买资格，<text style="color:#FC4953;">金额原路退回，</text>且获得幸运奖</view>
     <view class="section1 status{{orderData.status}}">
       <view class="left">
         <!-- 状态 0:待支付 1:已支付 2:已取消 -->
         <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':'已取消'}}</view>
-        <view class="row2">{{orderData.status===0?'逾期未支付订单将自动取消':orderData.status===1?'订单已成功支付':'订单已经取消'}}</view>
+        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(type==='groupbargain'?'还差1人拼成':'订单已成功支付'):'订单已经取消'}}</view>
       </view>
       <view class="right">
-        <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
-        <view class="btn btn-pay" bindtap="payOrderHandle">{{orderData.status===0?'立即支付':'再来一单'}}</view>
+        <block wx:if="{{type==='groupbargain'}}">
+          <!-- <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
+          <view class="btn btn-pay" bindtap="payOrderHandle">{{orderData.status===0?'立即支付':'再来一单'}}</view> -->
+          <!-- 待支付,已支付，取消，拼团失败，拼团成功 -->
+          <!-- 已支付，取消，拼团失败，拼团成功 -->
+          <block wx:if="{{orderData.status===0||orderData.status===2||orderData.status===3||orderData.status===4}}">
+            <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
+            <view class="btn btn-pay" bindtap="payOrderHandle">{{orderData.status===0?'立即支付':'再来一单'}}</view>
+            <view wx:if="{{orderData.status===0}}" class="btn btn-award" bindtap="awardOrderHandle">
+              去领奖
+            </view>
+          </block>
+          <!-- 已支付 -->
+          <block wx:elif="{{orderData.status===1}}">
+            <view class="btn btn-member" bindtap="toMemberHandle">拼团进度</view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
+          <view class="btn btn-pay" bindtap="payOrderHandle">{{orderData.status===0?'立即支付':'再来一单'}}</view>
+        </block>
       </view>
     </view>
-    <view class="section2">
-      <view class="row1">{{orderData.receiving_address_name}}{{orderData.receiving_address_user_name}}</view>
-      <view class="row2">
-        <image class="icon-head" src="/assets/images/order_head.png" mode="aspectFill"></image>
-        <text>{{orderData.receiving_name}}</text>
-        <text>{{orderData.receiving_phone}}</text>
+    <view class="section2 {{online?'online':'offline'}}">
+      <block wx:if="{{!online}}">
+        <view class="shopinfo">
+          <view class="r1">
+            <view class="left">
+              <view class="left-r1">
+                <image class="r1-c1" src="/assets/images/order_icon_store.png" mode="aspectFill"></image>
+                <view class="r1-c2">店铺信息</view>
+              </view>
+              <view class="left-r2">信友客来生鲜超市</view>
+            </view>
+            <view class="right">
+              <view class="right-c1">
+                <image src="/assets/images/order_icon_call.png"></image>
+                <view>电话</view>
+              </view>
+              <view class="line"></view>
+              <view class="right-c2">
+                <image src="/assets/images/order_icon_location.png"></image>
+                <view>地址</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="row1">{{orderData.receiving_address_name}}{{orderData.receiving_address_user_name}}</view>
+        <view class="row2">
+          <image class="icon-head" src="/assets/images/order_head.png" mode="aspectFill"></image>
+          <text>{{orderData.receiving_name}}</text>
+          <text>{{orderData.receiving_phone}}</text>
+        </view>
+      </block>
+    </view>
+    <!-- 到店核销 -->
+    <view class="writeoff">
+      <view class="r1">
+        <text>消费券码</text>
+        <view class="btn btn-writeoff {{'writeenoff'}}" bindtap="allWriteoffHandle">一键核销</view>
+      </view>
+      <view class="r2" bindtap="oneWriteoffHandle">
+        <view class="r2-l1">券码1</view>
+        <view class="r2-l2">
+          <text>KSS2F56SES4D6WGK</text>
+          <view class="writeoff-txt">
+            <view>已核销</view>
+          </view>
+        </view>
+      </view>
+      <view class="r2">
+        <view class="r2-l1">券码1</view>
+        <view class="r2-l2">
+          <text>KSS2F56SES4D6WGK</text>
+          <view class="writeoff-txt">
+            <view>已核销</view>
+          </view>
+        </view>
       </view>
     </view>
     <view class="section3">
-      <view class="l1" bindtap="toOrderGoodsHandle">
-        <view class="left">商品信息</view>
-        <view class="right">
-          <text>共{{orderData.goods_list.length}}件</text>
-          <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+      <!-- 拼团 -->
+      <block wx:if="{{type==='groupbargain'}}">
+        <view class="l1">
+          <view class="left groupbargain" bindtap="toOrderGoodsHandle">
+            <text>商品信息</text>
+          </view>
         </view>
-      </view>
-      <view class="l2">
-        <view class="image-box" style="width:{{tools.calcW(orderData.goods_list.length)}}rpx">
-          <image wx:for="{{orderData.goods_list}}" wx:key="unique" wx:for-item="itemName" src="{{itemName.thumb}}" mode="aspectFill"></image>
+        <view class="l2 groupbargain">
+          <view class="l2-2-left">
+            <image class="icon-goods" src="{{orderData.goods_list[0].thumb}}" mode="aspectFill"></image>
+            <view class="cont">
+              <view class="tit">{{orderData.goods_list[0].goods_name}} {{orderData.goods_list[0].unitName}}*{{orderData.goods_list[0].cart_number}}</view>
+              <view class="des">{{orderData.goods_list[0].goods_content}}阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿</view>
+            </view>
+          </view>
+          <view class="l2-2-right">
+            <view class="price">￥2388.3</view>
+            <view class="num">x1</view>
+          </view>
         </view>
-      </view>
-      <view class="l3 l">
+      </block>
+      <block wx:else>
+        <view class="l1" bindtap="toOrderGoodsHandle">
+          <view class="left">商品信息</view>
+          <view class="right">
+            <text>共{{orderData.goods_list.length}}件</text>
+            <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
+          </view>
+        </view>
+        <view class="l2">
+          <view class="image-box" style="width:{{tools.calcW(orderData.goods_list.length)}}rpx">
+            <image wx:for="{{orderData.goods_list}}" wx:key="unique" wx:for-item="itemName" src="{{itemName.thumb}}" mode="aspectFill"></image>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{type!=='groupbargain'}}" class="l3 l">
         <text>商品总额</text>
         <text>￥{{orderData.goods_money}}</text>
       </view>
-      <view class="l4 l">
+      <!-- <view class="l4 l">
         <text>会员优惠</text>
         <text class="{{orderData.vip_discount=='0.00'?'':'discount'}}">{{orderData.vip_discount=="0.00"?'':'-'}}￥{{orderData.vip_discount}}</text>
-      </view>
+      </view> -->
       <view class="l5 l">
         <text>优惠券抵扣</text>
         <text class="{{orderData.coupon_discount=='0.00'?'':'discount'}}">{{orderData.coupon_discount=='0.00'?'':'-'}}￥{{orderData.coupon_discount}}</text>

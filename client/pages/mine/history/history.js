@@ -13,7 +13,6 @@ import {
 
 // Page({
 create(store, {
-
   /**
    * 页面的初始数据
    */
@@ -78,7 +77,8 @@ create(store, {
         title: '加入购物车成功',
       })
       this.setData({
-        [`historyList.cache[${index}].cart_number`]: item.cart_number + 1
+        [`historyList.cache[${index}].cart_number`]: item.cart_number + 1,
+        [`historyList.cache[${index}].one_cart_number`]: item.one_cart_number + 1,
       })
     })
   },

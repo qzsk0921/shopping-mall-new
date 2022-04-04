@@ -32,12 +32,12 @@ export default {
       // }
     ],
     // 1.未授权：会展中心(默认) 2.已授权：当前定位 3.已授权已选择：已选择地址
+    // 用户未授权地区信息，不再上传默认会展中心的地址信息，具体传什么，根据后台要求进行提交
     currentAddress: {
       address: "厦门国际会议展览中心",
       longitude: 118.183681124,
       latitude: 24.467152248,
       type: 2, //1:通过地址选择 2:首页选择地址
-      // id: null,
     },
     shop_id: null, //店铺ID
     address_id: wx.getStorageSync('address_id') || null, //当前使用的收货地址

@@ -1,10 +1,8 @@
 module.exports = {
-  filterUnit: function (unit_arr, id) {
-    for (var i = 0; i < unit_arr.length; i++) {
-      if (unit_arr[i].id === id) {
-        return unit_arr[i]
-      }
+  filterUnit: function (id, unitIds) {
+    if (unitIds) {
+      var idx = unitIds.indexOf(id)
+      return idx != -1
     }
-    return unit_arr[0]
   },
 }

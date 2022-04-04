@@ -223,6 +223,11 @@
   height: 40rpx;
 }
 
+.footer .delivery2 .btn-car {
+  width: 582rpx;
+  margin-right: 52rpx;
+}
+
 .footer .btn-car {
   margin: 14rpx 0 14rpx 65rpx;
   width: 432rpx;
@@ -490,7 +495,7 @@
 }
 
 .groupbargain .r3 .arrow.collapse::before {
-  transform: translateY(-7rpx) rotateZ(135deg);
+  transform: translateY(-7rpx) rotateZ(45deg);
 }
 
 .groupbargain .r3 .arrow.extend::before {
@@ -628,13 +633,21 @@
   align-items: center;
 }
 
+.shopinfo .r1 .right .right-c1 {
+  padding: 0 44rpx;
+}
+
+.shopinfo .r1 .right .right-c2 {
+  padding: 0 20rpx 0 44rpx;
+}
+
 .shopinfo .r1 .right .right-c1,
 .shopinfo .r1 .right .right-c2 {
   text-align: center;
 }
 
 .shopinfo .r1 .right .right-c2 {
-  margin-right: 20rpx;
+  /* margin-right: 20rpx; */
 }
 
 .shopinfo .r1 .right .right-c1 image {
@@ -657,5 +670,5 @@
   width: 2rpx;
   height: 54rpx;
   background: #EEEEEE;
-  margin: 0 44rpx;
+  /* margin: 0 44rpx; */
 }

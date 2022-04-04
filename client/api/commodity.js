@@ -1,4 +1,3 @@
-// https://www.showdoc.com.cn/1722521359176667/8053561250017786 Xczm190410
 import request from '../utils/request'
 
 /**
@@ -37,7 +36,6 @@ export function getCategoryList(data, noload) {
  * @param {int} category_id 分类id
  * @param {int} activity_id 活动id
  * @param {int} group_id 商品分组id
- * @param {int} shop_id 定位获取的shop_id
  */
 export function getGoodsList(data) {
   return request({
@@ -50,8 +48,8 @@ export function getGoodsList(data) {
 /**
  * 商品详情 goods/goods_info
  * @param {string} id 商品id
- * @param {string} shop_id 店铺id
  * @param {string} share_id 分享id
+ * @param {string} goods_group_bargaining_team_id 拼团参团id 参团id 都有
  */
 export function getGoodsDetail(data) {
   return request({

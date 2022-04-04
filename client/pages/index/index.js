@@ -361,35 +361,38 @@ create(store, {
     },
     currentAddress: {
       handler(nv, ov, obj) {
+        this.setData({
+          shop_id: 1
+        })
         // console.log(nv)
         // 用用户授权地址换取店铺id
-        this.setAddressShopInfo(nv).then(res => {
-          // console.log(res)
-          this.store.data.shop_id = res.data.shop_id
-          this.update()
-          this.setData({
-            shop_id: res.data.shop_id
-          })
+        // this.setAddressShopInfo(nv).then(res => {
+        //   // console.log(res)
+        //   this.store.data.shop_id = res.data.shop_id
+        //   this.update()
+        //   this.setData({
+        //     shop_id: res.data.shop_id
+        //   })
 
-          if (!getApp().globalData.page_id) {
-            // 统计时长埋点
-            setTrack({
-              type: 1,
-              shop_id: res.data.shop_id
-            }).then(res => {
-              getApp().globalData.page_id = res.data.page_id
-            })
-          }
-          // 通过shop_id获取商城商品
-        }).catch(err => {
-          console.log('err' + err)
-          // 出现异常或当前地址没有符合店铺
-          this.store.data.shop_id = 0
-          this.update()
-          this.setData({
-            shop_id: 0
-          })
-        })
+        //   if (!getApp().globalData.page_id) {
+        //     // 统计时长埋点
+        //     setTrack({
+        //       type: 1,
+        //       shop_id: res.data.shop_id
+        //     }).then(res => {
+        //       getApp().globalData.page_id = res.data.page_id
+        //     })
+        //   }
+        //   // 通过shop_id获取商城商品
+        // }).catch(err => {
+        //   console.log('err' + err)
+        //   // 出现异常或当前地址没有符合店铺
+        //   this.store.data.shop_id = 0
+        //   this.update()
+        //   this.setData({
+        //     shop_id: 0
+        //   })
+        // })
       },
       deep: true
     },
@@ -530,6 +533,7 @@ create(store, {
   },
   // 跳转至分类页面
   toCategoryHandle(e) {
+    getApp().globalData.from = 'index'
     this.store.data.currentFirstCategoryId = e.currentTarget.dataset.item.id
     this.store.data.currentFirstCategory = e.currentTarget.dataset.item
     this.update()
@@ -553,6 +557,14 @@ create(store, {
 
     wx.navigateTo({
       url: `/pages/goods/detail?id=${e.currentTarget.dataset.id}`,
+    })
+  },
+  //跳转至拼团商品详情页
+  toBargainGoodsDetail(e) {
+    if (!this.checkAuth()) return
+    const item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: `/pages/goods/detail?id=${item.goods_id}&goods_group_bargaining_team_id=${item.id}`,
     })
   },
   checkAuth() {
@@ -885,6 +897,9 @@ create(store, {
       fail: function (err) {
         console.log(err)
         that.setData({
+          currentAddress: {
+            address: '未授权'
+          },
           location: {
             formatted_addresses: {
               recommend: '定位失败'

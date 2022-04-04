@@ -1,5 +1,4 @@
 // 资质认证
-// https://www.showdoc.com.cn/1722521359176667/8053561250017786 Xczm190410
 import request from '../utils/request'
 
 /**

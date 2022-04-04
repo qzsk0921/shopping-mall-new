@@ -1,0 +1,8 @@
+module.exports = {
+  difference: function (all, num) {
+    return all - num
+  },
+  parseFar: function (total_num, num) {
+    return total_num - num
+  }
+}

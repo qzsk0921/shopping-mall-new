@@ -1,0 +1,58 @@
+/* components/Dialog/writeoff.wxss */
+.dialog-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 10000;
+  text-align: center;
+  transition: all .4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fadeout {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mask {
+  /* transition: all .4s; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, .5);
+}
+
+.dialog {
+  padding: 100rpx 115rpx 96rpx;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+  /* width: 570rpx; */
+  /* height: 678px; */
+}
+
+.image-qr {
+  width: 340rpx;
+  height: 340rpx;
+  border-radius: 16rpx;
+}
+
+.txt {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.txt1 {
+  margin-top: 60rpx;
+}
+
+.txt2 {
+  margin-top: 16rpx;
+}
