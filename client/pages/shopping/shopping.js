@@ -390,7 +390,7 @@ create(store, {
     // 授权校验
     if (!this.checkAuth()) return
     // 资质校验
-    if (!this.certCheck()) return
+    // if (!this.certCheck()) return
 
     // if(checkedIds)
 
@@ -402,7 +402,6 @@ create(store, {
     } else {
 
       let orderData = {
-        shop_id: this.store.data.shop_id,
         is_use_coupon: 0,
         // coupon_id: null,
         goods: []
@@ -411,13 +410,13 @@ create(store, {
       if (this.store.data.address_id) {
         orderData.address_id = this.store.data.address_id
       }
+      
       this.data.cartData.cache.forEach(item => {
         const temp = {
           "goods_id": item.id,
           "goods_num": item.cart_number,
-          "type": item.type,
           "is_pre_goods": item.is_pre_sale,
-          "unit_id": item.unit_id
+          "attribute_value_str":item.attribute_value_str
         }
 
         if (this.data.checkedIds.includes(item.id + '.' + item.unit_id)) {

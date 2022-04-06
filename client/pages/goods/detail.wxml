@@ -155,7 +155,7 @@
           <text>单独购买</text>
         </view>
         <view class="groupbargain-col2-r btn btn-join">
-          <text>￥16.7</text>
+          <text>￥{{goodsDetail.bargaining_info.bargaining_price}}</text>
           <text>参与拼团</text>
         </view>
       </view>

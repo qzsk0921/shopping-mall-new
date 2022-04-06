@@ -7,7 +7,7 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
   </view>
   <view class="content">
-    <!-- <view class="shopinfo">
+    <view wx:if="{{delivery_type==2}}" class="shopinfo">
       <view class="r2">
         温馨提示：请注意您购买的商品是否能到店进行消费
       </view>
@@ -20,20 +20,20 @@
           <view class="left-r2">信友客来生鲜超市</view>
         </view>
         <view class="right">
-          <view class="right-c1">
+          <view class="right-c1" bindtap="callHandle">
             <image src="/assets/images/order_icon_call.png"></image>
             <view>电话</view>
           </view>
           <view class="line"></view>
-          <view class="right-c2">
+          <view class="right-c2" bindtap="addressHandle">
             <image src="/assets/images/order_icon_location.png"></image>
             <view>地址</view>
           </view>
         </view>
       </view>
-    </view> -->
+    </view>
     <!-- 收货地址 -->
-    <view class="l1 {{orderData.address_info.address?'':'noaddress'}}" bindtap="toAddressHandle">
+    <view wx:if="{{delivery_type==1}}" class="l1 {{orderData.address_info.address?'':'noaddress'}}" bindtap="toAddressHandle">
       <block wx:if="{{orderData.address_info.address}}">
         <view class="l1-1">{{orderData.address_info.name}}{{orderData.address_info.user_address}}</view>
         <view class="l1-2">
@@ -49,7 +49,7 @@
     </view>
     <!-- 商品信息 -->
     <view class="l2">
-      <!-- 拼团------- -->
+      <!-- 拼团-------到店 -->
       <block wx:if="{{type==='groupbargain'}}">
         <view class="l2-1 groupbargain" bindtap="toOrderGoodsHandle">
           <text>商品信息</text>
@@ -59,12 +59,12 @@
             <image class="icon-goods" src="{{orderData.goods_list[0].thumb}}" mode="aspectFill"></image>
             <view class="cont">
               <view class="tit">{{orderData.goods_list[0].goods_name}} {{orderData.goods_list[0].unitName}}*{{orderData.goods_list[0].cart_number}}</view>
-              <view class="des">{{orderData.goods_list[0].goods_content}}阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿</view>
+              <view class="des">{{orderData.goods_list[0].goods_content}}</view>
             </view>
           </view>
           <view class="l2-2-right">
-            <view class="price">￥2388.3</view>
-            <view class="num">x1</view>
+            <view class="price">￥{{orderData.goods_list[0].price}}</view>
+            <view class="num">x{{orderData.goods_list[0].cart_number}}</view>
           </view>
         </view>
       </block>
@@ -107,21 +107,18 @@
       <!-- 开通会员 -->
       <!-- 开通 -->
       <!-- 1:非vip 2:正常vip 3:快到期的vip -->
-      <view class="l5 {{orderData.show_vip_notice===3?'register1':'register'}}" wx:if="{{orderData.show_vip_notice!=2}}">
+      <!-- <view class="l5 {{orderData.show_vip_notice===3?'register1':'register'}}" wx:if="{{orderData.show_vip_notice!=2}}">
         <view class="left">
           <view class="left-r1">
             <image class="icon-member" src="/assets/images/order_members.png" mode="aspectFill"></image>
-            <!-- <text>开通会员，本单最高立减</text> -->
-            <!-- <text>{{userInfo.is_vip?'已为您累计节省':'开通会员，本单最高立减'}}</text> -->
             <text>{{orderData.show_vip_notice===3?'已为您累计节省':'开通会员，本单最高立减'}}</text>
             <text>￥</text>
             <text>{{userInfo.is_vip?orderData.user_total_discount:orderData.vip_discount_money}}</text>
           </view>
           <view wx:if="{{orderData.show_vip_notice===3}}" class="left-r2">还有<text>{{orderData.vip_remain_day}}</text> 天，你的优惠权益即将过期</view>
         </view>
-        <!-- <view class="right btn btn-register" bindtap="vipHandle">{{userInfo.is_vip?'立即续费':'立即开通'}}</view> -->
         <view class="right btn btn-register" bindtap="vipHandle">{{orderData.show_vip_notice===3?'我要优惠':'立即开通'}}</view>
-      </view>
+      </view> -->
       <!-- 去支付 -->
       <view class="l6">
         <view class="left">

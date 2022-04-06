@@ -42,7 +42,7 @@
       </view>
     </view>
     <view class="l4 btn btn-addcar" bindtap="addCarHandle">
-      加入购物车
+      {{myGoodsDetail.delivery_type===1?'加入购物车':'立即购买'}}
     </view>
   </view>
 </view>

@@ -299,9 +299,29 @@ create(store, {
     //   return false
     // }
 
+    // 授权校验
+    if (!this.checkAuth()) return
+
     this.setData({
       ['dialog.car.opened']: 1
     })
+  },
+  // 授权检查
+  checkAuth() {
+    if (!this.data.userInfo.avatar_url) {
+      // 未授权先去授权页
+      wx.navigateTo({
+        url: '/pages/authorization/identity',
+      })
+      return false
+    } else if (!this.data.userInfo.phone) {
+      // 授权昵称头像还未授权手机号
+      wx.navigateTo({
+        url: '/pages/authorization/phone',
+      })
+      return false
+    }
+    return true
   },
   // 拼团规则 
   collapseHandle() {

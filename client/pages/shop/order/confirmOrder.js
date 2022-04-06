@@ -13,6 +13,7 @@ create(store, {
    */
   data: {
     type: 'groupbargain',
+    delivery_type: null, // 1:送货上门 2:到店消费
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '订单确认',
 
@@ -66,6 +67,21 @@ create(store, {
     },
 
     remark: '',
+  },
+  // 拨打电话
+  callHandle(e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.orderData.shop_info.leader_phone,
+    })
+  },
+  // 查看地址
+  addressHandle() {
+    wx.openLocation({
+      // latitude: 24.44579,
+      // longitude: 118.08243
+      latitude: this.data.orderData.shop_info.latitude,
+      longitude: this.data.orderData.shop_info.longitude
+    })
   },
   // 进入我的收货地址页面
   toAddressHandle() {
@@ -132,7 +148,7 @@ create(store, {
     // 1.2 支付失败， toast: 失败原因
     // 失败原因情况： 1.2 .1.取消支付 1.2 .2.后台原因（ 根据后台返回的原因进行toast）
     // 3. 用户未选择地址时， 点击去支付， toast： 请选择收货地址
-    if (!this.store.data.address_id) {
+    if (!this.store.data.address_id && this.data.delivery_type == 1) {
       wx.showToast({
         icon: 'none',
         title: '请选择收货地址',
@@ -141,7 +157,7 @@ create(store, {
     }
 
     let orderData = {
-      shop_id: this.store.data.shop_id,
+      // shop_id: this.store.data.shop_id,
       address_id: this.store.data.address_id,
       goods: [],
       remark: this.data.remark
@@ -160,9 +176,8 @@ create(store, {
       const temp = {
         "goods_id": item.id,
         "goods_num": item.cart_number,
-        "type": item.type,
         "is_pre_goods": item.is_pre_sale,
-        "unit_id": item.unit_id
+        "attribute_value_str": item.attribute_value_str
       }
       orderData.goods.push(temp)
     })
@@ -265,7 +280,8 @@ create(store, {
    */
   onLoad: function (options) {
     const {
-      preData
+      preData,
+      delivery_type
     } = options
 
     if (preData) {
@@ -273,6 +289,13 @@ create(store, {
       this.setData({
         orderData: preData
       })
+    }
+
+    if (delivery_type) {
+      this.setData({
+        delivery_type
+      })
+      console.log(this.data.delivery_type)
     }
   },
 

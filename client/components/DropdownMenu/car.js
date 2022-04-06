@@ -10,6 +10,10 @@ import {
   deepClone
 } from '../../utils/util'
 
+import {
+  preOrder
+} from '../../api/order'
+
 // Component({
 create({
   /**
@@ -162,42 +166,83 @@ create({
         opened: 0
       })
 
-      let myData = {
-        goods_id: this.data.myGoodsDetail.id,
-        goods_num: this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
-        attribute_value_str: this.data.currentUnitIds
-      }
-
-      this.addNumCart(myData).then(res => {
-
-        // 如果到店消费不加入购物车跳转到订单确认页 1:送货上门 2:到店消费
-        if (this.data.goodsDetail.delivery_type === 2) {
-          wx.navigateTo({
-            url: 'url',
-          })
+      // 如果到店消费不加入购物车跳转到订单确认页 1:送货上门 2:到店消费
+      if (this.data.myGoodsDetail.delivery_type === 2) {
+        let orderData = {
+          is_use_coupon: 0,
+          goods: []
         }
 
-        // 更新详情页购物车数据
-        wx.showToast({
-          icon: 'none',
-          title: '购物车操作成功',
+        // if (this.store.data.address_id) {
+        //   orderData.address_id = this.store.data.address_id
+        // }
+
+        const temp = {
+          "goods_id": this.data.myGoodsDetail.id,
+          "goods_num": this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
+          "is_pre_goods": this.data.myGoodsDetail.is_pre_sale,
+          "attribute_value_str": this.data.currentUnitIds
+        }
+
+        orderData.goods.push(temp)
+
+        this.preOrder(orderData).then(res => {
+          // 进入订单确认页若开通会员返回订单确认页需要更新数据
+          // getApp().globalData.orderData = orderData
+
+          const pre = JSON.stringify(res.data)
+
+          wx.navigateTo({
+            url: `/pages/shop/order/confirmOrder?preData=${pre}&delivery_type=${this.data.myGoodsDetail.delivery_type}`,
+          })
+        }).catch(err => {
+          console.log(err)
+          // if (err.msg === '地址不存在') {
+          //   wx.removeStorageSync('address_id')
+          //   this.confirmationOrderHandle()
+          // }
         })
+      } else {
 
-        setTimeout(() => {
-          this.triggerEvent('updateCartHandle')
-        }, 1000)
+        let myData = {
+          goods_id: this.data.myGoodsDetail.id,
+          goods_num: this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
+          attribute_value_str: this.data.currentUnitIds
+        }
 
-        console.log(res)
-      }).catch(err => {
-        setTimeout(function () {
-          this.triggerEvent('updateCartHandle')
-        }, 1000)
-        // 恢复设置
-      })
+        this.addNumCart(myData).then(res => {
+
+          // 更新详情页购物车数据
+          wx.showToast({
+            icon: 'none',
+            title: '购物车操作成功',
+          })
+
+          setTimeout(() => {
+            this.triggerEvent('updateCartHandle')
+          }, 1000)
+
+          console.log(res)
+        }).catch(err => {
+          setTimeout(function () {
+            this.triggerEvent('updateCartHandle')
+          }, 1000)
+          // 恢复设置
+        })
+      }
     },
     addNumCart(data) {
       return new Promise((resolve, reject) => {
         addNumCart(data).then(res => {
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+    preOrder(data) {
+      return new Promise((resolve, reject) => {
+        preOrder(data).then(res => {
           resolve(res)
         }).catch(err => {
           reject(err)
