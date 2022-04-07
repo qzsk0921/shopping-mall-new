@@ -25,7 +25,8 @@ create({
       value: 0
     },
     goodsDetail: Object,
-    userInfo: Object
+    userInfo: Object,
+    bargaining: Number
   },
   observers: {
     'opened': function (val) {
@@ -129,12 +130,18 @@ create({
     },
     dropdownItemTapHandle() {},
     addHandle() {
+      // 拼团时最大值为1，不可增加
+      if (this.data.bargaining) return
+
       this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number += 1
       this.setData({
         'myGoodsDetail.attribute.stock_arr': this.data.myGoodsDetail.attribute.stock_arr,
       })
     },
     reduceHandle() {
+      // 拼团时最大值为1，不可增加
+      if (this.data.bargaining) return
+
       // 不能小于0
       if (this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number - 1 <= 0) {
         // 不变

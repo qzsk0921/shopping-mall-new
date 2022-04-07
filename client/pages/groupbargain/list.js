@@ -1,6 +1,9 @@
 // pages/groupbargain/list.js
 import store from '../../store/common'
 import create from '../../utils/create'
+import {
+  getGroupbargainList
+} from '../../api/groupbargain'
 
 create(store, {
   // Page({
@@ -11,7 +14,7 @@ create(store, {
   data: {
     refresherEnabled: false,
     triggered: false,
-    
+
     userInfo: null,
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navStatus: 'groupbargain',
@@ -20,29 +23,55 @@ create(store, {
     groupData: {
       count: 1,
       total_page: 1,
-      cache: [{
-        id: 1,
-        isHead: 1,
-        avatar: 'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132',
-        nickname: '用户昵称',
-        img: 'https://sharepuls.xcmbkj.com/shop_adm_2022-03-115459.jpg',
-        tit: '元宝优选调和油元宝优选调和油调和油  20L/捅',
-        price: '132.9',
-        marketPrice: '224.8',
-        total: 10,
-        num: 2,
-      }, {
-        id: 2,
-        isHead: 1,
-        avatar: 'https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epNxyM4Via1sYUkGhFONWeO83RibWKXXunaMaulxE85ERM4bibmIqulD1a7mia6QUOudk8Uic8Xjg4HquQ/132',
-        nickname: '用户昵称',
-        img: 'https://sharepuls.xcmbkj.com/shop_adm_2022-03-115459.jpg',
-        tit: '元宝优选调和油元宝优选调和油调和油  20L/捅',
-        price: '12.9',
-        marketPrice: '224.8',
-        total: 10,
-        num: 9,
-      }]
+      cache: [
+        // {
+        //   "id": 23,
+        //   "group_bargaining_id": 1,
+        //   "goods_id": 1,
+        //   "total_join_number": 5,
+        //   "join_number": 0,
+        //   "total_pay_money": "0.00",
+        //   "expire_time": 1648878334,
+        //   "status": 1,
+        //   "captain_id": 1,
+        //   "update_time": 1648801388,
+        //   "create_time": 1648801388,
+        //   "error_msg": null,
+        //   "goods_info": {
+        //     "goods_name": "锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋",
+        //     "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg",
+        //     "price": "4.00",
+        //     "bargaining_price": "10.00"
+        //   },
+        //   "last_join_member": 5,
+        //   "captain_info": {
+        //     "captain_name": "hgao",
+        //     "captain_avatar": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg"
+        //   }
+        // },
+        // {
+        //   "id": 24,
+        //   "group_bargaining_id": 2,
+        //   "goods_id": 2,
+        //   "total_join_number": 5,
+        //   "join_number": 0,
+        //   "total_pay_money": "0.00",
+        //   "expire_time": 1648878334,
+        //   "status": 1,
+        //   "captain_id": 0,
+        //   "update_time": 1648801388,
+        //   "create_time": 1648801388,
+        //   "error_msg": null,
+        //   "goods_info": {
+        //     "goods_name": "[金谷园]  油粘米25kg(包)",
+        //     "thumb": "https://sharepuls.xcmbkj.com/shop_adm_2021-12-288728.png",
+        //     "price": "99.00",
+        //     "bargaining_price": "10.00"
+        //   },
+        //   "last_join_member": 5,
+        //   "captain_info": []
+        // }
+      ]
     }
   },
   //跳转至商品详情页
@@ -51,29 +80,46 @@ create(store, {
     // 未授权
     if (!this.checkAuth()) return
 
+    const item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pages/goods/detail?id=${e.currentTarget.dataset.id}`,
+      url: `/pages/goods/detail?id=${item.goods_id}&goods_group_bargaining_team_id=${item.id}`,
     })
+  },
+  checkAuth() {
+    if (!this.store.data.userInfo.avatar_url) {
+      // 未授权先去授权页
+      wx.navigateTo({
+        url: '/pages/authorization/identity',
+      })
+      return false
+    } else if (!this.store.data.userInfo.phone) {
+      // 授权昵称头像还未授权手机号
+      wx.navigateTo({
+        url: '/pages/authorization/phone',
+      })
+      return false
+    }
+    return true
   },
   scrollToLower(e) {
     console.log(e)
     console.log('scrollToLower')
 
-    let historyList = this.data.historyList
+    let groupData = this.data.groupData
 
-    if (historyList.count + 1 > historyList.total_page) return
+    if (groupData.count + 1 > groupData.total_page) return
 
     this.setData({
-      [`historyList.count`]: ++historyList.count
+      [`groupData.count`]: ++groupData.count
     })
 
-    this.getViewHistory('scrollToLower')
+    this.getGroupbargainList('scrollToLower')
   },
-  getViewHistory(dataObj) {
+  getGroupbargainList(dataObj) {
     const tempData = {
-      page: this.data.historyList.count,
+      page: this.data.groupData.count,
       page_size: this.data.page_size,
-      shop_id: this.store.data.shop_id
+      // shop_id: this.store.data.shop_id
     }
 
     if (typeof dataObj === 'object') {
@@ -83,18 +129,18 @@ create(store, {
     }
 
     return new Promise((resolve, reject) => {
-      getViewHistory(tempData).then(res => {
+      getGroupbargainList(tempData).then(res => {
         if (dataObj === 'scrollToLower') {
-          this.data.historyList.cache.push(...res.data.data)
+          this.data.groupData.cache.push(...res.data.data)
           this.setData({
-            [`historyList.cache`]: this.data.historyList.cache,
-            [`historyList.total_page`]: res.data.last_page
+            [`groupData.cache`]: this.data.groupData.cache,
+            [`groupData.total_page`]: res.data.last_page
           })
           resolve(res)
         } else {
           this.setData({
-            [`historyList.cache`]: res.data.data,
-            [`historyList.total_page`]: res.data.last_page
+            [`groupData.cache`]: res.data.data,
+            [`groupData.total_page`]: res.data.last_page
           })
         }
       }).catch(err => {
@@ -105,9 +151,7 @@ create(store, {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -139,6 +183,9 @@ create(store, {
         userInfo: this.store.data.userInfo
       })
     }
+
+    this.getGroupbargainList()
+
   },
 
   /**

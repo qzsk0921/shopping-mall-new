@@ -100,7 +100,7 @@ create(store, {
     const tempData = {
       page: this.data.historyList.count,
       page_size: this.data.page_size,
-      shop_id: this.store.data.shop_id
+      // shop_id: this.store.data.shop_id
     }
 
     if (typeof dataObj === 'object') {

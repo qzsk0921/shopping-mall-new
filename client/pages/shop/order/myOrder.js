@@ -352,18 +352,22 @@ create(store, {
     tab1Index: {
       handler(nv, ov, obj) {
         console.log(nv)
-        this.getOrderList({
-          status: this.parseStatus(nv, this.data.type)
-        })
+        setTimeout(() => {
+          this.getOrderList({
+            status: this.parseStatus(nv, this.data.type)
+          })
+        }, 0)
       },
       // immediate: true
     },
     tab2Index: {
       handler(nv, ov, obj) {
         console.log(nv)
-        this.getOrderList({
-          status: this.parseStatus(nv, this.data.type)
-        })
+        setTimeout(() => {
+          this.getOrderList({
+            status: this.parseStatus(nv, this.data.type)
+          })
+        }, 0)
       },
       // immediate: true
     },
@@ -372,11 +376,13 @@ create(store, {
         console.log(nv)
         const tabIndex = nv === 0 ? this.data.tab1Index : this.data.tab2Index
         const status = this.parseStatus(tabIndex, nv === 0 ? 'normal' : 'groupbargain')
-        
-        this.getOrderList({
-          type: nv === 0 ? 1 : 3,
-          status
-        })
+
+        setTimeout(() => {
+          this.getOrderList({
+            type: nv === 0 ? 1 : 3,
+            status
+          })
+        }, 0)
       },
       // immediate: true
     }
@@ -468,10 +474,10 @@ create(store, {
     return myStatus
   },
   getOrderList(dataObj) {
-    const optionIndex = this.data.type === 'normal' ? 0 : 1
+    const optionIndex = this.data.optionIndex
     const tabIndex = this.data.type === 'normal' ? this.data.tab1Index : this.data.tab2Index
     const page = this.data.orderList[optionIndex][tabIndex].count
-
+    
     const tempData = {
       page,
       page_size: this.data.page_size,
@@ -489,7 +495,7 @@ create(store, {
     return new Promise((resolve, reject) => {
       getOrderList(tempData).then(res => {
         if (dataObj === 'scrollToLower') {
-          this.data.orderList[optionIndex].cache.push(...res.data.data)
+          this.data.orderList[optionIndex][tabIndex].cache.push(...res.data.data)
           this.setData({
             [`orderList[${optionIndex}][${tabIndex}].cache`]: this.data.orderList.cache,
             [`orderList[${optionIndex}][${tabIndex}].total_page`]: res.data.last_page

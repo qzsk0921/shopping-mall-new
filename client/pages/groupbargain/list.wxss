@@ -43,10 +43,12 @@
   background: #FFFFFF;
   border-radius: 16rpx;
 }
+
 .item-box {
   display: inline-block;
-  width:100%;
+  width: 100%;
 }
+
 .item .r1 {
   display: flex;
   align-items: center;
@@ -97,12 +99,17 @@
   margin-right: 24rpx;
 }
 
+.item .r2-l2 {
+  flex: 1;
+}
+
 .item .r2-l2-r1 {
   margin-top: -5rpx;
   font-size: 28rpx;
   font-weight: bold;
   line-height: 38rpx;
   color: #333333;
+  height: 80rpx;
 }
 
 .item .r2-l2-r2 {

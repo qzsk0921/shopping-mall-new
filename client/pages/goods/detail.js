@@ -289,6 +289,16 @@ create(store, {
       ['dialog.car.opened']: 0
     })
   },
+  // 参与拼团
+  pinHandle() {
+    // 授权校验
+    if (!this.checkAuth()) return
+
+    this.setData({
+      ['dialog.car.opened']: 1,
+      'bargaining': 1
+    })
+  },
   // 唤起购物车弹窗
   awakenCarHandle() {
     // 未资质认证导航至认证页
@@ -332,31 +342,105 @@ create(store, {
   // 查看拼团成员
   toGroupbargainMemberlistHandle() {
     wx.navigateTo({
-      url: '/pages/groupbargain/memberList',
+      url: `/pages/groupbargain/memberList?goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`,
     })
+  },
+  shareHandle() {
+    // 1. 用户身份为团长时， 底部按钮如图所示，
+    // 点击发起拼团， 调起微信分享功能（ 特殊情况： 活动有效期小于拼团
+    // 有效期时， 提示弹窗， 如图1）
+    // 2. 用户身份不为团长时， 点击提示弹窗， 如图2
+    // 4. 用户点击分享的拼团， 绑定该分享的团长， 直至拼团成功或解散
+    // 5. 每次发起拼团， 扣除最大购买资格数的库存， 若自然解散， 再补回库存
+    // 6. 若库存不足时， toast: 库存不足， 正在抓紧补货， 请稍后再试
+    // 7. 用户身份为团长， 没有特殊情况时， 点击发起拼团， 提示弹窗， 如图3
+    if (this.data.userInfo.is_captain) {
+      if (this.data.goodsDetail.end_time < this.data.goodsDetail.bargaining_info.bargaining_expire_time) {
+        // 活动有效期小于拼团有效期时
+        wx.showModal({
+          title: '温馨提示',
+          content: '离该拼团活动结束剩余xx小时，此次发起拼团有效期仅剩余xx小时该商品佣金收成比例为5%，拼团成功预计可获得佣金xxx元',
+          confirmText: '发起',
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+        return false
+      } else {
+        // 用户身份为团长， 没有特殊情况时
+        wx.showModal({
+          title: '温馨提示',
+          content: '该商品佣金收成比例为5%，拼团成功预计可获得佣金xxx元',
+          confirmText: '发起',
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    } else {
+      wx.showModal({
+        title: '温馨提示',
+        content: '您还需参与x次拼团，即可晋升为团长，享受团长发起拼团，拼成得佣金的权益',
+        confirmText: '发起',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return false
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let param = {}
     const {
       id,
-      goods_group_bargaining_team_id
+      goods_group_bargaining_team_id,
+      scene
     } = options
 
-    this.data.goods_id = id
+    // 拼团分享
+    if (scene) {
+      // const scene = decodeURIComponent(options.scene).substr(1)
+      const scene = decodeURIComponent(options.scene)
+      // console.log(scene)
+      //scene=order_id=84&user_type=1
+      //id=31&first_id=110&share_id=110
+      if (scene && scene != 'undefined') {
+        scene.split('?')[1].split('&').forEach(it => {
+          const i = it.split('=')
+          param[i[0]] = i[1]
+        })
+      } else {
+        param = options
+      }
+    } else {
+      if (id) {
+        param.id = id
+        this.data.goods_id = id
+      }
 
-    let param = {
-      id
+      // 拼团商品
+      if (goods_group_bargaining_team_id) {
+        param.goods_group_bargaining_team_id = goods_group_bargaining_team_id
+      }
     }
 
-    // 拼团商品
-    if (goods_group_bargaining_team_id) {
-      this.setData({
-        goods_group_bargaining_team_id
-      })
-      param.goods_group_bargaining_team_id = goods_group_bargaining_team_id
-    }
+    this.setData(param)
 
     this.getGoodsDetail(param).then(res => {
       this.setData({
@@ -438,16 +522,33 @@ create(store, {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return {
-      title: `${this.data.goodsDetail.brand_name}`,
-      path: '/pages/index/index', //若无path 默认跳转分享页
-      imageUrl: `${this.data.goodsDetail.goods_image_arr}`, //若无imageUrl 截图当前页面
-      success(res) {
-        console.log('分享成功', res)
-      },
-      fail(res) {
-        console.log(res)
+  onShareAppMessage: async function (e) {
+    if (e.from === 'button') {
+      const res = this.shareHandle()
+      if (!res) return
+      // 发起拼团
+      return {
+        title: `${this.data.goodsDetail.brand_name}`,
+        path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`, //若无path 默认跳转分享页
+        imageUrl: `${this.data.goodsDetail.goods_image_arr}`, //若无imageUrl 截图当前页面
+        success(res) {
+          console.log('分享成功', res)
+        },
+        fail(res) {
+          console.log(res)
+        }
+      }
+    } else {
+      return {
+        title: `${this.data.goodsDetail.brand_name}`,
+        path: `/pages/goods/detail?id=${this.data.goodsDetail.id}`, //若无path 默认跳转分享页
+        imageUrl: `${this.data.goodsDetail.goods_image_arr}`, //若无imageUrl 截图当前页面
+        success(res) {
+          console.log('分享成功', res)
+        },
+        fail(res) {
+          console.log(res)
+        }
       }
     }
   }

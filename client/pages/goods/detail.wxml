@@ -4,14 +4,15 @@
 
 <view class="container container-goods-detail">
   <!-- 购物车下拉弹窗 -->
-  <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}"></dropdown-car>
+  <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}" bargaining="{{bargaining}}"></dropdown-car>
+  <!-- <confirm dialogVisible="{{confirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmDialogContent}}" title="温馨提示" confirmText="{{confirmText}}" /> -->
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
   </view>
   <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px':compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px'}}">
     <view class="swiper-box section1">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255, 255, 255, .6)" indicator-active-color="#ffffff" circular="true" bindchange="bindchangeHandle">
-        <block wx:for="{{goodsDetail.goods_banner_arr}}" wx:key="*this">
+        <block wx:for="{{goodsDetail.goods_banner_arr}}" wx:key="unique">
           <swiper-item>
             <!-- <view class="swiper-item {{item}}"></view> -->
             <image class="icon-banner" src="{{item}}" mode="aspectFill" bindtap="previewImg" data-urls="{{goodsDetail.goods_banner_arr}}" data-url="{{item}}"></image>
@@ -73,7 +74,7 @@
               <image wx:for="{{goodsDetail.bargaining_info.join_member_list}}" wx:key="unique" class="icon-groupbargain-avatar" src="{{item.avatar_url}}" mode="aspectFill"></image>
             </block>
             <block wx:if="{{tools.difference(5, goodsDetail.bargaining_info.join_member_list.length)}}" wx:key="unique">
-              <image wx:for="{{tools.difference(5,goodsDetail.bargaining_info.join_member_list.length)}}" class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+              <image wx:for="{{tools.difference(5,goodsDetail.bargaining_info.join_member_list.length)}}" wx:key="unique" class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
             </block>
           </view>
           <view class="r2-r1-r" bindtap="toGroupbargainMemberlistHandle">
@@ -150,16 +151,16 @@
         <view>收藏</view>
       </view>
       <view class="groupbargain-col2">
-        <view class="groupbargain-col2-l btn btn-single">
-          <text>￥22.7</text>
+        <view class="groupbargain-col2-l btn btn-single" bindtap="awakenCarHandle">
+          <text>￥{{goodsDetail.price}}</text>
           <text>单独购买</text>
         </view>
-        <view class="groupbargain-col2-r btn btn-join">
-          <text>￥{{goodsDetail.bargaining_info.bargaining_price}}</text>
+        <view class="groupbargain-col2-r btn btn-join" bindtap="pinHandle">
+          <text>￥{{goodsDetail.bargaining_price}}</text>
           <text>参与拼团</text>
         </view>
       </view>
-      <view class="groupbargain-col3 btn btn-launch" bindtap="launchHandle">发起拼团</view>
+      <button open-type="share" class="groupbargain-col3 btn btn-launch">发起拼团</button>
     </view>
     <view wx:else class="block delivery{{goodsDetail.delivery_type}}">
       <!-- 1:送货上门 2:到店消费 -->

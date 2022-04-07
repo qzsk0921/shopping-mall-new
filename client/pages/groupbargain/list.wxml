@@ -13,28 +13,28 @@
       <!--这里是下拉显示的效果-->
       <!-- <view slot="refresher" class="refresh-container disf faic" style="display:block;width: 100%; height: 80px;  display: flex; align-items:center;justify-content:center;box-sizing: border-box;border-bottom:1px solid #f5f5f5"></view> -->
       <view class="cont">
-        <view class="no-data" wx:if="{{(historyList.cache.length==0)}}">
+        <view class="no-data" wx:if="{{(groupData.cache.length==0)}}">
           <image mode="aspectFill" src="/assets/images/empty.png"></image>
           <view class="text">暂无更多内容</view>
         </view>
         <view class="item-box" wx:else>
-          <view class="item" wx:for="{{groupData.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGroupDetail">
-            <view class="r1">
-              <view wx:if="{{item.isHead}}">团长</view>
-              <image src="{{item.avatar}}" mode="aspectFill"></image>
-              <text>{{item.nickname}}</text>
+          <view class="item" wx:for="{{groupData.cache}}" wx:key="unique" data-item="{{item}}" bindtap="toGroupDetail">
+            <view wx:if="{{item.captain_info.captain_name}}" class="r1">
+              <view>团长</view>
+              <image src="{{item.captain_info.captain_avatar}}" mode="aspectFill"></image>
+              <text>{{item.captain_info.captain_name}}</text>
             </view>
             <view class="r2">
               <view class="r2-l1">
-                <image src="{{item.img}}" mode="aspectFill"></image>
+                <image src="{{item.goods_info.thumb}}" mode="aspectFill"></image>
               </view>
               <view class="r2-l2">
-                <view class="r2-l2-r1 txt-cut">{{item.tit}}</view>
+                <view class="r2-l2-r1 txt-cut">{{item.goods_info.goods_name}}</view>
                 <view class="r2-l2-r2">
                   <text>拼团价</text>
                   <text>￥</text>
-                  <text>{{item.price}}</text>
-                  <text>￥{{item.marketPrice}}</text>
+                  <text>{{item.goods_info.bargaining_price}}</text>
+                  <text>￥{{item.goods_info.price}}</text>
                 </view>
                 <view class="r2-l2-r3">
                   <view class="r2-l2-r3-l1">
@@ -42,10 +42,10 @@
                     <view class="r2-l2-r3-l1-r2">
                       <image src="/assets/images/pt_icon_fire.png" mode="aspectFill"></image>
                       <view>
-                        <view class="percentage" style="width:{{tools.parsePercentage(item.total,item.num)}}">
+                        <view class="percentage" style="width:{{tools.parsePercentage(item.total_join_number,item.join_number)}}">
                         </view>
                       </view>
-                      <text>{{item.num}}/{{item.total}}</text>
+                      <text>{{item.join_number}}/{{item.total_join_number}}</text>
                     </view>
                   </view>
                   <view class="btn btn-pin r2-l2-r3-l2">立即拼团</view>
