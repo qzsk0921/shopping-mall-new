@@ -1,3 +1,7 @@
+function formatNumber(n) {
+  n = n.toString()
+  return n[1] ? n : 0 + n
+}
 module.exports = {
   //计算商品件数
   calc: function (list) {
@@ -9,6 +13,13 @@ module.exports = {
   },
   // 计算我的订单页 宽度
   calcW: function (len) {
-    return 124+(len-1)*144
+    return 124 + (len - 1) * 144
+  },
+  // 待支付剩余时间
+  cutdown: function (time) {
+    if (time <= 0) {
+      return '00:00:00'
+    }
+    return formatNumber(parseInt(time / 3600)) + ':' + formatNumber(parseInt(time / 60) % 60) + ':' + formatNumber(time % 3600 % 60)
   }
 }

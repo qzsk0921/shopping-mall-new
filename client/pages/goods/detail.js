@@ -10,7 +10,13 @@ import {
 import {
   getCartData
 } from '../../api/cart'
-let prevPage = null
+
+import {
+  createGroupbargain
+} from '../../api/groupbargain'
+
+let prevPage = null,
+  cutdown = ''
 
 // Page({
 create(store, {
@@ -265,28 +271,11 @@ create(store, {
       current: dataset.url, // 当前显示图片的http链接
     })
   },
-  getGoodsDetail(data) {
-    return new Promise((resolve, reject) => {
-      getGoodsDetail(data).then(res => {
-        resolve(res)
-      }).catch(err => {
-        reject(err)
-      })
-    })
-  },
-  setGoodsCollection(data) {
-    return new Promise((resolve, reject) => {
-      setGoodsCollection(data).then(res => {
-        resolve(res)
-      }).catch(err => {
-        reject(err)
-      })
-    })
-  },
   // 关闭购物车弹窗
   dropdownMenuCarMaskTap() {
     this.setData({
-      ['dialog.car.opened']: 0
+      'dialog.car.opened': 0,
+      'bargaining': 0
     })
   },
   // 参与拼团
@@ -295,7 +284,7 @@ create(store, {
     if (!this.checkAuth()) return
 
     this.setData({
-      ['dialog.car.opened']: 1,
+      'dialog.car.opened': 1,
       'bargaining': 1
     })
   },
@@ -345,7 +334,33 @@ create(store, {
       url: `/pages/groupbargain/memberList?goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`,
     })
   },
-  shareHandle() {
+  // 距结束 截取时分秒
+  cutdown: function (timestamp) {
+    if (timestamp <= 0) {
+      cutdown = {
+        h: '00',
+        m: '00',
+        s: '00'
+      }
+    } else {
+      cutdown = {
+        h: this.formatNumber(parseInt(timestamp / 3600)),
+        m: this.formatNumber(parseInt(timestamp / 60 % 60)),
+        s: this.formatNumber(parseInt(timestamp % 60)),
+      }
+    }
+
+    this.setData({
+      cutdown
+    })
+  },
+  formatNumber(n) {
+    n = n.toString()
+    return n[1] ? n : 0 + n
+  },
+  // 分享前唤起提示弹窗
+  preShareHandle(e) {
+    console.log(e)
     // 1. 用户身份为团长时， 底部按钮如图所示，
     // 点击发起拼团， 调起微信分享功能（ 特殊情况： 活动有效期小于拼团
     // 有效期时， 提示弹窗， 如图1）
@@ -354,52 +369,94 @@ create(store, {
     // 5. 每次发起拼团， 扣除最大购买资格数的库存， 若自然解散， 再补回库存
     // 6. 若库存不足时， toast: 库存不足， 正在抓紧补货， 请稍后再试
     // 7. 用户身份为团长， 没有特殊情况时， 点击发起拼团， 提示弹窗， 如图3
-    if (this.data.userInfo.is_captain) {
-      if (this.data.goodsDetail.end_time < this.data.goodsDetail.bargaining_info.bargaining_expire_time) {
-        // 活动有效期小于拼团有效期时
-        wx.showModal({
-          title: '温馨提示',
-          content: '离该拼团活动结束剩余xx小时，此次发起拼团有效期仅剩余xx小时该商品佣金收成比例为5%，拼团成功预计可获得佣金xxx元',
-          confirmText: '发起',
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-        return false
-      } else {
-        // 用户身份为团长， 没有特殊情况时
-        wx.showModal({
-          title: '温馨提示',
-          content: '该商品佣金收成比例为5%，拼团成功预计可获得佣金xxx元',
-          confirmText: '发起',
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
+    const shareType = e.currentTarget.dataset.type //shareType
+    let param = {
+      is_captain: this.data.goodsDetail.bargaining_info.is_captain
+    }
+    let tempParam = {}
+    if (shareType === 'recommend') {
+      tempParam = {
+        cancelText: '取消',
+        shareType,
+        wxconfirmDialogVisibile: true,
+        confirmDialogContent: `该商品佣金收成比例为5%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
       }
     } else {
-      wx.showModal({
-        title: '温馨提示',
-        content: '您还需参与x次拼团，即可晋升为团长，享受团长发起拼团，拼成得佣金的权益',
-        confirmText: '发起',
-        success(res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+      if (this.data.goodsDetail.bargaining_info.is_captain) {
+        if (this.data.goodsDetail.bargaining_info.bargaining_expire_time < this.data.goodsDetail.bargaining_info.expire_time) {
+          // 活动有效期小于发起拼团有效期时
+          tempParam = {
+            cancelText: '取消',
+            shareType,
+            wxconfirmDialogVisibile: true,
+            confirmDialogContent: `离该拼团活动结束剩余${this.formatHour(this.data.goodsDetail.bargaining_info.bargaining_expire_time)}小时，此次发起拼团有效期仅剩余${this.formatHour(this.data.goodsDetail.bargaining_info.bargaining_expire_time)}小时,该商品佣金收成比例为5%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
+          }
+        } else {
+          // 用户身份为团长， 没有特殊情况时
+          tempParam = {
+            cancelText: '取消',
+            shareType,
+            wxconfirmDialogVisibile: true,
+            confirmDialogContent: `该商品佣金收成比例为5%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
           }
         }
-      })
-      return false
+      } else {
+        tempParam = {
+          cancelText: '',
+          shareType,
+          wxconfirmDialogVisibile: true,
+          confirmDialogContent: `您还需参与${this.data.goodsDetail.bargaining_info.bargaining_last_time}次拼团，即可晋升为团长，享受团长发起拼团，拼成得佣金的权益`,
+        }
+      }
     }
+
+    for (const key in tempParam) {
+      if (Object.hasOwnProperty.call(tempParam, key)) {
+        param[key] = tempParam[key]
+      }
+    }
+    this.setData(param)
+  },
+  // 对话框确认按钮
+  diaConfirmHandle(e) {
+    // console.log('diaConfirmHandle')
+  },
+  shareHandle(e) {
+    console.log(e)
+  },
+  // 转小时
+  formatHour(timestamp) {
+    return timestamp / 3600
+  },
+  getGoodsDetail(data) {
+    return new Promise((resolve, reject) => {
+      getGoodsDetail(data).then(res => {
+        setInterval(() => {
+          this.cutdown(res.data.bargaining_info.expire_time -= 1)
+        }, 1000)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  setGoodsCollection(data) {
+    return new Promise((resolve, reject) => {
+      setGoodsCollection(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  createGroupbargain(data) {
+    return new Promise((resolve, reject) => {
+      createGroupbargain(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -522,27 +579,45 @@ create(store, {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: async function (e) {
+  onShareAppMessage: function (e) {
+    console.log(e)
     if (e.from === 'button') {
-      const res = this.shareHandle()
-      if (!res) return
-      // 发起拼团
-      return {
-        title: `${this.data.goodsDetail.brand_name}`,
-        path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`, //若无path 默认跳转分享页
-        imageUrl: `${this.data.goodsDetail.goods_image_arr}`, //若无imageUrl 截图当前页面
-        success(res) {
-          console.log('分享成功', res)
-        },
-        fail(res) {
-          console.log(res)
+      if (e.target.dataset.type === 'recommend') {
+        // 推荐给好友
+        return {
+          title: this.data.goodsDetail.brand_name,
+          path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`, //若无path 默认跳转分享页
+          imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+          success(res) {
+            console.log('分享成功', res)
+          },
+          fail(res) {
+            console.log(res)
+          }
         }
+      } else if (e.target.dataset.type === 'launch') {
+        // 发起拼团
+        return this.createGroupbargain({
+          goods_group_bargaining_team_id: this.data.goodsDetail.bargaining_info.id
+        }).then(res => {
+          return {
+            title: this.data.goodsDetail.brand_name,
+            path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}`, //若无path 默认跳转分享页
+            imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+            success(res) {
+              console.log('分享成功', res)
+            },
+            fail(res) {
+              console.log(res)
+            }
+          }
+        })
       }
     } else {
       return {
-        title: `${this.data.goodsDetail.brand_name}`,
+        title: this.data.goodsDetail.brand_name,
         path: `/pages/goods/detail?id=${this.data.goodsDetail.id}`, //若无path 默认跳转分享页
-        imageUrl: `${this.data.goodsDetail.goods_image_arr}`, //若无imageUrl 截图当前页面
+        imageUrl: this.data.goodsDetail.goods_image_arr, //若无imageUrl 截图当前页面
         success(res) {
           console.log('分享成功', res)
         },

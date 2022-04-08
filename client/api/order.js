@@ -100,7 +100,7 @@ export function cancelOrder(data) {
  * 订单列表 Order/order_list
  * @param {string} status require ‘’:全部 状态 0:待支付 1:已支付 2:已取消 3:已完成 4:已退款
  * @param {string} keyword
- * @param {string} type require 1:普通订单 3:拼团订单
+ * @param {string} type require 1:普通订单 2:拼团订单
  */
 export function getOrderList(data) {
   return request({

@@ -5,7 +5,7 @@
 <view class="container container-goods-detail">
   <!-- 购物车下拉弹窗 -->
   <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}" bargaining="{{bargaining}}"></dropdown-car>
-  <!-- <confirm dialogVisible="{{confirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmDialogContent}}" title="温馨提示" confirmText="{{confirmText}}" /> -->
+  <wxconfirm dialogVisible="{{wxconfirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmDialogContent}}" title="温馨提示" confirmText="发起" type="{{shareType}}" is_captain="{{is_captain}}" cancelText="{{cancelText}}" />
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
   </view>
@@ -36,6 +36,10 @@
       <!-- 授权 -->
       <!-- <view class="l1" wx:else> -->
       <view class="l1">
+        <view class="share-recommend" data-type="recommend" bindtap="preShareHandle">
+          <image src="/assets/images/details_icon_share.png" mode="aspectFill"></image>
+          <view>推荐给朋友</view>
+        </view>
         <text>￥</text><text>{{goodsDetail.price}}</text>
         <view wx:if="{{goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
         <text wx:if="{{goodsDetail.market_price}}">￥{{goodsDetail.market_price}}</text>
@@ -56,9 +60,9 @@
         <view class="r1-r">
           <text>距结束</text>
           <view class="countdowns">
-            <view class="h">23</view><text>:</text>
-            <view class="m">59</view><text>:</text>
-            <view class="s">59</view>
+            <view class="h">{{cutdown.h}}</view><text>:</text>
+            <view class="m">{{cutdown.m}}</view><text>:</text>
+            <view class="s">{{cutdown.s}}</view>
           </view>
         </view>
       </view>
@@ -160,7 +164,8 @@
           <text>参与拼团</text>
         </view>
       </view>
-      <button open-type="share" class="groupbargain-col3 btn btn-launch">发起拼团</button>
+      <!-- <button open-type="share" class="groupbargain-col3 btn btn-launch" data-type="launch">发起拼团</button> -->
+      <view class="groupbargain-col3 btn btn-launch" data-type="launch" bindtap="preShareHandle">发起拼团</view>
     </view>
     <view wx:else class="block delivery{{goodsDetail.delivery_type}}">
       <!-- 1:送货上门 2:到店消费 -->

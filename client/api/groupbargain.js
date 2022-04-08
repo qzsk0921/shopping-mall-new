@@ -49,3 +49,16 @@ export function getMyGroupbargainList(data) {
     load: 'noload'
   })
 }
+
+/**
+ * 发起拼团 GroupBargaining/create_bargaining
+ * @param {int} goods_group_bargaining_team_id require 团队id
+ */
+export function createGroupbargain(data) {
+  return request({
+    url: '/GroupBargaining/create_bargaining',
+    method: 'get',
+    data,
+    load: 'noload'
+  })
+}

@@ -172,6 +172,11 @@ create(store, {
       orderData.is_use_coupon = 0
     }
 
+    // 参与拼团
+    if (this.data.orderData.goods_group_bargaining_team_id) {
+      orderData.goods_group_bargaining_team_id = this.data.orderData.goods_group_bargaining_team_id
+    }
+
     this.data.orderData.goods_list.forEach(item => {
       const temp = {
         "goods_id": item.id,

@@ -379,7 +379,7 @@ create(store, {
 
         setTimeout(() => {
           this.getOrderList({
-            type: nv === 0 ? 1 : 3,
+            type: nv === 0 ? 1 : 2,
             status
           })
         }, 0)
@@ -483,7 +483,7 @@ create(store, {
       page_size: this.data.page_size,
       status: this.parseStatus(tabIndex, this.data.type),
       keyword: this.data.keyword,
-      type: this.data.type === 'normal' ? 1 : 3
+      type: this.data.type === 'normal' ? 1 : 2
     }
 
     if (typeof dataObj === 'object') {

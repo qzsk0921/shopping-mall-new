@@ -179,6 +179,11 @@ create({
           is_use_coupon: 0,
           goods: []
         }
+        
+        // 参与拼团
+        if(this.data.bargaining) {
+          orderData.goods_group_bargaining_team_id=this.data.myGoodsDetail.bargaining_info.id
+        }
 
         // if (this.store.data.address_id) {
         //   orderData.address_id = this.store.data.address_id
@@ -215,6 +220,11 @@ create({
           goods_id: this.data.myGoodsDetail.id,
           goods_num: this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
           attribute_value_str: this.data.currentUnitIds
+        }
+
+        // 参与拼团
+        if(this.data.bargaining) {
+          orderData.goods_group_bargaining_team_id=this.data.myGoodsDetail.bargaining_info.id
         }
 
         this.addNumCart(myData).then(res => {

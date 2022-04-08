@@ -1,0 +1,26 @@
+<!--components/Dialog/wxconfirm.wxml-->
+<!-- <text>components/Dialog/wxconfirm.wxml</text> -->
+<!-- 仿微信发起拼团和推介给朋友共用的确认弹窗 -->
+<view class="dialog-wrap {{dialogVisible?'':'fadeoutt'}}">
+  <view class="mask" bindtap="dialogTapHandle"></view>
+  <view class="dialog">
+    <view class="modal">
+      <view wx:if="{{title}}" class="l1 tit">
+        <text>{{title}}</text>
+      </view>
+      <view class="l2 content">{{content}}</view>
+      <view class="l3 footer">
+        <view wx:if="{{cancelText}}" class="btn-cancel btn" style="background:{{cancelBgColor}}" bindtap="cancelHandle">{{cancelText}}</view>
+        <!-- <view class="btn-confirm btn" style="background:{{confirmBgColor}}" bindtap="confirmHandle">{{confirmText}}
+        </view> -->
+        <block wx:if="{{!is_captain&&type!='recommend'}}">
+          <view data-type="{{type}}" class="btn-confirm btn" style="background:{{confirmBgColor}}" bindtap="confirmHandle">确定</view>
+        </block>
+        <block wx:else>
+          <button open-type="share" data-type="{{type}}" class="btn-confirm btn" style="background:{{confirmBgColor}}" bindtap="confirmHandle">{{confirmText}}
+          </button>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

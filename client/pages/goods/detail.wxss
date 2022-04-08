@@ -43,6 +43,33 @@
   padding-top: 40rpx;
   display: flex;
   align-items: flex-end;
+  position: relative;
+}
+
+.section2 .l1 .share-recommend {
+  width: 188rpx;
+  height: 56rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 24rpx;
+  height: 56rpx;
+  background: #FFF5F1;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section2 .l1 .share-recommend image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+.section2 .l1 .share-recommend view {
+  color: #FF723A;
+  font-size: 24rpx;
+  vertical-align: middle;
 }
 
 .section2 .l1>view {
