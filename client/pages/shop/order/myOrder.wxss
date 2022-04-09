@@ -198,7 +198,7 @@
   /* color: #333333; */
 }
 
-.card .l3 .btn:last-child {
+.card .l3 .btn:not(:first-child) {
   margin-left: 20rpx;
 }
 
@@ -215,7 +215,8 @@
   color: #666666;
 }
 
-.btnstatus0 {
+.btnstatus0,
+.btn-award {
   background: var(--primary-color);
   color: #FFFFFF;
   border-color: var(--primary-color);
@@ -227,6 +228,8 @@
   font-weight: bold;
   color: #333333;
 }
+
+.btnstatus3 {}
 
 /* 拼团 */
 .options-box {

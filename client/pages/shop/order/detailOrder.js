@@ -16,8 +16,8 @@ create(store, {
    */
   data: {
     dialogVisible: false, //核销二维码
-    type: 'groupbargain',
-    online: 0, //1物流 0到店
+    type: '',
+    // online: 0, //1物流 0到店
 
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '订单详情',
@@ -89,10 +89,25 @@ create(store, {
       //   ]
     }
   },
+  // 拨打电话
+  callHandle(e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.orderData.shop_info.leader_phone,
+    })
+  },
+  // 查看地址
+  addressHandle() {
+    wx.openLocation({
+      // latitude: 24.44579,
+      // longitude: 118.08243
+      latitude: this.data.orderData.shop_info.latitude,
+      longitude: this.data.orderData.shop_info.longitude
+    })
+  },
   // 跳转到拼团进度
   toMemberHandle() {
     wx.navigateTo({
-      url: '/pages/groupbargain/memberList',
+      url: `/pages/groupbargain/memberList?goods_group_bargaining_team_id=${this.data.orderData.bargaining_info.id}`,
     })
   },
   // 进入订单商品页面
@@ -136,9 +151,15 @@ create(store, {
 
         // 如果上一页是订单列表需要更新订单列表
         if (prevPage.route === 'pages/shop/order/myOrder') {
-          prevPage.setData({
-            tabIndex: prevPage.data.tabIndex
-          })
+          if (prevPage.data.type === 'normal') {
+            prevPage.setData({
+              tab1Index: prevPage.data.tab1Index
+            })
+          } else if (prevPage.data.type === 'groupbargain') {
+            prevPage.setData({
+              tab2Index: prevPage.data.tab2Index
+            })
+          }
         }
 
         // toast结束后 返回上一个页面

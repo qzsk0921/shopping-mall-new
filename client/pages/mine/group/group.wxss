@@ -31,6 +31,18 @@
   background: #ffffff;
 }
 
+.cont .status1 .l2 {
+  color: #FF723A;
+}
+
+.cont .status2 .l2 {
+  color: #0DAA4F;
+}
+
+.cont .status3 .l2 {
+  color: #888888;
+}
+
 .cont .r1 {
   height: 68rpx;
   display: flex;

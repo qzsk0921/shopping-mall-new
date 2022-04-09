@@ -10,15 +10,16 @@
   </view>
   <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
     <view wx:if="{{orderData.status===0}}" class="tip tobepaid">请在{{tools.cutdown(orderData.last_cancel_time)}}内支付，逾期订单将自动取消</view>
-    <view wx:if="{{type==='groupbargain'&&orderData.status===3}}" class="tip tobepaid">未获得商品购买资格，<text style="color:#FC4953;">金额原路退回，</text>且获得幸运奖</view>
+    <view wx:if="{{orderData.bargaining_info.id&&orderData.status===3&&orderData.bargaining_info.bargaining_status===2}}" class="tip tobepaid">未获得商品购买资格，<text style="color:#FC4953;">金额原路退回，</text>且获得幸运奖</view>
     <view class="section1 status{{orderData.status}}">
       <view class="left">
-        <!-- 状态 0:待支付 1:已支付 2:已取消 -->
-        <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':'已取消'}}</view>
-        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(type==='groupbargain'?'还差1人拼成':'订单已成功支付'):'订单已经取消'}}</view>
+        <!-- status 状态 0:待支付 1:已支付 2:已取消 3:已完成-->
+        <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':orderData.status===2?'已取消':'已完成'}}</view>
+        <!-- bargaining_status 0:待开奖 1:已中奖 2:未中奖 -1:拼团已解散 -->
+        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(orderData.bargaining_info.id?'还差1人拼成':'订单已成功支付'):orderData.status===2?'订单已经取消':orderData.status===3?(orderData.bargaining_info.bargaining_status===2?'订单已完成':'拼团成功'):'已退款'}}</view>
       </view>
       <view class="right">
-        <block wx:if="{{type==='groupbargain'}}">
+        <block wx:if="{{orderData.bargaining_info.id}}">
           <!-- <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
           <view class="btn btn-pay" bindtap="payOrderHandle">{{orderData.status===0?'立即支付':'再来一单'}}</view> -->
           <!-- 待支付,已支付，取消，拼团失败，拼团成功 -->
@@ -41,8 +42,9 @@
         </block>
       </view>
     </view>
-    <view class="section2 {{online?'online':'offline'}}">
-      <block wx:if="{{!online}}">
+    <!-- 1:送货上门 2:到店消费 -->
+    <view class="section2 {{orderData.delivery_type===2?'online':'offline'}}">
+      <block wx:if="{{orderData.delivery_type===2}}">
         <view class="shopinfo">
           <view class="r1">
             <view class="left">
@@ -53,12 +55,12 @@
               <view class="left-r2">信友客来生鲜超市</view>
             </view>
             <view class="right">
-              <view class="right-c1">
+              <view class="right-c1" bindtap="callHandle">
                 <image src="/assets/images/order_icon_call.png"></image>
                 <view>电话</view>
               </view>
               <view class="line"></view>
-              <view class="right-c2">
+              <view class="right-c2" bindtap="addressHandle">
                 <image src="/assets/images/order_icon_location.png"></image>
                 <view>地址</view>
               </view>
@@ -76,7 +78,7 @@
       </block>
     </view>
     <!-- 到店核销 -->
-    <view class="writeoff">
+    <view wx:if="{{orderData.delivery_type===2&&orderData.bargaining_info.id}}" class="writeoff">
       <view class="r1">
         <text>消费券码</text>
         <view class="btn btn-writeoff {{'writeenoff'}}" bindtap="allWriteoffHandle">一键核销</view>
@@ -102,7 +104,7 @@
     </view>
     <view class="section3">
       <!-- 拼团 -->
-      <block wx:if="{{type==='groupbargain'}}">
+      <block wx:if="{{orderData.bargaining_info.id}}">
         <view class="l1">
           <view class="left groupbargain" bindtap="toOrderGoodsHandle">
             <text>商品信息</text>
@@ -136,7 +138,7 @@
           </view>
         </view>
       </block>
-      <view wx:if="{{type!=='groupbargain'}}" class="l3 l">
+      <view wx:if="{{!orderData.bargaining_info.id}}" class="l3 l">
         <text>商品总额</text>
         <text>￥{{orderData.goods_money}}</text>
       </view>

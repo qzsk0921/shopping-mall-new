@@ -79,7 +79,8 @@
 
 .section2 {
   margin: 20rpx auto 0;
-  padding: 25rpx 24rpx 30rpx;
+  /* padding: 25rpx 24rpx 30rpx; */
+  padding: 0 24rpx;
   width: 702rpx;
   /* height: 142rpx; */
   background: #FFFFFF;

@@ -465,9 +465,11 @@ create(store, {
       } else if (tabIdx == 2) {
         myStatus = 1
       } else if (tabIdx == 3) {
-        myStatus = 2
-      } else if (tabIdx == 4) {
+        // myStatus = 2
         myStatus = 3
+      } else if (tabIdx == 4) {
+        // myStatus = 3
+        myStatus = 2
       }
     }
 
@@ -477,7 +479,7 @@ create(store, {
     const optionIndex = this.data.optionIndex
     const tabIndex = this.data.type === 'normal' ? this.data.tab1Index : this.data.tab2Index
     const page = this.data.orderList[optionIndex][tabIndex].count
-    
+
     const tempData = {
       page,
       page_size: this.data.page_size,
@@ -514,6 +516,13 @@ create(store, {
       }).catch(err => {
         reject(err)
       })
+    })
+  },
+  // 拼团进度 跳转至拼团人员页
+  bargainProgressHandle(e) {
+    const item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: `/pages/groupbargain/memberList?goods_group_bargaining_team_id=${item.bargaining_info.id}`,
     })
   },
   // 取消订单 删除订单
@@ -601,6 +610,12 @@ create(store, {
         url: '/pages/category/category',
       })
     }
+  },
+  // 去领奖(用户为未获得商品购买资格的情况下，显示该按钮点击跳转至钱包页面)
+  awardOrderHandle() {
+    wx.navigateTo({
+      url: '/pages/mine/wallet/wallet',
+    })
   },
   // 微信支付
   wxPay(payModel) {

@@ -43,7 +43,7 @@ export function getGroupbargainRes(data) {
  */
 export function getMyGroupbargainList(data) {
   return request({
-    url: '/groupBargaining/list',
+    url: '/groupBargaining/my_list',
     method: 'get',
     data,
     load: 'noload'

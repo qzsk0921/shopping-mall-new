@@ -132,8 +132,14 @@
               </view>
             </view>
             <view class="l3">
-              <view class="btn btn-del" catchtap="delOrderHandle" data-item="{{item}}">{{item.status===0?'取消订单':'删除订单'}}</view>
-              <view class="btn btn-pay btnstatus{{item.status}}" data-item="{{item}}" catchtap="payOrderHandle">{{item.status===0?'立即支付':'再来一单'}}</view>
+              <block wx:if="{{item.status===1}}">
+                <view class="btn btn-bargain btnstatus{{item.status}}" catchtap="bargainProgressHandle" data-item="{{item}}">拼团进度</view>
+              </block>
+              <block wx:else>
+                <view class="btn btn-del" catchtap="delOrderHandle" data-item="{{item}}">{{item.status===0?'取消订单':'删除订单'}}</view>
+                <view class="btn btn-pay btnstatus{{item.status}}" data-item="{{item}}" catchtap="payOrderHandle">{{item.status===0?'立即支付':'再来一单'}}</view>
+                <view wx:if="{{item.status===3&&item.bargaining_info.bargaining_status===2}}" class="btn btn-award" data-item="{{item}}" catchtap="awardOrderHandle">去领奖</view>
+              </block>
             </view>
           </view>
         </view>
