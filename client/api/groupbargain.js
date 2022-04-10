@@ -62,3 +62,16 @@ export function createGroupbargain(data) {
     load: 'noload'
   })
 }
+
+/**
+ * 成为团长 GroupBargaining/invite_captain
+ * @param {int} invite_user_id require 邀请人用户id
+ */
+export function createCaptain(data) {
+  return request({
+    url: '/GroupBargaining/invite_captain',
+    method: 'get',
+    data,
+    load: 'noload'
+  })
+}

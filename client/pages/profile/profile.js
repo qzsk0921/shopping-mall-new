@@ -305,15 +305,25 @@ create(store, {
         'options[1].value': res.data.view_number,
       }
       // 我的客户入口需要是业务员才有
-      if (!res.data.is_sale) {
-        this.data.options2.some((item, index) => {
-          if (item.id === 5) {
-            this.data.options2.splice(index, 1)
-          }
+      if (!res.data.is_sale || !res.data.is_invitation_captain) {
+        if (!res.data.is_sale) {
+          this.data.options2.some((item, index) => {
+            if (item.id === 5) {
+              this.data.options2.splice(index, 1)
+            }
+          })
+        }
+        
+        if (!res.data.is_invitation_captain) {
+          this.data.options2.some((item, index) => {
+            if (item.id === 10) {
+              this.data.options2.splice(index, 1)
+            }
+          })
+        }
 
-          myData.options2 = this.data.options2
-          myData.option2Show = true
-        })
+        myData.options2 = this.data.options2
+        myData.option2Show = true
       } else {
         myData.options2 = this.data.options2
         myData.option2Show = true
@@ -358,10 +368,10 @@ create(store, {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
     return {
       title: ' ',
-      path: '/pages/groupbargain/headinvitation', //若无path 默认跳转分享页
+      path: `/pages/groupbargain/headinvitation?invite_user_id=${this.store.data.userInfo.id}`, //若无path 默认跳转分享页
       imageUrl: '/assets/images/headinvitation.png', //若无imageUrl 截图当前页面
       success(res) {
         console.log('分享成功', res)

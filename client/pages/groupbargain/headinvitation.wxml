@@ -1,7 +1,7 @@
 <!--pages/groupbargain/headinvitation.wxml-->
 <!-- <text>pages/groupbargain/headinvitation.wxml</text> -->
 <!-- 团长邀请 -->
-<view class="container-headinvitation container">
+<view class="container-headinvitation container" wx:if="{{success}}">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333333" bgColor="#FFFFFF" />
   </view>

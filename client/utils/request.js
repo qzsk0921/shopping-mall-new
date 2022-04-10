@@ -75,8 +75,8 @@ class Request {
         data: data ? data : {},
         method,
         header: {
-          // token,
-          token: 'c7c07ee3a76b73ba5719184e1b045792',
+          token,
+          // token: 'c7c07ee3a76b73ba5719184e1b045792',
           'content-type': that.contentType ? that.contentType : 'application/x-www-form-urlencoded'
         },
         success(res) {

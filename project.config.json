@@ -54,6 +54,11 @@
   "libVersion": "2.21.0",
   "appid": "wx11729f975a9b0116",
   "projectname": "shopping-mall-new",
+  "srcMiniprogramRoot": "client/",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
   "condition": {
     "search": {
       "list": []
@@ -73,10 +78,5 @@
     "miniprogram": {
       "list": []
     }
-  },
-  "srcMiniprogramRoot": "client/",
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
   }
 }
