@@ -1,7 +1,10 @@
 // pages/mine/wallet/withdrawCustom.js
 import store from '../../../store/common'
 import create from '../../../utils/create'
-
+import {
+  getWithdrawInfo,
+  createWithdraw
+} from '../../../api/wallet'
 // Page({
 create(store, {
 
@@ -13,6 +16,33 @@ create(store, {
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navStatus: '',
     navigationBarTitleText: '钱包',
+
+    withdrawData: {
+      // "type": "1",
+      // "commission_money": "100.00",
+      // "lucky_money": "50.00",
+      // "shop_info": {
+      //   "name": "厦门会展中心",
+      //   "leader_phone": "13559570109",
+      //   "wx_code": "https://retailers-qn.xcmbkj.com/admin/shop/shop_adm_2022-03-115828.jpg",
+      //   "address": "福建省厦门市思明区软件园二期望海路10号楼之二,302-1室",
+      //   "latitude": 24.488806,
+      //   "longitude": 118.182724,
+      //   "wx_pay_id": 1
+      // }
+    }
+  },
+  // 提现申请
+  withdrawHandle() {
+    // idx 0佣金 1幸运奖
+    this.createWithdraw({
+      type: 1 + Number(this.data.idx),
+      money: this.data.money
+    })
+  },
+  inputHandle(e) {
+    // console.log(e)
+    this.data.money = e.detail.value
   },
   // 长按二维码保存
   async qrPressHandle() {
@@ -86,8 +116,8 @@ create(store, {
       })
     })
   },
-  copyHandle() {
-    this.copyToClipboard(15224165468)
+  copyHandle(e) {
+    this.copyToClipboard(this.data.withdrawData.shop_info.leader_phone)
   },
   // 复制到剪贴板
   copyToClipboard(data) {
@@ -101,11 +131,40 @@ create(store, {
       },
     })
   },
+  getWithdrawInfo(data) {
+    return new Promise((resolve, reject) => {
+      getWithdrawInfo(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  createWithdraw(data) {
+    return new Promise((resolve, reject) => {
+      createWithdraw(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.idx) {
+      // idx 0佣金 1幸运奖
+      this.setData({
+        idx: options.idx
+      })
+    }
 
+    this.getWithdrawInfo().then(res => {
+      this.setData({
+        withdrawData: res.data
+      })
+    })
   },
 
   /**

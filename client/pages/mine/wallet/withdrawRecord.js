@@ -1,7 +1,9 @@
 // pages/mine/wallet/withdrawRecord.js
 import store from '../../../store/common'
 import create from '../../../utils/create'
-
+import {
+  getWithdrawLog
+} from '../../../api/wallet'
 // Page({
 create(store, {
 
@@ -16,49 +18,104 @@ create(store, {
 
     page: 1,
     page_size: 5,
-    withdrawData: {
+    withdrawRecordData: {
       count: 1,
       total_page: 1,
-      cache: [
-        {
-          "id": 14,
-          price: 320.21,
-          date: '2022-12-15 13:52:32提现',
-          status: 1,
-          remark: '驳回原因驳回原因驳回原因驳回原因驳回原因驳回原因驳回原因'
+      cache: [{
+          "id": 6,
+          "type": 2,
+          "admin_id": 0,
+          "user_id": 2,
+          "money": "20.00",
+          "status": 0,
+          "message": null,
+          "update_time": 1648969717,
+          "create_time": 1648969717
         },
         {
-          "id": 15,
-          price: 320.21,
-          date: '2022-12-15 13:52:32提现',
-          status: 2,
-          remark: '驳回原因驳回原因驳回原因驳回原因驳回原因驳回原因驳回原因'
-        },
-        {
-          "id": 16,
-          price: 320.21,
-          date: '2022-12-15 13:52:32提现',
-          status: 3,
-          remark: ''
-        },
-        {
-          "id": 17,
-          price: 320.21,
-          date: '2022-12-15 13:52:32提现',
-          status: 4,
-          remark: ''
+          "id": 4,
+          "type": 2,
+          "admin_id": 0,
+          "user_id": 2,
+          "money": "30.00",
+          "status": 0,
+          "message": null,
+          "update_time": 1648969661,
+          "create_time": 1648969661
         }
       ]
     },
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.idx) {
+      // idx 0佣金 1幸运奖
+      this.setData({
+        idx: options.idx
+      })
+    }
 
+    this.getWithdrawLog({
+      type: Number(options.idx) + 1
+    })
   },
 
+  scrollToLower(e) {
+    console.log(e)
+    console.log('scrollToLower')
+
+    let withdrawRecordData = this.data.withdrawRecordData
+
+    if (withdrawRecordData.count + 1 > withdrawRecordData.total_page) return
+
+    this.setData({
+      [`withdrawRecordData.count`]: ++withdrawRecordData.count
+    })
+
+    this.getWithdrawLog('scrollToLower')
+  },
+  getWithdrawLog(dataObj) {
+    const idx = this.data.idx
+    const page = this.data.withdrawRecordData.count
+
+    const tempData = {
+      page,
+      page_size: this.data.page_size,
+      type: idx + 1
+    }
+
+    if (typeof dataObj === 'object') {
+      Object.keys(dataObj).forEach(key => {
+        tempData[key] = dataObj[key]
+      })
+    }
+
+    return new Promise((resolve, reject) => {
+      getWithdrawLog(tempData).then(res => {
+        if (dataObj === 'scrollToLower') {
+          this.data.withdrawRecordData.cache.push(...res.data.data)
+          this.setData({
+            [`withdrawRecordData.cache`]: this.data.withdrawRecordData.cache,
+            [`withdrawRecordData.total_page`]: res.data.last_page
+          })
+          resolve(res)
+          console.log(this.data.withdrawRecordData)
+        } else {
+          this.setData({
+            // 测试数据
+            // [`withdrawRecordData.cache`]: [].concat(res.data.data).concat(res.data.data).concat(res.data.data).concat(res.data.data),
+
+            // [`withdrawRecordData.cache`]: res.data.data,
+            // [`withdrawRecordData.total_page`]: res.data.last_page,
+          })
+        }
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

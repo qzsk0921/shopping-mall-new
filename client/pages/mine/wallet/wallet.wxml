@@ -8,7 +8,7 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#FFFFFF" bgColor="#FF723A" />
   </view>
   <view class="content">
-    <view wx:if="{{isGrouphead}}" class="r1 query-r1">
+    <view wx:if="{{!userInfo.is_captain}}" class="r1 query-r1">
       <view class="options" bindtap='changeOption'>
         <view wx:for="{{options}}" wx:key="unique" data-index="{{index}}" class="option {{optionIndex==index?'active':''}}">
           <view calss="text" data-index="{{index}}">{{item}}</view>
@@ -36,13 +36,13 @@
       </view>
     </view>
     <view class="r3">
-      <view wx:if="{{optionIndex===0}}" class="tip-box">
+      <view wx:if="{{optionIndex===0&&withdrawData[optionIndex].cache.length}}" class="tip-box">
         <view class="tip">
           <image class="icon-change" src="/assets/images/wallet_icon_gold.png" mode="aspectFill"></image>
           <view>可提现￥{{withdrawData[optionIndex].total_money}} 待结算￥{{withdrawData[optionIndex].billing_money}}</view>
         </view>
       </view>
-      <scroll-view class="scroll-box item-box" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true" enhanced="true" show-scrollbar="{{false}}" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed+(isGrouphead===1?queryr1H:0)+queryr2H+(optionIndex===0?tipboxH:0)+queryr4H)+'px'}};">
+      <scroll-view class="scroll-box item-box" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true" enhanced="true" show-scrollbar="{{false}}" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed+(userInfo.is_captain===1?queryr1H:0)+queryr2H+(optionIndex===0?tipboxH:0)+queryr4H)+'px'}};">
         <view class="cont">
           <view class="no-data" wx:if="{{(withdrawData[optionIndex].cache.length==0)}}">
             <image mode="aspectFill" src="/assets/images/empty.png"></image>
@@ -82,7 +82,7 @@
                 <view class="left">
                   <image wx:for="{{item.join_member_list}}" wx:key="unique" mode="aspectFill" src="{{item.avatar_url}}"></image>
                 </view>
-                <view class="right" bindtap="toMemberlistHandle">
+                <view class="right" bindtap="toMemberlistHandle" data-item="{{item}}">
                   <text>拼团成员</text>
                 </view>
               </view>

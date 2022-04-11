@@ -17,9 +17,35 @@ export function getWallet(data) {
  * 提现记录接口 withdrawal/log
  * @param {int} type require 1:佣金 2:幸运奖
  */
-export function getWithdraw(data) {
+export function getWithdrawLog(data) {
   return request({
     url: '/withdrawal/log',
+    method: 'get',
+    data,
+    load: 'noload'
+  })
+}
+
+/**
+ * 提现说明页接口 withdrawal/info
+ */
+export function getWithdrawInfo(data) {
+  return request({
+    url: '/withdrawal/info',
+    method: 'get',
+    data,
+    load: 'noload'
+  })
+}
+
+/**
+ * 提现申请接口 withdrawal/apply 
+ * @param {int} type require 1:佣金 2:幸运奖
+ * @param {float} money 金额
+ */
+export function createWithdraw(data) {
+  return request({
+    url: '/withdrawal/apply',
     method: 'get',
     data,
     load: 'noload'

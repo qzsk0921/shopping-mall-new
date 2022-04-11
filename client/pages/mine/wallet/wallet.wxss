@@ -75,7 +75,7 @@
   font-size: 24rpx;
   color: #FFFFFF;
   text-align: center;
-  line-height: 54rpx;
+  line-height: 50rpx;
 }
 
 .content>.r2 .icon-wallet {
@@ -145,7 +145,7 @@
   position: relative;
   margin-top: -20rpx;
   overflow: hidden;
-  background: #ffffff;
+  /* background: #ffffff; */
   border-radius: 16rpx 16rpx 0rpx 0rpx;
 }
 

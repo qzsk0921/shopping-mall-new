@@ -8,10 +8,10 @@
   <view class="content">
     <view class="r1">
       <view class="r1-r1">可提现(元)</view>
-      <view class="r1-r2">315.21</view>
+      <view class="r1-r2">{{idx==0?withdrawData.commission_money:withdrawData.lucky_money}}</view>
     </view>
     <view class="r2">
-      <view wx:for="{{withdrawArr}}" wx:key="unique" class="item {{item.id===currentWithdrawId?'active':''}}" bindtap="changeHandle" data-id="{{item.id}}">
+      <view wx:for="{{withdrawArr}}" wx:key="unique" class="item {{item.id===currentWithdrawId?'active':''}}" bindtap="changeHandle" data-item="{{item}}">
         <image wx:if="{{item.id===currentWithdrawId}}" src="/assets/images/wallet_extract_on.png" mode="aspectFill"></image>
         {{item.priceStr}}
       </view>
@@ -23,7 +23,7 @@
         <text>￥</text>
         <input type="digit" bindinput="inputHandle" />
       </view>
-      <view class="r3">您最多可提现1666.6元</view>
+      <view class="r3">您最多可提现{{idx==0?withdrawData.commission_money:withdrawData.lucky_money}}元</view>
     </view>
     <view class="r3 btn btn-withdraw" bindtap="withdrawHandle">提现</view>
   </view>

@@ -17,7 +17,7 @@
         <view class="item-box" wx:else>
           <view class="item status{{item.status}}" wx:for="{{groupData.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGroupDetail">
             <view class="r1">
-              <view class="l1">{{commontools.formatTime(item.create_time*1000, 'yy-mm-dd')}}</view>
+              <view class="l1">{{commontools.formatTime(item.create_time*1000)}}</view>
               <!-- 状态 1:进行中 2:已完成 3:未拼成 -->
               <view class="l2">{{item.status===1?'进行中':item.status===2?'已拼成':'未拼成'}}</view>
             </view>

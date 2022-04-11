@@ -61,18 +61,17 @@
   line-height: 45rpx;
 }
 
-.item-box .r1 .r1-r.status1 {
+.item-box .r1 .r1-r.status0 {
   color: #FF723A;
   border: 1rpx solid #FF723A;
 }
 
-.item-box .r1 .r1-r.status2,
-.item-box .r1 .r1-r.status4 {
+.item-box .r1 .r1-r.status1 {
   color: #666666;
   border: 1rpx solid #666666;
 }
 
-.item-box .r1 .r1-r.status3 {
+.item-box .r1 .r1-r.status2 {
   background: #FF723A;
   color: #FFFFFF;
 }
