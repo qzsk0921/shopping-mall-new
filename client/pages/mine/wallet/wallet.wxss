@@ -18,6 +18,7 @@
 
 .content>.r1 {
   background: #FF723A;
+  padding-bottom: 2rpx;
 }
 
 .content {
@@ -149,7 +150,7 @@
 }
 
 .content>.r3 .tip-box {
-  padding: 20rpx 24rpx 0;
+  padding: 20rpx 24rpx;
 }
 
 .content>.r3 .tip {
@@ -177,11 +178,15 @@
 .cont .item-box {
   display: inline-block;
   width: 100%;
+  background: #F5F5F5;
 }
 
 .cont .item {
-  margin-top: 20rpx;
   background: #ffffff;
+}
+
+.cont .item:not(:first-child) {
+  margin-top: 20rpx;
 }
 
 .cont .r1 {

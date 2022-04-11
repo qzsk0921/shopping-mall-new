@@ -62,4 +62,5 @@
   line-height: 80rpx;
   color: #FFFFFF;
   text-align: center;
+  margin-bottom: 30rpx;
 }

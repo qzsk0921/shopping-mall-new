@@ -1,6 +1,8 @@
 <!--pages/mine/wallet/wallet.wxml-->
 <!-- <text>pages/mine/wallet/wallet.wxml</text> -->
 <!-- 钱包 -->
+<wxs module="tools" src="./wxs/index.wxs"></wxs>
+
 <view class="container-wallet container">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#FFFFFF" bgColor="#FF723A" />
@@ -21,67 +23,64 @@
       <view wx:if="{{optionIndex===0}}" class="option1">
         <view class="r2-r1">总收入(元)</view>
         <view class="r2-r2">
-          <view class="r2-r2-l1">167.24</view>
+          <view class="r2-r2-l1">{{withdrawData[optionIndex].commission_money}}</view>
           <view class="r2-r2-l2">
             <view class="r2-r2-l2-r1">今日收入(元)</view>
-            <view class="r2-r2-l2-r2">167.24</view>
+            <view class="r2-r2-l2-r2">{{withdrawData[optionIndex].today_billing_money}}</view>
           </view>
         </view>
       </view>
       <view wx:elif="{{optionIndex===1}}" class="option2">
         <view class="r1">幸运值</view>
-        <view class="r2">167.24</view>
+        <view class="r2">{{withdrawData[optionIndex].lucky_money}}</view>
       </view>
     </view>
     <view class="r3">
       <view wx:if="{{optionIndex===0}}" class="tip-box">
         <view class="tip">
           <image class="icon-change" src="/assets/images/wallet_icon_gold.png" mode="aspectFill"></image>
-          <view>可提现￥167.24 待结算￥167.24</view>
+          <view>可提现￥{{withdrawData[optionIndex].total_money}} 待结算￥{{withdrawData[optionIndex].billing_money}}</view>
         </view>
       </view>
       <scroll-view class="scroll-box item-box" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true" enhanced="true" show-scrollbar="{{false}}" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed+(isGrouphead===1?queryr1H:0)+queryr2H+(optionIndex===0?tipboxH:0)+queryr4H)+'px'}};">
         <view class="cont">
-          <view class="no-data" wx:if="{{(groupData.cache.length==0)}}">
+          <view class="no-data" wx:if="{{(withdrawData[optionIndex].cache.length==0)}}">
             <image mode="aspectFill" src="/assets/images/empty.png"></image>
             <view class="text">暂无更多内容</view>
           </view>
           <view class="item-box" wx:else>
-            <view class="item" wx:for="{{withdrawData.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGroupDetail">
-              <view class="r1">
+            <view class="item" wx:for="{{withdrawData[optionIndex].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGroupDetail">
+              <view wx:if="{{item.month_money.show}}" class="r1">
                 <view class="l1">
                   <image class="icon-calendar" src="/assets/images/wallet_icon_day.png" mode="aspectFill"></image>
-                  <text>2021年6月</text>
+                  <!-- <text>{{tools.getTime(item.create_time*1000,'y')}}年{{tools.getTime(item.create_time*1000,'m')}}月</text> -->
+                  <text>{{item.month_money.month}}</text>
                 </view>
-                <view class="l2">月收入:￥124.2</view>
+                <view class="l2">月收入:￥{{item.month_money.money}}</view>
               </view>
               <view class="r2">
                 <view class="left">
-                  <image class="icon-good" src="{{item.goods_list[0].thumb}}" mode="aspectFill"></image>
+                  <image class="icon-good" src="{{item.goods_info.thumb}}" mode="aspectFill"></image>
                 </view>
                 <view class="right">
                   <view class="r-r1">
-                    <view class="r-r1-l one-txt-cut">{{item.goods_list[0].goods_name}}</view>
-                    <view class="r-r1-r">￥2388.3</view>
+                    <view class="r-r1-l one-txt-cut">{{item.goods_info.goods_name}}</view>
+                    <view class="r-r1-r">￥{{item.goods_info.bargaining_price}}</view>
                   </view>
                   <view class="r-r2">
                     <view class="r-r2-r txt-cut">
-                      阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿
+                      {{item.goods_info.goods_content}}
                     </view>
                   </view>
                   <view class="r-r3">
                     <view class="r-r3-l"></view>
-                    <view class="r-r3-r">收入:￥2388.3</view>
+                    <view class="r-r3-r">收入:￥{{item.billing_money}}</view>
                   </view>
                 </view>
               </view>
               <view class="r3">
                 <view class="left">
-                  <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image>
-                  <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image>
-                  <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image>
-                  <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image>
-                  <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image>
+                  <image wx:for="{{item.join_member_list}}" wx:key="unique" mode="aspectFill" src="{{item.avatar_url}}"></image>
                 </view>
                 <view class="right" bindtap="toMemberlistHandle">
                   <text>拼团成员</text>

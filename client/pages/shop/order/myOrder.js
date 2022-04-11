@@ -475,6 +475,22 @@ create(store, {
 
     return myStatus
   },
+  scrollToLower(e) {
+    console.log(e)
+    console.log('scrollToLower')
+    const optionIndex = this.data.optionIndex
+    const tabIndex = this.data.type === 'normal' ? this.data.tab1Index : this.data.tab2Index
+    
+    let orderList = this.data.orderList
+
+    if (orderListt[optionIndex][tabIndex].count + 1 > orderListt[optionIndex][tabIndex].total_page) return
+    
+    this.setData({
+      [`orderList${[optionIndex][tabIndex]}.count`]: ++orderList[optionIndex][tabIndex].count
+    })
+
+    this.getOrderList('scrollToLower')
+  },
   getOrderList(dataObj) {
     const optionIndex = this.data.optionIndex
     const tabIndex = this.data.type === 'normal' ? this.data.tab1Index : this.data.tab2Index

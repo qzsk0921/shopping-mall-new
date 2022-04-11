@@ -20,4 +20,17 @@ module.exports = {
     }
     return res
   },
+  getTime: function (date, mode) {
+    var date = getDate(date)
+    // var hour = date.getHours()
+    // var minute = date.getMinutes()
+    // var second = date.getSeconds()
+    if (mode === 'y') {
+      return date.getFullYear()
+    } else if (mode === 'm') {
+      return date.getMonth() + 1
+    } else if (mode === 'd') {
+      return date.getDate()
+    }
+  },
 }
