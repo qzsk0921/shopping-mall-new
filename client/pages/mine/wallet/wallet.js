@@ -673,7 +673,8 @@ create(store, {
         url: `/pages/mine/wallet/withdrawCustom?idx=${this.data.optionIndex}`,
       })
     } else if (this.data.userInfo.withdrawal_type == 1) {
-      wx.navigateTo({
+      wx.n
+      avigateTo({
         url: `/pages/mine/wallet/withdrawAuto?idx=${this.data.optionIndex}`,
       })
     }
