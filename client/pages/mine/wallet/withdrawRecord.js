@@ -21,28 +21,29 @@ create(store, {
     withdrawRecordData: {
       count: 1,
       total_page: 1,
-      cache: [{
-          "id": 6,
-          "type": 2,
-          "admin_id": 0,
-          "user_id": 2,
-          "money": "20.00",
-          "status": 0,
-          "message": null,
-          "update_time": 1648969717,
-          "create_time": 1648969717
-        },
-        {
-          "id": 4,
-          "type": 2,
-          "admin_id": 0,
-          "user_id": 2,
-          "money": "30.00",
-          "status": 0,
-          "message": null,
-          "update_time": 1648969661,
-          "create_time": 1648969661
-        }
+      cache: [
+        // {
+        //   "id": 6,
+        //   "type": 2,
+        //   "admin_id": 0,
+        //   "user_id": 2,
+        //   "money": "20.00",
+        //   "status": 2,
+        //   "message": '驳回原因驳回原因驳回原因驳回原因驳回原因驳回原因驳回原因',
+        //   "update_time": 1648969717,
+        //   "create_time": 1648969717
+        // },
+        // {
+        //   "id": 4,
+        //   "type": 2,
+        //   "admin_id": 0,
+        //   "user_id": 2,
+        //   "money": "30.00",
+        //   "status": 1,
+        //   "message": null,
+        //   "update_time": 1648969661,
+        //   "create_time": 1648969661
+        // }
       ]
     },
   },
@@ -107,8 +108,8 @@ create(store, {
             // 测试数据
             // [`withdrawRecordData.cache`]: [].concat(res.data.data).concat(res.data.data).concat(res.data.data).concat(res.data.data),
 
-            // [`withdrawRecordData.cache`]: res.data.data,
-            // [`withdrawRecordData.total_page`]: res.data.last_page,
+            [`withdrawRecordData.cache`]: res.data.data,
+            [`withdrawRecordData.total_page`]: res.data.last_page,
           })
         }
       }).catch(err => {

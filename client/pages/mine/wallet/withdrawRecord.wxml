@@ -20,13 +20,13 @@
             <view class="r1">
               <view class="r1-l">
                 <view class="r1-l-r1">￥{{item.money}}</view>
-                <view class="r1-l-r2">{{commontools.formatTime(item.create_time*1000)}}</view>
+                <view class="r1-l-r2">{{commontools.formatTime(item.create_time*1000)}}提现</view>
               </view>
               <view class="r1-r status{{item.status}}">
                 {{tools.parseWithdrawStatus(item.status)}}
               </view>
             </view>
-            <view wx:if="{{item.remark}}" class="r2">{{item.remark}}</view>
+            <view wx:if="{{item.message}}" class="r2">{{item.message}}</view>
           </view>
         </view>
       </view>

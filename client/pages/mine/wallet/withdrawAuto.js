@@ -89,9 +89,20 @@ create(store, {
   },
   // 提现申请
   withdrawHandle() {
-    if (!this.data.money) {
+    // if (!this.data.money) {
+    //   wx.showToast({
+    //     title: '请输入正确的金额',
+    //     icon: 'none'
+    //   })
+    //   return
+    // }
+
+    // 1. 填入的提现金额超过可提现金额， 需toast： 您可提现的金额为: xxxx， 请重新输入
+    // 2. 其余情况由后台接口进行验证， 返回相应状态及message, 前端toast后端返回的message
+    const money = this.data.idx == 0 ? this.data.withdrawData.commission_money : this.data.withdrawData.lucky_money
+    if (this.data.money > money) {
       wx.showToast({
-        title: '请输入正确的金额',
+        title: `您可提现的金额为：${money}，请重新输入`,
         icon: 'none'
       })
       return

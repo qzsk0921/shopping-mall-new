@@ -19,12 +19,12 @@
           <image class="icon-goods" src="{{orderData.goods_list[0].thumb}}" mode="aspectFill"></image>
           <view class="cont">
             <view class="tit">{{orderData.goods_list[0].goods_name}} {{orderData.goods_list[0].unitName}}*{{orderData.goods_list[0].cart_number}}</view>
-            <view class="des">{{orderData.goods_list[0].goods_content}}阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿</view>
+            <view class="des">{{orderData.goods_list[0].goods_content}}</view>
           </view>
         </view>
         <view class="l2-2-right">
-          <view class="price">￥2388.3</view>
-          <view class="num">x1</view>
+          <view class="price">￥{{orderData.goods_list[0].price}}</view>
+          <view class="num">x{{orderData.goods_list[0].goods_num}}</view>
         </view>
       </view>
     </view>
@@ -48,7 +48,8 @@
     </view>
     <view class="section3">
       <view class="tit">备注</view>
-      <textarea placeholder-class="placeholder-style" placeholder="可以告诉我您的需求" value="{{content}}" name="content" bindinput="inputHandle" maxlength="100" />
+      <!-- <textarea placeholder-class="placeholder-style" placeholder="可以告诉我您的需求" value="{{content}}" name="content" bindinput="inputHandle" maxlength="100" /> -->
+      <view class="remark">{{orderData.remark}}</view>
     </view>
     <view class="btn btn-writeoff" bindtap="writeoffHandle">核销订单</view>
   </view>

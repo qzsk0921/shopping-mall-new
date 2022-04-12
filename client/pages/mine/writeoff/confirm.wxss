@@ -124,14 +124,20 @@
   line-height: 88rpx;
 }
 
-.section3 textarea {
+/* .section3 textarea {
   width: 702rpx;
   height: 106rpx;
   font-size: 28rpx;
-  /* line-height: 48rpx; */
 }
 
 .placeholder-style {
+  color: #999999;
+} */
+
+.section3 .remark {
+  /* width: 702rpx; */
+  min-height: 106rpx;
+  font-size: 28rpx;
   color: #999999;
 }
 

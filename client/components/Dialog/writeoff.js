@@ -8,6 +8,7 @@ Component({
       type: Boolean,
       value: false
     },
+    url: String
   },
 
   /**

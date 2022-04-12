@@ -17,7 +17,7 @@
         </view>
       </block>
       <block wx:else>
-        <image class="icon-group_head" src="/assets/images/group_head.png" mode="aspectFill" bindtap="openGroupprivilegeHandle"></image>
+        <image wx:if="{{userInfo.is_captain}}" class="icon-group_head" src="/assets/images/group_head.png" mode="aspectFill" bindtap="openGroupprivilegeHandle"></image>
         <image class="avatar" mode="aspectFill" src="{{userInfo.avatar_url}}"></image>
         <view class="userinfo-box">
           <view class="l1">

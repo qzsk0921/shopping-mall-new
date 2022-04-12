@@ -216,12 +216,44 @@ create(store, {
     // console.log(`Sorry, we are out of ${id}.`);
     this.data.options2.some(item => {
       if (item.id === id) {
-        wx.navigateTo({
-          url: item.url
-        })
+        if (id === 11) {
+          // 扫码核销
+          this.scan()
+        } else {
+          wx.navigateTo({
+            url: item.url
+          })
+        }
         return true
       }
       return false
+    })
+  },
+  scan() {
+    wx.scanCode({
+      scanType: 'qrCode',
+      success(res) {
+        console.log(res)
+
+        if (!res.path) {
+          wx.showToast({
+            title: '无效二维码',
+            icon: 'none'
+          })
+          return
+        }
+
+        wx.navigateTo({
+          url: '/' + res.path
+        })
+      },
+      fail(res) {
+        console.log(res)
+        wx.showToast({
+          title: '无效二维码',
+          icon: 'none'
+        })
+      }
     })
   },
   getUserProfile() {
@@ -317,6 +349,15 @@ create(store, {
         if (!res.data.is_invitation_captain) {
           this.data.options2.some((item, index) => {
             if (item.id === 10) {
+              this.data.options2.splice(index, 1)
+            }
+          })
+        }
+
+        // 扫码核销
+        if(!res.data.is_check_order) {
+          this.data.options2.some((item, index) => {
+            if (item.id === 11) {
               this.data.options2.splice(index, 1)
             }
           })

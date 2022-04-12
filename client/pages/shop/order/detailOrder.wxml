@@ -3,7 +3,7 @@
 <wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
 <wxs module="tools" src="./wxs/index.wxs"></wxs>
 
-<dialog-writeoff dialogVisible="{{dialogVisible}}" />
+<dialog-writeoff dialogVisible="{{dialogVisible}}" url="{{url}}" />
 <view class="container container-order-detail">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
@@ -83,21 +83,13 @@
         <text>消费券码</text>
         <view class="btn btn-writeoff {{'writeenoff'}}" bindtap="allWriteoffHandle">一键核销</view>
       </view>
-      <view class="r2" bindtap="oneWriteoffHandle">
-        <view class="r2-l1">券码1</view>
+      <!-- 0:待核销 1:已核销 -->
+      <view wx:for="{{orderData.order_goods_code}}" wx:key="unique" class="r2" bindtap="oneWriteoffHandle" data-item="{{item}}">
+        <view class="r2-l1">券码{{index+1}}</view>
         <view class="r2-l2">
-          <text>KSS2F56SES4D6WGK</text>
+          <text>{{item.code}}</text>
           <view class="writeoff-txt">
-            <view>已核销</view>
-          </view>
-        </view>
-      </view>
-      <view class="r2">
-        <view class="r2-l1">券码1</view>
-        <view class="r2-l2">
-          <text>KSS2F56SES4D6WGK</text>
-          <view class="writeoff-txt">
-            <view>已核销</view>
+            <view>{{item.status===0?'待核销':'已核销'}}</view>
           </view>
         </view>
       </view>

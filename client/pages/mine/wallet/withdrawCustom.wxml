@@ -21,7 +21,7 @@
       <view class="r1">提现金额</view>
       <view class="r2">
         <text>￥</text>
-        <input type="digit" bindinput="inputHandle" />
+        <input type="digit" bindinput="inputHandle" style="height: 100%;" />
       </view>
       <view class="r3">您最多可提现{{idx==0?withdrawData.commission_money:withdrawData.lucky_money}}元</view>
     </view>

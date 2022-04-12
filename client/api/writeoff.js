@@ -8,7 +8,7 @@ import request from '../utils/request'
  */
 export function getQrcode(data) {
   return request({
-    url: '/User/qrcode',
+    url: '/User/qr_code',
     method: 'get',
     data,
     load: 'noload'

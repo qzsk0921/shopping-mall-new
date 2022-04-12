@@ -668,13 +668,12 @@ create(store, {
     // 2. 用户商户号无法进行企业打开时， 进入人工提现 - 联系客服3页面
     // withdrawal_type	int	1：手动打款 2:自动打款
 
-    if (this.data.userInfo.withdrawal_type == 2) {
+    if (this.data.userInfo.withdrawal_type == 1) {
       wx.navigateTo({
         url: `/pages/mine/wallet/withdrawCustom?idx=${this.data.optionIndex}`,
       })
-    } else if (this.data.userInfo.withdrawal_type == 1) {
-      wx.n
-      avigateTo({
+    } else if (this.data.userInfo.withdrawal_type == 2) {
+      wx.navigateTo({
         url: `/pages/mine/wallet/withdrawAuto?idx=${this.data.optionIndex}`,
       })
     }

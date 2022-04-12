@@ -67,13 +67,13 @@
 }
 
 .item-box .r1 .r1-r.status1 {
-  color: #666666;
-  border: 1rpx solid #666666;
+  background: #FF723A;
+  color: #FFFFFF;
 }
 
 .item-box .r1 .r1-r.status2 {
-  background: #FF723A;
-  color: #FFFFFF;
+  color: #666666;
+  border: 1rpx solid #666666;
 }
 
 .item-box .r2 {

@@ -34,6 +34,16 @@ create(store, {
   },
   // 提现申请
   withdrawHandle() {
+
+    const money = this.data.idx == 0 ? this.data.withdrawData.commission_money : this.data.withdrawData.lucky_money
+    if (this.data.money > money) {
+      wx.showToast({
+        title: `您可提现的金额为：${money}，请重新输入`,
+        icon: 'none'
+      })
+      return
+    }
+
     // idx 0佣金 1幸运奖
     this.createWithdraw({
       type: 1 + Number(this.data.idx),

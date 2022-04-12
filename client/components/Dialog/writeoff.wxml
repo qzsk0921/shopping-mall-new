@@ -4,7 +4,7 @@
 <view class="dialog-wrap {{dialogVisible?'':'fadeout'}}">
   <view class="mask" bindtap="dialogTapHandle"></view>
   <view class="dialog">
-    <image class="image-qr" src="https://sharepuls.xcmbkj.com/shop_adm_2022-03-115459.jpg" mode="aspectFill"></image>
+    <image class="image-qr" src="{{url}}" mode="aspectFill"></image>
     <view class="txt1 txt">将此二维码展示给商家</view>
     <view class="txt2 txt">核销即可</view>
   </view>

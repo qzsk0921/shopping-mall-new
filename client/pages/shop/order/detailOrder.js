@@ -8,7 +8,9 @@ import {
   addOrder,
   rePay
 } from '../../../api/order'
-
+import {
+  getQrcode
+} from '../../../api/writeoff'
 // Page({
 create(store, {
   /**
@@ -120,16 +122,31 @@ create(store, {
   },
   // 一键核销 点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销
   allWriteoffHandle() {
-    console.log('点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销')
-
-    this.setData({
-      dialogVisible: true
+    // console.log('点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销')
+    this.getQrcode({
+      type: 2,
+      order_id: this.data.orderData.id,
+    }).then(res => {
+      this.setData({
+        dialogVisible: true,
+        url: res.msg.url
+      })
     })
   },
   // 单个核销
   oneWriteoffHandle(e) {
-    this.setData({
-      dialogVisible: true
+    const item = e.currentTarget.dataset.item
+
+    this.getQrcode({
+      type: 1,
+      code_id: item.id,
+      order_id: this.data.orderData.id,
+    }).then(res => {
+      this.setData({
+        dialogVisible: true,
+        url: res.msg.url
+        // url: 'https://sharepuls.xcmbkj.com/shop_adm_2022-02-231834.jpg'
+      })
     })
   },
   // 取消订单 删除订单
@@ -333,6 +350,15 @@ create(store, {
   rePay(data) {
     return new Promise((resolve, reject) => {
       rePay(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  getQrcode(data) {
+    return new Promise((resolve, reject) => {
+      getQrcode(data).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)
