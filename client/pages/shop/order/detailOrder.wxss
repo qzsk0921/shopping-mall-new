@@ -28,7 +28,7 @@
   color: #FF723A;
 }
 
-.section1.status2 .left .row1 {
+.section1.status2 .left .row1,.section1.status4 .left .row1 {
   color: #666666;
 }
 
@@ -79,8 +79,7 @@
 
 .section2 {
   margin: 20rpx auto 0;
-  /* padding: 25rpx 24rpx 30rpx; */
-  padding: 0 24rpx;
+  padding: 25rpx 24rpx 30rpx;
   width: 702rpx;
   /* height: 142rpx; */
   background: #FFFFFF;

@@ -184,8 +184,9 @@ create(store, {
       })
     }
 
-    this.getGroupbargainList()
-
+    if(!this.data.groupData.cache.length) {
+      this.getGroupbargainList()
+    }
   },
 
   /**

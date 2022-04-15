@@ -1,5 +1,9 @@
 // components/Dialog/json-add.js
-Component({
+import store from '../../store/common'
+import create from '../../utils/create'
+
+create({
+  // Component({
   /**
    * 组件的属性列表
    */
@@ -8,7 +12,8 @@ Component({
       type: Boolean,
       value: false
     },
-    navHeight: Number
+    navHeight: Number,
+    setting: Object
   },
 
   /**
@@ -17,7 +22,6 @@ Component({
   data: {
 
   },
-
   /**
    * 组件的方法列表
    */
@@ -28,5 +32,16 @@ Component({
       })
       // this.canvas.width = this.canvas.height = 0
     },
-  }
+  },
+  lifetimes: {
+    ready() {
+      // 在组件在视图层布局完成后执行
+    },
+    attached: function () {
+      // 在组件实例进入页面节点树时执行
+    },
+    detached: function () {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  },
 })

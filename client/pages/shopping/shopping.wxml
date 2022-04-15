@@ -60,7 +60,7 @@
                   <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                   {{item.goods_name}} {{item.spec}}
                 </view>
-                <view class="unit">{{item.unitName}}</view>
+                <view class="unit">{{item.spec}}</view>
               </view>
               <!-- 未授权 -->
               <!-- <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
@@ -111,10 +111,10 @@
               <view wx:if="{{itemName.market_price}}" class="origin-price">￥{{itemName.market_price}}</view>
             </view>
           </view>
-          <view class="shopcart-box" catchtap="addArtHandle" data-item="{{itemName}}" data-index="{{idx}}">
+          <!-- <view class="shopcart-box" catchtap="addArtHandle" data-item="{{itemName}}" data-index="{{idx}}">
             <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
             <view wx:if="{{itemName.cart_number}}" class="shopcart-info">{{itemName.cart_number}}</view>
-          </view>
+          </view> -->
         </view>
       </view>
     </view>

@@ -1,9 +1,12 @@
 <!--pages/authorization/identity.wxml-->
 <!-- <text>pages/authorization/identity.wxml</text> -->
 <view class="container container-identity">
-  <view class="l1">欢迎使用旺莱联采</view>
+  <view class="l1">欢迎使用{{setting.small.small_name}}</view>
   <image class="l2" src="/assets/images/accredit_bk.png" mode="aspectFill"></image>
-  <image class="l3" src="/assets/images/logo.png" mode="aspectFill"></image>
+  <view class="l3 image-box">
+    <image class="icon-logo" wx:if="{{setting.small.small_logo}}" src="{{setting.small.small_logo}}" mode="aspectFill"></image>
+    <view class="icon-logo" wx:else></view>
+  </view>
   <view class="l4">该程序将获取以下授权:</view>
   <view class="l5">获得您的公开信息（昵称、头像等）</view>
   <view class="l6 btn-box">

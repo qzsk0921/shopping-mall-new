@@ -223,7 +223,8 @@
         {
           "name": "",
           "pathName": "pages/groupbargain/headinvitation",
-          "query": "",
+          "query": "invite_user_id=30",
+          "launchMode": "default",
           "scene": null
         },
         {
@@ -260,6 +261,13 @@
           "name": "",
           "pathName": "pages/mine/writeoff/status",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/authorization/identity",
+          "query": "",
+          "launchMode": "default",
           "scene": null
         }
       ]

@@ -11,6 +11,86 @@ import {
   updateUserInfo
 } from '../../api/user'
 
+let options2 = [{
+    id: 1,
+    imgName: 'my_icon_coupons',
+    name: '优惠券',
+    url: '/pages/mine/coupon/coupon?from=mine'
+  },
+  {
+    id: 2,
+    imgName: 'my_icon_address',
+    name: '收货地址',
+    url: '/pages/location/index/index?from=mine'
+  },
+  {
+    id: 3,
+    imgName: 'my_icon_consume',
+    name: '消费记录',
+    url: '/pages/mine/expensesRecord/expensesRecord?from=mine'
+  },
+  // {
+  //   id: 4,
+  //   imgName: 'my_icon_certification',
+  //   name: '资质认证',
+  //   url: '/pages/mine/certification/certification?from=mine'
+  // },
+  // {
+  //   id: 5,
+  //   imgName: 'my_icon_customer',
+  //   name: '我的客户',
+  //   url: '/pages/mine/customer/customer?from=mine'
+  // },
+  {
+    id: 6,
+    imgName: 'my_icon_problem',
+    name: '常见问题',
+    url: '/pages/mine/faq/index?from=mine'
+  },
+  {
+    id: 9,
+    imgName: 'my_icon_service',
+    name: '联系客服',
+    url: '/pages/mine/set/set?from=mine'
+  },
+  {
+    id: 7,
+    imgName: 'my_icon_focus',
+    name: '关注公众号',
+    url: '/pages/mine/focus/index'
+  },
+  {
+    id: 8,
+    imgName: 'my_icon_set',
+    name: '设置',
+    url: '/pages/mine/set/set?from=mine'
+  },
+  {
+    id: 10,
+    imgName: 'my_icon_invite',
+    name: '团长邀请',
+    url: '/pages/mine/set/set?from=mine'
+  },
+  {
+    id: 11,
+    imgName: 'my_icon_scan',
+    name: '扫码核销',
+    url: '/pages/mine/set/set?from=mine'
+  },
+  {
+    id: 12,
+    imgName: 'my_pt',
+    name: '我的拼团',
+    url: '/pages/mine/group/group?from=mine'
+  },
+  {
+    id: 13,
+    imgName: 'my_icon_wallet',
+    name: '钱包',
+    url: '/pages/mine/wallet/wallet?from=mine'
+  },
+]
+
 // Page({
 create(store, {
   /**
@@ -249,10 +329,10 @@ create(store, {
       },
       fail(res) {
         console.log(res)
-        wx.showToast({
-          title: '无效二维码',
-          icon: 'none'
-        })
+        // wx.showToast({
+        //   title: '无效二维码',
+        //   icon: 'none'
+        // })
       }
     })
   },
@@ -330,6 +410,7 @@ create(store, {
   onShow: function () {
     console.log(this.data.userInfo)
     // console.log('profile show')
+    let tempOptions2 = JSON.parse(JSON.stringify(options2))
     getUserDetail().then(res => {
       const myData = {
         userInfo: res.data,
@@ -339,34 +420,43 @@ create(store, {
       // 我的客户入口需要是业务员才有
       if (!res.data.is_sale || !res.data.is_invitation_captain) {
         if (!res.data.is_sale) {
-          this.data.options2.some((item, index) => {
+          tempOptions2.some((item, index) => {
             if (item.id === 5) {
-              this.data.options2.splice(index, 1)
+              tempOptions2.splice(index, 1)
             }
           })
         }
-        
+        // 团长邀请
         if (!res.data.is_invitation_captain) {
-          this.data.options2.some((item, index) => {
+          tempOptions2.some((item, index) => {
             if (item.id === 10) {
-              this.data.options2.splice(index, 1)
+              tempOptions2.splice(index, 1)
+            }
+          })
+        }
+
+        // 我的拼团
+        if (!res.data.is_captain) {
+          tempOptions2.some((item, index) => {
+            if (item.id === 12) {
+              tempOptions2.splice(index, 1)
             }
           })
         }
 
         // 扫码核销
-        if(!res.data.is_check_order) {
-          this.data.options2.some((item, index) => {
+        if (!res.data.is_check_order) {
+          tempOptions2.some((item, index) => {
             if (item.id === 11) {
-              this.data.options2.splice(index, 1)
+              tempOptions2.splice(index, 1)
             }
           })
         }
 
-        myData.options2 = this.data.options2
+        myData.options2 = tempOptions2
         myData.option2Show = true
       } else {
-        myData.options2 = this.data.options2
+        myData.options2 = tempOptions2
         myData.option2Show = true
       }
 

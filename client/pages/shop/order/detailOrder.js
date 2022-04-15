@@ -123,6 +123,15 @@ create(store, {
   // 一键核销 点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销
   allWriteoffHandle() {
     // console.log('点击显示核销二维码，商家扫码核销，对用户该订单的所有核销码进行核销')
+    // 拼团商品未拼成提示 请等待拼团完成
+    if (this.data.orderData.bargaining_info && this.data.orderData.bargaining_info.status != 2) {
+      wx.showToast({
+        title: '请等待拼团完成',
+        icon: 'none'
+      })
+      return
+    }
+
     this.getQrcode({
       type: 2,
       order_id: this.data.orderData.id,
@@ -135,6 +144,15 @@ create(store, {
   },
   // 单个核销
   oneWriteoffHandle(e) {
+    // 拼团商品未拼成提示 请等待拼团完成
+    if (this.data.orderData.bargaining_info && this.data.orderData.bargaining_info.status != 2) {
+      wx.showToast({
+        title: '请等待拼团完成',
+        icon: 'none'
+      })
+      return
+    }
+
     const item = e.currentTarget.dataset.item
 
     this.getQrcode({
@@ -266,9 +284,24 @@ create(store, {
       'success': function (res) {
         console.log(res)
         // 支付成功后，返回个人中心，刷新个人中心页面
-        wx.switchTab({
-          url: '/pages/profile/profile',
+        // wx.switchTab({
+        //   url: '/pages/profile/profile',
+        // })
+
+        // 刷新数据
+        this.getOrderDetail({
+          order_id: this.data.orderData.id
+        }).then(res => {
+          this.setData({
+            orderData: res.data
+          })
         })
+
+        wx.showToast({
+          title: '支付成功',
+          icon: 'none'
+        })
+
         // 获取消息下发权限(只在支付回调或tap手势事件能调用)
         // wx.requestSubscribeMessage({
         //   tmplIds: ['mtwGRB07oFL2fJgoiIipKVCYFFHS0vytiw2rTHqtAz8', 'gB9gMYOrOkLl-yTHdBP5vUS5rgwsTW1hjUYNml-57Go'],
@@ -370,7 +403,7 @@ create(store, {
    */
   onLoad: function (options) {
     const {
-      order_id
+      order_id,
     } = options
 
     if (order_id) {
@@ -420,7 +453,13 @@ create(store, {
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    const pages = getCurrentPages()
+    if (pages[pages.length - 2].route !== 'pages/shop/order/myOrder') {
+      console.log('销毁的页面:' + pages)
+      wx.navigateBack({
+        delta: pages.length - 3,
+      })
+    }
   },
 
   /**

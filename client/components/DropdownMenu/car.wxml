@@ -19,10 +19,13 @@
         <!-- <block wx:else> -->
         <view class="l1-1">
           <text>￥</text>
-          <text>{{myGoodsDetail.attribute.stock_arr[currentUnitIds].price}}</text>
+          <text>{{bargaining?myGoodsDetail.attribute.stock_arr[currentUnitIds].bargaining_price:myGoodsDetail.attribute.stock_arr[currentUnitIds].price}}</text>
         </view>
-        <view wx:if="{{myGoodsDetail.attribute.stock_arr[currentUnitIds].market_price}}" class="l1-2">
+        <!-- <view wx:if="{{myGoodsDetail.attribute.stock_arr[currentUnitIds].market_price}}" class="l1-2">
           <text>￥{{myGoodsDetail.attribute.stock_arr[currentUnitIds].market_price}}</text>
+        </view> -->
+        <view wx:if="{{bargaining}}" class="l1-2">
+          <text>￥{{myGoodsDetail.attribute.stock_arr[currentUnitIds].price}}</text>
         </view>
         <!-- </block> -->
       </view>

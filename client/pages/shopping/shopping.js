@@ -372,7 +372,7 @@ create(store, {
     // 授权校验
     if (!this.checkAuth()) return
     // 资质校验
-    if (!this.certCheck()) return
+    // if (!this.certCheck()) return
 
     // 1.有购物券 跳转至我的购物券 2.没购物券 跳转至领券中心页面
     if (this.data.cartData.coupon_total) {
@@ -618,8 +618,9 @@ create(store, {
       shop_id: this.store.data.shop_id,
       goods_id: dataset.item.id,
       // goods_num: dataset.item.cart_number + 1,
-      goods_num: dataset.item.one_cart_number + 1
+      goods_num: dataset.item.one_cart_number + 1,
       // goods_num: 1
+      // attribute_value_str: object.keys(dataset.item.attribute.stock_arr)[0]
     }
 
     this.addNumCart(myData).then(res => {

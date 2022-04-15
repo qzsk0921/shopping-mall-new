@@ -15,6 +15,16 @@ create(store, {
   data: {
 
   },
+  protocolHandle(e) {
+    // 隐私协议10，用户协议9，关于我们7
+    if (e.target.dataset.id) {
+      const id = e.target.dataset.id
+      // 借faq页面一用
+      wx.navigateTo({
+        url: `/pages/mine/faq/detail?id=${id}`,
+      })
+    }
+  },
   getPhoneNumber(e) {
     console.log(e)
     if (e.detail.encryptedData) {
@@ -22,7 +32,7 @@ create(store, {
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv,
       }
-      if(this.store.data.sale_id) {
+      if (this.store.data.sale_id) {
         myData.sale_id = this.store.data.sale_id
       }
       this.updatePhone(myData).then(res => {
@@ -69,7 +79,13 @@ create(store, {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getApp().getSettingCallback = (setting) => {
+      this.setData({
+        setting
+      })
+      this.store.data.setting = setting
+      this.update()
+    }
   },
 
   /**
@@ -83,7 +99,11 @@ create(store, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (!this.data.setting) {
+      this.setData({
+        setting: this.store.data.setting
+      })
+    }
   },
 
   /**

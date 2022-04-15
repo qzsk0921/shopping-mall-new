@@ -14,12 +14,12 @@
         <view class="text">暂无更多内容</view>
       </view>
       <view class="item-box" wx:else>
-        <view class="item" wx:for="{{historyList.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGoodsDetail">
+        <view class="item" wx:for="{{historyList.cache}}" wx:key="unique" data-item="{{item}}" bindtap="toGoodsDetail">
           <image class="icon-pri" src="{{item.thumb}}" mode="aspectFill"></image>
           <view class="cont">
             <view class="l12-box">
               <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 95rpx;':''}}">
-                <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
+                <view wx:if="{{!item.bargaining_status&& (item.is_pre_sale===1 || item.activity_info.activity_name)}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view>
                 <view>{{item.goods_name}} {{item.spec}}</view>
               </view>
               <view class="unit one-txt-cut">{{item.goods_content}}</view>
@@ -37,10 +37,10 @@
               <view wx:if="{{item.market_price}}" class="origin-price">￥{{item.market_price}}</view>
             </view>
           </view>
-          <view class="shopcart-box" catchtap="addArtHandle" data-item="{{item}}" data-index="{{index}}">
+          <!-- <view class="shopcart-box" catchtap="addArtHandle" data-item="{{item}}" data-index="{{index}}">
             <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
             <view wx:if="{{item.cart_number}}" class="shopcart-info">{{item.cart_number}}</view>
-          </view>
+          </view> -->
         </view>
       </view>
     </view>

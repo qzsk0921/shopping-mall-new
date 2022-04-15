@@ -10,7 +10,21 @@ export default {
       isIphoneX: null,
     },
     settingInfo: {}, //微信设置信息 settingInfo.authSetting['scope.userInfo'](微信已授权)
-
+    setting: {
+      "mp_link": {
+        // "mp_link": "https://mp.weixin.qq.com/s?__biz=MzkwNTI1NjE5OA==&mid=2247483750&idx=1&sn=fc66b28282e0c2f427d780833dcb6664&chksm=c0fbcd0ff78c44196871e740838e105ae387c35356c0b04ae54e35e1b103c0e07682007c4b66#rd"
+      },
+      "bargaining_time": {
+        // "bargaining_time": "10"
+      },
+      "small": {
+        // "small_name": "32",
+        // "small_logo": "https://retailers-qn.xcmbkj.com/admin/config/shop_adm_2022-04-136936.png"
+      },
+      "stop_content": {
+        // "stop_content": "内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1"
+      }
+    }, //公共信息 logo 文案等
     //定位位置 ad_info{object} address福建省厦门市思明区康泰路5-1-107号 address_component{city: 厦门市, district: 思明区, nation: 中国,province: 福建省,street: 康泰路,street_number: 康泰路5-1-107号} address_reference{object} formatted_addresses{recommend: "中共厦门市委员会", rough: "中共厦门市委员会"} location{lat: 24.47951, lng: 118.08948}
     location: {},
     //收货地址

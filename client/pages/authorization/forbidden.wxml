@@ -4,7 +4,7 @@
 <view class="container container-forbidden">
   <image class="l1" src="/assets/images/home_disable.png" mode="aspectFill"></image>
   <view class="l2">您的账号存在<text>异常</text></view>
-  <view class="l3">请联系(0592)208 5025咨询</view>
+  <view class="l3">{{setting.stop_content.stop_content}}</view>
   <view class="l6 btn-box">
     <navigator class="btn btn-confirm" open-type="exit" target="miniProgram">确定</navigator>
   </view>

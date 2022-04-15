@@ -8,6 +8,9 @@ import {
   setTrack
 } from './api/data'
 
+import {
+  getSetting
+} from './api/setting'
 import store from './store/common'
 // import create from './utils/create'
 
@@ -31,6 +34,10 @@ App({
               })
             }
 
+            if (this.getUserInfoCallback) {
+              this.getUserInfoCallback(res.data)
+            }
+
             this.globalData.userInfo = res.data
             store.data.userInfo = res.data
             store.update()
@@ -46,6 +53,9 @@ App({
           wx.reLaunch({
             url: '/pages/authorization/forbidden',
           })
+        }
+        if (this.getUserInfoCallback) {
+          this.getUserInfoCallback(res.data)
         }
 
         this.globalData.userInfo = res.data
@@ -83,6 +93,19 @@ App({
     this.getSystemInfo()
     // 版本更新
     this.update()
+    // 公共配置参数
+    this.getSetting({
+      type: 'mp_link,bargaining_time,small,stop_content'
+    }).then(res => {
+      if (this.getSettingCallback) {
+        console.log('app getSettingCallback')
+        this.getSettingCallback(res.data)
+      } else {
+        store.data.setting = res.data
+        store.update()
+        console.log(store.data.setting)
+      }
+    })
   },
   getSystemInfo() {
     const _this = this
@@ -232,6 +255,15 @@ App({
     })
   },
 
+  getSetting(data) {
+    return new Promise((resolve, reject) => {
+      getSetting(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
   login(data) {
     return new Promise((resolve, reject) => {
       login(data).then(res => {

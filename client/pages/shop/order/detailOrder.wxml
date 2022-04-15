@@ -14,9 +14,9 @@
     <view class="section1 status{{orderData.status}}">
       <view class="left">
         <!-- status 状态 0:待支付 1:已支付 2:已取消 3:已完成-->
-        <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':orderData.status===2?'已取消':'已完成'}}</view>
+        <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':orderData.status===2?'已取消':orderData.status===3?'已完成':'已退款'}}</view>
         <!-- bargaining_status 0:待开奖 1:已中奖 2:未中奖 -1:拼团已解散 -->
-        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(orderData.bargaining_info.id?'还差1人拼成':'订单已成功支付'):orderData.status===2?'订单已经取消':orderData.status===3?(orderData.bargaining_info.bargaining_status===2?'订单已完成':'拼团成功'):'已退款'}}</view>
+        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(orderData.bargaining_info.id?'还差'+orderData.bargaining_info.last_join_member+'人拼成':'订单已成功支付'):orderData.status===2?'订单已经取消':orderData.status===3?(orderData.bargaining_info.bargaining_status===2?'订单已完成':'拼团成功'):'已退款'}}</view>
       </view>
       <view class="right">
         <block wx:if="{{orderData.bargaining_info.id}}">
@@ -43,7 +43,7 @@
       </view>
     </view>
     <!-- 1:送货上门 2:到店消费 -->
-    <view class="section2 {{orderData.delivery_type===2?'online':'offline'}}">
+    <view class="section2 {{orderData.delivery_type===2?'offline':'online'}}">
       <block wx:if="{{orderData.delivery_type===2}}">
         <view class="shopinfo">
           <view class="r1">
@@ -78,7 +78,9 @@
       </block>
     </view>
     <!-- 到店核销 -->
-    <view wx:if="{{orderData.delivery_type===2&&orderData.bargaining_info.id}}" class="writeoff">
+    <!-- <view wx:if="{{orderData.delivery_type===2&&orderData.bargaining_info.id}}" class="writeoff"> -->
+    <!-- 到店消费和不是已退款 -->
+    <view wx:if="{{orderData.delivery_type===2&&orderData.status!==4}}" class="writeoff">
       <view class="r1">
         <text>消费券码</text>
         <view class="btn btn-writeoff {{'writeenoff'}}" bindtap="allWriteoffHandle">一键核销</view>
@@ -107,7 +109,7 @@
             <image class="icon-goods" src="{{orderData.goods_list[0].thumb}}" mode="aspectFill"></image>
             <view class="cont">
               <view class="tit">{{orderData.goods_list[0].goods_name}} {{orderData.goods_list[0].unitName}}*{{orderData.goods_list[0].cart_number}}</view>
-              <view class="des">{{orderData.goods_list[0].goods_content}}阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水阿</view>
+              <view class="des">{{orderData.goods_list[0].goods_content}}</view>
             </view>
           </view>
           <view class="l2-2-right">

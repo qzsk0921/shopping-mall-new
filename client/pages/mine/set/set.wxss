@@ -12,6 +12,7 @@
   margin-top: 80rpx;
   width: 180rpx;
   height: 180rpx;
+  border-radius: 28rpx;
 }
 
 .brand .name {

@@ -6,8 +6,8 @@
   </view>
   <view class="content">
     <view class="brand">
-      <image src="/assets/images/set_logo.png" mode="aspectFill"></image>
-      <view class="name">旺莱联采</view>
+      <image src="{{small.small_logo}}" mode="aspectFill"></image>
+      <view class="name">{{small.small_name}}</view>
     </view>
     <view class="list-box">
       <view wx:for="{{setList}}" wx:key="unique" class="cell" data-id="{{item.id}}" bindtap="cellHandle">

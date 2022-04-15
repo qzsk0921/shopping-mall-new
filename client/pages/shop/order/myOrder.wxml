@@ -115,7 +115,7 @@
               <view class="left">{{commontools.formatTime(item.create_time*1000)}}</view>
               <!-- 0:待支付 1:已支付 2:已取消 -->
               <view class="right status{{item.status}}">
-                <text>{{item.status===0?'待支付':item.status===1?'已支付':'已取消'}}</text>
+                <text>{{item.status===0?'待支付':item.status===1?'已支付':item.status===2?'已取消':item.status===3?'已完成':item.status===4?'已退款':''}}</text>
                 <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
               </view>
             </view>

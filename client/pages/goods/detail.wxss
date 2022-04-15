@@ -432,6 +432,7 @@
 .groupbargain .r2 .r2-r1 .r2-r1-l .icon-groupbargain-avatar {
   height: 80rpx;
   width: 80rpx;
+  border-radius: 50%;
 }
 
 .groupbargain .r2 .r2-r1 .r2-r1-l .icon-groupbargain-avatar:not(:first-child) {

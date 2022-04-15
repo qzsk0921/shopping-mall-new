@@ -10,13 +10,14 @@
   <view class="content">
     <view wx:if="{{member!=='all'}}" class="r1">
       <view class="progress">
-        <view class="txt">还差{{memberData.total_join_number-memberData.join_number}}人拼成</view>
+        <view class="txt">{{memberData.total_join_number===memberData.join_number?'已拼成':'还差'+(memberData.total_join_number-memberData.join_number)+'人拼成'}}</view>
         <view class="percentage" style="width:{{tools.parsePercentage(memberData.total_join_number,memberData.join_number)}}"></view>
       </view>
       <view class="num"><text>{{memberData.join_number}}</text>/{{memberData.total_join_number}}</view>
     </view>
     <view class="r2">
       <view wx:for="{{memberData.join_member_list}}" wx:key="unique" class="item">
+        <image wx:if="{{memberData.total_join_number===memberData.join_number}}" class="icon-success" src="{{item.status===4?'/assets/images/pt_people_lucky.png':'/assets/images/pt_people_success.png'}}" mode="aspectFill"></image>
         <view class="left">
           <image class="avatar" src="{{item.avatar_url}}" mode="aspectFill"></image>
           <view class="nickname">{{item.nick_name}}</view>

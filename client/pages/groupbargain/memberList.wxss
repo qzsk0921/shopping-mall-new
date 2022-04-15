@@ -52,6 +52,15 @@
   height: 112rpx;
   margin-top: 12rpx;
   background: #ffffff;
+  position: relative;
+}
+
+.r2 .item .icon-success {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 86rpx;
+  height: 100%;
 }
 
 .r2 .item .left {

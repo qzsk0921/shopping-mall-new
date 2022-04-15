@@ -39,9 +39,27 @@ create(store, {
     // 未授权
     if (!this.checkAuth()) return
 
-    wx.navigateTo({
-      url: `/pages/goods/detail?id=${e.currentTarget.dataset.id}`,
-    })
+    const item = e.currentTarget.dataset.item
+
+    // 该商品的拼团活动已结束 0:新建 1:上架 2:下架 3:删除
+    if (item.status === 2) {
+      wx.showToast({
+        title: '该商品的拼团活动已结束',
+        icon: 'none'
+      })
+      return
+    }
+
+
+    if (item.goods_group_bargaining_team_id) {
+      wx.navigateTo({
+        url: `/pages/goods/detail?id=${item.id}&goods_group_bargaining_team_id=${item.goods_group_bargaining_team_id}`,
+      })
+    } else {
+      wx.navigateTo({
+        url: `/pages/goods/detail?id=${item.id}`,
+      })
+    }
   },
   checkAuth() {
     if (!this.store.data.userInfo.avatar_url) {

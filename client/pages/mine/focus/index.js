@@ -35,6 +35,12 @@ create(store, {
         userInfo: this.store.data.userInfo
       })
     }
+
+    if(!this.data.setting) {
+      this.setData({
+        setting: this.store.data.setting
+      })
+    }
   },
 
   /**

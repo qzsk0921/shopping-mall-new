@@ -77,6 +77,13 @@
 
 .cont .r2 .right {
   padding-left: 24rpx;
+  flex: 1;
+}
+
+.cont .r2 .right .r-r1,
+.cont .r2 .right .r-r3 {
+  display: flex;
+  justify-content: space-between;
 }
 
 .cont .r2 .right .r-r1>view,
@@ -126,6 +133,10 @@
   color: #FC4953;
 }
 
+.cont .item.status3 .r2 .right .r-r3-r {
+  color: #333333;
+}
+
 .cont .r3 {
   border-top: 1rpx solid #E6E6E6;
   margin: 0 24rpx;
@@ -137,8 +148,8 @@
 
 .cont .r3 image {
   margin-left: -6rpx;
-  width: 38rpx;
-  height: 38rpx;
+  width: 40rpx;
+  height: 40rpx;
   border: 2rpx solid #FFFFFF;
   border-radius: 50%;
 }

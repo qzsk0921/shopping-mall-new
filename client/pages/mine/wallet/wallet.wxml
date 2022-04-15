@@ -8,7 +8,7 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#FFFFFF" bgColor="#FF723A" />
   </view>
   <view class="content">
-    <view wx:if="{{!userInfo.is_captain}}" class="r1 query-r1">
+    <view wx:if="{{userInfo.is_captain}}" class="r1 query-r1">
       <view class="options" bindtap='changeOption'>
         <view wx:for="{{options}}" wx:key="unique" data-index="{{index}}" class="option {{optionIndex==index?'active':''}}">
           <view calss="text" data-index="{{index}}">{{item}}</view>

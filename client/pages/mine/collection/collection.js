@@ -36,9 +36,45 @@ create(store, {
   //跳转至商品详情页
   itemHandle(e) {
     // console.log('itemHandle')
-    wx.navigateTo({
-      url: `/pages/goods/detail?id=${e.currentTarget.dataset.id}`,
-    })
+    // 未授权
+    if (!this.checkAuth()) return
+
+    const item = e.currentTarget.dataset.item
+    // 该商品的拼团活动已结束 0:新建 1:上架 2:下架 3:删除
+    if (item.status === 2) {
+      wx.showToast({
+        title: '该商品的拼团活动已结束',
+        icon: 'none'
+      })
+      return
+    }
+
+    if (item.goods_group_bargaining_team_id) {
+      wx.navigateTo({
+        url: `/pages/goods/detail?id=${item.id}&goods_group_bargaining_team_id=${item.goods_group_bargaining_team_id}`,
+      })
+    } else {
+      wx.navigateTo({
+        url: `/pages/goods/detail?id=${item.id}`,
+      })
+    }
+
+  },
+  checkAuth() {
+    if (!this.store.data.userInfo.avatar_url) {
+      // 未授权先去授权页
+      wx.navigateTo({
+        url: '/pages/authorization/identity',
+      })
+      return false
+    } else if (!this.store.data.userInfo.phone) {
+      // 授权昵称头像还未授权手机号
+      wx.navigateTo({
+        url: '/pages/authorization/phone',
+      })
+      return false
+    }
+    return true
   },
   // 加入购物车
   addArtHandle(e) {
@@ -123,7 +159,7 @@ create(store, {
     const tempData = {
       page: this.data.collectionList.count,
       page_size: this.data.page_size,
-      shop_id: this.store.data.shop_id
+      // shop_id: this.store.data.shop_id
     }
 
     if (typeof dataObj === 'object') {

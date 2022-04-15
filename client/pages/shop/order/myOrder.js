@@ -30,8 +30,8 @@ create(store, {
     tab1Index: 0, //0全部 1待支付 2已支付 3已取消
     tab1Width: null,
 
-    tab2bar: ['全部', '待支付', '已支付', '已完成', '已取消'],
-    tab2Index: 0, //0全部 1待支付 2已支付 3已完成 4已取消
+    tab2bar: ['全部', '待支付', '已支付', '已完成', '已取消', '已退款'],
+    tab2Index: 0, //0全部 1待支付 2已支付 3已完成 4已取消 5已退款
     tab2Width: null,
     // tabbar: [{
     //   type: 'normal',
@@ -343,6 +343,10 @@ create(store, {
         cache: [], //couponNouseCache 未使用
         count: 1,
         total_page: 1,
+      }, {
+        cache: [], //couponNouseCache 未使用
+        count: 1,
+        total_page: 1,
       }]
     ],
     page: 1,
@@ -445,7 +449,7 @@ create(store, {
   parseStatus(tabIdx, type) {
     // type: 普通 normal, 拼团 groupbargain
     // 普通  '':全部 0：待支付 1:已支付 2:已取消
-    // 拼团  '':全部 0：待支付 1:已支付 2:已取消 3:已完成
+    // 拼团  '':全部 0：待支付 1:已支付 2:已取消 3:已完成 4:已退款
     let myStatus
     if (type === 'normal') {
       if (tabIdx == 0) {
@@ -470,6 +474,8 @@ create(store, {
       } else if (tabIdx == 4) {
         // myStatus = 3
         myStatus = 2
+      } else if (tabIdx == 5) {
+        myStatus = 4
       }
     }
 
@@ -480,11 +486,11 @@ create(store, {
     console.log('scrollToLower')
     const optionIndex = this.data.optionIndex
     const tabIndex = this.data.type === 'normal' ? this.data.tab1Index : this.data.tab2Index
-    
+
     let orderList = this.data.orderList
 
     if (orderListt[optionIndex][tabIndex].count + 1 > orderListt[optionIndex][tabIndex].total_page) return
-    
+
     this.setData({
       [`orderList${[optionIndex][tabIndex]}.count`]: ++orderList[optionIndex][tabIndex].count
     })
@@ -644,9 +650,14 @@ create(store, {
       'success': function (res) {
         console.log(res)
         // 支付成功后，返回个人中心，刷新个人中心页面
-        wx.switchTab({
-          url: '/pages/profile/profile',
+        // wx.switchTab({
+        //   url: '/pages/profile/profile',
+        // })
+
+        wx.navigateTo({
+          url: `/pages/shop/order/detailOrder?order_id=${payModel.order_id}`,
         })
+
         // 获取消息下发权限(只在支付回调或tap手势事件能调用)
         // wx.requestSubscribeMessage({
         //   tmplIds: ['mtwGRB07oFL2fJgoiIipKVCYFFHS0vytiw2rTHqtAz8', 'gB9gMYOrOkLl-yTHdBP5vUS5rgwsTW1hjUYNml-57Go'],

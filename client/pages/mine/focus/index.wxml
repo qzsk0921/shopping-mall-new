@@ -1,4 +1,4 @@
 <!--pages/mine/focus/index.wxml-->
 <!-- <text>pages/mine/focus/index.wxml</text> -->
 <!-- https://mp.weixin.qq.com/s?__biz=MzkwNTI1NjE5OA==&mid=2247483750&idx=1&sn=fc66b28282e0c2f427d780833dcb6664&chksm=c0fbcd0ff78c44196871e740838e105ae387c35356c0b04ae54e35e1b103c0e07682007c4b66#rd -->
-<web-view src="{{userInfo.mp_link}}"></web-view>
+<web-view src="{{setting.mp_link.mp_link}}"></web-view>

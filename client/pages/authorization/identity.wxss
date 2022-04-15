@@ -19,9 +19,19 @@
 }
 
 .l3 {
-  margin-top: -39rpx;
-  height: 150rpx;
+  margin: -39rpx auto 0;
   width: 150rpx;
+  height: 150rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 20rpx rgba(51, 51, 51, 0.12);
+  border-radius: 36rpx;
+  padding: 12rpx;
+}
+
+.l3>.icon-logo {
+  /* height: 126rpx; */
+  /* width: 126rpx; */
+  border-radius: 28rpx;
 }
 
 .l4 {

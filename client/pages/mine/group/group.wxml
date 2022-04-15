@@ -17,11 +17,11 @@
         <view class="item-box" wx:else>
           <view class="item status{{item.status}}" wx:for="{{groupData.cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toGroupDetail">
             <view class="r1">
-              <view class="l1">{{commontools.formatTime(item.create_time*1000)}}</view>
+              <view class="l1">有效期：{{commontools.formatTime(item.create_time*1000)}} — {{commontools.formatTime(item.expire_time*1000)}}</view>
               <!-- 状态 1:进行中 2:已完成 3:未拼成 -->
               <view class="l2">{{item.status===1?'进行中':item.status===2?'已拼成':'未拼成'}}</view>
             </view>
-            <view class="r2">
+            <view class="r2" bindtap="toDetailHandle" data-item="{{item}}">
               <view class="left">
                 <image class="icon-good" src="{{item.goods_info.thumb}}" mode="aspectFill"></image>
               </view>
@@ -36,8 +36,8 @@
                   </view>
                 </view>
                 <view class="r-r3">
-                  <view class="r-r3-l">佣金抽成比：<text>{{item.reward_rate*100}}%</text></view>
-                  <view class="r-r3-r">收入:￥{{item.reward_money}}</view>
+                  <view class="r-r3-l">佣金抽成比：<text>{{item.reward_rate}}%</text></view>
+                  <view class="r-r3-r">{{item.status===1?'预计收入':'收入'}}:￥{{item.status===3?0:item.reward_money}}</view>
                 </view>
               </view>
             </view>

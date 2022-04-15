@@ -63,6 +63,7 @@ export function getGoodsDetail(data) {
  * 商品收藏 goods/goods_like
  * @param {int} goods_id 商品id
  * @param {string} type 0:取消关注 1:关注
+ * @param {int} goods_group_bargaining_team_id 拼团id
  */
 export function setGoodsCollection(data) {
   return request({

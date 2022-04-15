@@ -9,7 +9,12 @@ import {
 // import {
 //   deepClone
 // } from '../../../utils/util'
+
+// 待支付价格
+let price_total = null
+
 // Page({
+
 create(store, {
 
   /**
@@ -84,15 +89,18 @@ create(store, {
           prevPage.setData({
             currentCouponId: 0,
             'orderData.coupon_discount_total': 0,
-            'orderData.price_total': this.toFixed(prevPageData.market_price_total, prevPageData.vip_discount_total, 2), //底部待支付金额
+            'orderData.price_total': price_total, //底部待支付金额
             'orderData.discount_total': prevPageData.vip_discount_total //底部已优惠金额
           })
         } else {
           // 没选变选中
+          if (!price_total) {
+            price_total = prevPageData.price_total
+          }
           prevPage.setData({
             currentCouponId: item.id,
             'orderData.coupon_discount_total': item.discount,
-            'orderData.price_total': this.toFixed(prevPageData.market_price_total, item.discount, 2) < 0 ? 0 : this.toFixed(prevPageData.market_price_total, item.discount, 2), //底部待支付金额
+            'orderData.price_total': this.toFixed(price_total, item.discount, 2) < 0 ? 0 : this.toFixed(price_total, item.discount, 2), //底部待支付金额
             'orderData.discount_total': item.discount //底部已优惠金额
           })
           wx.navigateBack({

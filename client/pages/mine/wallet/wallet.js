@@ -4,281 +4,282 @@ import create from '../../../utils/create'
 import {
   getWallet
 } from '../../../api/wallet'
-let withdraw = [{
-    // 佣金
-    count: 1,
-    total_page: 1,
-    "commission_money": "2.00",
-    "lucky_money": "0.60",
-    "total_money": 4,
-    "billing_money": 2,
-    "today_billing_money": 2,
-    cache: [{
-      "id": 31,
-      "group_bargaining_id": 1,
-      "goods_id": 538,
-      "total_join_number": 2,
-      "join_number": 2,
-      "total_pay_money": "20.00",
-      "expire_time": 1658960454,
-      "status": 2,
-      "captain_id": 1,
-      "update_time": 1648961512,
-      "create_time": 1648956854,
-      "error_msg": null,
-      "success_member_str": "2",
-      "reward_rate": "0.10",
-      "success_rate": "0.50",
-      "captain_reward_rate": "0.50",
-      "is_billing": 0,
-      "billing_money": "2.00",
-      "goods_info": {
-        "goods_name": "测试",
-        "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-        "goods_content": "测试笔",
-        "price": "3.00",
-        "bargaining_price": "10.00"
-      },
-      "join_member_list": [{
-          "nick_name": "hgao",
-          "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-          "create_time": 1638173252
-        },
-        {
-          "nick_name": "hgao11",
-          "avatar_url": "2311",
-          "create_time": 1638173252
-        }
-      ],
-      "month_money": {
-        "money": 2,
-        "month": "2022年04月",
-      },
-      "money": "2.00"
-    }, {
-      "id": 31,
-      "group_bargaining_id": 1,
-      "goods_id": 538,
-      "total_join_number": 2,
-      "join_number": 2,
-      "total_pay_money": "20.00",
-      "expire_time": 1658960454,
-      "status": 2,
-      "captain_id": 1,
-      "update_time": 1648961512,
-      "create_time": 1648956854,
-      "error_msg": null,
-      "success_member_str": "2",
-      "reward_rate": "0.10",
-      "success_rate": "0.50",
-      "captain_reward_rate": "0.50",
-      "is_billing": 0,
-      "billing_money": "2.00",
-      "goods_info": {
-        "goods_name": "测试",
-        "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-        "goods_content": "测试笔",
-        "price": "3.00",
-        "bargaining_price": "10.00"
-      },
-      "join_member_list": [{
-          "nick_name": "hgao",
-          "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-          "create_time": 1638173252
-        },
-        {
-          "nick_name": "hgao11",
-          "avatar_url": "2311",
-          "create_time": 1638173252
-        }
-      ],
-      "month_money": {
-        "money": 2,
-        "month": "2022年04月",
-      },
-      "money": "2.00"
-    }, {
-      "id": 31,
-      "group_bargaining_id": 1,
-      "goods_id": 538,
-      "total_join_number": 2,
-      "join_number": 2,
-      "total_pay_money": "20.00",
-      "expire_time": 1658960454,
-      "status": 2,
-      "captain_id": 1,
-      "update_time": 1648961512,
-      "create_time": 1648956854,
-      "error_msg": null,
-      "success_member_str": "2",
-      "reward_rate": "0.10",
-      "success_rate": "0.50",
-      "captain_reward_rate": "0.50",
-      "is_billing": 0,
-      "billing_money": "2.00",
-      "goods_info": {
-        "goods_name": "测试",
-        "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-        "goods_content": "测试笔",
-        "price": "3.00",
-        "bargaining_price": "10.00"
-      },
-      "join_member_list": [{
-          "nick_name": "hgao",
-          "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-          "create_time": 1638173252
-        },
-        {
-          "nick_name": "hgao11",
-          "avatar_url": "2311",
-          "create_time": 1638173252
-        }
-      ],
-      "month_money": {
-        "money": 2,
-        "month": "2022年05月",
-      },
-      "money": "2.00"
-    }],
-  },
-  {
-    // 幸运奖
-    count: 1,
-    total_page: 1,
-    "commission_money": "2.00",
-    "lucky_money": "0.60",
-    "total_money": 4,
-    "billing_money": 2,
-    "today_billing_money": 2,
-    cache: [{
-      "id": 31,
-      "group_bargaining_id": 1,
-      "goods_id": 538,
-      "total_join_number": 2,
-      "join_number": 2,
-      "total_pay_money": "20.00",
-      "expire_time": 1658960454,
-      "status": 2,
-      "captain_id": 1,
-      "update_time": 1648961512,
-      "create_time": 1648956854,
-      "error_msg": null,
-      "success_member_str": "2",
-      "reward_rate": "0.10",
-      "success_rate": "0.50",
-      "captain_reward_rate": "0.50",
-      "is_billing": 0,
-      "billing_money": "2.00",
-      "goods_info": {
-        "goods_name": "幸运测试",
-        "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-        "goods_content": "幸运测试笔",
-        "price": "3.00",
-        "bargaining_price": "10.00"
-      },
-      "join_member_list": [{
-          "nick_name": "hgao",
-          "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-          "create_time": 1638173252
-        },
-        {
-          "nick_name": "hgao11",
-          "avatar_url": "2311",
-          "create_time": 1638173252
-        }
-      ],
-      "month_money": {
-        "money": 2,
-        "month": "2022年04月",
-      },
-      "money": "2.00"
-    }, {
-      "id": 31,
-      "group_bargaining_id": 1,
-      "goods_id": 538,
-      "total_join_number": 2,
-      "join_number": 2,
-      "total_pay_money": "20.00",
-      "expire_time": 1658960454,
-      "status": 2,
-      "captain_id": 1,
-      "update_time": 1648961512,
-      "create_time": 1648956854,
-      "error_msg": null,
-      "success_member_str": "2",
-      "reward_rate": "0.10",
-      "success_rate": "0.50",
-      "captain_reward_rate": "0.50",
-      "is_billing": 0,
-      "billing_money": "2.00",
-      "goods_info": {
-        "goods_name": "幸运测试2",
-        "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-        "goods_content": "测试笔",
-        "price": "3.00",
-        "bargaining_price": "10.00"
-      },
-      "join_member_list": [{
-          "nick_name": "hgao",
-          "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-          "create_time": 1638173252
-        },
-        {
-          "nick_name": "hgao11",
-          "avatar_url": "2311",
-          "create_time": 1638173252
-        }
-      ],
-      "month_money": {
-        "money": 2,
-        "month": "2022年04月",
-      },
-      "money": "2.00"
-    }, {
-      "id": 31,
-      "group_bargaining_id": 1,
-      "goods_id": 538,
-      "total_join_number": 2,
-      "join_number": 2,
-      "total_pay_money": "20.00",
-      "expire_time": 1658960454,
-      "status": 2,
-      "captain_id": 1,
-      "update_time": 1648961512,
-      "create_time": 1648956854,
-      "error_msg": null,
-      "success_member_str": "2",
-      "reward_rate": "0.10",
-      "success_rate": "0.50",
-      "captain_reward_rate": "0.50",
-      "is_billing": 0,
-      "billing_money": "2.00",
-      "goods_info": {
-        "goods_name": "测试",
-        "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-        "goods_content": "测试笔",
-        "price": "3.00",
-        "bargaining_price": "10.00"
-      },
-      "join_member_list": [{
-          "nick_name": "hgao",
-          "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-          "create_time": 1638173252
-        },
-        {
-          "nick_name": "hgao11",
-          "avatar_url": "2311",
-          "create_time": 1638173252
-        }
-      ],
-      "month_money": {
-        "money": 2,
-        "month": "2022年05月",
-      },
-      "money": "2.00"
-    }],
-  }
-]
+// let withdraw = [{
+//     // 佣金
+//     count: 1,
+//     total_page: 1,
+//     "commission_money": "2.00",
+//     "lucky_money": "0.60",
+//     "total_money": 4,
+//     "billing_money": 2,
+//     "today_billing_money": 2,
+//     cache: [
+//       {
+//       "id": 31,
+//       "group_bargaining_id": 1,
+//       "goods_id": 538,
+//       "total_join_number": 2,
+//       "join_number": 2,
+//       "total_pay_money": "20.00",
+//       "expire_time": 1658960454,
+//       "status": 2,
+//       "captain_id": 1,
+//       "update_time": 1648961512,
+//       "create_time": 1648956854,
+//       "error_msg": null,
+//       "success_member_str": "2",
+//       "reward_rate": "0.10",
+//       "success_rate": "0.50",
+//       "captain_reward_rate": "0.50",
+//       "is_billing": 0,
+//       "billing_money": "2.00",
+//       "goods_info": {
+//         "goods_name": "测试",
+//         "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+//         "goods_content": "测试笔",
+//         "price": "3.00",
+//         "bargaining_price": "10.00"
+//       },
+//       "join_member_list": [{
+//           "nick_name": "hgao",
+//           "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
+//           "create_time": 1638173252
+//         },
+//         {
+//           "nick_name": "hgao11",
+//           "avatar_url": "2311",
+//           "create_time": 1638173252
+//         }
+//       ],
+//       "month_money": {
+//         "money": 2,
+//         "month": "2022年04月",
+//       },
+//       "money": "2.00"
+//     }, {
+//       "id": 31,
+//       "group_bargaining_id": 1,
+//       "goods_id": 538,
+//       "total_join_number": 2,
+//       "join_number": 2,
+//       "total_pay_money": "20.00",
+//       "expire_time": 1658960454,
+//       "status": 2,
+//       "captain_id": 1,
+//       "update_time": 1648961512,
+//       "create_time": 1648956854,
+//       "error_msg": null,
+//       "success_member_str": "2",
+//       "reward_rate": "0.10",
+//       "success_rate": "0.50",
+//       "captain_reward_rate": "0.50",
+//       "is_billing": 0,
+//       "billing_money": "2.00",
+//       "goods_info": {
+//         "goods_name": "测试",
+//         "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+//         "goods_content": "测试笔",
+//         "price": "3.00",
+//         "bargaining_price": "10.00"
+//       },
+//       "join_member_list": [{
+//           "nick_name": "hgao",
+//           "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
+//           "create_time": 1638173252
+//         },
+//         {
+//           "nick_name": "hgao11",
+//           "avatar_url": "2311",
+//           "create_time": 1638173252
+//         }
+//       ],
+//       "month_money": {
+//         "money": 2,
+//         "month": "2022年04月",
+//       },
+//       "money": "2.00"
+//     }, {
+//       "id": 31,
+//       "group_bargaining_id": 1,
+//       "goods_id": 538,
+//       "total_join_number": 2,
+//       "join_number": 2,
+//       "total_pay_money": "20.00",
+//       "expire_time": 1658960454,
+//       "status": 2,
+//       "captain_id": 1,
+//       "update_time": 1648961512,
+//       "create_time": 1648956854,
+//       "error_msg": null,
+//       "success_member_str": "2",
+//       "reward_rate": "0.10",
+//       "success_rate": "0.50",
+//       "captain_reward_rate": "0.50",
+//       "is_billing": 0,
+//       "billing_money": "2.00",
+//       "goods_info": {
+//         "goods_name": "测试",
+//         "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+//         "goods_content": "测试笔",
+//         "price": "3.00",
+//         "bargaining_price": "10.00"
+//       },
+//       "join_member_list": [{
+//           "nick_name": "hgao",
+//           "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
+//           "create_time": 1638173252
+//         },
+//         {
+//           "nick_name": "hgao11",
+//           "avatar_url": "2311",
+//           "create_time": 1638173252
+//         }
+//       ],
+//       "month_money": {
+//         "money": 2,
+//         "month": "2022年05月",
+//       },
+//       "money": "2.00"
+//     }],
+//   },
+//   {
+//     // 幸运奖
+//     count: 1,
+//     total_page: 1,
+//     "commission_money": "2.00",
+//     "lucky_money": "0.60",
+//     "total_money": 4,
+//     "billing_money": 2,
+//     "today_billing_money": 2,
+//     cache: [{
+//       "id": 31,
+//       "group_bargaining_id": 1,
+//       "goods_id": 538,
+//       "total_join_number": 2,
+//       "join_number": 2,
+//       "total_pay_money": "20.00",
+//       "expire_time": 1658960454,
+//       "status": 2,
+//       "captain_id": 1,
+//       "update_time": 1648961512,
+//       "create_time": 1648956854,
+//       "error_msg": null,
+//       "success_member_str": "2",
+//       "reward_rate": "0.10",
+//       "success_rate": "0.50",
+//       "captain_reward_rate": "0.50",
+//       "is_billing": 0,
+//       "billing_money": "2.00",
+//       "goods_info": {
+//         "goods_name": "幸运测试",
+//         "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+//         "goods_content": "幸运测试笔",
+//         "price": "3.00",
+//         "bargaining_price": "10.00"
+//       },
+//       "join_member_list": [{
+//           "nick_name": "hgao",
+//           "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
+//           "create_time": 1638173252
+//         },
+//         {
+//           "nick_name": "hgao11",
+//           "avatar_url": "2311",
+//           "create_time": 1638173252
+//         }
+//       ],
+//       "month_money": {
+//         "money": 2,
+//         "month": "2022年04月",
+//       },
+//       "money": "2.00"
+//     }, {
+//       "id": 31,
+//       "group_bargaining_id": 1,
+//       "goods_id": 538,
+//       "total_join_number": 2,
+//       "join_number": 2,
+//       "total_pay_money": "20.00",
+//       "expire_time": 1658960454,
+//       "status": 2,
+//       "captain_id": 1,
+//       "update_time": 1648961512,
+//       "create_time": 1648956854,
+//       "error_msg": null,
+//       "success_member_str": "2",
+//       "reward_rate": "0.10",
+//       "success_rate": "0.50",
+//       "captain_reward_rate": "0.50",
+//       "is_billing": 0,
+//       "billing_money": "2.00",
+//       "goods_info": {
+//         "goods_name": "幸运测试2",
+//         "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+//         "goods_content": "测试笔",
+//         "price": "3.00",
+//         "bargaining_price": "10.00"
+//       },
+//       "join_member_list": [{
+//           "nick_name": "hgao",
+//           "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
+//           "create_time": 1638173252
+//         },
+//         {
+//           "nick_name": "hgao11",
+//           "avatar_url": "2311",
+//           "create_time": 1638173252
+//         }
+//       ],
+//       "month_money": {
+//         "money": 2,
+//         "month": "2022年04月",
+//       },
+//       "money": "2.00"
+//     }, {
+//       "id": 31,
+//       "group_bargaining_id": 1,
+//       "goods_id": 538,
+//       "total_join_number": 2,
+//       "join_number": 2,
+//       "total_pay_money": "20.00",
+//       "expire_time": 1658960454,
+//       "status": 2,
+//       "captain_id": 1,
+//       "update_time": 1648961512,
+//       "create_time": 1648956854,
+//       "error_msg": null,
+//       "success_member_str": "2",
+//       "reward_rate": "0.10",
+//       "success_rate": "0.50",
+//       "captain_reward_rate": "0.50",
+//       "is_billing": 0,
+//       "billing_money": "2.00",
+//       "goods_info": {
+//         "goods_name": "测试",
+//         "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+//         "goods_content": "测试笔",
+//         "price": "3.00",
+//         "bargaining_price": "10.00"
+//       },
+//       "join_member_list": [{
+//           "nick_name": "hgao",
+//           "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
+//           "create_time": 1638173252
+//         },
+//         {
+//           "nick_name": "hgao11",
+//           "avatar_url": "2311",
+//           "create_time": 1638173252
+//         }
+//       ],
+//       "month_money": {
+//         "money": 2,
+//         "month": "2022年05月",
+//       },
+//       "money": "2.00"
+//     }],
+//   }
+// ]
 // Page({
 create(store, {
 
@@ -608,20 +609,20 @@ create(store, {
     userInfo: {
       handler(nv, ov, obj) {
         if (nv.is_captain) {
-          // 不是团长
+          // 团长
           this.setData({
-            optionIndex: 1
+            optionIndex: 0
           })
         } else {
-          // 团长
-          this.getWallet({
-            type: this.data.optionIndex + 1
-          }).then(res => {
-            // 过滤同月
-            this.setData({
-
-            })
+          this.setData({
+            optionIndex: 1,
           })
+          // // 不是团长
+          // this.getWallet({
+          //   type: this.data.optionIndex + 1
+          // }).then(res => {
+          //   // 过滤同月
+          // })
         }
       }
     }
@@ -659,7 +660,7 @@ create(store, {
   toMemberlistHandle(e) {
     const item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pages/groupbargain/memberList?member=all&goods_group_bargaining_team_id${item.id}`,
+      url: `/pages/groupbargain/memberList?member=all&goods_group_bargaining_team_id=${item.id}`,
     })
   },
   toWithdrawHandle() {

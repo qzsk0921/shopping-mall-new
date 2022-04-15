@@ -36,12 +36,14 @@
       <!-- 授权 -->
       <!-- <view class="l1" wx:else> -->
       <view class="l1">
-        <view class="share-recommend" data-type="recommend" bindtap="preShareHandle">
+        <!-- <view class="share-recommend" data-type="recommend"  -->
+        <button open-type="share" class="share-recommend" data-type="recommend">
           <image src="/assets/images/details_icon_share.png" mode="aspectFill"></image>
           <view>推荐给朋友</view>
-        </view>
+        </button>
+        <!-- </view> -->
         <text>￥</text><text>{{goodsDetail.price}}</text>
-        <view wx:if="{{goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
+        <view wx:if="{{!goodsDetail.bargaining_info && (goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name)}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
         <text wx:if="{{goodsDetail.market_price}}">￥{{goodsDetail.market_price}}</text>
       </view>
 
@@ -77,8 +79,8 @@
             <block wx:if="{{goodsDetail.bargaining_info.join_member_list.length}}">
               <image wx:for="{{goodsDetail.bargaining_info.join_member_list}}" wx:key="unique" class="icon-groupbargain-avatar" src="{{item.avatar_url}}" mode="aspectFill"></image>
             </block>
-            <block wx:if="{{tools.difference(5, goodsDetail.bargaining_info.join_member_list.length)}}" wx:key="unique">
-              <image wx:for="{{tools.difference(5,goodsDetail.bargaining_info.join_member_list.length)}}" wx:key="unique" class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
+            <block wx:if="{{tools.difference(goodsDetail.bargaining_info.total_join_number, goodsDetail.bargaining_info.join_member_list.length)}}" wx:key="unique">
+              <image wx:for="{{tools.difference(goodsDetail.bargaining_info.total_join_number,goodsDetail.bargaining_info.join_member_list.length)}}" wx:key="unique" class="icon-groupbargain-avatar" src="/assets/images/details_head_no.png" mode="aspectFill"></image>
             </block>
           </view>
           <view class="r2-r1-r" bindtap="toGroupbargainMemberlistHandle">
@@ -136,7 +138,8 @@
         </view>
         <view class="col2 col">
           <text class="name">单位</text>
-          <text class="val">{{goodsDetail.unit_arr[0].unitName}}</text>
+          <!-- <text class="val">{{goodsDetail.unit_arr[0].unitName}}</text> -->
+          <text class="val">{{goodsDetail.unit_name}}</text>
         </view>
       </view>
       <view class="l4">

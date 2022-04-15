@@ -56,7 +56,7 @@ create(store, {
   },
   // 长按二维码保存
   async qrPressHandle() {
-    const res = await this.getLocalImg('https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132')
+    const res = await this.getLocalImg(this.data.withdrawData.shop_info.wx_code)
     this.savePic(res.path)
   },
   // 保存图片到系统相册
@@ -122,6 +122,9 @@ create(store, {
           // 保存到本地
           // res = res.path;
           resolve(res)
+        },
+        fail(res) {
+          console.log(res)
         }
       })
     })

@@ -42,6 +42,7 @@ create({
         let currentUnitIdsArr = [],
           currentUnitIds = '',
           myAttr = []
+
         if (myGoodsDetail.attribute.attribute_arr.length) {
           myGoodsDetail.attribute.attribute_arr.forEach((item, index) => {
             myAttr[index] = {
@@ -70,6 +71,11 @@ create({
         Object.keys(myGoodsDetail.attribute.stock_arr).forEach(key => {
           if (!myGoodsDetail.attribute.stock_arr[key].cart_number) myGoodsDetail.attribute.stock_arr[key].cart_number = 1
         })
+
+        // 购物车有相同商品时，该拼团商品任保持数量1
+        if (this.data.bargaining) {
+          myGoodsDetail.attribute.stock_arr[currentUnitIds].cart_number = 1
+        }
 
         this.setData({
           myGoodsDetail,
@@ -179,10 +185,10 @@ create({
           is_use_coupon: 0,
           goods: []
         }
-        
+
         // 参与拼团
-        if(this.data.bargaining) {
-          orderData.goods_group_bargaining_team_id=this.data.myGoodsDetail.bargaining_info.id
+        if (this.data.bargaining) {
+          orderData.goods_group_bargaining_team_id = this.data.myGoodsDetail.bargaining_info.id
         }
 
         // if (this.store.data.address_id) {
@@ -215,18 +221,42 @@ create({
           // }
         })
       } else {
+        let orderData = {
+          is_use_coupon: 0,
+          goods: []
+        }
 
         let myData = {
           goods_id: this.data.myGoodsDetail.id,
           goods_num: this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
+          is_pre_goods: this.data.myGoodsDetail.is_pre_sale,
           attribute_value_str: this.data.currentUnitIds
         }
 
-        // 参与拼团
-        if(this.data.bargaining) {
-          orderData.goods_group_bargaining_team_id=this.data.myGoodsDetail.bargaining_info.id
-        }
+        orderData.goods.push(myData)
 
+        // 参与拼团
+        if (this.data.bargaining) {
+          orderData.goods_group_bargaining_team_id = this.data.myGoodsDetail.bargaining_info.id
+          this.preOrder(orderData).then(res => {
+            // 进入订单确认页若开通会员返回订单确认页需要更新数据
+            // getApp().globalData.orderData = orderData
+
+            const pre = JSON.stringify(res.data)
+
+            wx.navigateTo({
+              url: `/pages/shop/order/confirmOrder?preData=${pre}&delivery_type=${this.data.myGoodsDetail.delivery_type}`,
+            })
+          }).catch(err => {
+            console.log(err)
+            // if (err.msg === '地址不存在') {
+            //   wx.removeStorageSync('address_id')
+            //   this.confirmationOrderHandle()
+            // }
+          })
+          return false
+        }
+        console.log(8888)
         this.addNumCart(myData).then(res => {
 
           // 更新详情页购物车数据

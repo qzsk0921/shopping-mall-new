@@ -3,9 +3,25 @@
   text-align: center;
 }
 
-image {
-  width: 100% !important;
-  height: 100vh !important;
+.image-box {
+  margin: 361rpx auto 0;
+  width: 198rpx;
+  height: 198rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 4rpx 20rpx rgba(51, 51, 51, 0.12);
+  border-radius: 36rpx;
+  padding: 12rpx;
+}
+
+.logo {
+  border-radius: 28rpx;
+}
+
+.tit {
+  margin-top: 40rpx;
+  font-size: 50rpx;
+  font-weight: 500;
+  color: #333333;
 }
 
 .content {
@@ -17,14 +33,16 @@ image {
 }
 
 .btn-phone {
-  margin-top: 1004rpx;
-  width: 474rpx;
+  margin-top: 128rpx;
+  width: 598rpx !important;
   height: 88rpx;
+  background: linear-gradient(90deg, #FF9B74 0%, #FF521D 100%);
+  border-radius: 45rpx;
   line-height: 88rpx;
-  background: linear-gradient(90deg, #11D363 0%, #00B86C 100%);
-  border-radius: 44rpx;
+  font-size: 34rpx;
   color: #FFFFFF;
   letter-spacing: 2rpx;
+  font-weight: normal;
 }
 
 .right {
@@ -34,5 +52,5 @@ image {
 }
 
 .right text:not(:first-child) {
-  color: #139E67;
+  color: #FF9972;
 }

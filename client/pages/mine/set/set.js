@@ -74,6 +74,12 @@ create(store, {
         compatibleInfo: this.store.data.compatibleInfo
       })
     }
+
+    if (!this.data.small) {
+      this.setData({
+        small: this.store.data.setting.small
+      })
+    }
   },
 
   /**

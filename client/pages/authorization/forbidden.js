@@ -1,5 +1,9 @@
 // pages/authorization/forbidden.js
-Page({
+import store from '../../store/common'
+import create from '../../utils/create'
+
+create(store, {
+  // Page({
 
   /**
    * 页面的初始数据
@@ -7,12 +11,17 @@ Page({
   data: {
 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getApp().getSettingCallback = (setting) => {
+      this.setData({
+        setting
+      })
+      this.store.data.setting = setting
+      this.update()
+    }
   },
 
   /**
@@ -26,7 +35,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (!this.data.setting) {
+      this.setData({
+        setting: this.store.data.setting
+      })
+    }
   },
 
   /**

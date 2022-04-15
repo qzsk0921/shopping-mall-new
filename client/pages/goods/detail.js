@@ -41,91 +41,91 @@ create(store, {
     currentSwiperIndex: 1,
 
     goodsDetail: {
-      "id": 538,
-      "goods_name": "测试",
-      "brand_id": 1,
-      "category_id": 6,
-      "goods_banner": "[\"https:\\/\\/retailers-qn.xcmbkj.com\\/admin\\/goods\\/shop_adm_2022-03-295856.png\"]",
-      "goods_image": "[\"https:\\/\\/retailers-qn.xcmbkj.com\\/admin\\/goods\\/shop_adm_2022-03-295843.png\"]",
-      "goods_content": "测试笔",
-      "unit_id": 2,
-      "sort": 1,
-      "is_pre_sale": 0,
-      "pay_delivery_day": 12,
-      "price": "3.00",
-      "cost_price": "2.00",
-      "market_price": "3.00",
-      "sale_number": 0,
-      "status": 2,
-      "create_time": 1648549325,
-      "is_multi_unit": 1,
-      "delivery_type": 1,
-      "original_price": "2.00",
-      "activity_info": [],
-      "goods_banner_arr": [
-        "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png"
-      ],
-      "goods_image_arr": [
-        "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295843.png"
-      ],
-      "brand_name": "品牌1",
-      "is_like": 0,
-      "spec": "单位二",
-      "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
-      "attribute": {
-        "attribute_arr": [{
-            "attribute_id": 1,
-            "attribute_name": "色值",
-            "attribute_value_arr": [{
-                "id": 39,
-                "name": "蓝色"
-              },
-              {
-                "id": 40,
-                "name": "红色"
-              }
-            ]
-          },
-          {
-            "attribute_id": 3,
-            "attribute_name": "测试",
-            "attribute_value_arr": [{
-              "id": 45,
-              "name": "12"
-            }]
-          },
-          {
-            "attribute_id": 4,
-            "attribute_name": "帽子",
-            "attribute_value_arr": [{
-              "id": 47,
-              "name": "大"
-            }]
-          }
-        ],
-        "stock_arr": {
-          "39,45,47": {
-            "price": "2.00",
-            "stock": 2,
-            "cart_number": 0,
-            "attribute_value_name": "蓝色-12-大"
-          },
-          "40,45,47": {
-            "price": "3.00",
-            "stock": 5,
-            "cart_number": 0,
-            "attribute_value_name": "红色-12-大"
-          }
-        }
-      },
-      "shop_info": {
-        "name": "厦门会展中心",
-        "leader_phone": "13559570109",
-        "address": "福建省厦门市思明区软件园二期望海路10号楼之二,302-1室",
-        "latitude": 24.488806,
-        "longitude": 118.182724
-      },
-      "attribute_value_name": "蓝色-12-大"
+      // "id": 538,
+      // "goods_name": "测试",
+      // "brand_id": 1,
+      // "category_id": 6,
+      // "goods_banner": "[\"https:\\/\\/retailers-qn.xcmbkj.com\\/admin\\/goods\\/shop_adm_2022-03-295856.png\"]",
+      // "goods_image": "[\"https:\\/\\/retailers-qn.xcmbkj.com\\/admin\\/goods\\/shop_adm_2022-03-295843.png\"]",
+      // "goods_content": "测试笔",
+      // "unit_id": 2,
+      // "sort": 1,
+      // "is_pre_sale": 0,
+      // "pay_delivery_day": 12,
+      // "price": "3.00",
+      // "cost_price": "2.00",
+      // "market_price": "3.00",
+      // "sale_number": 0,
+      // "status": 2,
+      // "create_time": 1648549325,
+      // "is_multi_unit": 1,
+      // "delivery_type": 1,
+      // "original_price": "2.00",
+      // "activity_info": [],
+      // "goods_banner_arr": [
+      //   "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png"
+      // ],
+      // "goods_image_arr": [
+      //   "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295843.png"
+      // ],
+      // "brand_name": "品牌1",
+      // "is_like": 0,
+      // "spec": "单位二",
+      // "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-03-295856.png",
+      // "attribute": {
+      //   "attribute_arr": [{
+      //       "attribute_id": 1,
+      //       "attribute_name": "色值",
+      //       "attribute_value_arr": [{
+      //           "id": 39,
+      //           "name": "蓝色"
+      //         },
+      //         {
+      //           "id": 40,
+      //           "name": "红色"
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       "attribute_id": 3,
+      //       "attribute_name": "测试",
+      //       "attribute_value_arr": [{
+      //         "id": 45,
+      //         "name": "12"
+      //       }]
+      //     },
+      //     {
+      //       "attribute_id": 4,
+      //       "attribute_name": "帽子",
+      //       "attribute_value_arr": [{
+      //         "id": 47,
+      //         "name": "大"
+      //       }]
+      //     }
+      //   ],
+      //   "stock_arr": {
+      //     "39,45,47": {
+      //       "price": "2.00",
+      //       "stock": 2,
+      //       "cart_number": 0,
+      //       "attribute_value_name": "蓝色-12-大"
+      //     },
+      //     "40,45,47": {
+      //       "price": "3.00",
+      //       "stock": 5,
+      //       "cart_number": 0,
+      //       "attribute_value_name": "红色-12-大"
+      //     }
+      //   }
+      // },
+      // "shop_info": {
+      //   "name": "厦门会展中心",
+      //   "leader_phone": "13559570109",
+      //   "address": "福建省厦门市思明区软件园二期望海路10号楼之二,302-1室",
+      //   "latitude": 24.488806,
+      //   "longitude": 118.182724
+      // },
+      // "attribute_value_name": "蓝色-12-大"
     },
 
     dialog: {
@@ -160,9 +160,13 @@ create(store, {
   // 收藏
   collectionHandle(e) {
     // 分为2种情况1.收藏成功2.取消收藏
-    const data = {
+    let data = {
       goods_id: this.data.goodsDetail.id,
       type: this.data.goodsDetail.is_like ? 0 : 1
+    }
+
+    if (this.data.goodsDetail.bargaining_info && this.data.goodsDetail.bargaining_info.id) {
+      data.goods_group_bargaining_team_id = this.data.goodsDetail.bargaining_info.id
     }
 
     this.setGoodsCollection(data).then(res => {
@@ -370,9 +374,13 @@ create(store, {
     // 6. 若库存不足时， toast: 库存不足， 正在抓紧补货， 请稍后再试
     // 7. 用户身份为团长， 没有特殊情况时， 点击发起拼团， 提示弹窗， 如图3
     const shareType = e.currentTarget.dataset.type //shareType
-    let param = {
-      is_captain: this.data.goodsDetail.bargaining_info.is_captain
+    let param
+    if (this.data.goodsDetail.bargaining_info) {
+      param = {
+        is_captain: this.data.goodsDetail.bargaining_info.is_captain
+      }
     }
+
     let tempParam = {}
     if (shareType === 'recommend') {
       tempParam = {
@@ -432,7 +440,9 @@ create(store, {
     return new Promise((resolve, reject) => {
       getGoodsDetail(data).then(res => {
         setInterval(() => {
-          this.cutdown(res.data.bargaining_info.expire_time -= 1)
+          if (res.data.bargaining_info) {
+            this.cutdown(res.data.bargaining_info.expire_time_number -= 1)
+          }
         }, 1000)
         resolve(res)
       }).catch(err => {
@@ -585,8 +595,8 @@ create(store, {
       if (e.target.dataset.type === 'recommend') {
         // 推荐给好友
         return {
-          title: this.data.goodsDetail.brand_name,
-          path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`, //若无path 默认跳转分享页
+          title: this.data.goodsDetail.goods_name,
+          path: `/pages/goods/detail?id=${this.data.goodsDetail.id}`, //若无path 默认跳转分享页
           imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
           success(res) {
             console.log('分享成功', res)
@@ -601,7 +611,7 @@ create(store, {
           goods_group_bargaining_team_id: this.data.goodsDetail.bargaining_info.id
         }).then(res => {
           return {
-            title: this.data.goodsDetail.brand_name,
+            title: this.data.goodsDetail.goods_name,
             path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}`, //若无path 默认跳转分享页
             imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
             success(res) {
@@ -615,7 +625,7 @@ create(store, {
       }
     } else {
       return {
-        title: this.data.goodsDetail.brand_name,
+        title: this.data.goodsDetail.goods_name,
         path: `/pages/goods/detail?id=${this.data.goodsDetail.id}`, //若无path 默认跳转分享页
         imageUrl: this.data.goodsDetail.goods_image_arr, //若无imageUrl 截图当前页面
         success(res) {

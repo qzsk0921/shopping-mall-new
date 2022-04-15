@@ -207,7 +207,7 @@
   color: var(--primary-color);
 }
 
-.status1 {
+.status1,.status3 {
   color: #0DAA4F;
 }
 

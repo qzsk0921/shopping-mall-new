@@ -39,7 +39,7 @@
 .item {
   width: 702rpx;
   margin: 20rpx auto 0;
-  padding: 24rpx;
+  padding: 0 24rpx 24rpx;
   background: #FFFFFF;
   border-radius: 16rpx;
 }
@@ -144,7 +144,7 @@
 }
 
 .item .r2-l2-r3 {
-  margin-top: 30rpx;
+  margin-top: 23rpx;
   display: flex;
   justify-content: space-between;
 }
@@ -174,7 +174,7 @@
 }
 
 .item .r2-l2-r3-l1-r2 {
-  margin-top: 8rpx;
+  margin-top: 14rpx;
   display: flex;
   align-items: center;
   position: relative;

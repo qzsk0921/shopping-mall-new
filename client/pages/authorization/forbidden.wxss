@@ -25,10 +25,11 @@
 }
 
 .l3 {
-  margin-top: 24rpx;
+  margin: 24rpx auto 0;
   font-size: 28rpx;
   color: #333333;
   letter-spacing: 2rpx;
+  max-width: 80%; 
 }
 
 .l6 {
