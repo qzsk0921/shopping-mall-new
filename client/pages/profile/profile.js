@@ -322,7 +322,7 @@ create(store, {
           })
           return
         }
-
+        console.log(res.path)
         wx.navigateTo({
           url: '/' + res.path
         })

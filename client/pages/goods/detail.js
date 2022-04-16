@@ -387,7 +387,7 @@ create(store, {
         cancelText: '取消',
         shareType,
         wxconfirmDialogVisibile: true,
-        confirmDialogContent: `该商品佣金收成比例为5%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
+        confirmDialogContent: `该商品佣金收成比例为${this.data.goodsDetail.bargaining_info.reward_rate}%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
       }
     } else {
       if (this.data.goodsDetail.bargaining_info.is_captain) {
@@ -397,7 +397,7 @@ create(store, {
             cancelText: '取消',
             shareType,
             wxconfirmDialogVisibile: true,
-            confirmDialogContent: `离该拼团活动结束剩余${this.formatHour(this.data.goodsDetail.bargaining_info.bargaining_expire_time)}小时，此次发起拼团有效期仅剩余${this.formatHour(this.data.goodsDetail.bargaining_info.bargaining_expire_time)}小时,该商品佣金收成比例为5%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
+            confirmDialogContent: `离该拼团活动结束剩余${this.formatHour(this.data.goodsDetail.bargaining_info.bargaining_expire_time)}小时，此次发起拼团有效期仅剩余${this.formatHour(this.data.goodsDetail.bargaining_info.bargaining_expire_time)}小时,该商品佣金收成比例为${this.data.goodsDetail.bargaining_info.reward_rate}%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
           }
         } else {
           // 用户身份为团长， 没有特殊情况时
@@ -405,7 +405,7 @@ create(store, {
             cancelText: '取消',
             shareType,
             wxconfirmDialogVisibile: true,
-            confirmDialogContent: `该商品佣金收成比例为5%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
+            confirmDialogContent: `该商品佣金收成比例为${this.data.goodsDetail.bargaining_info.reward_rate}%，拼团成功预计可获得佣金${this.data.goodsDetail.bargaining_info.reward_money}元`,
           }
         }
       } else {

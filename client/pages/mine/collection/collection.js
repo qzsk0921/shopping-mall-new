@@ -41,11 +41,14 @@ create(store, {
 
     const item = e.currentTarget.dataset.item
     // 该商品的拼团活动已结束 0:新建 1:上架 2:下架 3:删除
-    if (item.status === 2) {
-      wx.showToast({
-        title: '该商品的拼团活动已结束',
-        icon: 'none'
-      })
+    if (item.status === 2 || item.status === 3) {
+      // 下架不提示，拼团提示
+      if (item.bargaining_status != 0) {
+        wx.showToast({
+          title: '该商品的拼团活动已结束',
+          icon: 'none'
+        })
+      }
       return
     }
 

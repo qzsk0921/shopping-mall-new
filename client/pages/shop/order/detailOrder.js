@@ -144,7 +144,7 @@ create(store, {
   },
   // 单个核销
   oneWriteoffHandle(e) {
-    // 拼团商品未拼成提示 请等待拼团完成
+    // 拼团商品未拼成提示 请等待拼团完成 	状态 1:进行中 2:已完成 3:未拼成
     if (this.data.orderData.bargaining_info && this.data.orderData.bargaining_info.status != 2) {
       wx.showToast({
         title: '请等待拼团完成',

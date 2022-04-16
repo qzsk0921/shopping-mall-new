@@ -127,6 +127,10 @@
   color: #FFFFFF;
 }
 
+.content .item .l1 .tag.bargain {
+  background: #FF7753;
+}
+
 .content .item .l1 .tag.new_activity {
   background: #FF7753;
 }
