@@ -132,6 +132,11 @@ create(store, {
       return
     }
 
+    // 已核销
+    if(item.status!=0) {
+      return
+    }
+    
     this.getQrcode({
       type: 2,
       order_id: this.data.orderData.id,
@@ -154,6 +159,11 @@ create(store, {
     }
 
     const item = e.currentTarget.dataset.item
+
+    // 已核销
+    if(item.status!=0) {
+      return
+    }
 
     this.getQrcode({
       type: 1,
