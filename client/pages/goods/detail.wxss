@@ -175,8 +175,8 @@
 
 .section3 .l4 .icon-goods {
   margin-top: 40rpx;
-  width: 702rpx;
-  height: 702rpx;
+  /* width: 702rpx; */
+  width: 100%;
   background: rgba(0, 0, 0, 0);
 }
 

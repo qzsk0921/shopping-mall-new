@@ -10,7 +10,7 @@
     <button class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">手机授权登录</button>
     <view class="right" bindtap="protocolHandle">
       <text>登录注册即代表你同意</text>
-      <text data-id='9'>《服务协议》</text>
+      <text data-id='9'>《用户协议》</text>
       <text>与</text>
       <text data-id='10'>《隐私协议》</text>
     </view>

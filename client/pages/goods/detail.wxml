@@ -143,7 +143,7 @@
         </view>
       </view>
       <view class="l4">
-        <image wx:for="{{goodsDetail.goods_image_arr}}" wx:key="unique" class="icon-goods" src="{{item}}" mode="aspectFill" bindtap="previewImg" data-urls="{{goodsDetail.goods_image_arr}}" data-url="{{item}}"></image>
+        <image wx:for="{{goodsDetail.goods_image_arr}}" wx:key="unique" class="icon-goods" src="{{item}}" mode="widthFix" bindtap="previewImg" data-urls="{{goodsDetail.goods_image_arr}}" data-url="{{item}}"></image>
       </view>
     </view>
   </view>

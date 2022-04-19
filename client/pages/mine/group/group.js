@@ -20,103 +20,37 @@ create(store, {
     groupData: {
       count: 1,
       total_page: 1,
-      // cache: [
-      //     {
-      //     "id": 4,
-      //     "group_bargaining_id": 1,
-      //     "goods_id": 1,
-      //     "total_join_number": 5,
-      //     "join_number": 1,
-      //     "total_pay_money": "10.00",
-      //     "expire_time": 1648878334,
-      //     "status": 1,
-      //     "captain_id": 1,
-      //     "update_time": 1648801388,
-      //     "create_time": 1648801388,
-      //     "error_msg": null,
-      //     "success_member_str": "",
-      //     "goods_info": {
-      //       "goods_name": "锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋",
-      //       "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg",
-      //       "goods_content": "去问问",
-      //       "price": "4.00",
-      //       "bargaining_price": "10.00"
-      //     },
-      //     "reward_money": 1,
-      //     "reward_rate": "0.01",
-      //     "join_member_list": [{
-      //       "nick_name": "hgao",
-      //       "avatar_url": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg",
-      //       "create_time": 1638173252
-      //     }]
-      //   },
-      //   {
-      //     "id": 4,
-      //     "group_bargaining_id": 1,
-      //     "goods_id": 1,
-      //     "total_join_number": 5,
-      //     "join_number": 1,
-      //     "total_pay_money": "10.00",
-      //     "expire_time": 1648878334,
-      //     "status": 2,
-      //     "captain_id": 1,
-      //     "update_time": 1648801388,
-      //     "create_time": 1648801388,
-      //     "error_msg": null,
-      //     "success_member_str": "",
-      //     "goods_info": {
-      //       "goods_name": "锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋",
-      //       "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg",
-      //       "goods_content": "去问问",
-      //       "price": "4.00",
-      //       "bargaining_price": "10.00"
-      //     },
-      //     "reward_money": 1,
-      //     "reward_rate": "0.01",
-      //     "join_member_list": [{
-      //       "nick_name": "hgao",
-      //       "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-      //       "create_time": 1638173252
-      //     },{
-      //       "nick_name": "hgao",
-      //       "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-      //       "create_time": 1638173252
-      //     }]
-      //   },
-      //   {
-      //     "id": 4,
-      //     "group_bargaining_id": 1,
-      //     "goods_id": 1,
-      //     "total_join_number": 5,
-      //     "join_number": 1,
-      //     "total_pay_money": "10.00",
-      //     "expire_time": 1648878334,
-      //     "status": 3,
-      //     "captain_id": 1,
-      //     "update_time": 1648801388,
-      //     "create_time": 1648801388,
-      //     "error_msg": null,
-      //     "success_member_str": "",
-      //     "goods_info": {
-      //       "goods_name": "锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋",
-      //       "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg",
-      //       "goods_content": "去问问",
-      //       "price": "4.00",
-      //       "bargaining_price": "10.00"
-      //     },
-      //     "reward_money": 1,
-      //     "reward_rate": "0.01",
-      //     "join_member_list": [{
-      //       "nick_name": "hgao",
-      //       "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-      //       "create_time": 1638173252
-      //     },{
-      //       "nick_name": "hgao",
-      //       "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132",
-      //       "create_time": 1638173252
-      //     }]
-      //   }
-      // ]
+      cache: [
+        //   {
+        //   "id": 4,
+        //   "group_bargaining_id": 1,
+        //   "goods_id": 1,
+        //   "total_join_number": 5,
+        //   "join_number": 1,
+        //   "total_pay_money": "10.00",
+        //   "expire_time": 1648878334,
+        //   "status": 1,
+        //   "captain_id": 1,
+        //   "update_time": 1648801388,
+        //   "create_time": 1648801388,
+        //   "error_msg": null,
+        //   "success_member_str": "",
+        //   "goods_info": {
+        //     "goods_name": "锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋锅锅香 珍珠米-25kg/袋",
+        //     "thumb": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-013079.jpg",
+        //     "goods_content": "去问问",
+        //     "price": "4.00",
+        //     "bargaining_price": "10.00"
+        //   },
+        //   "reward_money": 1,
+        //   "reward_rate": "0.01",
+        //   "join_member_list": [{
+        //     "nick_name": "hgao",
+        //     "avatar_url": "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83erTBqQBTx6llYy45TOlGqIafxxcibwYMPQ80z9BMQnliaBP4HzrpR8b4xUStGCB1UZlFmPAicDOMXxpg/132",
+        //     "create_time": 1638173252
+        //   }]
+        // },
+      ]
     },
   },
   toDetailHandle(e) {

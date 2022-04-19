@@ -28,7 +28,8 @@
   color: #FF723A;
 }
 
-.section1.status2 .left .row1,.section1.status4 .left .row1 {
+.section1.status2 .left .row1,
+.section1.status4 .left .row1 {
   color: #666666;
 }
 
@@ -344,7 +345,6 @@
   color: #AAAAAA;
 }
 
-.btn-member,
 .btn-award {
   width: 152rpx;
   height: 56rpx;
@@ -353,6 +353,11 @@
   font-size: 26rpx;
   line-height: 56rpx;
   color: #FFFFFF;
+}
+
+.btn-member {
+  border: 2rpx solid #FF723A !important;
+  color: #FF723A;
 }
 
 .btn-award {}
@@ -463,19 +468,22 @@
 .writeoff .r1 .btn-writeoff {
   width: 124rpx;
   height: 38rpx;
-  background: rgba(239, 255, 246, 0.39);
-  border: 2rpx solid #0DAA4F;
+  /* background: rgba(239, 255, 246, 0.39); */
   border-radius: 19rpx;
   font-size: 22rpx;
   line-height: 32rpx;
-  color: #0DAA4F;
   text-align: center;
 }
 
-.writeoff .r1 .writeenoff {
+.writeoff .r1 .allwriteenoff {
+  border: 2rpx solid #0DAA4F;
+  color: #0DAA4F;
+}
+
+.writeoff .r1 .diswriteenoff {
   background: #EEEEEE;
   color: #BBBBBB;
-  border-color: transparent;
+  border: 2rpx solid transparent;
 }
 
 .writeoff .r2 {

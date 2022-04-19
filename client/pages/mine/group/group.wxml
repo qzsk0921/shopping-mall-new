@@ -44,8 +44,6 @@
             <view class="r3">
               <view class="left">
                 <image wx:for="{{item.join_member_list}}" wx:for-item="it" src="{{it.avatar_url}}" mode="aspectFill"></image>
-                <!-- <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image>
-                <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqtftEFsRLhhDfQZwiboph98aLWPIj43D5LpWg7CYhjrd0rreZRMRzFQsvl1MD12ySZhZK6uuMP8pw/132" mode="aspectFill"></image> -->
               </view>
               <view class="right" bindtap="toMemberlistHandle" data-item="{{item}}">
                 <text>拼团成员</text>

@@ -143,6 +143,27 @@
   display: flex;
 }
 
+.tit-bargain {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #000000;
+  min-height: 80rpx;
+}
+
+.content-bargain {
+  padding-left: 24rpx;
+}
+
+.des-bargain {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #888888;
+}
+
+.card .l2 .l2-1 {
+  display: flex;
+}
+
 .card .l2 .l2-1 image {
   width: 124rpx;
   height: 124rpx;
@@ -202,17 +223,26 @@
   margin-left: 20rpx;
 }
 
+.card .l3 .btn-bargain {
+  border: 2rpx solid #FF723A;
+  color: #FF723A;
+}
 
 .status0 {
   color: var(--primary-color);
 }
 
-.status1,.status3 {
+.status1,
+.status3 {
   color: #0DAA4F;
 }
 
 .status2 {
   color: #666666;
+}
+
+.status4 {
+  color: #FC4953;
 }
 
 .btnstatus0,

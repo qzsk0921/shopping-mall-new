@@ -31,7 +31,7 @@
         </view>
       </view>
       <view wx:elif="{{optionIndex===1}}" class="option2">
-        <view class="r1">幸运值</view>
+        <view class="r1">可提现金额</view>
         <view class="r2">{{withdrawData[optionIndex].lucky_money}}</view>
       </view>
     </view>
@@ -74,7 +74,7 @@
                   </view>
                   <view class="r-r3">
                     <view class="r-r3-l"></view>
-                    <view class="r-r3-r">收入:￥{{item.billing_money}}</view>
+                    <view class="r-r3-r">{{optionIndex==0?'收入:￥'+item.money:'收入:￥'+item.money}}</view>
                   </view>
                 </view>
               </view>

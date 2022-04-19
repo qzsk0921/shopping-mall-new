@@ -16,7 +16,8 @@ import {
 } from '../../api/groupbargain'
 
 let prevPage = null,
-  cutdown = ''
+  cutdown = '',
+  allset = null //商品数据onload时是否调用过
 
 // Page({
 create(store, {
@@ -186,9 +187,16 @@ create(store, {
   // 更新购物车数量
   updateCartHandle(e) {
     // console.log(e)
-    this.getGoodsDetail({
+
+    let param = {
       id: this.data.goods_id
-    }).then(res => {
+    }
+    // 拼团商品
+    if (this.data.goods_group_bargaining_team_id) {
+      param.goods_group_bargaining_team_id = this.data.goods_group_bargaining_team_id
+    }
+
+    this.getGoodsDetail(param).then(res => {
       this.setData({
         goodsDetail: res.data
       })
@@ -482,7 +490,6 @@ create(store, {
 
     // 拼团分享
     if (scene) {
-      // const scene = decodeURIComponent(options.scene).substr(1)
       const scene = decodeURIComponent(options.scene)
       // console.log(scene)
       //scene=order_id=84&user_type=1
@@ -504,16 +511,20 @@ create(store, {
       // 拼团商品
       if (goods_group_bargaining_team_id) {
         param.goods_group_bargaining_team_id = goods_group_bargaining_team_id
+        this.data.goods_group_bargaining_team_id = goods_group_bargaining_team_id
       }
     }
 
     this.setData(param)
 
-    this.getGoodsDetail(param).then(res => {
-      this.setData({
-        goodsDetail: res.data
+    if (!allset) {
+      allset = 1
+      this.getGoodsDetail(param).then(res => {
+        this.setData({
+          goodsDetail: res.data
+        })
       })
-    })
+    }
   },
 
   /**
@@ -556,20 +567,35 @@ create(store, {
         userInfo: this.store.data.userInfo
       })
     }
+
+    // 更新商品详情页(主要从订单详情返回到该页的拼团信息)
+    if (!allset) {
+      allset = 1
+      const param = {
+        id: this.data.goods_id,
+        goods_group_bargaining_team_id: this.data.goods_group_bargaining_team_id
+      }
+
+      this.getGoodsDetail(param).then(res => {
+        this.setData({
+          goodsDetail: res.data
+        })
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    allset = null
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    allset = null
   },
 
   /**
@@ -594,9 +620,13 @@ create(store, {
     if (e.from === 'button') {
       if (e.target.dataset.type === 'recommend') {
         // 推荐给好友
+        let queryString = `id=${this.data.goodsDetail.id}`
+        if (res.data.goods_group_bargaining_team_id) {
+          queryString += `&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}`
+        }
         return {
           title: this.data.goodsDetail.goods_name,
-          path: `/pages/goods/detail?id=${this.data.goodsDetail.id}`, //若无path 默认跳转分享页
+          path: `/pages/goods/detail?${queryString}`, //若无path 默认跳转分享页
           imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
           success(res) {
             console.log('分享成功', res)

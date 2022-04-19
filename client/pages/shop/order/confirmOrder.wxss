@@ -60,7 +60,7 @@
 }
 
 .content>.l2 {
-  padding: 0 0 0 24rpx;
+  padding: 0 0 29rpx 24rpx;
   margin: 20rpx 24rpx 0;
   background: #FFFFFF;
   border-radius: 16rpx;
@@ -126,7 +126,7 @@
 }
 
 .content>.l2 .l2-5 {
-  padding: 40rpx 0 29rpx;
+  padding: 40rpx 0 0;
   font-size: 28rpx;
   color: #333333;
   display: flex;

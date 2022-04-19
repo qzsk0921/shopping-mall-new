@@ -99,6 +99,7 @@
 .section2 swiper-item {
   overflow: hidden;
   border-radius: 15rpx;
+  transform: translateY(0);
 }
 
 .section2 swiper .icon-banner {

@@ -150,8 +150,9 @@
   margin-left: -6rpx;
   width: 40rpx;
   height: 40rpx;
-  border: 2rpx solid #FFFFFF;
+  /* border: 2rpx solid #FFFFFF; */
   border-radius: 50%;
+  /* overflow: hidden; */
 }
 
 .cont .r3 .right {
