@@ -186,7 +186,7 @@ create(store, {
   },
   // 更新购物车数量
   updateCartHandle(e) {
-    // console.log(e)
+    console.log(e)
 
     let param = {
       id: this.data.goods_id
@@ -201,25 +201,35 @@ create(store, {
         goodsDetail: res.data
       })
 
-      const one_cart_number = res.data.unit_arr.filter(item => item.is_min_number)[0].cart_number
+      // const one_cart_number = res.data.unit_arr.filter(item => item.is_min_number)[0].cart_number
+      const one_cart_number = 0
 
       // 更新上一个页面购物车数据(这里主要是购物车页面的猜你喜欢的购物车数量)
-      this.updatePrevpageData(this.data.goods_id, res.data.cart_number, one_cart_number)
+      this.updatePrevpageData(this.data.goods_id, res.data.cart_number, one_cart_number, e.detail)
     })
   },
   // 更新上一个页面购物车数据
-  updatePrevpageData(id, num, one_number) {
+  updatePrevpageData(id, num, one_number, detail) {
+    // detail: {attribute_value_str: "24"
+    // goods_id: 154
+    // goods_num: 1
+    // is_pre_goods: 0}
+
     // 在提交成功后，返回上一页（带上参数）
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2]; //上一个页面
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
     // 购物车页面
     if (prevPage.route === 'pages/shopping/shopping') {
+      prevPage.setData({
+        'checkedIds': prevPage.data.checkedIds.concat(detail.goods_id + '.' + detail.attribute_value_str)
+      })
+
       prevPage.data.recommendList.cache.forEach((it, index) => {
         if (id == it.id) {
           prevPage.setData({
             [`recommendList.cache[${index}].cart_number`]: num,
-            [`recommendList.cache[${index}].one_cart_number`]: one_number
+            [`recommendList.cache[${index}].one_cart_number`]: one_number,
           })
         }
       })

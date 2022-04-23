@@ -172,9 +172,11 @@ create(store, {
             }
 
             if (!this.data.select_all) {
-              if (nv.length === this.data.cartData.cache.length) {
-                tempData.select_all = true
-              }
+              setTimeout(() => {
+                if (nv.length === this.data.cartData.cache.length) {
+                  tempData.select_all = true
+                }
+              }, 0)
             }
 
             this.setData(tempData)
@@ -860,6 +862,7 @@ create(store, {
         }
         setTimeout(() => {
           let arr = []
+
           for (let j = i + 1; j < res.data.list.length; j++) {
             if (res.data.list[i].id === res.data.list[j].id) {
               res.data.list[j].cart_number = res.data.list[i].cart_number += res.data.list[j].cart_number

@@ -256,7 +256,7 @@ create({
           })
           return false
         }
-        console.log(8888)
+
         this.addNumCart(myData).then(res => {
 
           // 更新详情页购物车数据
@@ -266,13 +266,13 @@ create({
           })
 
           setTimeout(() => {
-            this.triggerEvent('updateCartHandle')
+            this.triggerEvent('updateCartHandle', myData)
           }, 1000)
 
           console.log(res)
         }).catch(err => {
           setTimeout(function () {
-            this.triggerEvent('updateCartHandle')
+            this.triggerEvent('updateCartHandle',myData)
           }, 1000)
           // 恢复设置
         })
