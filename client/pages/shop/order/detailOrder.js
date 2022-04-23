@@ -248,7 +248,7 @@ create(store, {
     if (myOrderData.status === 0) {
       // 去支付
       let orderData = {
-        shop_id: myOrderData.shop_id,
+        // shop_id: myOrderData.shop_id,
         address_id: myOrderData.address_id,
         goods: myOrderData.goods_list,
       }

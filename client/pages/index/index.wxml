@@ -6,7 +6,7 @@
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{currentAddress}}" color="#333" bgColor="#FF723A" />
   </view>
-  <view wx:if="{{shop_id}}" class="content">
+  <view class="content">
     <view class="section1 input-box" bindtap="searchHandle">
       <input class="search" name="search" placeholder="蔬菜" placeholder-class="search-placeholder" value="{{searchKeyword}}" confirm-type="search" bindconfirm="bindconfirmHandle" disabled="true" />
       <view class="btn btn-search" bindtap="btnSearchCancelHandle">搜索</view>
@@ -32,20 +32,28 @@
           <view wx:for="{{shopData.notice_list}}" wx:key="unique" class="item one-txt-cut">{{item.content}}</view>
         </view>
       </view>
-      <view class="section3 hide-scrollbar">
+      <view wx:if="{{shopData.category.length}}" class="section3 hide-scrollbar">
         <view class="category-box hide-scrollbar">
-          <view class="l1">
-            <!-- <view class="item" wx:for="{{tools.parseCategory(shopData.category, 'even')}}" wx:key="unique" bindtap="toCategoryHandle" data-item="{{item}}" > -->
+          <!-- <view class="l1">
             <view class="item" wx:for="{{tools.parseCategory(shopData.category, 'firstLine')}}" wx:key="unique" bindtap="toCategoryHandle" data-item="{{item}}">
               <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1"></image>
               <view class="text-category" data-clickable="1">{{item.name}}</view>
             </view>
           </view>
           <view class="l2">
-            <!-- <view class="item" wx:for="{{tools.parseCategory(shopData.category, 'odd')}}" wx:key="unique" bindtap="toCategoryHandle" data-item="{{item}}"> -->
             <view class="item" wx:for="{{tools.parseCategory(shopData.category, 'lastLine')}}" wx:key="unique" bindtap="toCategoryHandle" data-item="{{item}}">
               <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1"></image>
               <view class="text-category" data-clickable="1">{{item.name}}</view>
+            </view>
+          </view> -->
+          <view class="l1">
+            <view class="item" wx:if="{{index<3}}" wx:for="{{shopData.category}}" wx:key="unique" bindtap="toCategoryHandle" data-item="{{item}}">
+              <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1"></image>
+              <view class="text-category" data-clickable="1">{{item.name}}</view>
+            </view>
+            <view class="item all" bindtap="toCategoryHandle">
+              <image class="icon-category icon-category-all" src="/assets/images/nav_btn_return1.png" mode="aspectFill"></image>
+              <view class="text-category" data-clickable="1">全部分类</view>
             </view>
           </view>
         </view>
@@ -74,7 +82,7 @@
                 <text>团价</text><text>￥{{item.goods_info.bargaining_price}}</text>
               </view>
               <view class="l3">
-                ￥{{item.goods_info.price}}
+                ￥{{item.goods_info.market_price}}
               </view>
               <view class="l4">
                 还差<text>{{tools.parseFar(item.total_join_number,item.join_number)}}</text>人

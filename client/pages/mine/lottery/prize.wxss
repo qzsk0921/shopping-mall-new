@@ -1,0 +1,172 @@
+/* pages/mine/lottery/prize.wxss */
+.content .no-data {
+  text-align: center;
+}
+
+.content .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.content .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.content .item {
+  position: relative;
+  width: 702rpx;
+  margin: 20rpx auto 0;
+  padding-left: 30rpx;
+  position: relative;
+  display: flex;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  /* height: 208rpx; */
+}
+
+.content .item .icon-printing {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 142rpx;
+  height: 110rpx;
+}
+
+.content .item .btn-exchange {
+  position: absolute;
+  right: 24rpx;
+  bottom: 30rpx;
+  width: 128rpx;
+  height: 56rpx;
+  background: #FF723A;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  line-height: 56rpx;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.content .item.mask-box .right {
+  opacity: 0.5;
+  width: 426rpx;
+}
+
+.content .item .left {
+  display: flex;
+  align-items: center;
+}
+
+.content .item .left .icon-goods {
+  margin: auto;
+}
+
+.content .item.mask-box .icon-goods-box {
+  position: relative;
+}
+
+.content .item .l1 {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 36rpx;
+  color: #333333;
+  height: 72rpx;
+}
+
+.content .item .l1 .tag {
+  float: left;
+  margin: 8rpx 6rpx 0 0;
+  text-align: center;
+  width: 96rpx;
+  height: 28rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: #FFFFFF;
+}
+
+.content .item .l1 .tag.new_activity {
+  background: #FF7753;
+}
+
+.content .item .l1 .tag.pre_sale {
+  background: #22B862;
+}
+
+.content .item .l2 {
+  font-size: 22rpx;
+  line-height: 37rpx;
+  color: #999999;
+}
+
+.content .item .l3 {
+  font-size: 22rpx;
+  line-height: 37rpx;
+  color: #999999;
+}
+
+.content .item .l4 {
+  margin-bottom: 4rpx;
+}
+
+.content .item .l4 text:first-child {
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 41rpx;
+  color: #FC4953;
+}
+
+.content .item .l4 text:nth-of-type(2) {
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 58rpx;
+  color: #FC4953;
+}
+
+.content .item .l4 text:nth-of-type(3) {
+  margin-right: 2rpx;
+  font-size: 22rpx;
+  line-height: 37rpx;
+  color: #888888;
+  text-decoration: line-through;
+}
+
+.content .item .l4.no-sign {
+  margin: 42rpx 0 22rpx;
+}
+
+.content .item .l4.no-sign text {
+  line-height: 37rpx;
+  font-size: 22rpx;
+  color: #888888
+}
+
+.content .item .l5 {
+  margin-bottom: 16rpx;
+  font-size: 20rpx;
+  color: #999999;
+}
+
+.content .item .l6 {
+  font-size: 20rpx;
+  color: #999999;
+}
+
+.content .item .left image {
+  width: 172rpx;
+  height: 172rpx;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 16rpx;
+}
+
+.content .item .right {
+  padding: 30rpx 24rpx;
+  /* min-height: 232rpx; */
+  width: calc(100% - 202rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}

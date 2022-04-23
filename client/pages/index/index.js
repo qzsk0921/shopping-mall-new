@@ -534,8 +534,12 @@ create(store, {
   // 跳转至分类页面
   toCategoryHandle(e) {
     getApp().globalData.from = 'index'
-    this.store.data.currentFirstCategoryId = e.currentTarget.dataset.item.id
-    this.store.data.currentFirstCategory = e.currentTarget.dataset.item
+
+    // 全部分类默认选择第一个分类
+    const item = e.currentTarget.dataset.item ? e.currentTarget.dataset.item : this.data.shopData.category[0]
+
+    this.store.data.currentFirstCategoryId = item.id
+    this.store.data.currentFirstCategory = item
     this.update()
 
     wx.switchTab({
@@ -655,6 +659,12 @@ create(store, {
     })
   },
   startABroadcast() {
+    
+    // 公告只有1条不做动画
+    if (this.data.shopData.notice_list.length < 2) {
+      return
+    }
+
     const aBroadcast = wx.createAnimation({
       duration: 500,
       timingFunction: 'linear',

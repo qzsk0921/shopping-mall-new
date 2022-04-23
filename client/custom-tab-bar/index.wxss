@@ -41,8 +41,10 @@
 } */
 
 .tab-bar-item image {
-  width: 32rpx;
-  height: 32rpx;
+  /* width: 32rpx;
+  height: 32rpx; */
+  width: 52rpx;
+  height: 52rpx;
 }
 
 .tab-bar-item view {

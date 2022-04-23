@@ -34,7 +34,7 @@ create(store, {
     discountPrice: 0, //总优惠
 
     select_all: true, //全选
-    checkedIds: [], //选中的id和unit_id  格式[id.unit_id]
+    checkedIds: [], //选中的id和attribute_value_str  格式[id.attribute_value_str]
 
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     tabbarH: null, //tabbar高度
@@ -58,7 +58,7 @@ create(store, {
         //   "stock": 0,
         //   "activity_info": [],
         //   "cart_number": 2,
-        //   "unit_id": "1",
+        //   "attribute_value_str": "1",
         //   "type": "1",
         //   "unitName": "1/个",
         //   "is_stock": 0
@@ -85,7 +85,7 @@ create(store, {
         //     "end_time": 0
         //   },
         //   "cart_number": 2,
-        //   "unit_id": 1,
+        //   "attribute_value_str": 1,
         //   "type": 2,
         //   "unitName": "1/个",
         //   "is_stock": 1
@@ -112,7 +112,7 @@ create(store, {
         //     "end_time": 0
         //   },
         //   "cart_number": 1,
-        //   "unit_id": "2",
+        //   "attribute_value_str": "2",
         //   "type": "2",
         //   "unitName": "1/箱",
         //   "is_stock": 0
@@ -140,24 +140,26 @@ create(store, {
     checkedIds: {
       handler(nv, ov, obj) {
         console.log(nv)
+
         clearTimeout(timerSearchObject)
         timerSearchObject = setTimeout(() => {
+
           if (nv.length) {
             let totalPrice = 0
             let discountPrice = 0
             let total = 0 //结算商品数量
             this.data.cartData.cache.forEach(item => {
-              if (nv.includes(item.id + '.' + item.unit_id)) {
+              if (nv.includes(item.id + '.' + item.attribute_value_str)) {
                 // 有库存并且未下架或删除
                 if (![2, 3].includes(item.status) && item.is_stock) {
-                  if (this.store.data.userInfo.is_vip || this.store.data.userInfo.is_sale) {
-                    // 会员
-                    totalPrice += (item.price * 1000 * item.cart_number)
-                    discountPrice += ((item.market_price * 1000 - item.price * 1000) * item.cart_number)
-                  } else {
-                    // 非会员
-                    totalPrice += (item.market_price * 1000 * item.cart_number)
-                  }
+                  // if (this.store.data.userInfo.is_vip || this.store.data.userInfo.is_sale) {
+                  // 会员
+                  totalPrice += (item.price * 1000 * item.cart_number)
+                  discountPrice += ((item.market_price * 1000 - item.price * 1000) * item.cart_number)
+                  // } else {
+                  //   // 非会员
+                  //   totalPrice += (item.market_price * 1000 * item.cart_number)
+                  // }
                   total += 1
                 }
               }
@@ -176,6 +178,7 @@ create(store, {
             }
 
             this.setData(tempData)
+            console.log(tempData)
           } else {
             this.setData({
               totalPrice: 0,
@@ -200,15 +203,15 @@ create(store, {
           let total = 0 //结算商品数量
           nv.forEach((item, index) => {
             // 有库存并且未下架或删除
-            if (![2, 3].includes(item.status) && item.is_stock && this.data.checkedIds.includes(item.id + '.' + item.unit_id)) {
-              if (this.store.data.userInfo.is_vip || this.store.data.userInfo.is_sale) {
-                // 会员
-                totalPrice += (item.price * 1000 * item.cart_number)
-                discountPrice += ((item.market_price * 1000 - item.price * 1000) * item.cart_number)
-              } else {
-                // 非会员
-                totalPrice += (item.market_price * 1000 * item.cart_number)
-              }
+            if (![2, 3].includes(item.status) && item.is_stock && this.data.checkedIds.includes(item.id + '.' + item.attribute_value_str)) {
+              // if (this.store.data.userInfo.is_vip || this.store.data.userInfo.is_sale) {
+              //   // 会员
+              totalPrice += (item.price * 1000 * item.cart_number)
+              discountPrice += ((item.market_price * 1000 - item.price * 1000) * item.cart_number)
+              // } else {
+              //   // 非会员
+              //   totalPrice += (item.market_price * 1000 * item.cart_number)
+              // }
               total += 1
             }
           })
@@ -353,7 +356,7 @@ create(store, {
   //       shop_id: this.store.data.shop_id,
   //       goods_id: item.id,
   //       goods_num: e.detail.value - 0, //-1为扣减
-  //       unit_id: item.unit_id
+  //       attribute_value_str: item.attribute_value_str
   //     }
 
   //     this.addNumCart(cartData).then(res => {
@@ -410,16 +413,16 @@ create(store, {
       if (this.store.data.address_id) {
         orderData.address_id = this.store.data.address_id
       }
-      
+
       this.data.cartData.cache.forEach(item => {
         const temp = {
           "goods_id": item.id,
           "goods_num": item.cart_number,
           "is_pre_goods": item.is_pre_sale,
-          "attribute_value_str":item.attribute_value_str
+          "attribute_value_str": item.attribute_value_str
         }
 
-        if (this.data.checkedIds.includes(item.id + '.' + item.unit_id)) {
+        if (this.data.checkedIds.includes(item.id + '.' + item.attribute_value_str)) {
           orderData.goods.push(temp)
         }
       })
@@ -525,7 +528,7 @@ create(store, {
       this.getCartData().then(res => {
         // 更新checkedIds全选按钮
         const checkedIds = this.data.checkedIds.filter((item, index) => {
-          return item.split('.')[0] !== this.data.tempDelGoodsData.goods_id && item.split('.')[1] !== this.data.tempDelGoodsData.unit_id
+          return item.split('.')[0] !== this.data.tempDelGoodsData.goods_id && item.split('.')[1] !== this.data.tempDelGoodsData.attribute_value_str
         })
 
         this.setData({
@@ -548,7 +551,7 @@ create(store, {
   },
   // 单选
   checkboxChange: function (e) {
-    //1.3 1表示id 3表示unit_id
+    //1.3 1表示id 3表示attribute_value_str
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     // const myIds = e.detail.value.map(id => id - 0)
     const myIds = e.detail.value
@@ -569,7 +572,7 @@ create(store, {
       // 控制全选按钮
       setData.select_all = false
     }
-
+    console.log(setData.checkedIds)
     this.setData(setData)
   },
   // 全选与反选
@@ -577,13 +580,13 @@ create(store, {
     console.log(e)
     const flag = Boolean(e.detail.value.length)
 
-    let arr = []; //存放选中id.unit_id的数组
+    let arr = []; //存放选中id.attribute_value_str的数组
 
     // 全选或全不选
     this.data.cartData.cache.forEach(item => {
       // 有库存并且未下架或删除
       if (![2, 3].includes(item.status) && item.is_stock) {
-        if (flag) arr = arr.concat(item.id + '.' + item.unit_id)
+        if (flag) arr = arr.concat(item.id + '.' + item.attribute_value_str)
       }
     })
 
@@ -632,7 +635,7 @@ create(store, {
 
       // 更新购物车数据
       const ress = this.data.cartData.cache.some((item, index) => {
-        if (item.id === dataset.item.id && item.unit_id === dataset.item.unit_arr[0].id) {
+        if (item.id === dataset.item.id && item.attribute_value_str === dataset.item.unit_arr[0].id) {
           this.setData({
             [`cartData.cache[${index}].cart_number`]: dataset.item.cart_number + 1,
             [`cartData.cache[${index}].one_cart_number`]: dataset.item.cart_number + 1,
@@ -862,6 +865,9 @@ create(store, {
               res.data.list[j].cart_number = res.data.list[i].cart_number += res.data.list[j].cart_number
             }
           }
+          console.log(this.data.recommendList.cache)
+          console.log(res.data.list)
+
           // 返回该页面更新猜你喜欢的购物车数量
           this.data.recommendList.cache.forEach((it, idx) => {
             let ress = false
@@ -869,7 +875,11 @@ create(store, {
             res.data.list.forEach((item) => {
               // 有库存并且未下架或删除
               if (![2, 3].includes(item.status) && item.is_stock) {
-                if (this.data.select_all) arr = arr.concat(item.id + '.' + item.unit_id)
+                if (this.data.select_all) {
+                  arr = arr.concat(item.id + '.' + item.attribute_value_str)
+                } else {
+                  arr = this.data.checkedIds
+                }
               }
               if (item.id === it.id) {
                 ress = true
@@ -900,6 +910,7 @@ create(store, {
           this.setData({
             checkedIds: arr
           })
+
         }, 0)
       }
     })

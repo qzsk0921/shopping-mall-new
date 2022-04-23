@@ -10,13 +10,13 @@
   </view>
   <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+fixed)+'px':compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
     <view wx:if="{{orderData.status===0}}" class="tip tobepaid">请在{{tools.cutdown(orderData.last_cancel_time)}}内支付，逾期订单将自动取消</view>
-    <view wx:if="{{orderData.bargaining_info.id&&orderData.status===4}}" class="tip tobepaid">未获得商品购买资格，<text style="color:#FC4953;">金额原路退回，</text>且获得幸运奖</view>
+    <view wx:if="{{orderData.bargaining_info.id&&orderData.status===4&&orderData.bargaining_info.status===2}}" class="tip tobepaid">未获得商品购买资格，<text style="color:#FC4953;">金额原路退回，</text>且获得幸运奖</view>
     <view class="section1 status{{orderData.status}}">
       <view class="left">
         <!-- status 状态 0:待支付 1:已支付 2:已取消 3:已完成-->
         <view class="row1">{{orderData.status===0?'待支付':orderData.status===1?'已支付':orderData.status===2?'已取消':orderData.status===3?'已完成':'已退款'}}</view>
         <!-- bargaining_status 0:待开奖 1:已中奖 2:未中奖 -1:拼团已解散 -->
-        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(orderData.bargaining_info.id?'还差'+orderData.bargaining_info.last_join_member+'人拼成':'订单已成功支付'):orderData.status===2?'订单已经取消':orderData.status===3?(orderData.bargaining_info.bargaining_status===2?'订单已完成':'拼团成功'):'已退款'}}</view>
+        <view class="row2">{{orderData.status===0?'请尽快支付':orderData.status===1?(orderData.bargaining_info.id?'还差'+orderData.bargaining_info.last_join_member+'人拼成':'订单已成功支付'):orderData.status===2?'订单已经取消':orderData.status===3?(orderData.bargaining_info.bargaining_status===2?'订单已完成':'拼团成功'):orderData.bargaining_info.status===2?'订单已退款':'拼团时间超时，拼团失败'}}</view>
       </view>
       <view class="right">
         <block wx:if="{{orderData.bargaining_info.id}}">
@@ -29,7 +29,7 @@
             <view class="btn btn-del" bindtap="delOrderHandle">{{orderData.status===0?'取消订单':'删除订单'}}</view>
             <view wx:if="{{orderData.status===0}}" class="btn btn-pay" bindtap="payOrderHandle">立即支付</view>
             <view wx:if="{{orderData.status===3||orderData.status===4}}" class="btn btn-member" bindtap="toMemberHandle">拼团进度</view>
-            <view wx:if="{{orderData.status===4}}" class="btn btn-award" bindtap="awardOrderHandle">
+            <view wx:if="{{orderData.status===4&&orderData.bargaining_info.status===2}}" class="btn btn-award" bindtap="awardOrderHandle">
               去领奖
             </view>
           </block>

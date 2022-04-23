@@ -1,0 +1,53 @@
+/* pages/mine/vip/createVip.wxss */
+.container-createvip {
+  background: #FFFFFF;
+}
+
+.section1 .icon-success {
+  margin: 60rpx auto 0;
+  width: 616rpx;
+  height: 452rpx;
+  display: block;
+}
+
+.section2 {
+  overflow: hidden;
+  text-align: center;
+}
+
+.section2 .row {
+  font-size: 34rpx;
+  color: #333333;
+}
+
+.section2 .row1 {
+  margin-top: 30rpx;
+}
+
+.section2 .row2 {
+  margin-top: 16rpx;
+}
+
+.section3 {
+  margin-top: 100rpx;
+}
+
+.btn {
+  margin: 0 auto;
+  text-align: center;
+  width: 616rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+}
+
+.btn-lottery {
+  background: #FF723A;
+  color: #FFFFFF;
+}
+
+.btn-back {
+  color: #333333;
+  background: #F6F6F6;
+  margin-top: 20rpx;
+}

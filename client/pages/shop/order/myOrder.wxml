@@ -126,7 +126,7 @@
                 </view>
                 <view class="content-bargain">
                   <view class="tit-bargain txt-cut">{{item.goods_list[0].goods_name}}</view>
-                  <view class="des-bargain status{{item.status}}">{{tools.bargainStatus2Text(item.status,item.bargaining_info.last_join_member)}}</view>
+                  <view class="des-bargain status{{item.status}}">{{tools.bargainStatus2Text(item.status,item.bargaining_info.status,item.bargaining_info.last_join_member)}}</view>
                 </view>
               </view>
               <view class="l2-2">
@@ -142,8 +142,9 @@
                 <view wx:if="{{item.status===0}}" class="btn btn-pay btnstatus{{item.status}}" data-item="{{item}}" catchtap="payOrderHandle">立即支付</view>
               </block>
               <block wx:else>
+                <view wx:if="{{item.status!=1}}" class="btn btn-del" catchtap="delOrderHandle" data-item="{{item}}">删除订单</view>
                 <view class="btn btn-bargain btnstatus{{item.status}}" catchtap="bargainProgressHandle" data-item="{{item}}">拼团进度</view>
-                <view wx:if="{{item.status===4&&item.bargaining_info.bargaining_status===2}}" class="btn btn-award" data-item="{{item}}" catchtap="awardOrderHandle">去领奖</view>
+                <view wx:if="{{item.status===4&&item.bargaining_info.status===2}}" class="btn btn-award" data-item="{{item}}" catchtap="awardOrderHandle">去领奖</view>
               </block>
             </view>
           </view>

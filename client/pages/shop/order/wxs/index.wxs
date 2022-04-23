@@ -34,7 +34,7 @@ module.exports = {
   // 订单状态 0:待支付 1:已支付 2:已取消 3:已完成 4:已退款
   // 拼团状态 1:进行中 2:已完成 3:未拼成
   // 中奖状态bargaining_status 0:待开奖 1:已中奖 2:未中奖 -1:拼团已解散
-  bargainStatus2Text: function (status, last_join_member) {
+  bargainStatus2Text: function (status, bargaining_status, last_join_member) {
     if (status === 0) {
       return '还差' + last_join_member + '人拼成'
     } else if (status === 1) {
@@ -44,7 +44,11 @@ module.exports = {
     } else if (status === 3) {
       return '拼团成功'
     } else if (status === 4) {
-      return '未获得商品购买资格，获得幸运奖'
+      if (bargaining_status === 2) {
+        return '未获得商品购买资格，获得幸运奖'
+      } else if (bargaining_status === 3) {
+        return '拼团时间超时，拼团失败'
+      }
     }
   }
 }

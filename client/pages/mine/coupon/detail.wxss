@@ -87,12 +87,13 @@
   font-size: 30rpx;
   font-weight: bold;
   color: #333333;
-  margin-bottom: 30rpx;
+  margin-bottom: 21rpx;
 }
 
 .specify .l {
   font-size: 26rpx;
   color: #333333;
+  line-height: 44rpx;
 }
 
 .specify .l:nth-of-type(n+3) {

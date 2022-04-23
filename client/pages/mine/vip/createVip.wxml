@@ -1,0 +1,21 @@
+<!--pages/mine/vip/createVip.wxml-->
+<!-- <text>pages/mine/vip/createVip.wxml</text> -->
+<!-- 成为会员 -->
+<view class="container container-createvip">
+  <view class="bg">
+  </view>
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333333" bgColor="transparent" />
+  </view>
+  <view class="section1">
+    <image class="icon-success" src="/assets/images/login_succeed_img.png" mode="aspectFill"></image>
+  </view>
+  <view class="section2">
+    <view class="row1">已为您自动升级为xx会员</view>
+    <view class="row2">赠送您一次抽奖机会</view>
+  </view>
+  <view class="section3">
+    <view class="btn btn-lottery" bindtap="goLotteryHandle">去抽奖</view>
+    <view class="btn btn-back" bindtap="goBackHandle">返回</view>
+  </view>
+</view>

@@ -68,14 +68,14 @@ App({
   },
   onShow() {
     // 统计时长埋点
-    if (store.data.shop_id) {
-      setTrack({
-        type: 1,
-        shop_id: store.data.shop_id
-      }).then(res => {
-        this.globalData.page_id = res.data.page_id
-      })
-    }
+    // if (store.data.shop_id) {
+    setTrack({
+      type: 1,
+      shop_id: store.data.shop_id
+    }).then(res => {
+      this.globalData.page_id = res.data.page_id
+    })
+    // }
   },
   onHide() {
     let param = {

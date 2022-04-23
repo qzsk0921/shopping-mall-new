@@ -48,6 +48,19 @@ create(store, {
     this.createWithdraw({
       type: 1 + Number(this.data.idx),
       money: this.data.money
+    }).then(res => {
+      
+      wx.showToast({
+        title: '提现成功，请联系商家审核打款',
+        icon: 'none'
+      })
+
+      // 提现成功更新数据
+      this.getWithdrawInfo().then(res => {
+        this.setData({
+          withdrawData: res.data
+        })
+      })
     })
   },
   inputHandle(e) {

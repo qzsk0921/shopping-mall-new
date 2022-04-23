@@ -159,7 +159,7 @@ create(store, {
       res => {
         // 更新大购物车数量（顶部）
         getCartData({
-          shop_id: this.store.data.shop_id
+          // shop_id: this.store.data.shop_id
         }).then(res => {
           let cart_number = 0
           res.data.list.forEach(item => {
@@ -494,7 +494,7 @@ create(store, {
     }
 
     getCartData({
-      shop_id: this.store.data.shop_id
+      // shop_id: this.store.data.shop_id
     }).then(res => {
       let cart_number = 0
       res.data.list.forEach(item => {

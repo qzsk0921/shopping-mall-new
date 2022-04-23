@@ -52,6 +52,41 @@ create(store, {
     //   latitude: this.store.data.location.location.lat,
     //   longitude: this.store.data.location.location.lng
     // }
+
+    // 查询一下用户是否授权了地理位置 scope.userLocation
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        if (!res.authSetting['scope.userLocation']) {
+          wx.openSetting({
+            success(res) {
+              console.log(res.authSetting)
+              // res.authSetting = {
+              //   "scope.userInfo": true,
+              //   "scope.userLocation": true
+              // }
+              if (res.authSetting['scope.userLocation']) {
+                wx.authorize({
+                  scope: 'scope.userLocation',
+                  success() {
+                    that.chooseLocation()
+                  },
+                  fail(err) {
+                    console.log(err)
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          that.chooseLocation()
+        }
+      }
+    })
+    // wx.openLocation(objectData)
+  },
+  chooseLocation() {
+    const that = this
     wx.chooseLocation({
       // latitude: this.store.data.location.location.lat,
       // longitude: this.store.data.location.location.lng,
@@ -77,7 +112,6 @@ create(store, {
         console.log(res)
       }
     })
-    // wx.openLocation(objectData)
   },
   addressDelHandle() {
     // 删除收货地址

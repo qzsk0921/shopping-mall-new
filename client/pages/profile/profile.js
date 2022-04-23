@@ -89,6 +89,12 @@ let options2 = [{
     name: '钱包',
     url: '/pages/mine/wallet/wallet?from=mine'
   },
+  // {
+  //   id: 14,
+  //   imgName: 'my_members_level_1',
+  //   name: '抽奖中心',
+  //   url: '/pages/mine/prize/prize?from=mine'
+  // }
 ]
 
 // Page({
@@ -219,6 +225,12 @@ create(store, {
         name: '钱包',
         url: '/pages/mine/wallet/wallet?from=mine'
       },
+      {
+        id: 14,
+        imgName: 'my_members_level_1',
+        name: '抽奖中心',
+        url: '/pages/mine/prize/prize?from=mine'
+      }
     ]
   },
   optionsTapHandle(e) {

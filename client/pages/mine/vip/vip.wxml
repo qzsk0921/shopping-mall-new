@@ -4,35 +4,110 @@
 <wxs module="tool" src="./wxs/index.wxs"></wxs>
 
 <view class="container container-vip">
+  <view class="bg">
+  </view>
   <view class="fixed">
-    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#D1B491" bgColor="#1D1E24" />
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333333" bgColor="transparent" />
   </view>
   <view class="section1">
-    <image class="icon-bgvip" src="/assets/images/members_head_bk.png" mode="aspectFill"></image>
-    <view class="row1">
-      <view class="nickname">{{userInfo.nick_name}}</view>
-      <view wx:if="{{userInfo.is_vip}}" class="tag">{{userInfo.vip_info.vip_name}}</view>
+    <view class="l">
+      <view class="l-l">
+        <image class="icon-avatar" src="{{userInfo.avatar_url}}" mode="aspectFill"></image>
+      </view>
+      <view class="l-r">
+        <view class="l-r-t">{{userInfo.nick_name}}</view>
+        <view class="l-r-b">
+          <image src="/assets/images/members_level_3.png" mode="aspectFill"></image>
+          <text>会员名称</text>
+        </view>
+      </view>
     </view>
-    <!-- <view class="row2">还未开通会员</view> -->
-    <view class="row2">{{userInfo.is_vip?'有效期至：'+tools.formatTime(userInfo.vip_info.expire_time*1000, 'yy-mm-dd'):'还未开通会员'}}</view>
-    <view wx:if="{{userInfo.is_vip}}" class="row3 vip"><text>累计已</text><text>省{{userInfo.user_total_discount}}元</text></view>
-    <view wx:else class="row3">开通既享受更多优惠价格</view>
+    <view class="r">
+      享4.5折
+    </view>
   </view>
   <view class="section2">
-    <view class="tit">套餐选择</view>
-    <view class="row{{index+1}} row {{currentVipId===item.id?'active':''}}" wx:for="{{vipList}}" wx:key="unique" data-item="{{item}}" bindtap="vipItemHandle">
-      <image class="icon-level left" src="{{item.icon}}" mode="aspectFill"></image>
-      <view class="center">
-        <view class="row1">{{item.name}}</view>
-        <view class="row2">{{item.introduce}}</view>
+    <view class="row1">
+      <text>积分</text>
+      <text>8658</text>
+      <view class="arrow"></view>
+    </view>
+    <view class="row2">
+      <text>成长值:7258</text>
+      <text>(距下一等级还差xxx)</text>
+    </view>
+    <view class="row3">
+      <view class="step-box">
+        <view class="step step1">
+          <view class="step-head">
+            <view class="step-icon">
+              <image class="icon-level icon-level1 active" src="/assets/images/members_level_1.png" mode="aspectFill"></image>
+            </view>
+            <view class="step-line">
+              <view class="step-line-inner progress" style="width: 100%;">
+              </view>
+            </view>
+          </view>
+          <view class="step-main">
+            <view class="step-description">0</view>
+          </view>
+        </view>
+        <view class="step step2">
+          <view class="step-head">
+            <view class="step-icon">
+              <image class="icon-level icon-level2" src="/assets/images/members_level_2.png" mode="aspectFill"></image>
+            </view>
+            <view class="step-line">
+              <view class="step-line-inner progress" style="width: 50%;">
+              </view>
+            </view>
+          </view>
+          <view class="step-main">
+            <view class="step-description">10000</view>
+          </view>
+        </view>
+        <view class="step step3">
+          <view class="step-head">
+            <view class="step-icon">
+              <image class="icon-level icon-level3" src="/assets/images/members_level_3.png" mode="aspectFill"></image>
+            </view>
+            <!-- <view class="step-line">
+              <view class="step-line-inner"></view>
+            </view> -->
+          </view>
+          <view class="step-main">
+            <view class="step-description">20000</view>
+          </view>
+        </view>
       </view>
-      <view class="right"><text>￥</text><text>{{item.price}}</text></view>
     </view>
   </view>
-  <view class="section3 footer">
-    <view class="left"><text>￥</text><text>{{tool.parsePrice(currentVipId,vipList)}}</text></view>
-    <view class="right btn btn-open {{btnDisable?'disable':''}}" bindtap="addVipHandle">{{btnText}}</view>
+  <view class="section3">
+    <image class="icon-prize" src="/assets/images/members_level.png" mode="aspectFill"></image>
+  </view>
+  <view class="section4">
+    <view class="l sec">
+      <view>如何获得积分？</view>
+      <view>消费10元得1积分</view>
+    </view>
+    <view class="r sec">
+      <view>如何提升会员等级?</view>
+      <view>累计积分提升会员等级</view>
+    </view>
+  </view>
+  <view class="section5">
+    <view class="row1">
+      <image src="/assets/images/members_level_33.png" mode="aspectFill"></image>
+      <text>会员权益</text>
+      <image src="/assets/images/members_level_33.png" mode="aspectFill"></image>
+    </view>
+    <text class="row2">
+      阿斯达；禄口街道可垃圾费；卡拉克；时代峻峰个；辣椒水；独立开发记录卡就是为了咖啡加微喇裤金额非；离开家sad李
+      逵负荆拉克丝剪短发空数据大富科技撒了快递费就1阿斯达；
+      禄口街道可垃圾费；卡拉克；时代峻峰个；辣椒水；独立开发记录卡就是为了咖啡加微喇裤金额非；离开家sad李逵负荆
+      拉克丝剪短发空数据大富科技撒了快递费就1
+    </text>
   </view>
 </view>
 
-<confirm dialogVisible="{{confirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmContent}}" title="{{confirmTitle}}" confirmBgColor="{{confirmBgColor}}" />
+<!-- <confirm dialogVisible="{{confirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmContent}}" title="{{confirmTitle}}" confirmBgColor="{{confirmBgColor}}" /> -->

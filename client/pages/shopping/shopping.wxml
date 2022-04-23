@@ -28,7 +28,7 @@
       <!-- 购物车 -->
       <view class="section2">
         <checkbox-group bindchange="checkboxChange">
-          <view class="item {{item.status===2?'mask-box':item.is_stock?'':'mask-box'}}" wx:for="{{cartData.cache}}" wx:key="unique" data-disabled="{{item.status===2?0:item.is_stock?1:0}}">
+          <view class="item {{item.status===2||item.status===3?'mask-box':item.is_stock?'':'mask-box'}}" wx:for="{{cartData.cache}}" wx:key="unique" data-disabled="{{item.status===2?0:item.is_stock?1:0}}">
             <!-- 关闭按钮 -->
             <image class="btn-close" src="/assets/images/car_icon_del.png" mode="aspectFill" data-item="{{item}}" data-index="{{index}}" catchtap="delGoodsHandle">
             </image>
@@ -43,9 +43,9 @@
             </view>
             <view class="left">
               <!-- <view class="checkbox-box {{item.checked?'checked':''}}"> -->
-              <view class="checkbox-box {{tools.checkedCheck(item.id+'.'+item.unit_id, checkedIds)?'checked':''}}">
+              <view class="checkbox-box {{tools.checkedCheck(item.id+'.'+item.attribute_value_str, checkedIds)?'checked':''}}">
                 <image src="/assets/images/car_icon_on.png" mode="aspectFill"></image>
-                <checkbox value="{{item.id+'.'+item.unit_id}}" checked="{{tools.checkedCheck(item.id+'.'+item.unit_id, checkedIds)}}" disabled="{{(item.status===2||item.status===3)?1:item.is_stock?0:1}}" />
+                <checkbox value="{{item.id+'.'+item.attribute_value_str}}" checked="{{tools.checkedCheck(item.id+'.'+item.attribute_value_str, checkedIds)}}" disabled="{{(item.status===2||item.status===3)?1:item.is_stock?0:1}}" />
               </view>
             </view>
             <view class="center" data-id="{{item.id}}" bindtap="toGoodsDetail" data-disabled="{{item.status===2?0:item.is_stock?1:0}}">

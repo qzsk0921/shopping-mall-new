@@ -520,6 +520,7 @@
   font-size: 24rpx;
   line-height: 42rpx;
   color: #333333;
+  display: block;
 }
 
 .groupbargain .r3 .arrow.collapse::before {

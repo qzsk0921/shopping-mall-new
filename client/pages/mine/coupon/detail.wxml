@@ -32,7 +32,7 @@
     </view>
     <view class="specify">
       <view class="tit">使用说明</view>
-      <view class="l1 l">{{couponData.content}}</view>
+      <text class="l1 l">{{couponData.content}}</text>
       <!-- <view class="l1 l">1全场通用，标注不可用券的商品除外</view>
       <view class="l2 l">2.限指定城市使用，标注不可用券的商品除外</view>
       <view class="l3 l">1全场通用，标注不可用券的商品除外</view>

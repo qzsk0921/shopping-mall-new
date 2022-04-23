@@ -813,11 +813,11 @@ create(store, {
       })
     }
 
-    if (!this.data.userInfo) {
+    // if (!this.data.userInfo) {
       this.setData({
         userInfo: this.store.data.userInfo
       })
-    }
+    // }
   },
 
   /**

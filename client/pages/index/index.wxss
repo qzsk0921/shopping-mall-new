@@ -121,6 +121,11 @@
   overflow: auto;
 }
 
+/* 分类单行显示 */
+.section3 .category-box .icon-category-all {
+
+}
+
 .section3 .category-box .l1 {
   display: flex;
 }
@@ -131,7 +136,8 @@
 
 .section3 .item {
   padding-left: 3rpx;
-  margin: 0 22rpx;
+  /* margin: 0 22rpx; */
+  margin: 0 32rpx;
   padding: 22rpx 0 24rpx;
 }
 
@@ -141,14 +147,17 @@
 }
 
 .section3 .item .icon-category {
-  width: 104rpx;
-  height: 104rpx;
+  /* width: 104rpx; */
+  /* height: 104rpx; */
+  width: 110rpx;
+  height: 110rpx;
   background: rgba(0, 0, 0, 0);
   border-radius: 30rpx;
 }
 
 .section3 .item .text-category {
-  margin-top: 16rpx;
+  /* margin-top: 16rpx; */
+  margin-top: 25rpx;
   min-width: 96rpx;
   text-align: center;
   font-size: 25rpx;

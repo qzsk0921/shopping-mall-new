@@ -42,7 +42,7 @@
           <view>推荐给朋友</view>
         </button>
         <!-- </view> -->
-        <text>￥</text><text>{{goodsDetail.price}}</text>
+        <text>￥</text><text>{{goodsDetail.bargaining_info?goodsDetail.bargaining_price:goodsDetail.price}}</text>
         <view wx:if="{{!goodsDetail.bargaining_info && (goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name)}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
         <text wx:if="{{goodsDetail.market_price}}">￥{{goodsDetail.market_price}}</text>
       </view>
@@ -93,7 +93,7 @@
       <view class="r3">
         <view class="arrow {{!collapse?'collapse one-txt-cut':'extend'}}" bindtap="collapseHandle"></view>
         <view class="r3-tit">拼团规则</view>
-        <view class="r3-content {{!collapse?'collapse one-txt-cut':'extend'}}">{{goodsDetail.bargaining_info.content}}</view>
+        <text class="r3-content {{!collapse?'collapse one-txt-cut':'extend'}}">{{goodsDetail.bargaining_info.content}}</text>
       </view>
     </view>
     <view class="section3">
