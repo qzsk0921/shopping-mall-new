@@ -4,10 +4,11 @@
 .content {}
 
 .content>.cont {
-  padding-bottom: 60rpx;
+  padding-bottom: 40rpx;
   overflow: auto;
   position: relative;
   min-height: 513rpx;
+  text-align: center;
 }
 
 .bg {
@@ -1125,4 +1126,10 @@
 .broadcast-list .item {
   padding-right: 24rpx;
   line-height: 68rpx;
+}
+
+.icon-copyright {
+  margin-top: 40rpx;
+  width: 359rpx;
+  height: 28rpx;
 }

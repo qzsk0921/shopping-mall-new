@@ -89,12 +89,12 @@ let options2 = [{
     name: '钱包',
     url: '/pages/mine/wallet/wallet?from=mine'
   },
-  // {
-  //   id: 14,
-  //   imgName: 'my_members_level_1',
-  //   name: '抽奖中心',
-  //   url: '/pages/mine/prize/prize?from=mine'
-  // }
+  {
+    id: 14,
+    imgName: 'my_members_level_1',
+    name: '抽奖中心',
+    url: '/pages/mine/lottery/lottery?from=mine'
+  }
 ]
 
 // Page({
@@ -229,7 +229,7 @@ create(store, {
         id: 14,
         imgName: 'my_members_level_1',
         name: '抽奖中心',
-        url: '/pages/mine/prize/prize?from=mine'
+        url: '/pages/mine/lottery/lottery?from=mine'
       }
     ]
   },
@@ -311,6 +311,33 @@ create(store, {
         if (id === 11) {
           // 扫码核销
           this.scan()
+        } else if (id === 12) {
+          // 我的拼团
+          if (!this.data.userInfo.is_captain) {
+            let param = {
+              is_captain: this.data.userInfo.is_captain
+            }
+
+            let tempParam = {
+              cancelText: '',
+              shareType: 'normal',
+              wxconfirmDialogVisibile: true,
+              confirmDialogContent: `您还需参与${this.data.userInfo.captain_last_time}次拼团，即可晋升为团长，享受团长发起拼团，拼成得佣金的权益`,
+            }
+
+            for (const key in tempParam) {
+              if (Object.hasOwnProperty.call(tempParam, key)) {
+                param[key] = tempParam[key]
+              }
+            }
+
+            this.setData(param)
+          } else {
+            wx.navigateTo({
+              url: item.url
+            })
+          }
+
         } else {
           wx.navigateTo({
             url: item.url
@@ -448,13 +475,13 @@ create(store, {
         }
 
         // 我的拼团
-        if (!res.data.is_captain) {
-          tempOptions2.some((item, index) => {
-            if (item.id === 12) {
-              tempOptions2.splice(index, 1)
-            }
-          })
-        }
+        // if (!res.data.is_captain) {
+        //   tempOptions2.some((item, index) => {
+        //     if (item.id === 12) {
+        //       tempOptions2.splice(index, 1)
+        //     }
+        //   })
+        // }
 
         // 扫码核销
         if (!res.data.is_check_order) {

@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "top-navigation": "../../components/navigation/commonnav",
-    "dropdown-groupprivilege": "../../components/DropdownMenu/groupprivilege"
+    "dropdown-groupprivilege": "../../components/DropdownMenu/groupprivilege",
+    "wxconfirm": "../../components/Dialog/wxconfirm"
   },
   "navigationStyle": "custom"
 }

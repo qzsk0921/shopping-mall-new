@@ -2,8 +2,8 @@
 // https://www.showdoc.com.cn/1722521359176667/8053561250017786 Xczm190410 批发文档
 
 export default {
-  baseUrl: 'https://b2c-api-xjcy.xcmbkj.com', //零售测试wx11729f975a9b0116
-  // baseUrl: 'https://retailers.xcmbkj.com', //零售测试wx11729f975a9b0116
+  // baseUrl: 'https://b2c-api-xjcy.xcmbkj.com', //零售客户wx8f263b3cf656e6f4
+  baseUrl: 'https://retailers.xcmbkj.com', //零售自己wx11729f975a9b0116
   // baseUrl: 'https://liancai.xxhychn.cn',
   // baseUrl:'https://liancai.xcmbkj.com', //测试wx46bb087e8ac10589
   contentType: 'application/json',

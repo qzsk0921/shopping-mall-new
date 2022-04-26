@@ -9,7 +9,7 @@
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
   </view>
-  <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px':compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px'}}">
+  <view wx:if="{{goodsDetail.id}}" class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px':compatibleInfo.systemInfo.screenHeight-(contentTop+footerH)+'px'}}">
     <view class="swiper-box section1">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255, 255, 255, .6)" indicator-active-color="#ffffff" circular="true" bindchange="bindchangeHandle">
         <block wx:for="{{goodsDetail.goods_banner_arr}}" wx:key="unique">
@@ -175,7 +175,7 @@
       <view wx:if="{{goodsDetail.delivery_type===1}}" class="col1 {{goodsDetail.delivery_type}}" bindtap="toCartHandle">
         <view class="shopcart-box">
           <image class="icon-shopcart" mode="aspectFill" src="/assets/images/goods_btn_car.png"></image>
-          <view wx:if="{{goodsDetail.cart_number}}" class="shopcart-info">{{goodsDetail.cart_number}}</view>
+          <view wx:if="{{goodsDetail.cart_total_number}}" class="shopcart-info">{{goodsDetail.cart_total_number}}</view>
         </view>
         <view>购物车</view>
       </view>

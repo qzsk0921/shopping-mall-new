@@ -43,7 +43,6 @@
     "pages/mine/wallet/withdrawRecord",
     "pages/mine/writeoff/confirm",
     "pages/mine/writeoff/status",
-    "pages/mine/prize/prize",
     "pages/mine/lottery/lottery",
     "pages/mine/lottery/prize",
     "pages/groupbargain/list",

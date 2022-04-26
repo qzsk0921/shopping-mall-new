@@ -4,5 +4,8 @@
     "dropdown-car": "/components/DropdownMenu/car",
     "wxconfirm": "/components/Dialog/wxconfirm"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "singlePage": {
+    "navigationBarTitle": "jjjjj"
+  }
 }

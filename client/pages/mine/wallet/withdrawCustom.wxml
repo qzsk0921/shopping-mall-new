@@ -9,7 +9,12 @@
     <view class="r1">
       <view class="r1-r1">微信二维码：</view>
       <!-- <image class="r1-r2" src="{{withdrawData.shop_info.wx_code}}" mode="aspectFill" bindlongpress="qrPressHandle"></image> -->
-      <image class="r1-r2" src="{{withdrawData.shop_info.wx_code}}" mode="aspectFill" bindtap="qrPressHandle"></image>
+      <block wx:if="{{withdrawData.shop_info.wx_code}}">
+        <image class="r1-r2" src="{{withdrawData.shop_info.wx_code}}" mode="aspectFill" bindtap="qrPressHandle"></image>
+      </block>
+      <block wx:else>
+
+      </block>
       <view class="r1-r3">点击二维码，保存至相册</view>
       <view class="r1-r4">
         <text>联系方式：{{withdrawData.shop_info.leader_phone}}</text>

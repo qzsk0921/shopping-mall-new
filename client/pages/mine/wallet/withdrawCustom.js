@@ -49,7 +49,7 @@ create(store, {
       type: 1 + Number(this.data.idx),
       money: this.data.money
     }).then(res => {
-      
+
       wx.showToast({
         title: '提现成功，请联系商家审核打款',
         icon: 'none'
@@ -69,16 +69,22 @@ create(store, {
   },
   // 长按二维码保存
   async qrPressHandle() {
+
+    wx.showLoading({
+      title: ' ',
+    })
+
     const res = await this.getLocalImg(this.data.withdrawData.shop_info.wx_code)
     this.savePic(res.path)
   },
   // 保存图片到系统相册
   savePic(tempFilePath) {
+    const _this = this
     wx.saveImageToPhotosAlbum({
       filePath: tempFilePath, //这个只是测试路径，没有效果
       success(res) {
         wx.showToast({
-          title: '已保存至相册',
+          title: '保存成功',
           icon: 'none',
           duration: 3000,
         })
@@ -88,7 +94,6 @@ create(store, {
       },
       // 保存到相册失败
       fail: function (err) {
-        wx.hideLoading();
         if (err.errMsg === "saveImageToPhotosAlbum:fail cancel") {
           _this.saveShareImgErr();
         } else if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny" || err.errMsg === "saveImageToPhotosAlbum:fail authorize no response") {
@@ -114,6 +119,9 @@ create(store, {
         } else {
           _this.saveShareImgErr();
         }
+      },
+      complete() {
+        wx.hideLoading()
       }
     })
   },

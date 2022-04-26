@@ -1,2 +1,61 @@
 <!--pages/mine/lottery/lottery.wxml-->
-<text>pages/mine/lottery/lottery.wxml</text>
+<!-- <text>pages/mine/lottery/lottery.wxml</text> -->
+<!-- https://100px.net/usage/wx.html -->
+
+<!-- 抽奖中心 -->
+<view class="container container-lottery">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#FFFFFF" bgColor="#FE655A" />
+  </view>
+  <view class="content hide-scrollbar" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
+    <view class="section1">
+      <image class="icon-bg" src="/assets/images/prize_bk.png" mode="aspectFill"></image>
+      <lucky-wheel id="myLucky" width="634rpx" height="634rpx" blocks="{{blocks}}" prizes="{{prizes}}" buttons="{{buttons}}" bindstart="start" bindend="end" />
+      <view class="wheel-shoulder">
+        <image class="icon-shoulder" src="/assets/images/rtary_base.png" mode="aspectFill"></image>
+        <view class="txt">x积分抽一次</view>
+        <image class="icon-present" src="/assets/images/rotary_invite.png" mode="aspectFill"></image>
+        <view class="btn btn-score">
+          <image class="icon-score" src="/assets/images/rotary_btn.png" mode="aspectFill"></image>
+          <text>剩余x积分</text>
+        </view>
+      </view>
+    </view>
+    <view class="section2">
+      <view class="cont">
+        <view class="tabs-nav" bindtap='changeTab'>
+          <view wx:for="{{tabbar}}" wx:key="unique" data-index="{{index}}" class="tab {{tabIndex==index?'active':''}}">
+            <view calss="text" data-index="{{index}}">{{item}}</view>
+          </view>
+          <view class="tabs-line" style="transform:translateX({{tabWidth*tabIndex+tabWidth/2+'px'}})translateX(-50%)">
+          </view>
+        </view>
+        <view class="c-list">
+          <view class="no-data" wx:if="{{listData[tabIndex].cache.length==0}}">
+            <image mode="aspectFill" src="{{tabIndex===0?'/assets/images/prize_history_empty.png':'/assets/images/prize_cion_empty.png'}}"></image>
+            <view class="text">{{tabIndex===0?'暂无中奖记录':'暂无积分使用记录'}}</view>
+          </view>
+          <view class='order-list business' wx:elif="{{listData[tabIndex].cache.length}}">
+            <block wx:if="{{tabIndex===0}}">
+              <view wx:if="{{index<3}}" class="item item{{tabIndex}}" wx:for="{{listData[tabIndex].cache}}" wx:key="unique">
+                <view class="l">
+                  <image src="{{item.reward_image}}" mode="aspectFill"></image>
+                </view>
+                <view class="r">
+                  <view class="row1 txt-cut">{{item.reward_name}}</view>
+                  <view class="row2">{{item.create_time}}</view>
+                </view>
+              </view>
+            </block>
+            <block wx:if="{{tabIndex===1}}">
+              <view class="item item{{tabIndex}}" wx:for="{{listData[tabIndex].cache}}"></view>
+            </block>
+          </view>
+        </view>
+        <view class="btn-box">
+          <view class="btn btn-lottery" bindtap="lotteryHandle">{{tabIndex===0?'我的奖品':'查看更多'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

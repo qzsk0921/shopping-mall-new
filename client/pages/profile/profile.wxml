@@ -3,6 +3,7 @@
 <wxs module="tools" src="./wxs/index.wxs"></wxs>
 
 <dropdown-groupprivilege bindtap="dropdownGroupprivilegeMaskTap" opened="{{dialog.groupprivilege.opened}}" />
+<wxconfirm dialogVisible="{{wxconfirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmDialogContent}}" title="温馨提示" confirmText="发起" type="{{shareType}}" is_captain="{{is_captain}}" cancelText="{{cancelText}}" />
 
 <view class="container container-profile">
   <view class="header">

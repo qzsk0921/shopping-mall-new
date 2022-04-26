@@ -8,7 +8,7 @@
     "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
-    "minified": true,
+    "minified": false,
     "newFeature": false,
     "coverView": true,
     "nodeModules": false,
@@ -71,5 +71,5 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wx8f263b3cf656e6f4"
+  "appid": "wx11729f975a9b0116"
 }
