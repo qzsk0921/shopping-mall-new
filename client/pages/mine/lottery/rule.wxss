@@ -1,0 +1,11 @@
+/* pages/mine/lottery/rule.wxss */
+.container-faq-detail {
+  background: #ffffff
+}
+
+rich-text {
+  box-sizing: border-box;
+  padding: 20rpx;
+  width: 100vw;
+  display: block;
+}

@@ -1,7 +1,9 @@
 <!--pages/mine/lottery/prize.wxml-->
 <!-- <text>pages/mine/lottery/prize.wxml</text> -->
 <!-- 我的奖品 -->
-<view class="container container-collection">
+<wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
+
+<view class="container container-prize">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#333" bgColor="#fff" />
   </view>
@@ -11,16 +13,19 @@
     <view slot="refresher" class="refresh-container disf faic" style="display:block;width: 100%; height: 80px;  display: flex; align-items:center;justify-content:center;box-sizing: border-box;border-bottom:1px solid #f5f5f5"></view>
     <view class="content">
       <view class="no-data" wx:if="{{(prizeList.cache.length==0)}}">
-        <image mode="aspectFill" src="/assets/images/empty.png"></image>
-        <view class="text">暂无更多内容</view>
+        <image mode="aspectFill" src="/assets/images/prize_history_empty.png"></image>
+        <view class="text">暂无中奖记录</view>
       </view>
+      <!-- reward_type	string	1:商品 2:优惠券 3:积分 4:谢谢参与 -->
+      <!-- reward_status	int	1:待兑奖 2:已兑奖 3:发放中 -->
       <block wx:elif="{{prizeList.cache.length}}">
         <view class="item" wx:for="{{prizeList.cache}}" wx:key="unique" data-item="{{item}}" bindtap="itemHandle">
-          <image class="icon-printing" src="/assets/images/prize_img_exchange.png" mode="aspectFill"></image>
-          <view class="btn btn-exchange" bindtap="exchangeHandle">立即兑换</view>
+          <image wx:if="{{item.reward_status===2}}" class="icon-printing" src="/assets/images/prize_img_exchange.png" mode="aspectFill"></image>
+          <image wx:if="{{item.reward_status===3}}" class="icon-printing" src="/assets/images/prize_img_send.png" mode="aspectFill"></image>
+          <view wx:if="{{item.reward_status===1}}" class="btn btn-exchange" bindtap="exchangeHandle">立即兑换</view>
           <view class="left">
             <view class="icon-goods-box">
-              <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
+              <image class="icon-goods" src="{{item.reward_image}}" mode="aspectFill"></image>
             </view>
           </view>
           <view class="right">
@@ -28,18 +33,22 @@
               <view class="l1 txt-cut" style="{{compatibleInfo.isIphone?'display: block !important;overflow: hidden;max-height: 95rpx;':''}}">
                 <!--显示拼团标签 -->
                 <!-- <view wx:if="{{item.bargaining_status!=0 || (item.is_pre_sale===1 || item.activity_info.activity_name)}}" class="tag {{item.bargaining_status!=0?'bargain':item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.bargaining_status!=0?'拼团商品':item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view> -->
-                <view class="txt-cut">{{item.goods_name}} {{item.spec}}</view>
+                <view class="txt-cut">{{item.reward_name}} {{item.spec}}</view>
               </view>
               <!-- <view class="l3 one-txt-cut">{{item.goods_content}}</view> -->
             </view>
             <view class="bottom">
               <view class="l4">
-                <text>￥</text><text>{{item.price}}</text>
+                <text>￥</text><text>{{item.reward_price}}</text>
                 <text wx:if="{{item.market_price}}">￥{{item.market_price}}</text>
               </view>
-              <view wx:if="{{item.delivery}}" class="l5">物流单号:SF12345613456</view>
+              <view wx:if="{{item.reward_type===2||item.reward_type===3}}" class="l5">已自动发放到您的账户中</view>
+              <view wx:if="{{item.express_number}}" class="l5">
+                <text>物流单号:{{item.express_number}}</text>
+                <text class="copy" data-copy="{{item.express_number}}" bindtap="copyHandle">复制</text>
+              </view>
               <view class="l6">
-                中奖时间:2022-3-15 13:25:58
+                中奖时间：{{commontools.formatTime(item.create_time*1000)}}
               </view>
             </view>
           </view>

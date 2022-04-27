@@ -1,0 +1,14 @@
+<!--pages/mine/lottery/awardRes.wxml-->
+<!-- <text>pages/mine/lottery/awardRes.wxml</text> -->
+<!-- 领奖成功 -->
+<view class="container container-lottery-awardres">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#FFFFFF" bgColor="#FFFFFF" />
+  </view>
+  <view class="content hide-scrollbar">
+    <image class="icon-success row1" src="/assets/images/prize_img_succeed.png" mode="aspectFill"></image>
+    <view class="row2">领奖成功</view>
+    <view class="row3">请等待商家发放奖励</view>
+    <view class="row4 btn btn-submit" bindtap="toLotteryHandle">确定</view>
+  </view>
+</view>

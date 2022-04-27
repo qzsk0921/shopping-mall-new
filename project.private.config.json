@@ -1,35 +1,21 @@
 {
   "setting": {
-    "urlCheck": false
+    "urlCheck": true
   },
   "condition": {
     "miniprogram": {
       "list": [
         {
           "name": "",
-          "pathName": "pages/mine/vip/createVip",
+          "pathName": "pages/profile/profile",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
-          "pathName": "pages/mine/lottery/prize",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/mine/lottery/lottery",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/test/test",
-          "query": "",
+          "pathName": "pages/location/index/index",
+          "query": "from=lottery_of_mine",
           "launchMode": "default",
           "scene": null
         }

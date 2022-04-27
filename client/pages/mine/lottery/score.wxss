@@ -1,0 +1,45 @@
+/* pages/mine/lottery/score.wxss */
+.container-score {
+  padding: 0 24rpx;
+  background: #ffffff;
+}
+
+.content {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.content .no-data {
+  text-align: center;
+}
+
+.content .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.content .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  background: #ffffff;
+}
+
+.item .l {
+  font-size: 28rpx;
+  color: #333333;
+  border-bottom: 2rpx solid #EEEEEE;
+}
+
+.item .r {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+}

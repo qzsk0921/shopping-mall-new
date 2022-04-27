@@ -1,0 +1,160 @@
+/* components/Dialog/prize.js.wxss */
+.dialog-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 10000;
+  text-align: center;
+  transition: all .4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fadeout {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mask {
+  /* transition: all .4s; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(51, 51, 51, .5); */
+  background: rgba(51, 51, 51, .8);
+  z-index: -1;
+}
+
+.dialog {
+  /* padding: 100rpx 115rpx 96rpx;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden; */
+}
+
+.row1 {
+  padding: 310rpx 0 80rpx;
+  position: relative;
+  width: 540rpx;
+  /* height: 568rpx; */
+  background: #FFF9ED;
+  border-radius: 30rpx;
+}
+
+.row11 {
+  margin: -58rpx auto 0;
+  width: 454rpx;
+  height: 116rpx;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.row11 .icon-popup {
+  width: 100%;
+  height: 100%;
+}
+
+.row11 text {
+  width: 100%;
+  position: absolute;
+  top: 24rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #EC2300;
+  letter-spacing: 2rpx;
+}
+
+.row12 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 310rpx;
+}
+
+.row12 .icon-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.row12 .icon-good-box {
+  width: 180rpx;
+  height: 180rpx;
+  position: absolute;
+  top: 78rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 30rpx;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.row12 .icon-good {
+  width: 100%;
+  height: 100%;
+}
+
+.row13 {
+  margin-top: 50rpx;
+}
+
+.row14 {
+  margin-top: 18rpx;
+}
+
+.row13,
+.row14 {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.row15 {
+  margin-top: 22rpx;
+  font-size: 26rpx;
+  color: #888888;
+  letter-spacing: 2rpx;
+}
+
+.row15.price {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #F24122;
+}
+
+.row2 {
+  margin: 40rpx auto 0;
+  width: 348rpx;
+  height: 94rpx;
+  background: #F24122;
+  border-radius: 47rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  line-height: 92rpx;
+  color: #FFF08E;
+  letter-spacing: 2rpx;
+}
+
+.row3 {
+  margin: 70rpx auto 0;
+}
+
+.row3 .icon-close {
+  width: 86rpx;
+  height: 86rpx;
+}

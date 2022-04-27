@@ -5,7 +5,8 @@ import create from '../../../utils/create'
 import {
   getPrizeList,
   getLotteryList,
-  getScoreList
+  getScoreList,
+  lotteryStart
 } from '../../../api/lottery'
 
 // Page({
@@ -15,6 +16,7 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    isOverShare: 1,
     userInfo: null,
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '抽奖中心',
@@ -122,8 +124,7 @@ create(store, {
       },
       // 积分记录
       {
-        cache: [
-          {
+        cache: [{
             "id": 1,
             "cost_integral": 10,
             "create_time": 1650617638
@@ -195,22 +196,39 @@ create(store, {
     }
   },
   start() {
-    console.log(9333)
     // 获取抽奖组件实例
     const child = this.selectComponent('#myLucky')
     // 调用play方法开始旋转
     child.$lucky.play()
     // 用定时器模拟请求接口
-    setTimeout(() => {
-      // 3s 后得到中奖索引 (假设抽到第0个奖品)
-      const index = 5
-      // 调用stop方法然后缓慢停止
-      child.$lucky.stop(index)
-    }, 3000)
+    this.lotteryStart().then(res => {
+      // console.log(this.data.prizes)
+      setTimeout(() => {
+        this.data.prizes.some(((item, index) => {
+          if (item.id === res.data.id) {
+            // 3s 后得到中奖索引 (假设抽到第0个奖品)
+            // 调用stop方法然后缓慢停止
+            child.$lucky.stop(index)
+            this.data.award = res.data
+          }
+        }))
+      }, 3000)
+    }).catch(res => {
+      wx.showToast({
+        icon: 'none',
+        title: res.msg,
+      })
+    })
   },
   end(event) {
     // 中奖奖品详情
     console.log(event.detail)
+    setTimeout(() => {
+      this.setData({
+        award: this.data.award,
+        dialogVisible: true,
+      })
+    }, 1000)
   },
   changeTab(e) {
     console.log(e)
@@ -240,7 +258,9 @@ create(store, {
     if (prizes.length) {
       let myPrizes = []
       prizes.forEach((item, index) => {
-        myPrizes[index] = {}
+        myPrizes[index] = {
+          id: item.id
+        }
         if (item.image) {
           myPrizes[index].imgs = [{
             src: item.image,
@@ -277,10 +297,21 @@ create(store, {
   // 0我的奖品 1查看更多
   lotteryHandle(e) {
     if (this.data.tabIndex === 0) {
-
+      wx.navigateTo({
+        url: '/pages/mine/lottery/prize',
+      })
     } else if (this.data.tabIndex === 1) {
-
+      wx.navigateTo({
+        url: '/pages/mine/lottery/score',
+      })
     }
+  },
+  // 活动规则
+  activityHandle() {
+    // draw_info.content
+    wx.navigateTo({
+      url: `/pages/mine/lottery/rule?content=${this.data.draw_info.content}`,
+    })
   },
   getPrizeList(data) {
     return new Promise((resolve, reject) => {
@@ -309,12 +340,24 @@ create(store, {
       })
     })
   },
+  lotteryStart(data) {
+    return new Promise((resolve, reject) => {
+      lotteryStart(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     getApp().setWatcher(this) //设置监听器
     this.getPrizeList().then(res => {
+      this.setData({
+        draw_info: res.data.draw_info
+      })
       const prizes = JSON.parse(JSON.stringify(res.data.draw_prizes))
       this.assemblePrizes(prizes)
     })
@@ -389,7 +432,17 @@ create(store, {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
+  onShareAppMessage(e) {
+    return {
+      title: this.data.goodsDetail.goods_name,
+      path: `/pages/goods/detail?${queryString}`, //若无path 默认跳转分享页
+      imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+      success(res) {
+        console.log('分享成功', res)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    }
   }
 })

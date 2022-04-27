@@ -12,6 +12,20 @@ export function getPrizeList(data) {
 }
 
 /**
+ * 开始抽奖接口 LuckyDraw/start_draw
+ * @param {*} data 
+ */
+export function lotteryStart(data) {
+  return request({
+    url: '/LuckyDraw/start_draw',
+    method: 'get',
+    data,
+    load: 'noload'
+  })
+}
+
+
+/**
  * 抽奖记录接口 LuckyDraw/draw_list
  * @param {int} ex_type require 1:奖品列表 2:积分列表
  * 

@@ -9,6 +9,9 @@ import {
   setAddressShopInfo,
   checkAddress
 } from '../../../api/location'
+import {
+  getPrize
+} from '../../../api/lottery'
 
 let qqmapsdk, timer;
 
@@ -341,6 +344,21 @@ create(store, {
       searchKeyword: ''
     })
   },
+  // 抽奖中心领奖跳转过来使用地址
+  useLocationHandle(e) {
+    const id = e.currentTarget.dataset.id
+    // 领奖
+    const param = {
+      draw_reward_prize_id: this.data.draw_reward_prize_id, //奖品列表id
+      address_id: id //用户地址
+    }
+
+    this.getPrize(param).then(res => {
+      wx.navigateTo({
+        url: '/pages/mine/lottery/awardRes',
+      })
+    })
+  },
   getAddressList(data) {
     data = data ? data : {}
     return new Promise((resolve, reject) => {
@@ -363,6 +381,15 @@ create(store, {
   checkAddress(data) {
     return new Promise((resolve, reject) => {
       checkAddress(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  getPrize(data) {
+    return new Promise((resolve, reject) => {
+      getPrize(data).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)
@@ -393,6 +420,12 @@ create(store, {
         this.setData({
           tag: options.from
         })
+      } else if (options.from === 'lottery_of_mine') {
+        this.setData({
+          tag: options.from
+        })
+
+        this.data.draw_reward_prize_id = options.draw_reward_prize_id
       }
     } else {
       this.setData({

@@ -42,8 +42,9 @@
       <view wx:if="{{navigationBarTitleText==='选择收货地址'}}" class="l1">我的收货地址</view>
       <view class="deliveryAddress-box hide-scrollbar" style="height:{{deliveryAddressBoxH}}px;">
         <view wx:for="{{deliveryAddress}}" wx:key="unique" class="l2" data-id="{{item.id}}" data-item="{{item}}" bindtap="addrClickHandle">
-          <image class="icon-edit" src="/assets/images/add_icon_edit.png" mode="aspectFill" bindtap="addrEditHandle" data-type="edit" data-id="{{item.id}}">
+          <image class="icon-edit {{tag==='lottery_of_mine'?'icon-edit-lottery':''}}" src="/assets/images/add_icon_edit.png" mode="aspectFill" bindtap="addrEditHandle" data-type="edit" data-id="{{item.id}}">
           </image>
+          <view wx:if="{{tag==='lottery_of_mine'}}" class="lottery-use" data-id="{{item.id}}" bindtap="useLocationHandle">使用</view>
           <view class="l2-l">
             <view class="l2-l-l1 tit {{item.id===address_id?'addr-active': ''}}">{{item.name}}</view>
             <view class="l2-l-l2 number">{{item.user_address}}</view>

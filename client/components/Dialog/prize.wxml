@@ -1,0 +1,52 @@
+<!--components/Dialog/prize.js.wxml-->
+<!-- <text>components/Dialog/prize.js.wxml</text> -->
+<!-- 中奖弹窗 -->
+<view class="dialog-wrap {{dialogVisible?'':'fadeout'}}">
+  <view class="mask" bindtap="dialogTapHandle"></view>
+  <view class="dialog">
+    <block wx:if="{{award.type===-1}}">
+      <view class="row1">
+        <view class="row12">
+          <image class="icon-bg" src="/assets/images/prize_popup_bk.png" mode="aspectFill"></image>
+          <view class="icon-good-box">
+            <image class="icon-good" src="/assets/images/popup_empty.png" mode="aspectFill"></image>
+          </view>
+        </view>
+        <!-- -1:商品已被抽光 1:商品 2:优惠券 3:积分 4:谢谢参与 -->
+        <view class="row13">奖品已被抽完
+        </view>
+        <view class="row14">请联系商家补充奖品</view>
+      </view>
+      <view class="row3">
+        <image bindtap="closeHandle" class="icon-close" src="/assets/images/popup_icon_close.png" mode="aspectFill"></image>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="row1">
+        <view class="row11">
+          <image class="icon-popup" src="/assets/images/prize_popup_head.png" mode="aspectFill"></image>
+          <text>{{award.type==4?'很遗憾 未中奖':'恭喜您中奖了'}}</text>
+        </view>
+        <view class="row12">
+          <image class="icon-bg" src="/assets/images/prize_popup_bk.png" mode="aspectFill"></image>
+          <view class="icon-good-box">
+            <image class="icon-good" src="{{award.type===4?'/assets/images/popup_not_winning.png':award.image}}" mode="aspectFill"></image>
+          </view>
+        </view>
+        <!-- -1:商品已被抽光 1:商品 2:优惠券 3:积分 4:谢谢参与 -->
+        <view class="row13">
+          {{award.type==4?'人生不如意，十之八九都是因为':'恭喜您获得'}}
+        </view>
+
+        <view class="row14"> {{award.type==4?'没！中！奖！':'“'+award.reward_name+'”'}}</view>
+        <view wx:if="{{award.type!=4}}" class="row15 {{award.type===1?'price':''}}">{{award.type===1?'价值￥'+award.reward_price:'奖品已自动发放到您账户当中'}} </view>
+      </view>
+      <view wx:if="{{award.type===1}}" class="row2" bindtap="acceptAwardHandle">
+        去领奖
+      </view>
+      <view class="row3">
+        <image bindtap="closeHandle" class="icon-close" src="/assets/images/popup_icon_close.png" mode="aspectFill"></image>
+      </view>
+    </block>
+  </view>
+</view>

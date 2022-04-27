@@ -145,8 +145,14 @@
 
 .content .item .l5 {
   margin-bottom: 16rpx;
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #999999;
+}
+
+.content .item .l5 .copy {
+  margin-left: 6rpx;
+  font-size: 22rpx;
+  color: #FF723A;
 }
 
 .content .item .l6 {

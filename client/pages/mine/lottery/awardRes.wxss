@@ -1,0 +1,38 @@
+/* pages/mine/lottery/awardRes.wxss */
+.container-lottery-awardres {
+  background: #ffffff;
+  text-align: center;
+}
+
+.icon-success {
+  margin-top: 80rpx;
+  width: 400rpx;
+  height: 408rpx;
+}
+
+.row2 {
+  margin-top: 41rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FC4953;
+  letter-spacing: 2rpx;
+}
+
+.row3 {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.row4 {
+  margin: 104rpx auto 0;
+  width: 314rpx;
+  height: 88rpx;
+  background: linear-gradient(180deg, #FF928A 0%, #FE574B 100%);
+  border-radius: 45rpx;
+  font-size: 34rpx;
+  line-height: 88rpx;
+  color: #FFFFFF;
+  letter-spacing: 5rpx;
+}

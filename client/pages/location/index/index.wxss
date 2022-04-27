@@ -114,6 +114,8 @@
   font-size: 32rpx;
   font-weight: 500;
   color: #333333;
+  width: 500rpx;
+  line-height: 44rpx;
 }
 
 .section2 .number,
@@ -245,4 +247,25 @@
   left: 50%;
   transform: translateX(-50%);
   color: #FFFFFF;
+}
+
+/* 领奖 */
+.icon-edit.icon-edit-lottery {
+  right: 163rpx !important;
+}
+
+.lottery-use {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 105rpx;
+  height: 56rpx;
+  background: #FFF2ED;
+  border: 2rpx solid #FFD2C1;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  line-height: 52rpx;
+  color: #FF723A;
 }

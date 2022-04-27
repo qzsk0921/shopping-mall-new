@@ -1,0 +1,29 @@
+<!--pages/mine/lottery/score.wxml-->
+<!-- <text>pages/mine/lottery/score.wxml</text> -->
+<!-- 积分使用记录 -->
+<wxs module="commontools" src="../../../wxs/common.wxs"></wxs>
+
+<view class="container container-score">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#333" bgColor="#fff" />
+  </view>
+
+  <scroll-view class="scroll-box item-box" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true" enhanced="true" show-scrollbar="{{false}}" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}};">
+    <!--这里是下拉显示的效果-->
+    <view slot="refresher" class="refresh-container disf faic" style="display:block;width: 100%; height: 80px;  display: flex; align-items:center;justify-content:center;box-sizing: border-box;border-bottom:1px solid #f5f5f5"></view>
+    <view class="content">
+      <view class="no-data" wx:if="{{(scoreList.cache.length==0)}}">
+        <image mode="aspectFill" src="/assets/images/prize_cion_empty.png"></image>
+        <view class="text">暂无积分使用记录</view>
+      </view>
+      <!-- reward_type	string	1:商品 2:优惠券 3:积分 4:谢谢参与 -->
+      <!-- reward_status	int	1:待兑奖 2:已兑奖 3:发放中 -->
+      <block wx:elif="{{scoreList.cache.length}}">
+        <view class="item" wx:for="{{scoreList.cache}}" wx:key="unique" data-item="{{item}}" bindtap="itemHandle">
+          <view class="l">{{commontools.formatTime(item.create_time*1000)}}</view>
+          <view class="r">-{{item.cost_integral}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

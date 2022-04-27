@@ -1,0 +1,9 @@
+<!--pages/mine/lottery/rule.wxml-->
+<!-- <text>pages/mine/lottery/rule.wxml</text> -->
+<!-- 活动规则 -->
+<view class="container container-faq-detail">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <rich-text nodes="{{faqHtmlData}}"></rich-text>
+</view>

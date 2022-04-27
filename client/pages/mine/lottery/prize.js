@@ -2,9 +2,9 @@
 import store from '../../../store/common'
 import create from '../../../utils/create'
 
-// import {
-//   getGoodsprizeList,
-// } from '../../../api/commodity'
+import {
+  getLotteryList
+} from '../../../api/lottery'
 
 // Page({
 create(store, {
@@ -19,20 +19,76 @@ create(store, {
 
     prizeList: {
       cache: [{
-          thumb: 'https://img.xxhychn.cn/admin/goods/shop_adm_2022-03-231633.jpg',
-          goods_name: '阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水',
-          goods_content: '',
-          price: '13.6',
-          spec: '500ml*6',
-          delivery: 'SF12345613456'
+          "id": 1,
+          "reward_type": 3,
+          "reward_name": "积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分",
+          "reward_price": "10.00",
+          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+          "reward_status": 2,
+          "express_number": null,
+          "express_company": null,
+          "address_info": null,
+          "create_time": 1650617638
         },
         {
-          thumb: 'https://img.xxhychn.cn/admin/goods/shop_adm_2022-03-231633.jpg',
-          goods_name: '阿尔卑斯饮用天然矿泉水阿尔卑斯饮用天然矿泉水',
-          goods_content: '',
-          price: '13.6',
-          spec: '500ml*6',
-          delivery: ''
+          "id": 2,
+          "reward_type": 3,
+          "reward_name": "积分",
+          "reward_price": "10.00",
+          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+          "reward_status": 2,
+          "express_number": null,
+          "express_company": null,
+          "address_info": null,
+          "create_time": 1650617638
+        },
+        {
+          "id": 3,
+          "reward_type": 1,
+          "reward_name": "商品",
+          "reward_price": "20.00",
+          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+          "reward_status": 1,
+          "express_number": null,
+          "express_company": null,
+          "address_info": null,
+          "create_time": 1650617638
+        },
+        {
+          "id": 4,
+          "reward_type": 1,
+          "reward_name": "商品",
+          "reward_price": "20.00",
+          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+          "reward_status": 2,
+          "express_number": "fdfasdfasd",
+          "express_company": "圆通",
+          "address_info": "望海路10号楼",
+          "create_time": 1650617638
+        },
+        {
+          "id": 5,
+          "reward_type": 2,
+          "reward_name": "优惠券",
+          "reward_price": "10.00",
+          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+          "reward_status": 3,
+          "express_number": null,
+          "express_company": null,
+          "address_info": null,
+          "create_time": 1650617638
+        },
+        {
+          "id": 6,
+          "reward_type": 2,
+          "reward_name": "优惠券",
+          "reward_price": "100.00",
+          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+          "reward_status": 3,
+          "express_number": null,
+          "express_company": null,
+          "address_info": null,
+          "create_time": 1650617638
         }
       ],
       count: 1,
@@ -43,6 +99,22 @@ create(store, {
     page_size: 10,
 
     refresherEnabled: false,
+  },
+  copyHandle(e) {
+    const copy = e.target.dataset.copy
+    this.copyToClipboard(copy)
+  },
+  // 复制到剪贴板
+  copyToClipboard(data) {
+    wx.setClipboardData({
+      data,
+      success: (res) => {
+        wx.showToast({
+          title: '复制到剪贴板',
+          icon: 'none'
+        })
+      },
+    })
   },
   // 兑换
   exchangeHandle(e) {
@@ -60,10 +132,11 @@ create(store, {
       [`prizeList.count`]: ++prizeList.count
     })
 
-    this.getGoodsprizeList('scrollToLower')
+    this.getLotteryList('scrollToLower')
   },
-  getGoodsprizeList(dataObj) {
+  getLotteryList(dataObj) {
     const tempData = {
+      ex_type: 1,
       page: this.data.prizeList.count,
       page_size: this.data.page_size,
     }
@@ -75,7 +148,7 @@ create(store, {
     }
 
     return new Promise((resolve, reject) => {
-      getGoodsprizeList(tempData).then(res => {
+      getLotteryList(tempData).then(res => {
         if (dataObj === 'scrollToLower') {
           this.data.prizeList.cache.push(...res.data.data)
           this.setData({
@@ -85,8 +158,8 @@ create(store, {
           resolve(res)
         } else {
           this.setData({
-            [`prizeList.cache`]: res.data.data,
-            [`prizeList.total_page`]: res.data.last_page
+            // [`prizeList.cache`]: res.data.data,
+            // [`prizeList.total_page`]: res.data.last_page
           })
         }
       }).catch(err => {
@@ -97,9 +170,7 @@ create(store, {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -132,9 +203,9 @@ create(store, {
       })
     }
 
-    // this.getGoodsprizeList().then(res => {
-    //   console.log(res)
-    // })
+    this.getLotteryList().then(res => {
+      console.log(res)
+    })
   },
 
   /**
