@@ -335,7 +335,9 @@
   </view>
 </view>
 
-<json-add dialogVisible="{{jsonAddDialogVisibile}}" navHeight="{{compatibleInfo.navHeight}}" setting="{{setting}}" />
+<json-add dialogVisible="{{jsonAddDialogVisibile}}" navHeight="{{compatibleInfo.navHeight}}" setting="{{setting}}" bindjsonAddDialogVisibile="jsonAddDialogVisibileHandle" />
+
+<prize-nav dialogVisible="{{prizeNavDialogVisibile}}" />
 
 <!-- 领券中心浮窗 -->
 <image wx:if="{{tabbarH}}" class="floating-window {{shrink?'shrink':''}}" src="/assets/images/home_img_coupon.png" mode="aspectFill" bindtap="toCouponHandle" style="bottom:{{tabbarH+40}}px;"></image>

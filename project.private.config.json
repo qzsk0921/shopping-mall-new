@@ -18,6 +18,34 @@
           "query": "from=lottery_of_mine",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/vip/createVip",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/vip/vip",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/mine/vip/score",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/authorization/phone",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

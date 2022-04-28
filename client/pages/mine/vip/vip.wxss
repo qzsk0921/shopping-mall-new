@@ -84,7 +84,7 @@
   /* height: 285rpx; */
   background: #FFFFFF;
   border-radius: 16rpx;
-  padding: 40rpx 30rpx 30rpx;
+  padding: 12rpx 30rpx 30rpx;
 }
 
 .section2 .row1 {
@@ -93,6 +93,8 @@
   color: #333333;
   display: flex;
   align-items: center;
+  padding: 28rpx 0;
+  width: 35%;
 }
 
 .section2 .row1 text:first-child {
@@ -120,7 +122,7 @@
 }
 
 .section2 .row2 {
-  margin-top: 28rpx;
+  /* margin-top: 28rpx; */
 }
 
 .section2 .row2 text:first-child {
@@ -148,6 +150,7 @@
 .section2 .row3 .step-box .icon-level {
   width: 54rpx;
   height: 54rpx;
+  transition: 'scale' .4s;
 }
 
 .section2 .row3 .step-box .icon-level.active {

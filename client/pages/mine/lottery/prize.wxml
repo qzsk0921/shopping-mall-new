@@ -22,7 +22,7 @@
         <view class="item" wx:for="{{prizeList.cache}}" wx:key="unique" data-item="{{item}}" bindtap="itemHandle">
           <image wx:if="{{item.reward_status===2}}" class="icon-printing" src="/assets/images/prize_img_exchange.png" mode="aspectFill"></image>
           <image wx:if="{{item.reward_status===3}}" class="icon-printing" src="/assets/images/prize_img_send.png" mode="aspectFill"></image>
-          <view wx:if="{{item.reward_status===1}}" class="btn btn-exchange" bindtap="exchangeHandle">立即兑换</view>
+          <view wx:if="{{item.reward_status===1}}" class="btn btn-exchange" data-id="{{item.id}}" bindtap="exchangeHandle">立即兑换</view>
           <view class="left">
             <view class="icon-goods-box">
               <image class="icon-goods" src="{{item.reward_image}}" mode="aspectFill"></image>

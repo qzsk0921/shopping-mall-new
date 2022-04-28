@@ -444,6 +444,49 @@ create(store, {
       },
       deep: true
     },
+    getLocation: {
+      handler(nv, ov, obj) {
+        if (nv) {
+          // 该弹窗显示在首页（ 在小程序重新打开、 用户
+          // 未授权及未使用免费抽奖次数时显示， 优先级
+          // 小于引导收藏小程序及授权定位弹窗之后显示）
+          const jsonAddDialogVisibile = wx.getStorageSync('jsonAddDialogVisibile')
+          if (jsonAddDialogVisibile) {
+            if (this.data.userInfo.draw_number) {
+              this.setData({
+                prizeNavDialogVisibile: 1
+              })
+            }
+          } else {
+            if (jsonAddDialogVisibile === 0) {
+              if (this.data.userInfo.draw_number) {
+                this.setData({
+                  prizeNavDialogVisibile: 1
+                })
+              }
+            }
+          }
+        }
+      },
+      // immediate: true
+    },
+    prizeNavDialogVisibile: {
+      handler(nv, ov, obj) {
+        if (nv === 0) {
+          if (this.data.getLocation) {
+            // 该弹窗显示在首页（ 在小程序重新打开、 用户
+            // 未授权及未使用免费抽奖次数时显示， 优先级
+            // 小于引导收藏小程序及授权定位弹窗之后显示）
+            if (this.data.userInfo.draw_number) {
+              this.setData({
+                prizeNavDialogVisibile: 1
+              })
+            }
+          }
+        }
+      },
+      // immediate: true
+    }
     // compatibleInfo: {
     //   handler(nv, ov, obj) {
     //     // console.log(nv)
@@ -659,7 +702,7 @@ create(store, {
     })
   },
   startABroadcast() {
-    
+
     // 公告只有1条不做动画
     if (this.data.shopData.notice_list.length < 2) {
       return
@@ -704,6 +747,12 @@ create(store, {
       url: '/pages/groupbargain/list',
     })
   },
+  // 关闭引导收藏弹窗
+  jsonAddDialogVisibileHandle() {
+    this.setData({
+      jsonAddDialogVisibile: 0
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -743,6 +792,13 @@ create(store, {
       this.store.data.setting = setting
       this.update()
     }
+
+    getApp().getUserInfoCallback = (userInfo) => {
+      this.setData({
+        userInfo
+      })
+    }
+
     // 定位授权
     this.getLocation()
 
@@ -926,6 +982,9 @@ create(store, {
       },
       complete: function () {
         console.log('complete')
+        that.setData({
+          getLocation: 1
+        })
       }
     })
   }

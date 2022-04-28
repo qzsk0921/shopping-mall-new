@@ -60,13 +60,13 @@
 
 .header .userInfo .userinfo-box .l1 {
   display: flex;
-  /* align-items: center; */
+  align-items: center;
 }
 
 .header .userInfo .userinfo-box .l1 .icon-badge-vip {
   margin-left: 12rpx;
-  width: 94rpx;
-  height: 34rpx;
+  width: 46rpx;
+  height: 46rpx;
 }
 
 .header .userInfo .userinfo-box .l1 .icon-badge-business {
@@ -146,8 +146,8 @@
   align-items: center;
   background: #FFFFFF;
   border-radius: 16rpx;
-  /* margin: 61rpx 24rpx 0; */
-  margin: -34rpx 24rpx 0;
+  margin: 61rpx 24rpx 0;
+  /* margin: -34rpx 24rpx 0; */
   height: 160rpx;
 }
 

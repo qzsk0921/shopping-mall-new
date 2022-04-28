@@ -411,9 +411,21 @@ create(store, {
   },
   // 打开团队特权
   openGroupprivilegeHandle() {
-    this.setData({
-      'dialog.groupprivilege.opened': 1
-    })
+    if (this.data.userInfo.is_captain) {
+      this.setData({
+        'dialog.groupprivilege.opened': 1
+      })
+    } else {
+      // 弹窗
+      const param = {
+        is_captain: this.data.userInfo.is_captain,
+        cancelText: '',
+        // shareType,
+        wxconfirmDialogVisibile: true,
+        confirmDialogContent: `您还需参与${this.data.userInfo.captain_last_time}次拼团，即可晋升为团长，享受团长发起拼团，拼成得佣金的权益`,
+      }
+      this.setData(param)
+    }
   },
   // 关闭团长特权弹窗
   dropdownGroupprivilegeMaskTap() {

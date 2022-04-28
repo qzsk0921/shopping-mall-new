@@ -30,6 +30,7 @@ create({
       this.setData({
         dialogVisible: false
       })
+      this.triggerEvent('jsonAddDialogVisibile', 0)
       // this.canvas.width = this.canvas.height = 0
     },
   },

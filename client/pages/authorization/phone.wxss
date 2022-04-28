@@ -54,3 +54,9 @@
 .right text:not(:first-child) {
   color: #FF9972;
 }
+
+.icon-lottery {
+  margin-top: 14rpx;
+  width: 598rpx;
+  height: 178rpx;
+}

@@ -34,7 +34,7 @@ create({
       //   dialogVisible: false
       // })
     },
-    // 去领奖
+    // 去领奖 跳转至奖品领取-收货地址页
     acceptAwardHandle() {
       // 添加收货地址
       wx.navigateTo({

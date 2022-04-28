@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "top-navigation": "/components/navigation/commonnav",
-    "json-add": "/components/Dialog/json-add"
+    "json-add": "/components/Dialog/json-add",
+    "prize-nav": "/components/Dialog/prize-nav"
   },
   "navigationStyle": "custom",
   "disableScroll": false

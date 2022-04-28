@@ -3,8 +3,8 @@ import store from '../../../store/common'
 import create from '../../../utils/create'
 
 import {
-  getVipList,
-  addVip
+  addVip,
+  getVipInfo
 } from '../../../api/vip'
 
 import {
@@ -24,94 +24,33 @@ create(store, {
   data: {
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '会员中心',
-    vipList: [
-      // {
-      //   "id": 3,
-      //   "name": "青铜",
-      //   "price": "3.00",
-      //   "icon": "爱仕达发多少",
-      //   "introduce": "2332",
-      //   "discount": "10.00",
-      //   "sort": 11,
-      //   "status": 1,
-      //   "create_time": 1638511838
-      // },
-      // {
-      //   "id": 1,
-      //   "name": "黄金",
-      //   "price": "1.00",
-      //   "icon": "xdddd",
-      //   "introduce": "fsdf",
-      //   "discount": "6.00",
-      //   "sort": 10,
-      //   "status": 1,
-      //   "create_time": 1638511838
-      // },
-      // {
-      //   "id": 2,
-      //   "name": "白英",
-      //   "price": "2.00",
-      //   "icon": "xdddd",
-      //   "introduce": "fsdf",
-      //   "discount": "8.00",
-      //   "sort": 9,
-      //   "status": 1,
-      //   "create_time": 1638511838
-      // }
-    ],
-
-    currentVipId: null,
-
-    btnDisable: false,
-    btnText: '', //立即开通 立即续费 立即升级
-    myVipPrice: 0
+    vipData: null,
+    currentVip: null
   },
   watch: {
     currentVipId: {
       handler(nv, ov, obj) {
-        let btnText = null
-        if (this.store.data.userInfo.is_vip) {
-          let it
-          setTimeout(() => {
-            this.data.vipList.some(item => {
-              if (item.id === nv) {
-                return it = item
-              }
-              return false
-            })
 
-            if (this.data.myVipPrice == it.price) {
-              btnText = '立即续费'
-            } else if (this.data.myVipPrice < it.price) {
-              btnText = '立即升级'
-            } else {
-              btnText = '立即开通'
-            }
-          }, 0)
-
-        } else {
-          btnText = '立即开通'
-        }
-
-        setTimeout(() => {
-          this.setData({
-            btnText
-          })
-        }, 0)
       },
       // immediate: true
     }
   },
-  vipItemHandle(e) {
-    const dataset = e.currentTarget.dataset
-    this.setData({
-      currentVipId: dataset.item.id,
-      currentVipPrice: dataset.item.price
+  toMyscoreHandle() {
+    wx.navigateTo({
+      url: '/pages/mine/vip/score',
     })
-    // 选择比自己等级低的会员不能续费
-    // myVipPrice
-    this.setData({
-      btnDisable: this.data.myVipPrice > dataset.item.price
+  },
+  vipItemHandle(e) {
+    if (e.target.dataset.item) {
+      this.setData({
+        currentVip: e.target.dataset.item,
+      })
+    }
+  },
+  // 去抽奖中心
+  toLotteryHandle() {
+    wx.navigateTo({
+      url: '/pages/mine/lottery/lottery',
     })
   },
   certCheck() {
@@ -158,102 +97,9 @@ create(store, {
       })
     }
   },
-  addVipHandle(e) {
-    console.log('addVipHandle')
-
-    if (!this.certCheck()) return
-
-    if (this.data.btnDisable) return
-
-    const that = this
-
-    this.addVip({
-      id: this.data.currentVipId
-    }).then(res => {
-      const payModel = res.data;
-      wx.requestPayment({
-        'timeStamp': payModel.timeStamp.toString(),
-        'nonceStr': payModel.nonceStr,
-        'package': 'prepay_id=' + payModel.prepay_id, //统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
-        'signType': payModel.signType,
-        'paySign': payModel.paySign,
-        'success': function (res) {
-          console.log(res)
-
-          // 支付成功后，返回个人中心，刷新个人中心页面
-          getUserDetail().then(res => {
-            // 业务代码 1:正常 0:禁用 -1:不存在-------------------------------------------------
-            if (res.data.status === 0) {
-              wx.reLaunch({
-                url: '/pages/authorization/forbidden',
-              })
-            }
-
-            const title = that.data.btnText === '立即续费' ? '续费成功' : that.data.btnText === '立即升级' ? '升级成功' : '开通成功'
-
-            // v2用户开通或续费成功后，停留再当前页面，并刷新当前页面
-            that.setData({
-              userInfo: res.data,
-              myVipPrice: that.data.currentVipPrice,
-              // currentVipId: that.data.currentVipId,
-              btnText: '立即续费'
-            })
-
-            getApp().globalData.userInfo = store.data.userInfo = res.data
-            store.update()
-
-            wx.showToast({
-              title,
-              icon: 'none'
-            })
-
-            const pages = getCurrentPages() //获取加载的页面
-            const prevPage = pages[pages.length - 2] //获取上个页面的对象
-            if (prevPage.route === 'pages/shop/order/confirmOrder') {
-              // 如果上一页是订单确认页，开通之后更新订单确认页数据
-              if (getApp().globalData.orderData) {
-                that.preOrder(getApp().globalData.orderData, 'noload').then(res => {
-                  prevPage.setData({
-                    orderData: res.data
-                  })
-                  // wx.navigateBack({
-                  //   delta: 0,
-                  // })
-                })
-              }
-            } else {
-              // // 支付成功后，返回个人中心，刷新个人中心页面
-              // wx.navigateBack({
-              //   delta: 0,
-              // })
-            }
-          })
-          // 获取消息下发权限(只在支付回调或tap手势事件能调用)
-          // wx.requestSubscribeMessage({
-          //   tmplIds: ['mtwGRB07oFL2fJgoiIipKVCYFFHS0vytiw2rTHqtAz8', 'gB9gMYOrOkLl-yTHdBP5vUS5rgwsTW1hjUYNml-57Go'],
-          //   success(res) {},
-          //   fail(err) {
-          //     console.log(err)
-          //   },
-          //   complete() {
-          //     // console.log("dasda", payModel.package.substr(10))
-          //     that.addOrder(payModel.out_trade_no, payModel.package.substr(10))
-          //   }
-          // })
-        },
-        'fail': function (res) {
-          wx.showToast({
-            title: '取消支付，开通失败',
-            icon: 'none'
-          })
-          console.log(res)
-        }
-      })
-    })
-  },
-  getVipList(data) {
+  getVipInfo(data) {
     return new Promise((resolve, reject) => {
-      getVipList(data).then(res => {
+      getVipInfo(data).then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)
@@ -283,23 +129,6 @@ create(store, {
    */
   onLoad: function (options) {
     getApp().setWatcher(this) //设置监听器
-
-    let currentVip = null
-    this.getVipList().then(res => {
-      res.data.data.some(item => {
-        if (item.name === this.store.data.userInfo.vip_info.vip_name)
-          return currentVip = item
-        return false
-      })
-
-      this.setData({
-        vipList: res.data.data,
-        currentVipId: currentVip ? currentVip.id : res.data.data[0].id,
-        myVipPrice: currentVip ? currentVip.price : 0,
-        currentVipPrice: res.data.data[0].price
-      })
-    })
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -323,6 +152,31 @@ create(store, {
         userInfo: this.store.data.userInfo
       })
     }
+
+    this.getVipInfo().then(res => {
+      let index = 0
+      res.data.vip_list.some((item, idx) => {
+        if (item.vip_level === res.data.user_vip.vip_level) {
+          index = idx
+          return true
+        }
+        return false
+      })
+      
+      let dataset = {
+        vipData: res.data,
+        currentVip: res.data.vip_list[0],
+        index
+      }
+
+      if (res.data.vip_list[index + 1]) {
+        dataset.last_integral = res.data.vip_list[index + 1].integral_num - res.data.user.total_integral
+      } else {
+        dataset.last_integral = 0
+      }
+
+      this.setData(dataset)
+    })
   },
 
   /**

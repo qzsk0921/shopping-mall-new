@@ -1,0 +1,73 @@
+/* components/Dialog/prize-nav.wxss */
+.dialog-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 10000;
+  text-align: center;
+  transition: all .4s;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.fadeout {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mask {
+  /* transition: all .4s; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, .8);
+  z-index: -1;
+}
+
+.dialog {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main {
+  margin-top: calc(293rpx + env(safe-area-inset-bottom));
+  width: 566rpx;
+  height: 582rpx;
+  position: relative;
+}
+
+.main .btn-lottery {
+  margin: 494rpx auto 0;
+  width: 360rpx;
+  height: 88rpx;
+  background: linear-gradient(180deg, #FBE49A 0%, #FABD5F 77%, #F9AB44 100%);
+  border-radius: 44rpx;
+  font-size: 34rpx;
+  font-weight: 500;
+  line-height: 86rpx;
+  color: #432B0B;
+  letter-spacing: 2rpx;
+}
+
+.main .icon-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.icon-close {
+  margin-top: 100rpx;
+  width: 86rpx;
+  height: 86rpx;
+}

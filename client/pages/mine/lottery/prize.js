@@ -118,7 +118,12 @@ create(store, {
   },
   // 兑换
   exchangeHandle(e) {
-
+    const draw_reward_prize_id = e.target.dataset.id
+    // 去领奖 跳转至奖品领取-收货地址页
+    // 添加收货地址
+    wx.navigateTo({
+      url: `/pages/location/index/index?from=lottery_of_mine&draw_reward_prize_id=${draw_reward_prize_id}`,
+    })
   },
   scrollToLower(e) {
     console.log(e)

@@ -1,0 +1,13 @@
+<!--components/Dialog/prize-nav.wxml-->
+<!-- <text>components/Dialog/prize-nav.wxml</text> -->
+<!-- 抽奖引导页 -->
+<view class="dialog-wrap {{dialogVisible?'':'fadeout'}}">
+  <view class="mask" bindtap="dialogTapHandle"></view>
+  <view class="dialog">
+    <view class="main">
+      <image class="icon-main" src="/assets/images/prize_popup.png" mode="aspectFill"></image>
+      <view class="btn btn-lottery" bindtap="toLotteryHandle">去抽奖</view>
+    </view>
+    <image class="icon-close" bindtap="closeHandle" class="icon-close" src="/assets/images/popup_icon_close.png" mode="aspectFill"></image>
+  </view>
+</view>

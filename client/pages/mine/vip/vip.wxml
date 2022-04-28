@@ -12,39 +12,39 @@
   <view class="section1">
     <view class="l">
       <view class="l-l">
-        <image class="icon-avatar" src="{{userInfo.avatar_url}}" mode="aspectFill"></image>
+        <image class="icon-avatar" src="{{vipData.user.avatar_url}}" mode="aspectFill"></image>
       </view>
       <view class="l-r">
-        <view class="l-r-t">{{userInfo.nick_name}}</view>
+        <view class="l-r-t">{{vipData.user.nick_name}}</view>
         <view class="l-r-b">
           <image src="/assets/images/members_level_3.png" mode="aspectFill"></image>
-          <text>会员名称</text>
+          <text>{{vipData.user_vip.vip_name}}</text>
         </view>
       </view>
     </view>
     <view class="r">
-      享4.5折
+      享{{vipData.user_vip.discount/10}}折
     </view>
   </view>
   <view class="section2">
-    <view class="row1">
+    <view class="row1" bindtap="toMyscoreHandle">
       <text>积分</text>
-      <text>8658</text>
+      <text>{{vipData.user.integral}}</text>
       <view class="arrow"></view>
     </view>
     <view class="row2">
-      <text>成长值:7258</text>
-      <text>(距下一等级还差xxx)</text>
+      <text>成长值:{{vipData.user.total_integral}}</text>
+      <text>(距下一等级还差{{last_integral}})</text>
     </view>
     <view class="row3">
-      <view class="step-box">
+      <view class="step-box" bindtap="vipItemHandle">
         <view class="step step1">
           <view class="step-head">
             <view class="step-icon">
-              <image class="icon-level icon-level1 active" src="/assets/images/members_level_1.png" mode="aspectFill"></image>
+              <image class="icon-level icon-level1 {{currentVip.id===vipData.vip_list[0].id?'active':''}}" src="/assets/images/members_level_1.png" mode="aspectFill" data-item="{{vipData.vip_list[0]}}"></image>
             </view>
             <view class="step-line">
-              <view class="step-line-inner progress" style="width: 100%;">
+              <view class="step-line-inner progress" style="width:{{index>0?'100%':vipData.user.total_integral/vipData.vip_list[index+1].integral_num*100+'%'}};">
               </view>
             </view>
           </view>
@@ -55,35 +55,35 @@
         <view class="step step2">
           <view class="step-head">
             <view class="step-icon">
-              <image class="icon-level icon-level2" src="/assets/images/members_level_2.png" mode="aspectFill"></image>
+              <image class="icon-level icon-level2 {{currentVip.id===vipData.vip_list[1].id?'active':''}}" src="/assets/images/members_level_2.png" mode="aspectFill" data-item="{{vipData.vip_list[1]}}"></image>
             </view>
             <view class="step-line">
-              <view class="step-line-inner progress" style="width: 50%;">
+              <view class="step-line-inner progress" style="width: {{index>1?'100%':index===1?vipData.user.total_integral/vipData.vip_list[index+1].integral_num*100:'0%'}};">
               </view>
             </view>
           </view>
           <view class="step-main">
-            <view class="step-description">10000</view>
+            <view class="step-description">{{vipData.vip_list[1].integral_num}}</view>
           </view>
         </view>
         <view class="step step3">
           <view class="step-head">
             <view class="step-icon">
-              <image class="icon-level icon-level3" src="/assets/images/members_level_3.png" mode="aspectFill"></image>
+              <image class="icon-level icon-level3 {{currentVip.id===vipData.vip_list[2].id?'active':''}}" src="/assets/images/members_level_3.png" mode="aspectFill" data-item="{{vipData.vip_list[2]}}"></image>
             </view>
             <!-- <view class="step-line">
               <view class="step-line-inner"></view>
             </view> -->
           </view>
           <view class="step-main">
-            <view class="step-description">20000</view>
+            <view class="step-description">{{vipData.vip_list[2].integral_num}}</view>
           </view>
         </view>
       </view>
     </view>
   </view>
   <view class="section3">
-    <image class="icon-prize" src="/assets/images/members_level.png" mode="aspectFill"></image>
+    <image class="icon-prize" src="/assets/images/members_level.png" mode="aspectFill" bindtap="toLotteryHandle"></image>
   </view>
   <view class="section4">
     <view class="l sec">
@@ -102,10 +102,7 @@
       <image src="/assets/images/members_level_33.png" mode="aspectFill"></image>
     </view>
     <text class="row2">
-      阿斯达；禄口街道可垃圾费；卡拉克；时代峻峰个；辣椒水；独立开发记录卡就是为了咖啡加微喇裤金额非；离开家sad李
-      逵负荆拉克丝剪短发空数据大富科技撒了快递费就1阿斯达；
-      禄口街道可垃圾费；卡拉克；时代峻峰个；辣椒水；独立开发记录卡就是为了咖啡加微喇裤金额非；离开家sad李逵负荆
-      拉克丝剪短发空数据大富科技撒了快递费就1
+      {{currentVip.content}}
     </text>
   </view>
 </view>

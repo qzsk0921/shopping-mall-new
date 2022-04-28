@@ -37,8 +37,12 @@ create(store, {
       }
       this.updatePhone(myData).then(res => {
         // const data = res.data.phone
-        wx.switchTab({
-          url: '/pages/profile/profile',
+        // 1. 授权微信信息
+        // 2. 授权手机号
+        // 3. 进入成为会员页面（ 赠送1次抽奖机会）
+        wx.redirectTo({
+          // url: '/pages/profile/profile',
+          url: '/pages/mine/vip/createVip'
         })
       }).catch(res => {
         wx.showToast({

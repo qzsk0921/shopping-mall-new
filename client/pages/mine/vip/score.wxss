@@ -1,0 +1,65 @@
+/* pages/mine/vip/score.wxss */
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(347rpx + env(safe-area-inset-bottom));
+}
+
+.icon-bg {
+  width: 100%;
+  height: 100%;
+}
+
+.section1 {
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 52rpx;
+}
+
+.section1 .row1 {
+  font-size: 31rpx;
+  margin-top: 55rpx;
+  color: #333333;
+}
+
+.section1 .row2 {
+  margin-top: 24rpx;
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.section2 .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 34rpx 30rpx;
+}
+
+.section2 .item .lr1 {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.section2 .item .lr2 {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.section2 .item .rr1 {
+  font-size: 40rpx;
+  font-weight: 500;
+
+}
+
+.plus {
+  color: #FF2C38;
+}
+
+.reduce {
+  color: #333333;
+}

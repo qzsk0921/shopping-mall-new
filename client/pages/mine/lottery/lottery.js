@@ -30,7 +30,8 @@ create(store, {
       imgs: [{
         src: '/assets/images/rtary_outside.png',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        // rotate: true,
       }]
     }],
     prizes: [],
@@ -57,8 +58,7 @@ create(store, {
     listData: [
       // 中奖历史
       {
-        cache: [
-          {
+        cache: [{
             "id": 1,
             "reward_type": 3,
             "reward_name": "积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分",
@@ -196,6 +196,15 @@ create(store, {
     }
   },
   start() {
+    // 用户剩余积分不足以抵扣每次抽奖消耗的积分时，toast弹窗提示：每次抽奖消耗x积分，您的积分不足
+    if (this.data.draw_info.user_integral - this.data.draw_info.cost_integral < 0) {
+      wx.showToast({
+        icon: 'none',
+        title: `每次抽奖消耗${this.data.draw_info.user_integral}积分，您的积分不足`,
+      })
+      return
+    }
+
     // 获取抽奖组件实例
     const child = this.selectComponent('#myLucky')
     // 调用play方法开始旋转
@@ -227,6 +236,7 @@ create(store, {
       this.setData({
         award: this.data.award,
         dialogVisible: true,
+        'draw_info.user_integral': this.data.draw_info.user_integral - this.data.draw_info.cost_integral
       })
     }, 1000)
   },
@@ -264,9 +274,9 @@ create(store, {
         if (item.image) {
           myPrizes[index].imgs = [{
             src: item.image,
-            width: '50rpx',
-            height: '50rpx',
-            top: '100rpx'
+            width: '60rpx',
+            height: '60rpx',
+            top: '54rpx'
           }]
         }
         if (item.reward_name) {
@@ -274,7 +284,9 @@ create(store, {
 
           myPrizes[index].fonts = myPrizes[index].fonts.concat({
             text: item.reward_name,
-            top: '0',
+            top: '20rpx',
+            fontColor: '#A70C1B',
+            fontSize: '22rpx',
           })
         }
 
@@ -283,7 +295,9 @@ create(store, {
 
           myPrizes[index].fonts = myPrizes[index].fonts.concat({
             text: item.reward_price,
-            top: '0',
+            top: '20rpx',
+            fontColor: '#A70C1B',
+            fontSize: '22rpx',
           })
         }
         myPrizes[index].background = item.background_color

@@ -12,13 +12,17 @@ create(store, {
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navStatus: 'isEmpty'
   },
-  // 去抽奖
+  // 去抽奖  跳转至抽奖中心页面，且抽奖中心页面
   goLotteryHandle() {
-
+    wx.redirectTo({
+      url: '/pages/mine/lottery/lottery'
+    })
   },
-  // 返回
+  // 返回  返回时，返回进入授权登录的上一级页面
   goBackHandle() {
-
+    wx.navigateBack({
+      delta: 0,
+    })
   },
   /**
    * 生命周期函数--监听页面加载

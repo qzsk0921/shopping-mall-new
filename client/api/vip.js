@@ -23,3 +23,14 @@ export function addVip(data) {
     data
   })
 }
+
+/**
+ * 会员页面接口 Vip/vip_info
+ */
+export function getVipInfo(data) {
+  return request({
+    url: '/Vip/vip_info',
+    method: 'get',
+    data
+  })
+}
