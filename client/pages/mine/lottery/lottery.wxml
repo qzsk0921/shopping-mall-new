@@ -11,19 +11,19 @@
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#FFFFFF" bgColor="#FE655A" />
   </view>
   <view class="content hide-scrollbar" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
-  <view class="float" bindtap="activityHandle">活动规则</view>
+    <view class="float" bindtap="activityHandle">活动规则</view>
     <view class="section1">
-      <image class="icon-bg" src="/assets/images/prize_bk.png" mode="aspectFill"></image>
+      <image class="icon-bg" src="https://retailers-qn.xcmbkj.com/miniprogram/prize_bk.png" mode="aspectFill"></image>
       <lucky-wheel id="myLucky" width="634rpx" height="634rpx" blocks="{{blocks}}" prizes="{{prizes}}" buttons="{{buttons}}" bindstart="start" bindend="end" />
       <view class="wheel-shoulder">
-        <image class="icon-shoulder" src="/assets/images/rtary_base.png" mode="aspectFill"></image>
-        <view class="txt">{{draw_info.cost_integral}}积分抽一次</view>
+        <image class="icon-shoulder" src="https://retailers-qn.xcmbkj.com/miniprogram/rtary_base.png" mode="aspectFill"></image>
+        <view wx:if="{{draw_info}}" class="txt">{{draw_info.draw_number>0?'免费抽奖'+draw_info.draw_number+'次':draw_info.cost_integral+'积分抽一次'}}</view>
         <button open-type="share" class="btn-share">
-          <image class="icon-present" src="/assets/images/rotary_invite.png" mode="aspectFill"></image>
+          <image class="icon-present" src="https://retailers-qn.xcmbkj.com/miniprogram/rotary_invite.png" mode="aspectFill"></image>
         </button>
         <view class="btn btn-score">
           <image class="icon-score" src="/assets/images/rotary_btn.png" mode="aspectFill"></image>
-          <text>剩余{{draw_info.user_integral}}积分</text>
+          <text>剩余{{draw_info.user_integral<0?0:draw_info.user_integral}}积分</text>
         </view>
       </view>
     </view>

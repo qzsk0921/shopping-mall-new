@@ -59,9 +59,16 @@ create(store, {
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    const that = this;
+    const query = wx.createSelectorQuery();
 
+    query.select('.fixed').boundingClientRect(function (rect) {
+      that.setData({
+        // scrollViewHeight: that.store.data.systemInfo.screenHeight - (rect.height + 50),
+        fixed: rect.height,
+      })
+    }).exec();
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

@@ -1,6 +1,10 @@
 // pages/mine/lottery/rule.js
 import store from '../../../store/common'
 import create from '../../../utils/create'
+import {
+  getPrizeList,
+} from '../../../api/lottery'
+
 // Page({
 create(store, {
 
@@ -20,17 +24,25 @@ create(store, {
     console.log("转义字符", url);
     return url;
   },
+  getPrizeList(data) {
+    return new Promise((resolve, reject) => {
+      getPrizeList(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options.content)
-    if (options.content) {
-      const faqHtmlData = this.replaceSpecialChar(options.content)
+    this.getPrizeList().then(res => {
+      // const faqHtmlData = this.replaceSpecialChar(res.data.draw_info.content)
+      const faqHtmlData = res.data.draw_info.content
         .replace(/<p([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<p')
         .replace(/<p([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<p')
         .replace(/<p>/ig, '<p class="p_class">')
-
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(height="[^"]+")))/ig, '<img$1')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(width="[^"]+")))/ig, '<img$1')
         .replace(/<img([\s\w"-=\/\.:;]+)((?:(style="[^"]+")))/ig, '<img$1')
@@ -41,14 +53,21 @@ create(store, {
       this.setData({
         faqHtmlData
       })
-    }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    const that = this;
+    const query = wx.createSelectorQuery();
 
+    query.select('.fixed').boundingClientRect(function (rect) {
+      that.setData({
+        fixed: rect.height,
+      })
+    }).exec();
   },
 
   /**

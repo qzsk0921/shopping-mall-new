@@ -490,14 +490,22 @@ create(store, {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     let param = {}
     const {
       id,
       goods_group_bargaining_team_id,
       scene,
-      is_verification_auth
+      is_verification_auth,
+      navStatus
     } = options
+
+    if (navStatus) {
+      // isEntryWithShare
+      this.setData({
+        navStatus
+      })
+    }
 
     // 拼团分享
     if (scene) {
@@ -643,7 +651,7 @@ create(store, {
         }
         return {
           title: this.data.goodsDetail.goods_name,
-          path: `/pages/goods/detail?${queryString}`, //若无path 默认跳转分享页
+          path: `/pages/goods/detail?${queryString}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
           imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
           success(res) {
             console.log('分享成功', res)
@@ -659,7 +667,7 @@ create(store, {
         }).then(res => {
           return {
             title: this.data.goodsDetail.goods_name,
-            path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}`, //若无path 默认跳转分享页
+            path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
             imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
             success(res) {
               console.log('分享成功', res)
@@ -673,7 +681,7 @@ create(store, {
     } else {
       return {
         title: this.data.goodsDetail.goods_name,
-        path: `/pages/goods/detail?id=${this.data.goodsDetail.id}`, //若无path 默认跳转分享页
+        path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
         imageUrl: this.data.goodsDetail.goods_image_arr, //若无imageUrl 截图当前页面
         success(res) {
           console.log('分享成功', res)

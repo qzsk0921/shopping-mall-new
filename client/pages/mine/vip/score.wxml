@@ -29,7 +29,8 @@
             <view class="lr2">{{commontools.formatTime(item.create_time*1000)}}</view>
           </view>
           <view class="r">
-            <view class="rr1 {{item.source_type===1?'plus':'reduce'}}">{{item.source_type===1?'+':'-'}}20</view>
+            <!-- <view class="rr1 {{item.source_type===1?'plus':'reduce'}}">{{item.source_type===1?'+':'-'}}</view> -->
+            <view class="rr1 {{item.source_type===1?'plus':'reduce'}}">{{item.number}}</view>
           </view>
         </view>
       </block>

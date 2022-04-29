@@ -3,6 +3,10 @@
   background: #ffffff
 }
 
+.content {
+  overflow: auto;
+}
+
 rich-text {
   box-sizing: border-box;
   padding: 20rpx;

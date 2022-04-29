@@ -1,7 +1,9 @@
-// pages/mine/vip/createVip.js
+// pages/mine/lottery/invite.js
 import store from '../../../store/common'
 import create from '../../../utils/create'
-
+import {
+  getLotteryList,
+} from '../../../api/lottery'
 // Page({
 create(store, {
 
@@ -9,37 +11,55 @@ create(store, {
    * 页面的初始数据
    */
   data: {
-    compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
-    navStatus: 'isEmpty'
+    userInfo: null,
+    compatibleInfo: null, //navHeight menuButtonObject systemInfo 
+    navStatus: 'isEntryWithShare',
   },
-  // 去抽奖  跳转至抽奖中心页面，且抽奖中心页面
-  goLotteryHandle() {
-    wx.redirectTo({
-      url: '/pages/mine/lottery/lottery'
+  inviteHandle() {
+    // 检查授权状态
+    // 未授权
+    if (!this.checkAuth()) return
+
+    wx.navigateTo({
+      url: '/pages/mine/lottery/lottery',
     })
   },
-  // 返回  返回时，返回进入授权登录的上一级页面
-  goBackHandle() {
-    wx.navigateBack({
-      delta: 0,
-    })
+  checkAuth() {
+    if (!store.data.userInfo.avatar_url) {
+      // 未授权先去授权页
+      wx.navigateTo({
+        url: '/pages/authorization/identity',
+      })
+      return false
+    } else if (!store.data.userInfo.phone) {
+      // 授权昵称头像还未授权手机号
+      wx.navigateTo({
+        url: '/pages/authorization/phone',
+      })
+      return false
+    }
+    return true
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    if (options.vip_name) {
-      this.setData({
-        vip_name: options.vip_name
-      })
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    const that = this;
+    const query = wx.createSelectorQuery();
 
+    query.select('.fixed').boundingClientRect(function (rect) {
+      that.setData({
+        // scrollViewHeight: that.store.data.systemInfo.screenHeight - (rect.height + 50),
+        fixed: rect.height,
+      })
+    }).exec();
   },
 
   /**

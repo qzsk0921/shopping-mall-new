@@ -18,78 +18,79 @@ create(store, {
     navigationBarTitleText: '我的奖品',
 
     prizeList: {
-      cache: [{
-          "id": 1,
-          "reward_type": 3,
-          "reward_name": "积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分",
-          "reward_price": "10.00",
-          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
-          "reward_status": 2,
-          "express_number": null,
-          "express_company": null,
-          "address_info": null,
-          "create_time": 1650617638
-        },
-        {
-          "id": 2,
-          "reward_type": 3,
-          "reward_name": "积分",
-          "reward_price": "10.00",
-          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
-          "reward_status": 2,
-          "express_number": null,
-          "express_company": null,
-          "address_info": null,
-          "create_time": 1650617638
-        },
-        {
-          "id": 3,
-          "reward_type": 1,
-          "reward_name": "商品",
-          "reward_price": "20.00",
-          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
-          "reward_status": 1,
-          "express_number": null,
-          "express_company": null,
-          "address_info": null,
-          "create_time": 1650617638
-        },
-        {
-          "id": 4,
-          "reward_type": 1,
-          "reward_name": "商品",
-          "reward_price": "20.00",
-          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
-          "reward_status": 2,
-          "express_number": "fdfasdfasd",
-          "express_company": "圆通",
-          "address_info": "望海路10号楼",
-          "create_time": 1650617638
-        },
-        {
-          "id": 5,
-          "reward_type": 2,
-          "reward_name": "优惠券",
-          "reward_price": "10.00",
-          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
-          "reward_status": 3,
-          "express_number": null,
-          "express_company": null,
-          "address_info": null,
-          "create_time": 1650617638
-        },
-        {
-          "id": 6,
-          "reward_type": 2,
-          "reward_name": "优惠券",
-          "reward_price": "100.00",
-          "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
-          "reward_status": 3,
-          "express_number": null,
-          "express_company": null,
-          "address_info": null,
-          "create_time": 1650617638
-        }
+      cache: [
+        // {
+        //   "id": 1,
+        //   "reward_type": 3,
+        //   "reward_name": "积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分积分",
+        //   "reward_price": "10.00",
+        //   "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+        //   "reward_status": 2,
+        //   "express_number": null,
+        //   "express_company": null,
+        //   "address_info": null,
+        //   "create_time": 1650617638
+        // },
+        // {
+        //   "id": 2,
+        //   "reward_type": 3,
+        //   "reward_name": "积分",
+        //   "reward_price": "10.00",
+        //   "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+        //   "reward_status": 2,
+        //   "express_number": null,
+        //   "express_company": null,
+        //   "address_info": null,
+        //   "create_time": 1650617638
+        // },
+        // {
+        //   "id": 3,
+        //   "reward_type": 1,
+        //   "reward_name": "商品",
+        //   "reward_price": "20.00",
+        //   "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+        //   "reward_status": 1,
+        //   "express_number": null,
+        //   "express_company": null,
+        //   "address_info": null,
+        //   "create_time": 1650617638
+        // },
+        // {
+        //   "id": 4,
+        //   "reward_type": 1,
+        //   "reward_name": "商品",
+        //   "reward_price": "20.00",
+        //   "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+        //   "reward_status": 2,
+        //   "express_number": "fdfasdfasd",
+        //   "express_company": "圆通",
+        //   "address_info": "望海路10号楼",
+        //   "create_time": 1650617638
+        // },
+        // {
+        //   "id": 5,
+        //   "reward_type": 2,
+        //   "reward_name": "优惠券",
+        //   "reward_price": "10.00",
+        //   "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+        //   "reward_status": 3,
+        //   "express_number": null,
+        //   "express_company": null,
+        //   "address_info": null,
+        //   "create_time": 1650617638
+        // },
+        // {
+        //   "id": 6,
+        //   "reward_type": 2,
+        //   "reward_name": "优惠券",
+        //   "reward_price": "100.00",
+        //   "reward_image": "https://retailers-qn.xcmbkj.com/admin/goods/shop_adm_2022-04-127944.jpg",
+        //   "reward_status": 3,
+        //   "express_number": null,
+        //   "express_company": null,
+        //   "address_info": null,
+        //   "create_time": 1650617638
+        // }
       ],
       count: 1,
       total_page: 1,
@@ -163,8 +164,8 @@ create(store, {
           resolve(res)
         } else {
           this.setData({
-            // [`prizeList.cache`]: res.data.data,
-            // [`prizeList.total_page`]: res.data.last_page
+            [`prizeList.cache`]: res.data.data,
+            [`prizeList.total_page`]: res.data.last_page
           })
         }
       }).catch(err => {

@@ -17,7 +17,7 @@
       <view class="l-r">
         <view class="l-r-t">{{vipData.user.nick_name}}</view>
         <view class="l-r-b">
-          <image src="/assets/images/members_level_3.png" mode="aspectFill"></image>
+          <image src="{{vipData.user_vip.icon}}" mode="aspectFill"></image>
           <text>{{vipData.user_vip.vip_name}}</text>
         </view>
       </view>
@@ -41,7 +41,7 @@
         <view class="step step1">
           <view class="step-head">
             <view class="step-icon">
-              <image class="icon-level icon-level1 {{currentVip.id===vipData.vip_list[0].id?'active':''}}" src="/assets/images/members_level_1.png" mode="aspectFill" data-item="{{vipData.vip_list[0]}}"></image>
+              <image class="icon-level icon-level1 {{currentVip.id===vipData.vip_list[0].id?'active':''}}" src="{{vipData.vip_list[0].icon}}" mode="aspectFill" data-item="{{vipData.vip_list[0]}}"></image>
             </view>
             <view class="step-line">
               <view class="step-line-inner progress" style="width:{{index>0?'100%':vipData.user.total_integral/vipData.vip_list[index+1].integral_num*100+'%'}};">
@@ -55,10 +55,10 @@
         <view class="step step2">
           <view class="step-head">
             <view class="step-icon">
-              <image class="icon-level icon-level2 {{currentVip.id===vipData.vip_list[1].id?'active':''}}" src="/assets/images/members_level_2.png" mode="aspectFill" data-item="{{vipData.vip_list[1]}}"></image>
+              <image class="icon-level icon-level2 {{currentVip.id===vipData.vip_list[1].id?'active':''}}" src="{{vipData.vip_list[1].icon}}" mode="aspectFill" data-item="{{vipData.vip_list[1]}}"></image>
             </view>
             <view class="step-line">
-              <view class="step-line-inner progress" style="width: {{index>1?'100%':index===1?vipData.user.total_integral/vipData.vip_list[index+1].integral_num*100:'0%'}};">
+              <view class="step-line-inner progress" style="width: {{index>1?'100%':index===1?vipData.user.total_integral/vipData.vip_list[index+1].integral_num*100+'%':'0%'}};">
               </view>
             </view>
           </view>
@@ -69,7 +69,7 @@
         <view class="step step3">
           <view class="step-head">
             <view class="step-icon">
-              <image class="icon-level icon-level3 {{currentVip.id===vipData.vip_list[2].id?'active':''}}" src="/assets/images/members_level_3.png" mode="aspectFill" data-item="{{vipData.vip_list[2]}}"></image>
+              <image class="icon-level icon-level3 {{currentVip.id===vipData.vip_list[2].id?'active':''}}" src="{{vipData.vip_list[2].icon}}" mode="aspectFill" data-item="{{vipData.vip_list[2]}}"></image>
             </view>
             <!-- <view class="step-line">
               <view class="step-line-inner"></view>

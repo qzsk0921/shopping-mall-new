@@ -11,7 +11,7 @@
     <image class="icon-success" src="/assets/images/login_succeed_img.png" mode="aspectFill"></image>
   </view>
   <view class="section2">
-    <view class="row1">已为您自动升级为xx会员</view>
+    <view class="row1">已为您自动升级为{{vip_name}}会员</view>
     <view class="row2">赠送您一次抽奖机会</view>
   </view>
   <view class="section3">

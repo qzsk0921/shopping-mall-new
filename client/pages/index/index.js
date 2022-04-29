@@ -449,20 +449,32 @@ create(store, {
         if (nv) {
           // 该弹窗显示在首页（ 在小程序重新打开、 用户
           // 未授权及未使用免费抽奖次数时显示， 优先级
-          // 小于引导收藏小程序及授权定位弹窗之后显示）
+          // 小于引导收藏小程序及授权定位弹窗之后显示）         
           const jsonAddDialogVisibile = wx.getStorageSync('jsonAddDialogVisibile')
           if (jsonAddDialogVisibile) {
-            if (this.data.userInfo.draw_number) {
+            if (!this.data.userInfo.avatar_url) {
               this.setData({
                 prizeNavDialogVisibile: 1
               })
-            }
-          } else {
-            if (jsonAddDialogVisibile === 0) {
+            } else {
               if (this.data.userInfo.draw_number) {
                 this.setData({
                   prizeNavDialogVisibile: 1
                 })
+              }
+            }
+          } else {
+            if (jsonAddDialogVisibile === 0) {
+              if (!this.data.userInfo.avatar_url) {
+                this.setData({
+                  prizeNavDialogVisibile: 1
+                })
+              } else {
+                if (this.data.userInfo.draw_number) {
+                  this.setData({
+                    prizeNavDialogVisibile: 1
+                  })
+                }
               }
             }
           }
@@ -470,17 +482,23 @@ create(store, {
       },
       // immediate: true
     },
-    prizeNavDialogVisibile: {
+    jsonAddDialogVisibile: {
       handler(nv, ov, obj) {
         if (nv === 0) {
           if (this.data.getLocation) {
             // 该弹窗显示在首页（ 在小程序重新打开、 用户
             // 未授权及未使用免费抽奖次数时显示， 优先级
             // 小于引导收藏小程序及授权定位弹窗之后显示）
-            if (this.data.userInfo.draw_number) {
+            if (!this.data.userInfo.avatar_url) {
               this.setData({
                 prizeNavDialogVisibile: 1
               })
+            } else {
+              if (this.data.userInfo.draw_number) {
+                this.setData({
+                  prizeNavDialogVisibile: 1
+                })
+              }
             }
           }
         }

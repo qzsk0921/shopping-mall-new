@@ -44,6 +44,7 @@
     "pages/mine/writeoff/confirm",
     "pages/mine/writeoff/status",
     "pages/mine/lottery/lottery",
+    "pages/mine/lottery/invite",
     "pages/mine/lottery/prize",
     "pages/mine/lottery/score",
     "pages/mine/lottery/rule",

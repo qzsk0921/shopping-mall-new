@@ -1,6 +1,10 @@
 /* pages/mine/lottery/rule.wxss */
-.container-faq-detail {
+.container-lottery-rule {
   background: #ffffff
+}
+
+.content {
+  overflow: auto;
 }
 
 rich-text {
@@ -8,4 +12,10 @@ rich-text {
   padding: 20rpx;
   width: 100vw;
   display: block;
+}
+
+.p_class {
+  line-height: 46rpx;
+  text-indent: 60rpx;
+  margin-bottom: 20rpx;
 }

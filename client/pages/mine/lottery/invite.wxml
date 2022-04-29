@@ -1,0 +1,13 @@
+<!--pages/mine/lottery/invite.wxml-->
+<!-- <text>pages/mine/lottery/invite.wxml</text> -->
+
+
+<view class="container container-lottery-invite">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" location="{{location}}" color="#FFFFFF" bgColor="#F22929" />
+  </view>
+  <view class="content hide-scrollbar" style="height:{{compatibleInfo.systemInfo.screenHeight-(fixed)+'px'}}">
+    <image class="img-invite" src="https://retailers-qn.xcmbkj.com/miniprogram/draw_invite_bk.png" mode="aspectFill"></image>
+    <image class="btn btn-invite" src="/assets/images/draw_invite_btn.png" mode="aspectFill" bindtap="inviteHandle"></image>
+  </view>
+</view>

@@ -42,7 +42,7 @@ create(store, {
         // 3. 进入成为会员页面（ 赠送1次抽奖机会）
         wx.redirectTo({
           // url: '/pages/profile/profile',
-          url: '/pages/mine/vip/createVip'
+          url: `/pages/mine/vip/createVip?vip_name=${res.data.vip_name}`
         })
       }).catch(res => {
         wx.showToast({
