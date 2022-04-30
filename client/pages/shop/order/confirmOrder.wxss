@@ -156,6 +156,10 @@
   color: #333333;
   display: flex;
   justify-content: space-between;
+
+}
+
+.content>.l2 .l2-6 text:nth-of-type(2) {
   color: #FC4953;
 }
 

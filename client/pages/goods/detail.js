@@ -548,6 +548,36 @@ create(store, {
         this.setData({
           goodsDetail: res.data
         })
+
+        // 1. 如果是从小程序内进入的商品详情，
+        // 点击确定返回上一级页面
+        // 2. 如果是从分享等其他途径直接进入
+        // 到商品详情， 点击确定返回商城首页
+        // 注意： 弹窗需强制用户点击确定按钮执
+        // 行逻辑， 无任何方式可在当前页面关闭此弹窗
+        if (res.data.expire_time_number <= 0 && this.data.goods_group_bargaining_team_id) {
+          wx.showModal({
+            title: '提示',
+            content: '该商品拼团有效期已到期',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                if (navStatus) {
+                  wx.switchTab({
+                    url: '/pages/index/index',
+                  })
+                } else {
+                  wx.navigateBack({
+                    delta: 0,
+                  })
+                }
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
       })
     }
   },
@@ -605,6 +635,37 @@ create(store, {
         this.setData({
           goodsDetail: res.data
         })
+
+        // 1. 如果是从小程序内进入的商品详情，
+        // 点击确定返回上一级页面
+        // 2. 如果是从分享等其他途径直接进入
+        // 到商品详情， 点击确定返回商城首页
+        // 注意： 弹窗需强制用户点击确定按钮执
+        // 行逻辑， 无任何方式可在当前页面关闭此弹窗
+        if (res.data.expire_time_number <= 0 && this.data.goods_group_bargaining_team_id) {
+          wx.showModal({
+            title: '提示',
+            content: '该商品拼团有效期已到期',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                if (navStatus) {
+                  wx.switchTab({
+                    url: '/pages/index/index',
+                  })
+                } else {
+                  wx.navigateBack({
+                    delta: 0,
+                  })
+                }
+              } else if (res.cancel) {
+                
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
       })
     }
   },

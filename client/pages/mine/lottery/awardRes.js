@@ -13,10 +13,16 @@ create(store, {
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navStatus: 'isEmpty'
   },
-  // 返回抽奖中心页面
+  // 返回抽奖中心页面 （途中可能有地址选择页面）
   toLotteryHandle() {
-    wx.navigateTo({
-      url: '/pages/mine/lottery/lottery',
+    const pages = getCurrentPages()
+
+    pages.some((item, index) => {
+      if (item.route === 'pages/mine/lottery/lottery') {
+        wx.navigateBack({
+          delta: pages.length - (index + 1),
+        })
+      }
     })
   },
   /**

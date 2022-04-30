@@ -258,21 +258,20 @@ create({
         }
 
         this.addNumCart(myData).then(res => {
-
-          // 更新详情页购物车数据
-          wx.showToast({
-            icon: 'none',
-            title: '购物车操作成功',
-          })
-
           setTimeout(() => {
+            // 更新详情页购物车数据
             this.triggerEvent('updateCartHandle', myData)
+            wx.showToast({
+              icon: 'none',
+              title: '购物车操作成功',
+            })
+
           }, 1000)
 
           console.log(res)
         }).catch(err => {
           setTimeout(function () {
-            this.triggerEvent('updateCartHandle',myData)
+            this.triggerEvent('updateCartHandle', myData)
           }, 1000)
           // 恢复设置
         })

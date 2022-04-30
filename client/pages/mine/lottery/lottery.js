@@ -24,6 +24,11 @@ create(store, {
     tabIndex: 0, //0中奖历史 1积分使用记录
     tabWidth: null,
 
+    defaultConfig: {
+      speed: 20,
+      accelerationTime: 1300,
+      decelerationTime: 2500
+    },
     blocks: [{
       // padding: '172rpx',
       padding: '86rpx',
@@ -234,7 +239,7 @@ create(store, {
             child.$lucky.stop(index)
           }
         }))
-      }, 3000)
+      }, 1000)
     }).catch(res => {
       wx.showToast({
         icon: 'none',

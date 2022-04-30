@@ -14,7 +14,7 @@
     <view class="float" bindtap="activityHandle">活动规则</view>
     <view class="section1">
       <image class="icon-bg" src="https://retailers-qn.xcmbkj.com/miniprogram/prize_bk.png" mode="aspectFill"></image>
-      <lucky-wheel id="myLucky" width="634rpx" height="634rpx" blocks="{{blocks}}" prizes="{{prizes}}" buttons="{{buttons}}" bindstart="start" bindend="end" />
+      <lucky-wheel id="myLucky" width="634rpx" height="634rpx" blocks="{{blocks}}" prizes="{{prizes}}" buttons="{{buttons}}" defaultConfig="{{defaultConfig}}" bindstart="start" bindend="end" />
       <view class="wheel-shoulder">
         <image class="icon-shoulder" src="https://retailers-qn.xcmbkj.com/miniprogram/rtary_base.png" mode="aspectFill"></image>
         <view wx:if="{{draw_info}}" class="txt">{{draw_info.draw_number>0?'免费抽奖'+draw_info.draw_number+'次':draw_info.cost_integral+'积分抽一次'}}</view>

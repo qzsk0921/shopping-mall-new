@@ -138,13 +138,19 @@
         <text>商品总额</text>
         <text>￥{{orderData.goods_money}}</text>
       </view>
-      <!-- <view class="l4 l">
+      <view wx:if="{{!orderData.bargaining_info.id}}" class="l4 l">
         <text>会员优惠</text>
         <text class="{{orderData.vip_discount=='0.00'?'':'discount'}}">{{orderData.vip_discount=="0.00"?'':'-'}}￥{{orderData.vip_discount}}</text>
-      </view> -->
+      </view>
       <view wx:if="{{!orderData.bargaining_info.id}}" class="l5 l">
         <text>优惠券抵扣</text>
         <text class="{{orderData.coupon_discount=='0.00'?'':'discount'}}">{{orderData.coupon_discount=='0.00'?'':'-'}}￥{{orderData.coupon_discount}}</text>
+      </view>
+      <view class="l7 l">
+        <text>积分</text>
+        <!-- status 状态 0:待支付 1:已支付 2:已取消 3:已完成-->
+        <!-- bargaining_status 0:待开奖 1:已中奖 2:未中奖 -1:拼团已解散 -->
+        <text>{{!orderData.bargaining_info.id?'+'+orderData.integral:orderData.status===1?'拼团成功，获得购买资格将+'+orderData.integral:'+'+orderData.integral}}</text>
       </view>
       <view class="l6">
         <text>实付:</text>

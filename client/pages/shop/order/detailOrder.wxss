@@ -207,7 +207,7 @@
 
 .section3 .l4 .discount,
 .section3 .l5 .discount {
-  color: #FC4953;
+  color: #FC4953 !important;
 }
 
 .section3 .l5 {
@@ -235,6 +235,15 @@
   font-weight: bold;
   color: #FC4953;
   margin-left: 12rpx;
+}
+
+.section3 .l7 {
+  margin-top: 42rpx;
+}
+
+.section3 .l7 text:last-child {
+  font-size: 30rpx;
+  color: #FC4953;
 }
 
 .section4 {

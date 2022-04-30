@@ -69,7 +69,7 @@
         </view>
         <view class="l2-6">
           <text>积分</text>
-          <text>+{{orderData.integral}}</text>
+          <text>拼团成功，获得购买资格将 +{{orderData.integral}}</text>
         </view>
       </block>
       <block wx:else>
@@ -87,7 +87,7 @@
         </view>
         <view class="l2-4">
           <text>会员优惠</text>
-          <text class="{{currentCouponId||!userInfo.is_vip?'':'active'}}">￥{{currentCouponId||!userInfo.is_vip?'0.00(不可用)':orderData.vip_discount_total}}</text>
+          <text class="{{currentCouponId?'':'active'}}">{{currentCouponId?'￥0.00(不可用)':'-￥'+orderData.vip_discount_money}}</text>
         </view>
         <!-- 拼团商品无法使用优惠券 -->
         <view wx:if="{{!orderData.goods_group_bargaining_team_id}}" class="l2-5" bindtap="toCouponSelectHandle">
@@ -132,7 +132,7 @@
       <view class="l6">
         <view class="left">
           <view class="amount"><text>待支付</text><text>￥</text><text>{{orderData.price_total}}</text></view>
-          <view wx:if="{{currentCouponId||userInfo.is_vip}}" class="preferential-price">已优惠{{orderData.discount_total}}</view>
+          <view wx:if="{{currentCouponId||orderData.discount_total}}" class="preferential-price">已优惠{{orderData.discount_total}}</view>
         </view>
         <view class="right btn btn-pay" bindtap="payHandle">去支付</view>
       </view>

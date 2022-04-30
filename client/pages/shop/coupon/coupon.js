@@ -90,7 +90,7 @@ create(store, {
             currentCouponId: 0,
             'orderData.coupon_discount_total': 0,
             'orderData.price_total': price_total, //底部待支付金额
-            'orderData.discount_total': prevPageData.vip_discount_total //底部已优惠金额
+            'orderData.discount_total': prevPageData.vip_discount_money //底部已优惠金额
           })
         } else {
           // 没选变选中
