@@ -29,12 +29,12 @@ create(store, {
       success: (res) => {
         console.log(res)
         // this.store.data.userInfo = res.userInfo
-        this.store.data.userInfo['avatarUrl'] = res.userInfo.avatarUrl
+        this.store.data.userInfo['avatar_url'] = res.userInfo.avatarUrl
         this.store.data.userInfo['city'] = res.userInfo.city
         this.store.data.userInfo['country'] = res.userInfo.country
         this.store.data.userInfo['gender'] = res.userInfo.gender
         this.store.data.userInfo['language'] = res.userInfo.language
-        this.store.data.userInfo['nickName'] = res.userInfo.nickName
+        this.store.data.userInfo['nick_name'] = res.userInfo.nickName
         this.store.data.userInfo['province'] = res.userInfo.province
         this.update()
 

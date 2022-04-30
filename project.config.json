@@ -11,7 +11,7 @@
     "minified": true,
     "newFeature": false,
     "coverView": true,
-    "nodeModules": false,
+    "nodeModules": true,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
@@ -21,24 +21,29 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "useIsolateContext": true,
+    "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "package.json",
+        "miniprogramNpmDistDir": "client/"
+      }
+    ],
     "minifyWXSS": true,
     "disableUseStrict": false,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
     "minifyWXML": true,
-    "useStaticServer": true,
-    "ignoreUploadUnusedFiles": true
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
   "srcMiniprogramRoot": "client/",
@@ -46,6 +51,12 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
+  "libVersion": "2.24.0",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx11729f975a9b0116",
   "condition": {
     "search": {
       "list": []
@@ -65,11 +76,5 @@
     "miniprogram": {
       "list": []
     }
-  },
-  "libVersion": "2.24.0",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "appid": "wx11729f975a9b0116"
+  }
 }
