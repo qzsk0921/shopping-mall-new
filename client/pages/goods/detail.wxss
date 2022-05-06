@@ -84,6 +84,14 @@
   margin: 0 0 8rpx 12rpx;
 }
 
+.section2 .l1>view.new_activity {
+  background: #FF7753;
+}
+
+.section2 .l1>view.pre_sale {
+  background: #22B862;
+}
+
 .section2 .l1 text:nth-of-type(1) {
   font-size: 30rpx;
   font-weight: bold;

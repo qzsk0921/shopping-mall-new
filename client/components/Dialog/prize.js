@@ -36,9 +36,13 @@ create({
     },
     // 去领奖 跳转至奖品领取-收货地址页
     acceptAwardHandle() {
-      // 添加收货地址
+      // 添加收货地址（跳转需把弹窗关闭）
       wx.navigateTo({
         url: `/pages/location/index/index?from=lottery_of_mine&draw_reward_prize_id=${this.data.award.draw_reward_prize_id}`,
+      })
+
+      this.setData({
+        dialogVisible: false
       })
     },
     closeHandle() {

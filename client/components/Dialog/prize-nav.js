@@ -43,7 +43,7 @@ create({
       })
     },
     checkAuth() {
-      if (!store.data.userInfo.avatar_url) {
+      if (!store.data.userInfo.nick_name) {
         // 未授权先去授权页
         wx.navigateTo({
           url: '/pages/authorization/identity',

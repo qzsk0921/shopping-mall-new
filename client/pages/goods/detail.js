@@ -215,15 +215,18 @@ create(store, {
     // goods_num: 1
     // is_pre_goods: 0}
 
+    // getApp().globalData.checkedIds = getApp().globalData.checkedIds.concat(detail.goods_id + '.' + detail.attribute_value_str)
+
     // 在提交成功后，返回上一页（带上参数）
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2]; //上一个页面
+
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
     // 购物车页面
     if (prevPage.route === 'pages/shopping/shopping') {
-      prevPage.setData({
-        'checkedIds': prevPage.data.checkedIds.concat(detail.goods_id + '.' + detail.attribute_value_str)
-      })
+      // prevPage.setData({
+      //   'checkedIds': prevPage.data.checkedIds.concat(detail.goods_id + '.' + detail.attribute_value_str)
+      // })
 
       prevPage.data.recommendList.cache.forEach((it, index) => {
         if (id == it.id) {
@@ -234,6 +237,7 @@ create(store, {
         }
       })
     } else if (prevPage.route === 'pages/category/category' || prevPage.route === 'pages/search/searchRes' || prevPage.route === 'pages/mine/history/history') {
+
       getCartData({
         shop_id: this.store.data.shop_id
       }).then(res => {
@@ -310,6 +314,16 @@ create(store, {
       'bargaining': 1
     })
   },
+  // 拼团单独购买
+  awakenCarSingleBuyHandle() {
+    // 授权校验
+    if (!this.checkAuth()) return
+
+    this.setData({
+      ['dialog.car.opened']: 1,
+      bargainingSingleBuy: 1
+    })
+  },
   // 唤起购物车弹窗
   awakenCarHandle() {
     // 未资质认证导航至认证页
@@ -324,12 +338,12 @@ create(store, {
     if (!this.checkAuth()) return
 
     this.setData({
-      ['dialog.car.opened']: 1
+      ['dialog.car.opened']: 1,
     })
   },
   // 授权检查
   checkAuth() {
-    if (!this.data.userInfo.avatar_url) {
+    if (!this.data.userInfo.nick_name) {
       // 未授权先去授权页
       wx.navigateTo({
         url: '/pages/authorization/identity',
@@ -364,6 +378,31 @@ create(store, {
         m: '00',
         s: '00'
       }
+
+      clearInterval(this.data.timer)
+      // 到期弹窗提示
+      const that = this
+      wx.showModal({
+        title: '提示',
+        content: '该商品拼团有效期已到期',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            if (that.data.navStatus) {
+              wx.switchTab({
+                url: '/pages/index/index',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 0,
+              })
+            }
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
     } else {
       cutdown = {
         h: this.formatNumber(parseInt(timestamp / 3600)),
@@ -454,10 +493,54 @@ create(store, {
   formatHour(timestamp) {
     return timestamp / 3600
   },
+  getHeight() {
+    const that = this;
+    const query = wx.createSelectorQuery();
+    // 在页面渲染完成OnReady回调 获取元素高度时，如果不加定时器，获取的元素的高度还是没渲染完异步数据前的高度
+    query.select('.content').boundingClientRect(function (rect) {
+      console.log(rect)
+      that.setData({
+        contentTop: rect.top,
+      })
+    }).exec();
+
+    query.select('.footer').boundingClientRect(function (rect) {
+      console.log(rect)
+      that.setData({
+        footerH: rect.height,
+      })
+    }).exec();
+  },
+  showModalExpire() {
+    const that = this
+    if (this.data.goods_group_bargaining_team_id && this.data.goodsDetail.bargaining_info.expire_time_number <= 0) {
+      wx.showModal({
+        title: '提示',
+        content: '该商品拼团有效期已到期',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            if (that.data.navStatus) {
+              wx.switchTab({
+                url: '/pages/index/index',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 0,
+              })
+            }
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+  },
   getGoodsDetail(data) {
     return new Promise((resolve, reject) => {
       getGoodsDetail(data).then(res => {
-        setInterval(() => {
+        this.data.timer = setInterval(() => {
           if (res.data.bargaining_info) {
             this.cutdown(res.data.bargaining_info.expire_time_number -= 1)
           }
@@ -555,29 +638,9 @@ create(store, {
         // 到商品详情， 点击确定返回商城首页
         // 注意： 弹窗需强制用户点击确定按钮执
         // 行逻辑， 无任何方式可在当前页面关闭此弹窗
-        if (res.data.expire_time_number <= 0 && this.data.goods_group_bargaining_team_id) {
-          wx.showModal({
-            title: '提示',
-            content: '该商品拼团有效期已到期',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-                if (navStatus) {
-                  wx.switchTab({
-                    url: '/pages/index/index',
-                  })
-                } else {
-                  wx.navigateBack({
-                    delta: 0,
-                  })
-                }
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
+        this.showModalExpire()
+
+        this.getHeight()
       })
     }
   },
@@ -586,22 +649,7 @@ create(store, {
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    const that = this;
-    const query = wx.createSelectorQuery();
-    // 在页面渲染完成OnReady回调 获取元素高度时，如果不加定时器，获取的元素的高度还是没渲染完异步数据前的高度
-    query.select('.content').boundingClientRect(function (rect) {
-      // console.log(rect)
-      that.setData({
-        contentTop: rect.top,
-      })
-    }).exec();
 
-    query.select('.footer').boundingClientRect(function (rect) {
-      // console.log(rect)
-      that.setData({
-        footerH: rect.height,
-      })
-    }).exec();
   },
 
   /**
@@ -642,30 +690,9 @@ create(store, {
         // 到商品详情， 点击确定返回商城首页
         // 注意： 弹窗需强制用户点击确定按钮执
         // 行逻辑， 无任何方式可在当前页面关闭此弹窗
-        if (res.data.expire_time_number <= 0 && this.data.goods_group_bargaining_team_id) {
-          wx.showModal({
-            title: '提示',
-            content: '该商品拼团有效期已到期',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-                if (navStatus) {
-                  wx.switchTab({
-                    url: '/pages/index/index',
-                  })
-                } else {
-                  wx.navigateBack({
-                    delta: 0,
-                  })
-                }
-              } else if (res.cancel) {
-                
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
+        this.showModalExpire()
+
+        this.getHeight()
       })
     }
   },

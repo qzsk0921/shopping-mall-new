@@ -9,18 +9,28 @@
   <view class="header">
     <image class="icon-bg" src="/assets/images/my_bk.png" mode="aspectFill"></image>
     <view class="userInfo l1">
-      <block wx:if="{{!userInfo.avatar_url}}">
+      <block wx:if="{{!userInfo.nick_name}}">
         <image class="avatar" src="/assets/images/my_head_default.png" mode="aspectFill"></image>
-        <view class="btn-box">
+        <!-- <view class="btn-box">
           <button class="login-text" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">未登录</button>
           <button class="login-text" wx:else open-type="getUserInfo" bindgetuserinfo="getUserProfile">未登录</button>
           <view class="tip">点击登录，获价格</view>
+        </view> -->
+        <view class="btn-box">
+          <button class="login-text can" wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">
+            <view>未登录</view>
+            <view class="tip">点击登录，获价格</view>
+          </button>
+          <button class="login-text" wx:else open-type="getUserInfo" bindgetuserinfo="getUserProfile">
+            <view>未登录</view>
+            <view class="tip">点击登录，获价格</view>
+          </button>
         </view>
       </block>
       <block wx:else>
         <image class="icon-group_head" src="/assets/images/group_head.png" mode="aspectFill" bindtap="openGroupprivilegeHandle"></image>
-        <image class="avatar" mode="aspectFill" src="{{userInfo.avatar_url}}"></image>
-        <view class="userinfo-box">
+        <image wx:if="{{userInfo}}" class="avatar" mode="aspectFill" src="{{userInfo.avatar_url?userInfo.avatar_url:'/assets/images/details_head_no.png'}}"></image>
+        <view wx:if="{{userInfo}}" class="userinfo-box">
           <view class="l1">
             <text class="nickname">{{userInfo.nick_name}}</text>
             <image class="icon-badge-vip" src="{{userInfo.user_vip.icon?userInfo.user_vip.icon:'/assets/images/members_level_1.png'}}" mode="aspectFill"></image>

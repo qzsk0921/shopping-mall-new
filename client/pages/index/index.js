@@ -452,7 +452,7 @@ create(store, {
           // 小于引导收藏小程序及授权定位弹窗之后显示）         
           const jsonAddDialogVisibile = wx.getStorageSync('jsonAddDialogVisibile')
           if (jsonAddDialogVisibile) {
-            if (!this.data.userInfo.avatar_url) {
+            if (!this.data.userInfo.nick_name) {
               this.setData({
                 prizeNavDialogVisibile: 1
               })
@@ -465,7 +465,7 @@ create(store, {
             }
           } else {
             if (jsonAddDialogVisibile === 0) {
-              if (!this.data.userInfo.avatar_url) {
+              if (!this.data.userInfo.nick_name) {
                 this.setData({
                   prizeNavDialogVisibile: 1
                 })
@@ -489,7 +489,7 @@ create(store, {
             // 该弹窗显示在首页（ 在小程序重新打开、 用户
             // 未授权及未使用免费抽奖次数时显示， 优先级
             // 小于引导收藏小程序及授权定位弹窗之后显示）
-            if (!this.data.userInfo.avatar_url) {
+            if (!this.data.userInfo.nick_name) {
               this.setData({
                 prizeNavDialogVisibile: 1
               })
@@ -633,7 +633,7 @@ create(store, {
     })
   },
   checkAuth() {
-    if (!this.store.data.userInfo.avatar_url) {
+    if (!this.store.data.userInfo.nick_name) {
       // 未授权先去授权页
       wx.navigateTo({
         url: '/pages/authorization/identity',

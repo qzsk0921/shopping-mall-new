@@ -22,7 +22,7 @@ create(store, {
     specify: '根据拼团活动规则,如十人团：假设商品成交价格为1000元，拼团购品资格比例为:6:4，佣金抽成比为:5%，即6个人有购买商品的资格，4个人没有；佣金为:1000 x 6 x 5% = 300元'
   },
   checkAuth(userInfo) {
-    if (!userInfo.avatar_url) {
+    if (!userInfo.nick_name) {
       // 未授权先去授权页
       wx.navigateTo({
         url: '/pages/authorization/identity',

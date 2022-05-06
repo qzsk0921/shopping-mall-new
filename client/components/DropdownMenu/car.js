@@ -26,7 +26,8 @@ create({
     },
     goodsDetail: Object,
     userInfo: Object,
-    bargaining: Number
+    bargaining: Number,
+    bargainingSingleBuy: Number
   },
   observers: {
     'opened': function (val) {
@@ -42,6 +43,13 @@ create({
         let currentUnitIdsArr = [],
           currentUnitIds = '',
           myAttr = []
+
+          
+        for (const key in myGoodsDetail.attribute.stock_arr) {
+          if (Object.hasOwnProperty.call(myGoodsDetail.attribute.stock_arr, key)) {
+            myGoodsDetail.attribute.stock_arr[key].cart_number = 1
+          }
+        }
 
         if (myGoodsDetail.attribute.attribute_arr.length) {
           myGoodsDetail.attribute.attribute_arr.forEach((item, index) => {
@@ -178,6 +186,40 @@ create({
       this.setData({
         opened: 0
       })
+
+      if (this.data.bargainingSingleBuy) {
+        let orderData = {
+          is_use_coupon: 0,
+          goods: []
+        }
+
+        const temp = {
+          "goods_id": this.data.myGoodsDetail.id,
+          "goods_num": this.data.myGoodsDetail.attribute.stock_arr[this.data.currentUnitIds].cart_number,
+          "is_pre_goods": this.data.myGoodsDetail.is_pre_sale,
+          "attribute_value_str": this.data.currentUnitIds
+        }
+
+        orderData.goods.push(temp)
+
+        this.preOrder(orderData).then(res => {
+          // 进入订单确认页若开通会员返回订单确认页需要更新数据
+          // getApp().globalData.orderData = orderData
+
+          const pre = JSON.stringify(res.data)
+
+          wx.navigateTo({
+            url: `/pages/shop/order/confirmOrder?preData=${pre}&delivery_type=${this.data.myGoodsDetail.delivery_type}`,
+          })
+        }).catch(err => {
+          console.log(err)
+          // if (err.msg === '地址不存在') {
+          //   wx.removeStorageSync('address_id')
+          //   this.confirmationOrderHandle()
+          // }
+        })
+        return false
+      }
 
       // 如果到店消费不加入购物车跳转到订单确认页 1:送货上门 2:到店消费
       if (this.data.myGoodsDetail.delivery_type === 2) {

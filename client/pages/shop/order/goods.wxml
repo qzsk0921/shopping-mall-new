@@ -27,29 +27,36 @@
               <view class="unit">数量：{{item.cart_number||item.goods_num}}件</view>
             </view>
             <!-- 授权且资质认证的非会员 -->
-            <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
+            <!-- <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
               <view class="price">
                 <text>￥</text><text>{{item.market_price}}</text>
               </view>
-            </view>
+            </view> -->
             <!-- 授权且资质认证的会员 -->
-            <view class="l4" wx:else>
-              <text>￥</text><text>{{item.price}}</text>
-              <text>￥{{item.market_price}}</text>
-            </view>
+            <block wx:if="{{item.price===item.market_price}}">
+              <view class="l4">
+                <text>￥</text><text>{{item.price}}</text>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="l4">
+                <text>￥</text><text>{{item.price}}</text>
+                <text>￥{{item.market_price}}</text>
+              </view>
+            </block>
           </view>
         </view>
       </view>
     </view>
     <!-- 折扣商品 -->
-    <view class="section2">
+    <view wx:if="{{preList.length}}" class="section2">
       <view class="l1">
         <view></view>
-        <text>折扣商品</text>
+        <text>预售商品</text>
         <view></view>
       </view>
       <view class="l2">
-        <view class="item" wx:for="{{discountList}}" wx:key="unique">
+        <view class="item" wx:for="{{preList}}" wx:key="unique">
           <view class="left">
             <image class="icon-goods" src="{{item.thumb}}" mode="aspectFill"></image>
           </view>
@@ -61,13 +68,13 @@
               <view class="unit">数量：{{item.cart_number||item.goods_num}}件</view>
             </view>
             <!-- 授权且资质认证的非会员 -->
-            <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
+            <!-- <view class="l4" wx:if="{{!userInfo.is_vip&&!userInfo.is_sale}}">
               <view class="price">
-                <text>￥</text><text>{{item.market_price}}</text>
+                <text>￥</text><text>{{item.price}}</text>
               </view>
-            </view>
+            </view> -->
             <!-- 授权且资质认证的会员 -->
-            <view class="l4" wx:else>
+            <view class="l4">
               <text>￥</text><text>{{item.price}}</text>
               <text>￥{{item.market_price}}</text>
             </view>

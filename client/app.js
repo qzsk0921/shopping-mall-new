@@ -71,7 +71,7 @@ App({
     // if (store.data.shop_id) {
     setTrack({
       type: 1,
-      shop_id: store.data.shop_id
+      // shop_id: store.data.shop_id
     }).then(res => {
       this.globalData.page_id = res.data.page_id
     })
@@ -275,6 +275,7 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    // checkedIds: []
   }
 })

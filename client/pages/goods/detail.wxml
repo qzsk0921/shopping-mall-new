@@ -4,7 +4,7 @@
 
 <view class="container container-goods-detail">
   <!-- 购物车下拉弹窗 -->
-  <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}" bargaining="{{bargaining}}"></dropdown-car>
+  <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}" bargaining="{{bargaining}}" bargainingSingleBuy="{{bargainingSingleBuy}}"></dropdown-car>
   <wxconfirm dialogVisible="{{wxconfirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmDialogContent}}" title="温馨提示" confirmText="发起" type="{{shareType}}" is_captain="{{is_captain}}" cancelText="{{cancelText}}" />
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" />
@@ -158,7 +158,7 @@
         <view>收藏</view>
       </view>
       <view class="groupbargain-col2">
-        <view class="groupbargain-col2-l btn btn-single" bindtap="awakenCarHandle">
+        <view class="groupbargain-col2-l btn btn-single" bindtap="awakenCarSingleBuyHandle">
           <text>￥{{goodsDetail.price}}</text>
           <text>单独购买</text>
         </view>

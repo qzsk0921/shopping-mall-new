@@ -44,11 +44,12 @@
   font-weight: normal;
   text-align: left;
   line-height: 1;
-  padding: 18rpx 0 16rpx;
+  /* padding: 18rpx 0 16rpx; */
+  padding: 18rpx 0 0;
 }
 
 .header .userInfo .btn-box .tip {
-  /* margin-top: 16rpx; */
+  margin-top: 16rpx;
   font-size: 20rpx;
   color: #FFFFFF;
   opacity: 0.66;

@@ -123,9 +123,7 @@
 }
 
 /* 分类单行显示 */
-.section3 .category-box .icon-category-all {
-
-}
+.section3 .category-box .icon-category-all {}
 
 .section3 .category-box .l1 {
   display: flex;
@@ -583,6 +581,7 @@
 
 .section7 .l12-box .l1 {
   width: 100%;
+  text-align: left;
 }
 
 /* 分类商品 */
@@ -1032,6 +1031,7 @@
   padding: 0 24rpx;
   width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .tabs-nav .tab {

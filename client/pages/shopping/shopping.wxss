@@ -248,6 +248,14 @@
   color: #FFFFFF;
 }
 
+.section2 .item .right .l1 .tag.new_activity {
+  background: #FF7753;
+}
+
+.section2 .item .right .l1 .tag.pre_sale {
+  background: #22B862;
+}
+
 /* .section2 .item .right .l2 {
   font-size: 22rpx;
   line-height: 37rpx;
