@@ -6,9 +6,9 @@ import create from '../../../utils/create'
 import {
   getMyCouponList,
 } from '../../../api/coupon'
-// import {
-//   deepClone
-// } from '../../../utils/util'
+import {
+  deepClone
+} from '../../../utils/util'
 
 // 待支付价格
 let price_total = null
@@ -139,6 +139,8 @@ create(store, {
     let tempData = {
       page: this.data.couponList.count,
       page_size: this.data.page_size,
+      goods: this.data.preData.goods,
+      type: this.data.preData.type
     }
 
     if (typeof dataObj === 'object') {
@@ -203,6 +205,7 @@ create(store, {
 
     if (preData) {
       const preData = JSON.parse(options.preData)
+      this.data.preData = preData
       // console.log(preData)
       this.getMyCouponList(preData).then(res => {
         if (currentCouponId != 'undefined') {

@@ -31,30 +31,30 @@
       </view>
       <view class='card-box' wx:elif="{{couponList.cache.length}}">
         <!-- <radio-group bindchange="radioboxChange"> -->
-          <view class="card" wx:for="{{couponList.cache}}" wx:key="unique">
-            <view class="left">
-              <view class="l1">
-                <text>￥</text>
-                <text>{{tools.parseInt(item.discount)}}</text>
-              </view>
-              <view class="l2">
-                满{{item.money_limit}}可用
-              </view>
+        <view class="card {{!item.is_can_use?'disable':''}}" wx:for="{{couponList.cache}}" wx:key="unique">
+          <view class="left">
+            <view class="l1">
+              <text>￥</text>
+              <text>{{tools.parseInt(item.discount)}}</text>
             </view>
-            <view class="center separator"></view>
-            <view class="right">
-              <view class="l1 l">{{item.coupon_name}}</view>
-              <view class="l2 l one-txt-cut">{{item.content}}</view>
-              <view class="l3 l">{{commontools.formatTime(item.start_time*1000,'yy-mm-dd')}}至{{commontools.formatTime(item.end_time*1000,'yy-mm-dd')}}</view>
-            </view>
-            <view class="rright">
-              <view class="radio-box {{currentCouponId==item.id?'checked':''}}">
-                <image src="/assets/images/car_icon_on.png" mode="aspectFill"></image>
-                <!-- <radio disabled="{{!item.is_can_use}}" value="{{item.id}}" checked="{{currentCouponId==item.id}}" /> -->
-                <view class="radio" data-item="{{item}}" bindtap="radioChangeHandle"></view>
-              </view>
+            <view class="l2">
+              满{{item.money_limit}}可用
             </view>
           </view>
+          <view class="center separator"></view>
+          <view class="right">
+            <view class="l1 l">{{item.coupon_name}}</view>
+            <view class="l2 l one-txt-cut">{{item.content}}</view>
+            <view class="l3 l">{{commontools.formatTime(item.start_time*1000,'yy-mm-dd')}}至{{commontools.formatTime(item.end_time*1000,'yy-mm-dd')}}</view>
+          </view>
+          <view class="rright">
+            <view class="radio-box {{currentCouponId==item.id?'checked':''}}">
+              <image src="/assets/images/car_icon_on.png" mode="aspectFill"></image>
+              <!-- <radio disabled="{{!item.is_can_use}}" value="{{item.id}}" checked="{{currentCouponId==item.id}}" /> -->
+              <view class="radio" data-item="{{item}}" bindtap="radioChangeHandle"></view>
+            </view>
+          </view>
+        </view>
         <!-- </radio-group> -->
       </view>
     </view>

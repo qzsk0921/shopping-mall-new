@@ -384,6 +384,7 @@ create(store, {
       category_id: this.data.category_id,
       keyword: this.data.searchKeyword,
       activity_id: this.data.activity_id, //活动
+      group_id: this.data.group_id, //分组
       page_size: this.data.page_size,
       page: this.data.goodsList[this.data.tabIndex].count
     }
@@ -449,14 +450,16 @@ create(store, {
     const {
       keyword,
       activity_id,
-      category_id
+      category_id,
+      group_id
     } = options
 
     // console.log(keyword)
     this.setData({
       activity_id: activity_id ? activity_id : '',
       searchKeyword: keyword ? keyword : '',
-      category_id: category_id ? category_id : ''
+      category_id: category_id ? category_id : '',
+      group_id: group_id ? group_id : ''
     })
 
     // this.data.searchKeyword = keyword

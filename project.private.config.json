@@ -60,6 +60,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/authorization/identity",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

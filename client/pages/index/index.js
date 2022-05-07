@@ -33,7 +33,7 @@ create(store, {
   data: {
     aBroadcastCount: 0, //跑马灯计数
     aBroadcast: null, //广播动画
-    isOverShare: true,
+    // isOverShare: true,
 
     userInfo: null,
 
@@ -565,7 +565,6 @@ create(store, {
   changeTab(e) {
     console.log(e)
     const index = e.target.dataset.index
-
     let objData = {
       tabIndex: index,
     }
@@ -581,14 +580,16 @@ create(store, {
   toSearchResHandle(e) {
     console.log('toSearchResHandle')
     console.log(e)
-    const id = e.currentTarget.dataset.id
-    if (id) {
+    const type = e.currentTarget.dataset.type
+    if (type === 'category') {
+      const id = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/search/searchRes?category_id=${id}`,
       })
-    } else {
+    } else if (type === 'group') {
+      const ground_id = this.data.shopData.group_goods[this.data.tabIndex].id
       wx.navigateTo({
-        url: '/pages/search/searchRes',
+        url: `/pages/search/searchRes?group_id=${ground_id}`,
       })
     }
   },

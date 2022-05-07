@@ -172,15 +172,13 @@ create(store, {
             }
 
             if (!this.data.select_all) {
-              setTimeout(() => {
-                if (nv.length === this.data.cartData.cache.length) {
-                  tempData.select_all = true
-                }
-              }, 0)
+              // setTimeout(() => {
+              if (nv.length === this.data.cartData.cache.length) {
+                tempData.select_all = true
+              }
+              // }, 0)
             }
-
             this.setData(tempData)
-            console.log(tempData)
           } else {
             this.setData({
               totalPrice: 0,
@@ -888,7 +886,8 @@ create(store, {
                   if (this.data.select_all) {
                     arr = arr.concat(item.id + '.' + item.attribute_value_str)
                   } else {
-                    arr = this.data.checkedIds
+                    // arr = this.data.checkedIds
+                    arr = this.store.data.checkedIds
                   }
                 }
                 if (item.id === it.id) {
@@ -935,7 +934,8 @@ create(store, {
                     if (this.data.select_all) {
                       arr = arr.concat(item.id + '.' + item.attribute_value_str)
                     } else {
-                      arr = this.data.checkedIds
+                      // arr = this.data.checkedIds
+                      arr = this.store.data.checkedIds
                     }
                   }
                   if (item.id === it.id) {
@@ -985,6 +985,7 @@ create(store, {
   onHide: function () {
     console.log('onHide')
     this.store.data.cart = this.data.cartData.cache
+    this.store.data.checkedIds = this.data.checkedIds
     this.update()
   },
 

@@ -215,7 +215,7 @@ create(store, {
     // goods_num: 1
     // is_pre_goods: 0}
 
-    // getApp().globalData.checkedIds = getApp().globalData.checkedIds.concat(detail.goods_id + '.' + detail.attribute_value_str)
+    this.store.data.checkedIds = this.store.data.checkedIds.concat(detail.goods_id + '.' + detail.attribute_value_str)
 
     // 在提交成功后，返回上一页（带上参数）
     const pages = getCurrentPages();
@@ -250,7 +250,6 @@ create(store, {
         //   }
         // }
         this.store.data.cart = res.data.list
-        this.update()
 
         if (prevPage.route === 'pages/category/category') {
           // 更新分类信息(主要是购物车数量)
@@ -285,6 +284,9 @@ create(store, {
         }
       })
     }
+
+    this.update()
+
   },
   /**
    * 图片点击事件
@@ -541,7 +543,7 @@ create(store, {
     return new Promise((resolve, reject) => {
       getGoodsDetail(data).then(res => {
         this.data.timer = setInterval(() => {
-          if (res.data.bargaining_info) {
+          if (res.data.bargaining_info && this.data.goodsDetail.bargaining_info.expire_time_number > 0) {
             this.cutdown(res.data.bargaining_info.expire_time_number -= 1)
           }
         }, 1000)
@@ -702,6 +704,9 @@ create(store, {
    */
   onHide: function () {
     allset = null
+    if (this.data.timer) {
+      clearInterval(this.data.timer)
+    }
   },
 
   /**
@@ -754,7 +759,7 @@ create(store, {
           goods_group_bargaining_team_id: this.data.goodsDetail.bargaining_info.id
         }).then(res => {
           return {
-            title: this.data.goodsDetail.goods_name,
+            title: `${this.data.userInfo.nick_name}超值推荐${this.data.goodsDetail.goods_name}`,
             path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
             imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
             success(res) {
@@ -770,7 +775,7 @@ create(store, {
       return {
         title: this.data.goodsDetail.goods_name,
         path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
-        imageUrl: this.data.goodsDetail.goods_image_arr, //若无imageUrl 截图当前页面
+        imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
         success(res) {
           console.log('分享成功', res)
         },

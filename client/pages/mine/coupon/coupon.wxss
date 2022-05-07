@@ -50,7 +50,9 @@
   background: #333333;
 }
 
-.section2 {}
+.section2 {
+  overflow: auto;
+}
 
 .section2 .no-data {
   text-align: center;
@@ -189,7 +191,7 @@
 
 .nothing {
   text-align: center;
-  margin-top: 40rpx;
+  margin: 40rpx 0;
   font-size: 32rpx;
   color: #999999;
 }

@@ -247,7 +247,7 @@
           </view> -->
           <view class="tit-box">
             <view class="tit">{{item.name}}</view>
-            <view class="recommend" bindtap="toSearchResHandle" data-id="{{item.id}}">
+            <view class="recommend" bindtap="toSearchResHandle" data-type="category" data-id="{{item.id}}">
               <view>更多推荐</view>
               <image src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
             </view>
@@ -325,7 +325,7 @@
             </view> -->
           </view>
         </view>
-        <view class="section7-1" wx:if="{{shopData.group_goods[0].goods_list.length}}" bindtap="toSearchResHandle">
+        <view class="section7-1" wx:if="{{shopData.group_goods[0].goods_list.length}}" bindtap="toSearchResHandle" data-type="group">
           <text>更多推荐</text>
           <image src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
         </view>

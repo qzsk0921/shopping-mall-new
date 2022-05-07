@@ -41,8 +41,8 @@
         <view class="row14"> {{award.type==4?'没！中！奖！':'“'+award.reward_name+'”'}}</view>
         <view wx:if="{{award.type!=4}}" class="row15 {{award.type===1?'price':''}}">{{award.type===1?'价值￥'+award.reward_price:'奖品已自动发放到您账户当中'}} </view>
       </view>
-      <view wx:if="{{award.type===1}}" class="row2" bindtap="acceptAwardHandle">
-        去领奖
+      <view wx:if="{{award.type!=4}}" class="row2" bindtap="acceptAwardHandle">
+        {{award.type===1?'去领奖':award.type===2?'查看我的优惠券':award.type===3?'查看我的积分':''}}
       </view>
       <view class="row3">
         <image bindtap="closeHandle" class="icon-close" src="/assets/images/popup_icon_close.png" mode="aspectFill"></image>

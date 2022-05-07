@@ -23,6 +23,10 @@
   align-items: center;
 }
 
+.card.disable {
+  filter: grayscale(100%);
+}
+
 .card .left {
   width: 202rpx;
   background: #FFFFFF;

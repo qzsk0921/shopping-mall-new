@@ -502,7 +502,7 @@ create(store, {
   onShareAppMessage(e) {
     return {
       title: `${this.data.userInfo.nick_name}邀请你来免费抽奖`,
-      path: '/pages/mine/lottery/lottery', //若无path 默认跳转分享页
+      path: '/pages/mine/lottery/invite', //若无path 默认跳转分享页
       imageUrl: '/assets/images/invite_share.png', //若无imageUrl 截图当前页面
       success(res) {
         console.log('分享成功', res)

@@ -285,6 +285,7 @@ create(store, {
   },
   // 微信支付
   wxPay(payModel) {
+    const that = this
     wx.requestPayment({
       'timeStamp': payModel.timeStamp.toString(),
       'nonceStr': payModel.nonceStr,
@@ -299,10 +300,10 @@ create(store, {
         // })
 
         // 刷新数据
-        this.getOrderDetail({
-          order_id: this.data.orderData.id
+        that.getOrderDetail({
+          order_id: that.data.orderData.id
         }).then(res => {
-          this.setData({
+          that.setData({
             orderData: res.data
           })
         })

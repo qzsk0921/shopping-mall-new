@@ -551,16 +551,21 @@ create(store, {
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
-    return {
-      title: ' ',
-      path: `/pages/groupbargain/headinvitation?invite_user_id=${this.store.data.userInfo.id}`, //若无path 默认跳转分享页
-      imageUrl: '/assets/images/headinvitation.png', //若无imageUrl 截图当前页面
-      success(res) {
-        console.log('分享成功', res)
-      },
-      fail(res) {
-        console.log(res)
+    console.log(e)
+    if (e.from === 'button') {
+      return {
+        title: ' ',
+        path: `/pages/groupbargain/headinvitation?invite_user_id=${this.store.data.userInfo.id}`, //若无path 默认跳转分享页
+        imageUrl: '/assets/images/headinvitation.png', //若无imageUrl 截图当前页面
+        success(res) {
+          console.log('分享成功', res)
+        },
+        fail(res) {
+          console.log(res)
+        }
       }
+    } else {
+      return {}
     }
   }
 })

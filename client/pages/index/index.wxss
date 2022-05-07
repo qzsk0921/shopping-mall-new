@@ -473,6 +473,7 @@
 
 .section7 .item .cont {
   padding: 12rpx 20rpx 28rpx;
+  text-align: left;
 }
 
 .section7 .item .cont .l1 {
@@ -581,7 +582,6 @@
 
 .section7 .l12-box .l1 {
   width: 100%;
-  text-align: left;
 }
 
 /* 分类商品 */
@@ -938,6 +938,10 @@
   background: #FFFFFF;
   border-radius: 10rpx;
   padding: 12rpx 10rpx 16rpx;
+}
+
+.section9 .b .item .cont {
+  text-align: left;
 }
 
 .section9 .b .item:last-child {

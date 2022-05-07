@@ -57,6 +57,7 @@ export default {
     address_id: wx.getStorageSync('address_id') || null, //当前使用的收货地址
 
     cart: [], //购物车
+    checkedIds: [], //选中的id和attribute_value_str  格式[id.attribute_value_str]
 
     // logs: [],
     // b: { 
