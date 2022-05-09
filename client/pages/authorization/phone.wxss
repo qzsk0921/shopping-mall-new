@@ -33,7 +33,7 @@
 }
 
 .btn-phone {
-  margin-top: 128rpx;
+  margin: 128rpx auto 0;
   width: 598rpx !important;
   height: 88rpx;
   background: linear-gradient(90deg, #FF9B74 0%, #FF521D 100%);
@@ -49,9 +49,12 @@
   margin-top: 146rpx;
   font-size: 24rpx;
   color: #888888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.right text:not(:first-child) {
+.right text:nth-of-type(n+2) {
   color: #FF9972;
 }
 
@@ -59,4 +62,22 @@
   margin-top: 14rpx;
   width: 598rpx;
   height: 178rpx;
+}
+
+.radio_box {
+  position: relative;
+  padding: 16rpx;
+  width: 36rpx;
+  height: 36rpx;
+  box-sizing: content-box;
+}
+
+
+
+.radio_img {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  width: 36rpx;
+  height: 36rpx;
 }

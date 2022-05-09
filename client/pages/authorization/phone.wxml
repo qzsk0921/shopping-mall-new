@@ -7,9 +7,13 @@
       <image class="logo" src="{{setting.small.small_logo}}" mode="aspectFill"></image>
     </view>
     <view class="tit">{{setting.small.small_name}}</view>
-    <button class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">手机授权登录</button>
+    <button wx:if="{{is_select}}" class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">手机授权登录</button>
+    <view wx:else class="btn btn-phone" bindtap="getPhoneNumber">手机授权登录</view>
     <image class="icon-lottery" src="/assets/images/accredit_draw.png" mode="aspectFill"></image>
     <view class="right" bindtap="protocolHandle">
+      <view class="radio_box" bindtap="agreementHandle">
+        <image class="radio_img" src="{{is_select?'/assets/images/car_icon_on.png':'/assets/images/accredit_off.png'}}" mode="aspectFill"></image>
+      </view>
       <text>我已阅读并同意</text>
       <text data-id='9'>《用户协议》</text>
       <text>与</text>

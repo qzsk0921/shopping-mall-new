@@ -860,6 +860,22 @@ create(store, {
 
       for (let i = 0; i < res.data.list.length; i++) {
 
+        // 有库存并且未下架或删除
+        if (![2, 3].includes(res.data.list[i].status) && res.data.list[i].is_stock) {
+          if (this.data.select_all) {
+            arr = arr.concat(res.data.list[i].id + '.' + res.data.list[i].attribute_value_str)
+          } else {
+            // arr = this.data.checkedIds
+            arr = this.store.data.checkedIds
+          }
+        }
+
+        if (res.data.list.length - 1 === i) {
+          this.setData({
+            checkedIds: arr
+          })
+        }
+
         if (res.data.list[i].is_min_number) {
           res.data.list[i].one_cart_number = res.data.list[i].cart_number
         }
@@ -881,15 +897,7 @@ create(store, {
               let ress = false
               // 全选或全不选 的处理
               res.data.list.forEach((item) => {
-                // 有库存并且未下架或删除
-                if (![2, 3].includes(item.status) && item.is_stock) {
-                  if (this.data.select_all) {
-                    arr = arr.concat(item.id + '.' + item.attribute_value_str)
-                  } else {
-                    // arr = this.data.checkedIds
-                    arr = this.store.data.checkedIds
-                  }
-                }
+
                 if (item.id === it.id) {
                   ress = true
                   this.setData({
@@ -915,11 +923,11 @@ create(store, {
                 })
               }
 
-              if (i === res.data.list.length - 1 && idx === this.data.recommendList.cache.length - 1) {
-                this.setData({
-                  checkedIds: arr
-                })
-              }
+              // if (i === res.data.list.length - 1 && idx === this.data.recommendList.cache.length - 1) {
+              //   this.setData({
+              //     checkedIds: arr
+              //   })
+              // }
             })
 
           } else {
@@ -929,15 +937,7 @@ create(store, {
                 let ress = false
                 // 全选或全不选 的处理
                 res.data.list.forEach((item) => {
-                  // 有库存并且未下架或删除
-                  if (![2, 3].includes(item.status) && item.is_stock) {
-                    if (this.data.select_all) {
-                      arr = arr.concat(item.id + '.' + item.attribute_value_str)
-                    } else {
-                      // arr = this.data.checkedIds
-                      arr = this.store.data.checkedIds
-                    }
-                  }
+
                   if (item.id === it.id) {
                     ress = true
                     this.setData({
@@ -960,12 +960,6 @@ create(store, {
                   this.setData({
                     [`recommendList.cache[${idx}].cart_number`]: 0,
                     [`recommendList.cache[${idx}].one_cart_number`]: 0,
-                  })
-                }
-
-                if (i === res.data.list.length - 1 && idx === this.data.recommendList.cache.length - 1) {
-                  this.setData({
-                    checkedIds: arr
                   })
                 }
               })

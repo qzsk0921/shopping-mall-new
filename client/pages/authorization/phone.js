@@ -13,7 +13,13 @@ create(store, {
    * 页面的初始数据
    */
   data: {
-
+    is_select: 0, //协议
+  },
+  // 选择阅读协议
+  agreementHandle() {
+    this.setData({
+      is_select: !this.data.is_select
+    })
   },
   protocolHandle(e) {
     // 隐私协议10，用户协议9，关于我们7
@@ -26,6 +32,14 @@ create(store, {
     }
   },
   getPhoneNumber(e) {
+    if (!this.data.is_select) {
+      wx.showToast({
+        icon: 'none',
+        title: '请阅读并同意用户协议与隐私政策',
+      })
+      return false
+    }
+
     console.log(e)
     if (e.detail.encryptedData) {
       const myData = {
