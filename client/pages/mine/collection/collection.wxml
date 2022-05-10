@@ -48,7 +48,7 @@
             <!-- 授权 -->
             <!-- <view class="l4" wx:else> -->
             <view class="l4">
-              <block wx:if="{{item.price===item.market_price}}">
+              <block wx:if="{{item.price==item.market_price}}">
                 <text>￥</text><text>{{item.price}}</text>
                 <!-- <text wx:if="{{item.market_price}}">￥{{item.market_price}}</text> -->
               </block>

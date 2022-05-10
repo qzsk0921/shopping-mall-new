@@ -33,7 +33,7 @@
               </view>
             </view> -->
             <!-- 授权且资质认证的会员 -->
-            <block wx:if="{{item.price===item.market_price}}">
+            <block wx:if="{{item.price==item.market_price}}">
               <view class="l4">
                 <text>￥</text><text>{{item.price}}</text>
               </view>

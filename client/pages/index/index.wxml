@@ -270,10 +270,18 @@
                 <!-- 授权 -->
                 <!-- <view class="l2" wx:else> -->
                 <view class="l2">
-                  <view class="price">
-                    <text>￥</text>{{itemName.price}}
-                  </view>
-                  <view wx:if="{{itemName.market_price}}" class="origin-price">￥{{itemName.market_price}}</view>
+                  <block wx:if="{{itemName.price==itemName.market_price}}">
+                    <view class="price">
+                      <text>￥</text>{{itemName.price}}
+                    </view>
+                    <!-- <view wx:if="{{itemName.market_price}}" class="origin-price">￥{{itemName.market_price}}</view> -->
+                  </block>
+                  <block wx:else>
+                    <view class="price">
+                      <text>￥</text>{{itemName.price}}
+                    </view>
+                    <view wx:if="{{itemName.market_price}}" class="origin-price">￥{{itemName.market_price}}</view>
+                  </block>
                 </view>
                 <!-- <view class="shopcart-box" catchtap="addArtHandle" data-item="{{itemName}}">
                   <image class="icon-shopcart" mode="aspectFill" src="/assets/images/icon_car.png"></image>
@@ -313,7 +321,7 @@
               <!-- 授权 -->
               <!-- <view class="l2" wx:else> -->
               <view class="l2">
-                <block wx:if="{{item.price===item.market_price}}">
+                <block wx:if="{{item.price==item.market_price}}">
                   <view class="price">
                     <text>￥</text>{{item.price}}
                   </view>

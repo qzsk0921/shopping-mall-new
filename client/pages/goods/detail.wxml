@@ -3,6 +3,11 @@
 <wxs module="tools" src="./wxs/index.wxs"></wxs>
 
 <view class="container container-goods-detail">
+  <view class="canvas-box">
+    <canvas canvas-id="canvas" class="canvas" style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"></canvas>
+    <!-- <canvas class="handWriting2" canvas-id="handWriting2" type="2d">
+  </canvas> -->
+  </view>
   <!-- 购物车下拉弹窗 -->
   <dropdown-car bindtap="dropdownMenuCarMaskTap" bindupdateCartHandle="updateCartHandle" opened="{{dialog.car.opened}}" bindsubClickable="subClickableHandle" goodsDetail="{{goodsDetail}}" userInfo="{{userInfo}}" bargaining="{{bargaining}}" bargainingSingleBuy="{{bargainingSingleBuy}}"></dropdown-car>
   <wxconfirm dialogVisible="{{wxconfirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="{{confirmDialogContent}}" title="温馨提示" confirmText="发起" type="{{shareType}}" is_captain="{{is_captain}}" cancelText="{{cancelText}}" />
@@ -42,9 +47,16 @@
           <view>推荐给朋友</view>
         </button>
         <!-- </view> -->
-        <text>￥</text><text>{{goodsDetail.bargaining_info?goodsDetail.bargaining_price:goodsDetail.price}}</text>
-        <view wx:if="{{!goodsDetail.bargaining_info && (goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name)}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
-        <text wx:if="{{goodsDetail.market_price}}">￥{{goodsDetail.market_price}}</text>
+        <block wx:if="{{goodsDetail.bargaining_info}}">
+          <text>￥</text><text>{{goodsDetail.bargaining_price}}</text>
+          <view wx:if="{{!goodsDetail.bargaining_info && (goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name)}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
+          <text wx:if="{{goodsDetail.market_price!=goodsDetail.bargaining_price}}">￥{{goodsDetail.market_price}}</text>
+        </block>
+        <block wx:else>
+          <text>￥</text><text>{{goodsDetail.price}}</text>
+          <view wx:if="{{!goodsDetail.bargaining_info && (goodsDetail.is_pre_sale===1 || goodsDetail.activity_info.activity_name)}}" class="tag {{goodsDetail.is_pre_sale===1?'pre_sale':goodsDetail.activity_info.activity_name?'new_activity':''}}">{{goodsDetail.is_pre_sale===1?'预售专区':goodsDetail.activity_info.activity_name?'新品上市':''}}</view>
+          <text wx:if="{{goodsDetail.market_price!=goodsDetail.price}}">￥{{goodsDetail.market_price}}</text>
+        </block>
       </view>
 
       <view class="l2">{{goodsDetail.goods_name}}</view>

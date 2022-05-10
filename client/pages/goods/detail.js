@@ -15,6 +15,10 @@ import {
   createGroupbargain
 } from '../../api/groupbargain'
 
+import {
+  drawCanvas
+} from '../../utils/business'
+
 let prevPage = null,
   cutdown = '',
   allset = null //商品数据onload时是否调用过
@@ -381,7 +385,7 @@ create(store, {
         s: '00'
       }
 
-      clearInterval(this.data.timer)
+      clearInterval(this.data.timerr)
       // 到期弹窗提示
       const that = this
       wx.showModal({
@@ -542,7 +546,7 @@ create(store, {
   getGoodsDetail(data) {
     return new Promise((resolve, reject) => {
       getGoodsDetail(data).then(res => {
-        this.data.timer = setInterval(() => {
+        this.data.timerr = setInterval(() => {
           if (res.data.bargaining_info && this.data.goodsDetail.bargaining_info.expire_time_number > 0) {
             this.cutdown(res.data.bargaining_info.expire_time_number -= 1)
           }
@@ -704,8 +708,8 @@ create(store, {
    */
   onHide: function () {
     allset = null
-    if (this.data.timer) {
-      clearInterval(this.data.timer)
+    if (this.data.timerr) {
+      clearInterval(this.data.timerr)
     }
   },
 
@@ -713,7 +717,11 @@ create(store, {
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    console.log('onUnload')
     allset = null
+    if (this.data.timerr) {
+      clearInterval(this.data.timerr)
+    }
   },
 
   /**
@@ -733,19 +741,23 @@ create(store, {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (e) {
+  async onShareAppMessage(e) {
     console.log(e)
     if (e.from === 'button') {
+
       if (e.target.dataset.type === 'recommend') {
+        const imageUrl = await drawCanvas(this, this.data.goodsDetail.price, this.data.goodsDetail.thumb, '/assets/images/share_img2.png')
+
         // 推荐给好友
         let queryString = `id=${this.data.goodsDetail.id}`
-        if (this.data.goodsDetail.bargaining_info.id) {
+        if (this.data.goodsDetail.bargaining_info && this.data.goodsDetail.bargaining_info.id) {
           queryString += `&goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`
         }
         return {
           title: this.data.goodsDetail.goods_name,
           path: `/pages/goods/detail?${queryString}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
-          imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+          // imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+          imageUrl,
           success(res) {
             console.log('分享成功', res)
           },
@@ -754,6 +766,8 @@ create(store, {
           }
         }
       } else if (e.target.dataset.type === 'launch') {
+        const imageUrl = await drawCanvas(this, this.data.goodsDetail.bargaining_price, this.data.goodsDetail.thumb, '/assets/images/share_img.png')
+
         // 发起拼团
         return this.createGroupbargain({
           goods_group_bargaining_team_id: this.data.goodsDetail.bargaining_info.id
@@ -761,7 +775,8 @@ create(store, {
           return {
             title: `${this.data.userInfo.nick_name}超值推荐${this.data.goodsDetail.goods_name}`,
             path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
-            imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+            // imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
+            imageUrl,
             success(res) {
               console.log('分享成功', res)
             },

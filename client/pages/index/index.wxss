@@ -1115,6 +1115,7 @@
   border-radius: 16rpx;
   display: flex;
   overflow: hidden;
+  text-align: left;
 }
 
 .icon-broadcast {

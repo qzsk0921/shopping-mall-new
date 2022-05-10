@@ -452,7 +452,7 @@ create(store, {
           // 小于引导收藏小程序及授权定位弹窗之后显示）         
           const jsonAddDialogVisibile = wx.getStorageSync('jsonAddDialogVisibile')
           if (jsonAddDialogVisibile) {
-            if (!this.data.userInfo.nick_name) {
+            if (!this.store.data.userInfo.nick_name) {
               this.setData({
                 prizeNavDialogVisibile: 1
               })

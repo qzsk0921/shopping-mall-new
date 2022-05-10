@@ -31,7 +31,7 @@
             <!-- 授权 -->
             <!-- <view class="l2" wx:else> -->
             <view class="l2">
-              <block wx:if="{{item.price===item.market_price}}">
+              <block wx:if="{{item.price==item.market_price}}">
                 <view class="price">
                   <text>￥</text>{{item.price}}
                 </view>
