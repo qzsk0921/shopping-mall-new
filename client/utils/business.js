@@ -56,16 +56,16 @@ async function drawCanvasShopping(that, price, thumbImage, btnImage) {
   // ctx.fillText(drawData.card_info.company, 24, 26 + 8);
 
   // 保存按钮
-  ctx.drawImage(btnImage, 0, 120, 190, 30);
+  ctx.drawImage(btnImage, 0, 117, 188, 33);
 
    // ctx.drawImage(btnImage, 26, 198 - imgInfo.height / 2 / 2, imgInfo.width / 2, imgInfo.height / 2);
    ctx.setFontSize(12);
    ctx.setFillStyle('#ffffff');
-   ctx.fillText('￥', 10, 142);
+   ctx.fillText('￥', 10, 140);
 
    ctx.setFontSize(18);
    ctx.setFillStyle('#ffffff');
-   ctx.fillText(price, 22, 142);
+   ctx.fillText(price, 22, 140);
 
   ctx.restore(); //恢复之前保存的绘图上下文 恢复之前保存的绘图上下午即状态 可以继续绘制
 

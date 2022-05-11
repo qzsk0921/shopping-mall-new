@@ -784,8 +784,8 @@
 }
 
 .section8 .item-box {
-  overflow: auto;
-  /* white-space: nowrap; */
+  overflow-x: auto;
+  white-space: nowrap;
   padding-left: 24rpx;
   /* display: flex; */
 }
@@ -817,6 +817,7 @@
   font-size: 26rpx;
   font-weight: bold;
   color: #333333;
+  white-space: break-spaces;
 }
 
 .section8 .item .cont .l1 .tag {

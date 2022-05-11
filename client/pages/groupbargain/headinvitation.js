@@ -8,7 +8,7 @@ import {
 import {
   getUserDetail
 } from '../../api/user.js'
-
+let flag = 0
 // Page({
 create(store, {
 
@@ -19,7 +19,7 @@ create(store, {
     userInfo: null,
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navStatus: 'isEntryWithShare',
-    specify: '根据拼团活动规则,如十人团：假设商品成交价格为1000元，拼团购品资格比例为:6:4，佣金抽成比为:5%，即6个人有购买商品的资格，4个人没有；佣金为:1000 x 6 x 5% = 300元'
+    specify: '根据拼团活动规则,如十人团：假设商品成交价格为1000元，拼团购品资格比例为:6:4，佣金抽成比为:5%，即6个人有购买商品的资格，4个人没有；佣金为:1000 x 6 x 5% = 300元',
   },
   checkAuth(userInfo) {
     if (!userInfo.nick_name) {
@@ -41,23 +41,44 @@ create(store, {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      getApp().getUserInfoCallback = (userInfo) => {
-        this.setData(userInfo)
-        this.store.data.userInfo = userInfo
-        this.update()
 
-        if (!this.checkAuth(userInfo)) return
+    getApp().getUserInfoCallback = (userInfo) => {
+      flag = 1
+      this.setData(userInfo)
+      this.store.data.userInfo = userInfo
+      this.update()
 
-        if (options.invite_user_id) {
-          createCaptain({
-            invite_user_id: options.invite_user_id
-          }).then(res => {
-            this.setData({
-              success:1
-            })
+      if (!this.checkAuth(userInfo)) return
+      if (options.invite_user_id) {
+        createCaptain({
+          invite_user_id: options.invite_user_id
+        }).then(res => {
+          this.setData({
+            success: 1
           })
-        }
+        }).catch(err => {
+          console.log(err.msg)
+        })
       }
+    }
+    
+    if (!flag) {
+      const userInfo = this.store.data.userInfo
+      this.setData(userInfo)
+
+      if (!this.checkAuth(userInfo)) return
+      if (options.invite_user_id) {
+        createCaptain({
+          invite_user_id: options.invite_user_id
+        }).then(res => {
+          this.setData({
+            success: 1
+          })
+        }).catch(err => {
+          console.log(err.msg)
+        })
+      }
+    }
   },
 
   /**

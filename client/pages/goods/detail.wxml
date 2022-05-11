@@ -60,7 +60,7 @@
       </view>
 
       <view class="l2">{{goodsDetail.goods_name}}</view>
-      <view class="l3">{{goodsDetail.goods_content}}</view>
+      <text class="l3">{{goodsDetail.goods_content}}</text>
     </view>
     <!-- 火热拼团 -->
     <view wx:if="{{goods_group_bargaining_team_id}}" class="groupbargain">

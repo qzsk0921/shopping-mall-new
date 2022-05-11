@@ -750,11 +750,17 @@ create(store, {
 
         // 推荐给好友
         let queryString = `id=${this.data.goodsDetail.id}`
+
+        let title = `${this.data.userInfo.nick_name} 超值推荐您购买 ${this.data.goodsDetail.goods_name}`
+        // 拼团
         if (this.data.goodsDetail.bargaining_info && this.data.goodsDetail.bargaining_info.id) {
           queryString += `&goods_group_bargaining_team_id=${this.data.goodsDetail.bargaining_info.id}`
+
+          title = `${this.data.userInfo.nick_name} 邀请您拼抢 ${this.data.goodsDetail.goods_name}`
         }
+
         return {
-          title: this.data.goodsDetail.goods_name,
+          title,
           path: `/pages/goods/detail?${queryString}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
           // imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
           imageUrl,
@@ -773,7 +779,7 @@ create(store, {
           goods_group_bargaining_team_id: this.data.goodsDetail.bargaining_info.id
         }).then(res => {
           return {
-            title: `${this.data.userInfo.nick_name}超值推荐${this.data.goodsDetail.goods_name}`,
+            title: `${this.data.userInfo.nick_name} 邀请您拼抢 ${this.data.goodsDetail.goods_name}`,
             path: `/pages/goods/detail?id=${this.data.goodsDetail.id}&goods_group_bargaining_team_id=${res.data.goods_group_bargaining_team_id}&navStatus=isEntryWithShare`, //若无path 默认跳转分享页
             // imageUrl: this.data.goodsDetail.thumb, //若无imageUrl 截图当前页面
             imageUrl,
