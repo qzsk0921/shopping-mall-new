@@ -746,7 +746,15 @@ create(store, {
     if (e.from === 'button') {
 
       if (e.target.dataset.type === 'recommend') {
-        const imageUrl = await drawCanvas(this, this.data.goodsDetail.price, this.data.goodsDetail.thumb, '/assets/images/share_img2.png')
+        wx.showLoading({
+          title: '',
+        })
+
+        const imageUrl = await drawCanvas(this, this.data.goodsDetail.bargaining_price ? this.data.goodsDetail.bargaining_price : this.data.goodsDetail.price, this.data.goodsDetail.thumb, '/assets/images/share_img2.png')
+
+        wx.hideLoading({
+          success: (res) => {},
+        })
 
         // 推荐给好友
         let queryString = `id=${this.data.goodsDetail.id}`
@@ -772,7 +780,16 @@ create(store, {
           }
         }
       } else if (e.target.dataset.type === 'launch') {
+
+        wx.showLoading({
+          title: '',
+        })
+
         const imageUrl = await drawCanvas(this, this.data.goodsDetail.bargaining_price, this.data.goodsDetail.thumb, '/assets/images/share_img.png')
+
+        wx.hideLoading({
+          success: (res) => {},
+        })
 
         // 发起拼团
         return this.createGroupbargain({

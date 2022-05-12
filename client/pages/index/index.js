@@ -24,6 +24,7 @@ import {
 } from '../../api/data'
 
 let timerSearchObject = null
+let systemInfoCallbackFlag = 0
 
 // Page({
 create(store, {
@@ -791,6 +792,8 @@ create(store, {
     getApp().setWatcher(this) //设置监听器
 
     getApp().getSystemInfoCallback = (res => {
+      systemInfoCallbackFlag = 1
+
       console.log(res)
       this.setData({
         compatibleInfo: res
@@ -805,6 +808,7 @@ create(store, {
     })
 
     getApp().getSettingCallback = (setting) => {
+
       this.setData({
         setting
       })
@@ -852,7 +856,7 @@ create(store, {
       }).exec();
 
       this.setData({
-        tabbarH: this.store.data.compatibleInfo.tabbarH
+        tabbarH: systemInfoCallbackFlag ? this.data.compatibleInfo.tabbarH : this.store.data.compatibleInfo.tabbarH
       })
       console.log(this.data.tabbarH)
     }, 100)

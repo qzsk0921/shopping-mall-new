@@ -282,6 +282,7 @@ create(store, {
     this.setData({
       currentFirstCategoryId: item.id,
       currentScrollTopId,
+      currentSecondCategoryIndex: 0
     })
 
     this.store.data.currentFirstCategoryId = item.id
@@ -329,7 +330,8 @@ create(store, {
 
     this.setData({
       currentFirstCategoryId: item.id,
-      currentScrollTopId
+      currentScrollTopId,
+      currentSecondCategoryIndex: 0
     })
 
     this.store.data.currentFirstCategoryId = item.id
