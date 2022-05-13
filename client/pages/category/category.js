@@ -14,6 +14,7 @@ import {
   addNumCart,
   getCartData
 } from '../../api/cart'
+let systemInfoCallbackFlag = 0
 
 // Page({
 create(store, {
@@ -144,16 +145,17 @@ create(store, {
     currentGoodsList: {
       handler(nv, ov, obj) {
         if (nv) {
-          const that = this;
-          const query = wx.createSelectorQuery();
-          query.select('.tree-select__tip').boundingClientRect(function (rect) {
-            // console.log(rect)
-            if (rect) {
-              that.setData({
-                contentTipH: rect.height,
-              })
-            }
-          }).exec();
+          if (!this.data.contentTipH) {
+            const that = this;
+            const query = wx.createSelectorQuery();
+            query.select('.tree-select__tip').boundingClientRect(function (rect) {
+              if (rect) {
+                that.setData({
+                  contentTipH: rect.height,
+                })
+              }
+            }).exec();
+          }
         }
       },
       deep: true
@@ -161,18 +163,20 @@ create(store, {
     firstCategory: {
       handler(nv, ov, obj) {
         // console.log(nv)
-        const that = this;
-        setTimeout(() => {
-          const query = wx.createSelectorQuery();
-          query.select('.section1').boundingClientRect(function (rect) {
-            that.setData({
-              section1H: rect.height,
-            })
-          }).exec();
-        }, 0)
+        if (!this.data.section1H) {
+          const that = this;
+          setTimeout(() => {
+            const query = wx.createSelectorQuery();
+            query.select('.section1').boundingClientRect(function (rect) {
+              that.setData({
+                section1H: rect.height,
+              })
+            }).exec();
+          }, 0)
+        }
       },
       deep: true,
-      immediate: true
+      // immediate: true
     }
   },
   checkAuth() {
@@ -282,7 +286,6 @@ create(store, {
     this.setData({
       currentFirstCategoryId: item.id,
       currentScrollTopId,
-      currentSecondCategoryIndex: 0
     })
 
     this.store.data.currentFirstCategoryId = item.id
@@ -290,6 +293,10 @@ create(store, {
     this.update()
 
     if (!render) {
+      this.setData({
+        currentSecondCategoryIndex: 0
+      })
+
       this.getCategoryList({
         pid: item.id
       }).then(res => {
@@ -439,6 +446,10 @@ create(store, {
           console.log(this.data.currentGoodsList)
         } else {
           this.setData({
+            [`currentGoodsList.cache`]: [],
+          })
+
+          this.setData({
             [`currentGoodsList.cache`]: res.data.data,
             [`currentGoodsList.total_page`]: res.data.last_page
           })
@@ -543,13 +554,21 @@ create(store, {
       selected: 1
     })
 
-    if (!this.data.tabbarH) {
-      setTimeout(() => {
-        this.setData({
-          tabbarH: this.store.data.compatibleInfo.tabbarH
-        })
-      }, 0)
-    }
+    getApp().getSystemInfoCallback = (res => {
+      systemInfoCallbackFlag = 1
+
+      console.log(res)
+      this.setData({
+        compatibleInfo: res
+      })
+
+      this.store.data.compatibleInfo.systemInfo = res.systemInfo
+      this.store.data.compatibleInfo.navHeight = res.navHeight
+      this.store.data.compatibleInfo.isIphoneX = res.isIphoneX
+      this.store.data.compatibleInfo.isIphone = res.isIphone
+
+      this.update()
+    })
   },
 
   /**
@@ -565,6 +584,10 @@ create(store, {
         fixed: rect.height,
       })
     }).exec();
+
+    this.setData({
+      tabbarH: systemInfoCallbackFlag ? this.data.compatibleInfo.tabbarH : this.store.data.compatibleInfo.tabbarH
+    })
   },
   /**
    * 生命周期函数--监听页面显示

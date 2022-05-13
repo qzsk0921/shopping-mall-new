@@ -54,6 +54,8 @@ create(store, {
         // 1. 授权微信信息
         // 2. 授权手机号
         // 3. 进入成为会员页面（ 赠送1次抽奖机会）
+        this.store.data.userInfo['phone'] = res.data.phone
+        this.update()
         wx.redirectTo({
           // url: '/pages/profile/profile',
           url: `/pages/mine/vip/createVip?vip_name=${res.data.vip_name}`

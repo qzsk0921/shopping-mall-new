@@ -662,6 +662,8 @@ create(store, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    getApp().globalData.from = 'detail'
+
     const pages = getCurrentPages()
     prevPage = pages[pages.length - 2]; //上一个页面
 

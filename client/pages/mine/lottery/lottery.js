@@ -8,7 +8,7 @@ import {
   getScoreList,
   lotteryStart
 } from '../../../api/lottery'
-
+let startFlag = 0 //抽奖截流
 // Page({
 create(store, {
 
@@ -203,54 +203,59 @@ create(store, {
     }
   },
   start() {
-    // 用户剩余积分不足以抵扣每次抽奖消耗的积分时，toast弹窗提示：每次抽奖消耗x积分，您的积分不足 
-    // draw_number 免费抽奖次数优先级别高于积分
-    if (this.data.draw_info.user_integral - this.data.draw_info.cost_integral < 0 && this.data.draw_info.draw_number <= 0) {
-      wx.showToast({
-        icon: 'none',
-        title: `每次抽奖消耗${this.data.draw_info.user_integral}积分，您的积分不足`,
-      })
-      return
-    }
-
-    // 用定时器模拟请求接口
-    this.lotteryStart().then(res => {
-      // console.log(this.data.prizes)
-      this.data.award = res.data
-
-      if (res.data.type === -1) {
-        this.setData({
-          dialogVisible: true,
-          award: res.data
+    if (!startFlag) {
+      startFlag = 1
+      // 用户剩余积分不足以抵扣每次抽奖消耗的积分时，toast弹窗提示：每次抽奖消耗x积分，您的积分不足 
+      // draw_number 免费抽奖次数优先级别高于积分
+      if (this.data.draw_info.user_integral - this.data.draw_info.cost_integral < 0 && this.data.draw_info.draw_number <= 0) {
+        wx.showToast({
+          icon: 'none',
+          title: `每次抽奖消耗${this.data.draw_info.user_integral}积分，您的积分不足`,
         })
         return
       }
 
-      // 获取抽奖组件实例
-      const child = this.selectComponent('#myLucky')
-      // 调用play方法开始旋转
-      child.$lucky.play()
+      // 用定时器模拟请求接口
+      this.lotteryStart().then(res => {
+        // console.log(this.data.prizes)
+        this.data.award = res.data
 
-      setTimeout(() => {
-        this.data.prizes.some(((item, index) => {
-          if (item.id === res.data.id) {
-            // 3s 后得到中奖索引 (假设抽到第0个奖品)
-            // 调用stop方法然后缓慢停止
-            child.$lucky.stop(index)
-          }
-        }))
-      }, 1000)
-    }).catch(res => {
-      wx.showToast({
-        icon: 'none',
-        title: res.msg,
+        if (res.data.type === -1) {
+          this.setData({
+            dialogVisible: true,
+            award: res.data
+          })
+          return
+        }
+
+        // 获取抽奖组件实例
+        const child = this.selectComponent('#myLucky')
+        // 调用play方法开始旋转
+        child.$lucky.play()
+
+        setTimeout(() => {
+          this.data.prizes.some(((item, index) => {
+            if (item.id === res.data.id) {
+              // 3s 后得到中奖索引 (假设抽到第0个奖品)
+              // 调用stop方法然后缓慢停止
+              child.$lucky.stop(index)
+            }
+          }))
+        }, 1000)
+      }).catch(res => {
+        wx.showToast({
+          icon: 'none',
+          title: res.msg,
+        })
       })
-    })
+    }
   },
   end(event) {
     // 中奖奖品详情
     console.log(event.detail)
     setTimeout(() => {
+
+      startFlag = 0
 
       this.getLotteryList({
         ex_type: this.parseStatus(this.data.tabIndex)

@@ -194,10 +194,12 @@
   /* width: 702rpx; */
   width: 100%;
   background: rgba(0, 0, 0, 0);
+  vertical-align: top;
 }
 
 .section3 .l4 .icon-goods:not(:first-child) {
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
+  margin-top: 0rpx;
 }
 
 .footer {
