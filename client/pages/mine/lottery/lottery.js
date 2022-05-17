@@ -203,6 +203,7 @@ create(store, {
     }
   },
   start() {
+    console.log(startFlag)
     if (!startFlag) {
       startFlag = 1
       // 用户剩余积分不足以抵扣每次抽奖消耗的积分时，toast弹窗提示：每次抽奖消耗x积分，您的积分不足 

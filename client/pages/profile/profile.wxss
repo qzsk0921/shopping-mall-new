@@ -24,6 +24,19 @@
   position: relative;
 }
 
+.header .userInfo .icon-popup {
+  width: 200rpx;
+  height: 44rpx;
+  position: absolute;
+  top: -44rpx;
+  left: 138rpx;
+}
+
+.header .userInfo .userinfo-box .icon-popup.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .header .userInfo .avatar {
   width: 104rpx;
   height: 104rpx;
@@ -56,12 +69,17 @@
 }
 
 .header .userInfo .userinfo-box {
-  padding-top: 18rpx;
+  /* padding-top: 18rpx; */
+  padding-top: 10rpx;
+  background: transparent;
+  margin: 0;
+  font-weight: normal;
 }
 
 .header .userInfo .userinfo-box .l1 {
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .header .userInfo .userinfo-box .l1 .icon-badge-vip {
@@ -85,6 +103,8 @@
   font-size: 20rpx;
   color: #FFFFFF;
   margin-top: 16rpx;
+  text-align: left;
+  line-height: 1;
 }
 
 .header .options {
