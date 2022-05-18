@@ -136,7 +136,7 @@
       <view class="l2">
         <view class="col1 col">
           <text class="name">配送</text>
-          <text class="val">{{goodsDetail.pay_delivery_day}}日后配送</text>
+          <text class="val">{{goodsDetail.pay_delivery_day===0?'当日配送':goodsDetail.pay_delivery_day+'日后配送'}}</text>
         </view>
         <view class="col2 col">
           <text class="name">品牌</text>
