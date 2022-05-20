@@ -91,12 +91,25 @@
   overflow: auto;
 }
 
+.content>.l2 .l2-2.normal {
+  height: 134rpx;
+  white-space: nowrap;
+}
+
 .content>.l2 .l2-2 .icon-goods {
   /* margin-right: 20rpx; */
   width: 134rpx;
   height: 134rpx;
   background: rgba(0, 0, 0, 0);
   border-radius: 8rpx;
+}
+
+.content>.l2 .l2-2.normal .icon-goods {
+  margin-right: 20rpx;
+}
+
+.content>.l2 .l2-2.normal .icon-goods:last-child {
+  margin-right: 20rpx;
 }
 
 .content>.l2 .l2-3 {

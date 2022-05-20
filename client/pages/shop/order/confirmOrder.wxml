@@ -78,7 +78,7 @@
           <text>共{{orderData.goods_list.length}}件</text>
           <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
         </view>
-        <view class="l2-2">
+        <view class="l2-2 normal">
           <image class="icon-goods" wx:for="{{orderData.goods_list.length}}" wx:key="unique" src="{{orderData.goods_list[index].thumb}}" mode="aspectFill"></image>
         </view>
         <view class="l2-3">

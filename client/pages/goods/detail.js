@@ -580,6 +580,10 @@ create(store, {
    */
   onLoad: function (options) {
 
+    wx.setNavigationBarTitle({
+      title: "溪嘉商行"
+    })
+
     let param = {}
     const {
       id,
@@ -662,6 +666,7 @@ create(store, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     getApp().globalData.from = 'detail'
 
     const pages = getCurrentPages()

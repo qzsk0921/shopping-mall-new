@@ -106,6 +106,16 @@ App({
         console.log(store.data.setting)
       }
     })
+    // 获取当前帐号信息
+    this.getAccountInfoSync()
+  },
+  getAccountInfoSync() {
+    const accountInfo = wx.getAccountInfoSync();
+    store.data.accountInfo = accountInfo
+    store.update()
+    // console.log(accountInfo.miniProgram.appId) // 小程序 appId
+    // console.log(accountInfo.plugin.appId) // 插件 appId
+    // console.log(accountInfo.plugin.version) // 插件版本号， 'a.b.c' 这样的形式
   },
   getSystemInfo() {
     const _this = this

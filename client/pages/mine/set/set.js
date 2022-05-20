@@ -18,7 +18,7 @@ create(store, {
     setList: [{
         id: 1,
         name: '版本',
-        val: '1.0.0',
+        val: '',
         url: ''
       },
       {
@@ -78,6 +78,12 @@ create(store, {
     if (!this.data.small) {
       this.setData({
         small: this.store.data.setting.small
+      })
+    }
+
+    if (!this.data.setList[0].val) {
+      this.setData({
+        'setList[0].val': this.store.data.accountInfo.miniProgram.version ? this.store.data.accountInfo.miniProgram.version : '1.0.0'
       })
     }
   },
