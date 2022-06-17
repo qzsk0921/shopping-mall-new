@@ -441,6 +441,8 @@ create(store, {
         console.log(err)
         if (err.msg === '地址不存在') {
           wx.removeStorageSync('address_id')
+          this.store.data.address_id = ''
+          this.update()
           this.confirmationOrderHandle()
         }
       })

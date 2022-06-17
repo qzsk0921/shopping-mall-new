@@ -338,14 +338,14 @@ getSig(requestParam, sk, feature, mode) {
   /**
    * 使用微信接口进行定位
    */
-  getWXLocation(success, fail, complete) {
-      wx.getLocation({
-          type: 'gcj02',
-          success: success,
-          fail: fail,
-          complete: complete
-      });
-  },
+  // getWXLocation(success, fail, complete) {
+  //     wx.getLocation({
+  //         type: 'gcj02',
+  //         success: success,
+  //         fail: fail,
+  //         complete: complete
+  //     });
+  // },
 
   /**
    * 获取location参数

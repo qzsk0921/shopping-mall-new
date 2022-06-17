@@ -3,12 +3,14 @@ import store from '../../../store/common'
 import create from '../../../utils/create'
 import {
   addOrder,
-  rePay
+  rePay,
+  preOrder
 } from '../../../api/order'
 
 import {
   getAddressList,
 } from '../../../api/location'
+
 // Page({
 create(store, {
 
@@ -16,6 +18,7 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    loaded: false,
     delivery_type: null, // 1:送货上门 2:到店消费
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '订单确认',
@@ -270,10 +273,24 @@ create(store, {
     })
   },
 
+  preOrder(data) {
+    return new Promise((resolve, reject) => {
+      preOrder(data).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    this.data.loaded = true
+    this.data.orderParam = getApp().globalData.orderData
+
     const {
       preData,
       delivery_type
@@ -310,6 +327,21 @@ create(store, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (!this.data.loaded) {
+      this.preOrder(this.data.orderParam).then(res => {
+        this.setData({
+          orderData: res.data
+        })
+      }).catch(err => {
+        console.log(err)
+        // if (err.msg === '地址不存在') {
+        //   wx.removeStorageSync('address_id')
+        //   this.confirmationOrderHandle()
+        // }
+      })
+    }
+
+
     if (!this.data.compatibleInfo.navHeight) {
       this.setData({
         compatibleInfo: this.store.data.compatibleInfo
@@ -344,7 +376,8 @@ create(store, {
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log('onHide')
+    this.data.loaded = false
   },
 
   /**

@@ -2,7 +2,7 @@
 import store from '../../../store/common'
 import create from '../../../utils/create'
 import config from '../../../config/index'
-const QQMapWX = require('../../../lib/qqmap-wx-jssdk.js');
+// const QQMapWX = require('../../../lib/qqmap-wx-jssdk.js');
 
 import {
   getAddressList,
@@ -108,32 +108,32 @@ create(store, {
     }
 
     // qqmapsdk.search({
-    qqmapsdk.getSuggestion({
-      keyword, //搜索关键词
-      location,
-      // location: `${vm.data.latitude},${vm.data.longitude}`,
-      // rectangle: `${vm.data.latitude-2},${vm.data.longitude-2},${vm.data.longitude+2},${vm.data.longitude+2}`,
-      // auto_extend: '1',
-      policy: 1,
-      page_size: 20,
-      page_index: 1,
-      success: function (res) {
-        console.log(res, '搜索位置');
-        const pois = res.data
-        // 可配送范围处理
-        // do something
-        if (pois.length === 0) return
-        vm.setData({
-          pois
-        })
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res);
-      }
-    });
+    // qqmapsdk.getSuggestion({
+    //   keyword, //搜索关键词
+    //   location,
+    //   // location: `${vm.data.latitude},${vm.data.longitude}`,
+    //   // rectangle: `${vm.data.latitude-2},${vm.data.longitude-2},${vm.data.longitude+2},${vm.data.longitude+2}`,
+    //   // auto_extend: '1',
+    //   policy: 1,
+    //   page_size: 20,
+    //   page_index: 1,
+    //   success: function (res) {
+    //     console.log(res, '搜索位置');
+    //     const pois = res.data
+    //     // 可配送范围处理
+    //     // do something
+    //     if (pois.length === 0) return
+    //     vm.setData({
+    //       pois
+    //     })
+    //   },
+    //   fail: function (res) {
+    //     console.log(res);
+    //   },
+    //   complete: function (res) {
+    //     console.log(res);
+    //   }
+    // });
   },
   poiTapHandle(e) {
     const dataset = e.currentTarget.dataset
@@ -146,26 +146,34 @@ create(store, {
       id: dataset.item.id
     }
 
-    // 验证配送范围
-    this.checkAddress(myData).then(res => {
-      // 在配送范围
-      const myyData = {
-        address: dataset.item.title,
-        longitude: dataset.item.location.lng,
-        latitude: dataset.item.location.lat,
-        type: 2, //1:通过地址选择 2:首页选择地址
-      }
-      this.setAddressShopInfo(myyData).then(res => {
-        // 在配送范围里跳转到首页，不在配送范围提示
-        myyData.address = res.data.address
-        this.store.data.currentAddress = myyData
-        // this.store.data.location = dataset.item
-        this.update()
+    // // 验证配送范围
+    // this.checkAddress(myData).then(res => {
+    //   // 在配送范围
+    //   const myyData = {
+    //     address: dataset.item.title,
+    //     longitude: dataset.item.location.lng,
+    //     latitude: dataset.item.location.lat,
+    //     type: 2, //1:通过地址选择 2:首页选择地址
+    //   }
+    //   this.setAddressShopInfo(myyData).then(res => {
+    //     // 在配送范围里跳转到首页，不在配送范围提示
+    //     myyData.address = res.data.address
+    //     this.store.data.currentAddress = myyData
+    //     // this.store.data.location = dataset.item
+    //     this.update()
 
-        wx.switchTab({
-          url: '../../index/index',
-        })
-      })
+    //     wx.switchTab({
+    //       url: '../../index/index',
+    //     })
+    //   })
+    // })
+
+    this.store.data.currentAddress = myyData
+    // this.store.data.location = dataset.item
+    this.update()
+
+    wx.switchTab({
+      url: '../../index/index',
     })
   },
   // 当前定位地址点击
@@ -183,82 +191,83 @@ create(store, {
     })
   },
   // 重新定位
-  repositionHandle() {
-    // console.log('repositionHandle')
-    const that = this
-    // 查询一下用户是否授权了地理位置 scope.userLocation
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        if (!res.authSetting['scope.userLocation']) {
-          wx.openSetting({
-            success(res) {
-              console.log(res.authSetting)
-              // res.authSetting = {
-              //   "scope.userInfo": true,
-              //   "scope.userLocation": true
-              // }
-              if (res.authSetting['scope.userLocation']) {
-                wx.authorize({
-                  scope: 'scope.userLocation',
-                  success() {
-                    that.getLocation()
-                  },
-                  fail(err) {
-                    console.log(err)
-                  }
-                })
-              }
-            }
-          })
-        } else {
-          that.getLocation()
-        }
-      }
-    })
-  },
-  getLocation() {
-    const that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        let latitude = res.latitude
-        let longitude = res.longitude
-        wx.request({
-          url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${config.tencentKey}`,
-          success: res => {
-            console.log(res)
-            const result = res.data.result
+  // repositionHandle() {
+  //   // console.log('repositionHandle')
+  //   const that = this
+  //   // 查询一下用户是否授权了地理位置 scope.userLocation
+  //   wx.getSetting({
+  //     success(res) {
+  //       console.log(res)
+  //       if (!res.authSetting['scope.userLocation']) {
+  //         wx.openSetting({
+  //           success(res) {
+  //             console.log(res.authSetting)
+  //             // res.authSetting = {
+  //             //   "scope.userInfo": true,
+  //             //   "scope.userLocation": true
+  //             // }
+  //             if (res.authSetting['scope.userLocation']) {
+  //               wx.authorize({
+  //                 scope: 'scope.userLocation',
+  //                 success() {
+  //                   that.getLocation()
+  //                 },
+  //                 fail(err) {
+  //                   console.log(err)
+  //                 }
+  //               })
+  //             }
+  //           }
+  //         })
+  //       } else {
+  //         that.getLocation()
+  //       }
+  //     }
+  //   })
+  // },
+  // getLocation() {
+  //   const that = this;
+  //   wx.getLocation({
+  //     isHighAccuracy: true,
+  //     type: 'gcj02',
+  //     success: function (res) {
+  //       let latitude = res.latitude
+  //       let longitude = res.longitude
+  //       wx.request({
+  //         url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${config.tencentKey}`,
+  //         success: res => {
+  //           console.log(res)
+  //           const result = res.data.result
 
-            that.store.data.currentAddress = {
-              address: result.formatted_addresses.recommend,
-              longitude: result.location.lng,
-              latitude: result.location.lat,
-              type: 2, //1:通过地址选择 2:首页选择地址
-            }
+  //           that.store.data.currentAddress = {
+  //             address: result.formatted_addresses.recommend,
+  //             longitude: result.location.lng,
+  //             latitude: result.location.lat,
+  //             type: 2, //1:通过地址选择 2:首页选择地址
+  //           }
 
-            that.store.data.location = result
-            that.update()
+  //           that.store.data.location = result
+  //           that.update()
 
-            that.setData({
-              location: result,
-              currentAddress: that.store.data.currentAddress
-            })
-          }
-        })
-      },
-      fail: function (err) {
-        console.log(err)
-        wx.showToast({
-          title: '频繁调用会增加电量损耗',
-          icon: 'none'
-        })
-      },
-      complete: function () {
-        console.log('complete')
-      }
-    })
-  },
+  //           that.setData({
+  //             location: result,
+  //             currentAddress: that.store.data.currentAddress
+  //           })
+  //         }
+  //       })
+  //     },
+  //     fail: function (err) {
+  //       console.log(err)
+  //       wx.showToast({
+  //         title: '频繁调用会增加电量损耗',
+  //         icon: 'none'
+  //       })
+  //     },
+  //     complete: function () {
+  //       console.log('complete')
+  //     }
+  //   })
+  // },
   // 我的收货地址点击
   addrClickHandle(e) {
     console.log(e)
@@ -402,9 +411,9 @@ create(store, {
   onLoad: function (options) {
     getApp().setWatcher(this) //设置监听器
 
-    qqmapsdk = new QQMapWX({
-      key: config.tencentKey
-    });
+    // qqmapsdk = new QQMapWX({
+    //   key: config.tencentKey
+    // });
 
     if (options.from && options.from.includes('mine')) {
       this.setData({

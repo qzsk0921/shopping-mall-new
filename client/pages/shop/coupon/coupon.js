@@ -87,10 +87,11 @@ create(store, {
             currentCouponId: 0
           })
           prevPage.setData({
+            'orderParam.is_use_coupon': 0,
             currentCouponId: 0,
-            'orderData.coupon_discount_total': 0,
-            'orderData.price_total': price_total, //底部待支付金额
-            'orderData.discount_total': prevPageData.vip_discount_money //底部已优惠金额
+            // 'orderData.coupon_discount_total': 0,
+            // 'orderData.price_total': price_total, //底部待支付金额
+            // 'orderData.discount_total': prevPageData.vip_discount_money //底部已优惠金额
           })
         } else {
           // 没选变选中
@@ -98,10 +99,12 @@ create(store, {
             price_total = prevPageData.price_total
           }
           prevPage.setData({
+            'orderParam.coupon_id': item.id,
+            'orderParam.is_use_coupon': 1,
             currentCouponId: item.id,
-            'orderData.coupon_discount_total': item.discount,
-            'orderData.price_total': this.toFixed(price_total, item.discount, 2) < 0 ? 0 : this.toFixed(price_total, item.discount, 2), //底部待支付金额
-            'orderData.discount_total': item.discount //底部已优惠金额
+            // 'orderData.coupon_discount_total': item.discount,
+            // 'orderData.price_total': this.toFixed(price_total, item.discount, 2) < 0 ? 0 : this.toFixed(price_total, item.discount, 2), //底部待支付金额
+            // 'orderData.discount_total': item.discount //底部已优惠金额
           })
           wx.navigateBack({
             delta: 0,

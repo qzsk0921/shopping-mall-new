@@ -92,7 +92,7 @@
         <!-- 拼团商品无法使用优惠券 -->
         <view wx:if="{{!orderData.goods_group_bargaining_team_id}}" class="l2-5" bindtap="toCouponSelectHandle">
           <view><text>优惠券</text><text class="l2-5-tip">(不可与会员优惠叠加使用)</text></view>
-          <text class="preferential-amount {{currentCouponId?'':'normal'}}">{{currentCouponId?'-￥'+orderData.coupon_discount_total:'请选择'}}</text>
+          <text class="preferential-amount {{orderData.coupon_discount_total?'':'normal'}}">{{orderData.coupon_discount_total?'-￥'+orderData.coupon_discount_total:'请选择'}}</text>
           <image class="icon-arrow" src="/assets/images/nav_btn_next.png" mode="aspectFill"></image>
         </view>
         <view class="l2-6">

@@ -96,9 +96,9 @@ create({
         } else if (_data.status === 'location') {
           // 选择收货地址
           if (el) {
-            wx.navigateTo({
-              url: '/pages/location/index/index',
-            })
+            // wx.navigateTo({
+            //   url: '/pages/location/index/index',
+            // })
           }
         } else if (_data.status === 'category') {
           // 分类页面

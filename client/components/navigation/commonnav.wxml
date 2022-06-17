@@ -8,12 +8,11 @@
 		<view wx:elif="{{status==='isEmpty'}}"></view>
 		<!-- 地址 -->
 		<view class="box-location" wx:elif="{{status==='location'}}">
-			<image class="icon-location" src="/assets/images/home_nav_local.png" mode="aspectFill"></image>
+			<!-- <image class="icon-location" src="/assets/images/home_nav_local.png" mode="aspectFill"></image>
 			<view class="text one-txt-cut" data-el="location">
-				<!-- {{location.formatted_addresses.recommend?location.formatted_addresses.recommend:'定位中...'}} -->
 				{{location.address}}
-			</view>
-			<view class="triangle"></view>
+			</view> -->
+			<!-- <view class="triangle"></view> -->
 		</view>
 		<view class="box-category input-box" wx:elif="{{status==='category'}}">
 			<input class="search" placeholder="请输入商品类型、商品名称" placeholder-class="search-placeholder" disabled="true" data-el="category" />

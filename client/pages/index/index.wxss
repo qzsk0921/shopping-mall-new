@@ -1127,6 +1127,16 @@
 
 .broadcast-list {
   width: calc(100% - 79rpx);
+  /* animation: myanimation 1s 1s infinite forwards; */
+}
+
+@keyframes myanimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.9;
+  }
 }
 
 .broadcast-list .item {

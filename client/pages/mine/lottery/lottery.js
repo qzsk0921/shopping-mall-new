@@ -426,6 +426,12 @@ create(store, {
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    if(options.navStatus) {
+      this.setData({
+        navStatus: 'isEntryWithShare',
+      })
+    }
+    
     getApp().setWatcher(this) //设置监听器
     this.getPrizeList().then(res => {
       this.setData({

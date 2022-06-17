@@ -21,7 +21,7 @@ create(store, {
     if (!this.checkAuth()) return
 
     wx.navigateTo({
-      url: '/pages/mine/lottery/lottery',
+      url: '/pages/mine/lottery/lottery?navStatus=isEntryWithShare',
     })
   },
   checkAuth() {

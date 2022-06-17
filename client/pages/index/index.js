@@ -26,6 +26,18 @@ import {
 let timerSearchObject = null
 let systemInfoCallbackFlag = 0
 
+let aBroadcast = wx.createAnimation({
+  duration: 500,
+  timingFunction: 'linear',
+  delay: 3000
+})
+
+let reABroadcast = wx.createAnimation({
+  duration: 0,
+  timingFunction: 'linear',
+  delay: 0
+})
+
 // Page({
 create(store, {
   /**
@@ -722,17 +734,11 @@ create(store, {
     })
   },
   startABroadcast() {
-
+    console.log('startABroadcast')
     // 公告只有1条不做动画
     if (this.data.shopData.notice_list.length < 2) {
       return
     }
-
-    const aBroadcast = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear',
-      delay: 3000
-    })
 
     this.data.aBroadcastCount += 1
 
@@ -743,19 +749,14 @@ create(store, {
     })
   },
   aBroadcastEnd() {
+    console.log('aBroadcastEnd')
     if (this.data.aBroadcastCount === this.data.shopData.notice_list.length) {
 
       this.data.aBroadcastCount = 1
 
-      const aBroadcast = wx.createAnimation({
-        duration: 0,
-        timingFunction: 'linear',
-        delay: 0
-      })
-
-      aBroadcast.translateY(0).step()
+      reABroadcast.translateY(0).step()
       this.setData({
-        aBroadcast: aBroadcast.export(),
+        aBroadcast: reABroadcast.export(),
       })
       this.startABroadcast()
     } else {
@@ -823,7 +824,7 @@ create(store, {
     }
 
     // 定位授权
-    this.getLocation()
+    // this.getLocation()
 
     //第一次登陆提示json动图 显示一次 来过吗 0 没来过 1 来过
     const jsonAddDialogVisibile = wx.getStorageSync('jsonAddDialogVisibile')
@@ -922,7 +923,12 @@ create(store, {
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    console.log('onhide')
 
+    reABroadcast.translateY(0).step()
+    this.setData({
+      aBroadcast: reABroadcast.export(),
+    })
   },
 
   /**
@@ -962,53 +968,54 @@ create(store, {
       }
     }
   },
-  getLocation() {
-    const that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        let latitude = res.latitude
-        let longitude = res.longitude
-        wx.request({
-          url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${config.tencentKey}`,
-          success: res => {
-            console.log(res)
-            const result = res.data.result
+  // getLocation() {
+  //   const that = this;
+  //   wx.getLocation({
+  //     isHighAccuracy: true,
+  //     type: 'gcj02',
+  //     success: function (res) {
+  //       let latitude = res.latitude
+  //       let longitude = res.longitude
+  //       wx.request({
+  //         url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${config.tencentKey}`,
+  //         success: res => {
+  //           console.log(res)
+  //           const result = res.data.result
 
-            that.store.data.currentAddress = {
-              address: result.formatted_addresses.recommend,
-              longitude: result.location.lng,
-              latitude: result.location.lat,
-              type: 2, //1:通过地址选择 2:首页选择地址
-            }
-            that.store.data.location = result
-            that.update()
+  //           that.store.data.currentAddress = {
+  //             address: result.formatted_addresses.recommend,
+  //             longitude: result.location.lng,
+  //             latitude: result.location.lat,
+  //             type: 2, //1:通过地址选择 2:首页选择地址
+  //           }
+  //           that.store.data.location = result
+  //           that.update()
 
-            that.setData({
-              currentAddress: that.store.data.currentAddress
-            })
-          }
-        })
-      },
-      fail: function (err) {
-        console.log(err)
-        that.setData({
-          currentAddress: {
-            address: '未授权'
-          },
-          location: {
-            formatted_addresses: {
-              recommend: '定位失败'
-            }
-          }
-        })
-      },
-      complete: function () {
-        console.log('complete')
-        that.setData({
-          getLocation: 1
-        })
-      }
-    })
-  }
+  //           that.setData({
+  //             currentAddress: that.store.data.currentAddress
+  //           })
+  //         }
+  //       })
+  //     },
+  //     fail: function (err) {
+  //       console.log(err)
+  //       that.setData({
+  //         currentAddress: {
+  //           address: '未授权'
+  //         },
+  //         location: {
+  //           formatted_addresses: {
+  //             recommend: '定位失败'
+  //           }
+  //         }
+  //       })
+  //     },
+  //     complete: function () {
+  //       console.log('complete')
+  //       that.setData({
+  //         getLocation: 1
+  //       })
+  //     }
+  //   })
+  // }
 })
