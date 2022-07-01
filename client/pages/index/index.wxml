@@ -50,7 +50,9 @@
           <view class="l1">
             <view class="item" wx:if="{{index<3}}" wx:for="{{shopData.category}}" wx:key="unique" bindtap="toCategoryHandle" data-item="{{item}}">
               <image class="icon-category" src="{{item.icon}}" mode="aspectFill" data-clickable="1"></image>
-              <view class="text-category" data-clickable="1">{{item.name}}</view>
+              <view class="text-category" data-clickable="1">
+                <view class="abs">{{item.name}}</view>
+              </view>
             </view>
             <view class="item all" bindtap="toCategoryHandle">
               <image class="icon-category icon-category-all" src="/assets/images/nav_btn_return1.png" mode="aspectFill"></image>

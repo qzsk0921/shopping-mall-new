@@ -1,6 +1,9 @@
 /* pages/shop/order/goods.wxss */
 
-.content {}
+.content {
+  padding-bottom: env(safe-area-inset-bottom);
+  overflow: auto;
+}
 
 .section1>.l1,
 .section2>.l1 {

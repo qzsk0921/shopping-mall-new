@@ -161,6 +161,15 @@
   text-align: center;
   font-size: 25rpx;
   color: #666666;
+  position: relative;
+}
+
+.section3 .item .text-category .abs {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
 }
 
 .section4 {

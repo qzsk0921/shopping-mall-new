@@ -5,7 +5,7 @@
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
   </view>
-  <view class="content">
+  <view class="content hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(compatibleInfo.navHeight)+'px':compatibleInfo.systemInfo.screenHeight-(compatibleInfo.navHeight)+'px'}}">
     <!-- 普通商品 -->
     <view class="section1">
       <view class="l1">
@@ -20,7 +20,7 @@
           </view>
           <view class="right">
             <view class="l12-box">
-              <view class="l1">
+              <view class="l1 txt-cut">
                 <!-- <view wx:if="{{item.is_pre_sale===1 || item.activity_info.activity_name}}" class="tag {{item.is_pre_sale===1?'pre_sale':item.activity_info.activity_name?'new_activity':''}}">{{item.is_pre_sale===1?'预售专区':item.activity_info.activity_name?'新品上市':''}}</view> -->
                 {{item.goods_name}} {{item.spec}}
               </view>

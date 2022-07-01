@@ -36,8 +36,8 @@
                   </view>
                 </view>
                 <view class="r-r3">
-                  <view class="r-r3-l">佣金抽成比：<text>{{item.reward_rate}}%</text></view>
-                  <view class="r-r3-r">{{item.status===1?'预计收入':'收入'}}:￥{{item.status===3?0:item.reward_money}}</view>
+                  <view class="r-r3-l">佣金抽成比：<text>{{item.captain_reward_rate}}%</text></view>
+                  <view class="r-r3-r">{{item.status===1?'预计收入':'收入'}}:￥{{item.status===3?0:item.captain_reward_money}}</view>
                 </view>
               </view>
             </view>
