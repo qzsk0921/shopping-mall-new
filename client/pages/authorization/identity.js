@@ -55,7 +55,11 @@ create(store, {
     wx.navigateBack({
       delta: 0,
       success: (res) => {},
-      fail: (res) => {},
+      fail: (res) => {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      },
       complete: (res) => {},
     })
   },

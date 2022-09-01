@@ -285,6 +285,24 @@
   font-size: 22rpx;
   line-height: 32rpx;
   color: #FC4953;
+  position: relative;
+  overflow: hidden;
+}
+
+.section4 .l1 .sn-box .btn-copy::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  border: 1rpx solid #FF959B;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 .section5 {

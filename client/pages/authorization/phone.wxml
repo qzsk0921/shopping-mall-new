@@ -9,6 +9,7 @@
     <view class="tit">{{setting.small.small_name}}</view>
     <button wx:if="{{is_select}}" class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">手机授权登录</button>
     <view wx:else class="btn btn-phone" bindtap="getPhoneNumber">手机授权登录</view>
+    <view class="btn btn-reject" bindtap="rejectHandle">跳过</view>
     <image class="icon-lottery" src="/assets/images/accredit_draw.png" mode="aspectFill"></image>
     <view class="right" bindtap="protocolHandle">
       <view class="radio_box" bindtap="agreementHandle">

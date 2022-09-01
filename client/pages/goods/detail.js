@@ -356,11 +356,11 @@ create(store, {
       })
       return false
     } else if (!this.data.userInfo.phone) {
-      // 授权昵称头像还未授权手机号
-      wx.navigateTo({
-        url: '/pages/authorization/phone',
-      })
-      return false
+      // // 授权昵称头像还未授权手机号
+      // wx.navigateTo({
+      //   url: '/pages/authorization/phone',
+      // })
+      // return false
     }
     return true
   },

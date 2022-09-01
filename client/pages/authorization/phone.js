@@ -86,6 +86,22 @@ create(store, {
       // })
     }
   },
+  // 拒绝 返回顶级页面
+  rejectHandle() {
+    
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+    // wx.navigateBack({
+    //   delta: 1,
+    //   fail(err) {
+    //     console.log(err)
+    //     wx.switchTab({
+    //       url: '/pages/index/index',
+    //     })
+    //   }
+    // })
+  },
   updatePhone(data) {
     return new Promise((resolve, reject) => {
       updatePhone(data).then(res => {

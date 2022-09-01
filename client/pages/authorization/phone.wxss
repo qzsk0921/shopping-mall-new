@@ -1,6 +1,7 @@
 /* pages/authorization/phone.wxss */
 .container-phone {
   text-align: center;
+  background: #FFFFFF;
 }
 
 .image-box {
@@ -46,7 +47,7 @@
 }
 
 .right {
-  margin-top: 146rpx;
+  margin-top: 56rpx;
   font-size: 24rpx;
   color: #888888;
   display: flex;
@@ -80,4 +81,16 @@
   left: 16rpx;
   width: 36rpx;
   height: 36rpx;
+}
+
+.btn-reject {
+  text-align: center;
+  margin: 30rpx auto 0;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #AAAAAA;
+  width: 616rpx;
+  height: 80rpx;
+  background: #F6F6F6;
+  border-radius: 40rpx;
 }

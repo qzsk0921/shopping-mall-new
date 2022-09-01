@@ -2,9 +2,9 @@
 // https://www.showdoc.com.cn/1722521359176667/8053561250017786 Xczm190410 批发文档
 
 export default {
-  baseUrl: 'https://b2c-api-yxmj.xcmbkj.com', //零售 易兴美酒速递wx1f1458bdb47e911d
+  // baseUrl: 'https://b2c-api-yxmj.xcmbkj.com', //零售 易兴美酒速递wx1f1458bdb47e911d
   // baseUrl: 'https://b2c-api-xjcy.xcmbkj.com', //零售 溪嘉商行wx8f263b3cf656e6f4
-  // baseUrl: 'https://retailers.xcmbkj.com', //零售 自己wx11729f975a9b0116
+  baseUrl: 'https://retailers.xcmbkj.com', //零售 自己wx11729f975a9b0116
   // baseUrl: 'https://liancai.xxhychn.cn',
   // baseUrl:'https://liancai.xcmbkj.com', //测试wx46bb087e8ac10589
   contentType: 'application/json',

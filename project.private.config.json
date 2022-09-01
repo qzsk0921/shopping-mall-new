@@ -1,6 +1,7 @@
 {
   "setting": {
-    "urlCheck": true
+    "urlCheck": true,
+    "compileHotReLoad": true
   },
   "condition": {
     "miniprogram": {
@@ -72,6 +73,13 @@
           "name": "",
           "pathName": "pages/groupbargain/headinvitation",
           "query": "invite_user_id=62",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/authorization/identity",
+          "query": "",
           "launchMode": "default",
           "scene": null
         }
