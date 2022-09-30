@@ -49,7 +49,7 @@
               </view>
             </view>
           </view>
-          <view class="tree-select__item-box hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+90+fixed+contentTipH)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+90+fixed+contentTipH)+'px'}}">
+          <scroll-view class="tree-select__item-box hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(tabbarH+90+fixed+contentTipH)+'px':compatibleInfo.systemInfo.screenHeight-(tabbarH+90+fixed+contentTipH)+'px'}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" scroll-y="true">
             <view class="no-data" wx:if="{{currentGoodsList.cache.length==0}}">
               <image mode="aspectFill" src="/assets/images/empty.png"></image>
               <view class="text">暂无更多内容</view>
@@ -70,7 +70,7 @@
                     <view>{{item.goods_name}} {{item.spec}}</view>
                   </view>
                   <view class="l2 one-txt-cut">{{item.goods_content}}</view>
-                  <view class="l3 one-txt-cut">{{tools.parseUnit(item.unit_arr)}}</view>
+                  <view wx:if="{{item.unit_arr}}" class="l3 one-txt-cut">{{tools.parseUnit(item.unit_arr)}}</view>
                   <!-- 未授权 -->
                   <!-- <view class="l4 no-sign" wx:if="{{(!userInfo.phone||userInfo.is_shop_check!=1)&&!userInfo.is_sale}}">
                     <text>请登录查看价格</text>
@@ -90,7 +90,7 @@
                 </view>
               </view>
             </block>
-          </view>
+          </scroll-view>
         </view>
       </view>
     </view>

@@ -3,5 +3,6 @@
     "top-navigation": "../../components/navigation/commonnav",
     "dropdown-menu-category": "/components/DropdownMenu/category"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 50
 }

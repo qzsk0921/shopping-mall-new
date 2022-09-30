@@ -226,10 +226,10 @@ create(store, {
       return false
     } else if (!this.store.data.userInfo.phone) {
       // 授权昵称头像还未授权手机号
-      wx.navigateTo({
-        url: '/pages/authorization/phone',
-      })
-      return false
+      // wx.navigateTo({
+      //   url: '/pages/authorization/phone',
+      // })
+      // return false
     }
     return true
   },
