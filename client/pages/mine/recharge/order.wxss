@@ -1,0 +1,74 @@
+/* pages/mine/recharge/order.wxss */
+.container-order {
+  background: #FBFBFB;
+}
+
+.tabs-nav {
+  display: flex;
+  position: relative;
+  background: #ffffff;
+  white-space: nowrap;
+}
+
+.tabs-nav .tab {
+  padding: 20rpx 0;
+  flex: 1;
+  text-align: center;
+  position: relative;
+  color: #999999;
+  font-size: 26rpx;
+  line-height: 30rpx;
+}
+
+.tabs-nav .tab.active {
+  color: #DF4543;
+}
+
+.tabs-nav .tab>view {
+  display: inline-block;
+}
+
+.tabs-nav .tabs-line {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition-duration: .3s;
+  width: 54rpx;
+  height: 4rpx;
+  border-radius: 10rpx;
+  background: #DF4543;
+}
+
+.cont {
+  overflow: auto;
+  background: #FBFBFB;
+}
+
+.cont .no-data {
+  text-align: center;
+}
+
+.cont .no-data image {
+  margin-top: 82rpx;
+  width: 483rpx;
+  height: 400rpx;
+}
+
+.cont .no-data .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #949EA8;
+}
+
+.order-list {}
+
+.card {
+  overflow: hidden;
+  background: #ffffff;
+  margin: 20rpx 24rpx 0;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
+}

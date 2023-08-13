@@ -1,0 +1,24 @@
+<!--pages/mine/recharge/components/rechange-dropdown.wxml-->
+<!-- <text>pages/mine/recharge/components/rechange-dropdown.wxml</text> -->
+<view class="dropdown-item-down {{open?'open':''}}">
+  <view class="mask" bindtap="mask"></view>
+  <view class="dropdown-item-down__content" style="{{open?'transform:translateY('+(-height)+'px)':''}}" catchtap="dropdownItemTapHandle">
+    <image class="btn-close" mode="aspectFill" src="/assets/images/关闭.png" bindtap="closeHandle"></image>
+    <view class="l1">
+      支付选择
+    </view>
+    <view class="l2">￥{{curCard.pay_money}}</view>
+    <view class="l3">
+      <view class="left">
+        <image mode="aspectFill" src="/assets/images/微信.png"></image>
+        <view>微信</view>
+      </view>
+      <view class="right">
+        <image mode="aspectFill" src="/assets/images/勾选.png"></image>
+      </view>
+    </view>
+    <view class="l4 btn btn-pay" bindtap="payHandle">
+      确认支付
+    </view>
+  </view>
+</view>

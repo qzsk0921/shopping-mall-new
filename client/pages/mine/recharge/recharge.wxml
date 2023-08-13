@@ -1,0 +1,118 @@
+<!--pages/mine/recharge/recharge.wxml-->
+<!-- <text>pages/mine/recharge/recharge.wxml</text> -->
+<!-- <wxs module="tools" src="./wxs/index.wxs"></wxs> -->
+<view class="container container-recharge">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="body">
+        <view class="row1">
+          <view>话费充值</view>
+          <image mode="aspectFill" src="/assets/images/phone.png"></image>
+        </view>
+        <view class="row2">
+          <image mode="aspectFill" src="/assets/images/充值快讯.png"></image>
+          <view wx:if="{{recharge_info.notice_list.length}}" class="broadcast">
+            <view class="broadcast-list" animation="{{aBroadcast}}" bindtransitionend="aBroadcastEnd">
+              <view wx:for="{{recharge_info.notice_list}}" wx:key="unique" class="item one-txt-cut">{{item}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="row3">
+          <view class="tabs">
+            <view class="tab {{curTab==item.key?'active':''}}" wx:for="{{tabs}}" wx:key="index" data-item="{{item}}" bindtap="tabToggleHandle">
+              <image mode="aspectFill" src="/assets/images/{{item.image}}"></image>
+              <view>{{item.name}}</view>
+            </view>
+          </view>
+          <view class="tit">充值账号</view>
+          <!-- <form bindsubmit="formSubmit" bindreset="formReset"> -->
+          <view class="form-item form-item-phone">
+            <input type="number" name="phone" placeholder="请输入手机号" placeholder-class="input-placeholder" value="{{rechargeDetail.phone}}" maxlength="11" />
+            <label>我的账号</label>
+          </view>
+          <!-- </form> -->
+          <view class="warn">
+            <image mode="aspectFill" src="/assets/images/警告.png"></image>
+            <view>请仔细核对充值账号，充值成功不支持退款！</view>
+          </view>
+        </view>
+        <view class="row4">
+          <view class="tip">{{recharge_info.recharge_list[curTab].msg}}</view>
+          <view class="cards">
+            <view bindtap="changeCardHandle" data-item="{{item}}" class="card {{curCard.id==item.id?'active':''}}" wx:for="{{recharge_info.recharge_list[curTab].list}}" key="unique">
+              <view class="angle">
+                <image mode="aspectFill" src="/assets/images/抵扣角标背景.png"></image>
+                <view>抵扣{{item.coupon_money}}元</view>
+              </view>
+              <view class="money">{{item.money}}元</view>
+              <view class="paymoney">￥{{item.pay_money}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="row5">
+          <view class="tit">
+            <view class="left">充值须知</view>
+            <view class="right" bindtap="checkboxChange">
+              <view>已阅读并同意</view>
+              <view class="checkbox {{curReadStatus?'active':''}}">
+                <image wx:if="{{curReadStatus}}" mode="aspectFill" src="/assets/images/勾选.png"></image>
+              </view>
+            </view>
+          </view>
+          <view class="cont">
+            <view class="roww1">
+              <image mode="aspectFill" src="/assets/images/重要通知.png"></image>
+              <view>重要通知</view>
+            </view>
+            <view class="roww2">
+              近期又出现了话费充值中，有羊毛党<text>冒充官方</text>打电话或者发短信让用户自己充，说渠道会退钱，<text>一定不要自己充</text>，充值期间无论什么情况都不要在其他渠道，包括自己去充，这种<text>没有售后的</text>，谨记！！！
+            </view>
+            <view class="roww3 roww">
+              <view class="titt titt3"><text>携号转网、副卡、虚拟号、集团号、空号</text></view>
+              <view>携号转网、副卡、虚拟号、集团号、空号的<text>不支持充值</text>，请勿下单！请确认后再下单，否则出现问题改不售后。</view>
+            </view>
+            <view class="roww4 roww">
+              <view class="titt">同一个号码不要重复提交订单</view>
+              <view>话费同一个号码，待第一笔充值成功或失败回调的状态后才能继续提交下一笔，请勿重复交。</view>
+            </view>
+            <view class="roww5 roww">
+              <view class="titt">在此充值后，未到成功/失败期间<text>禁止</text>其他平台充值</view>
+              <view>一个号码<text>不可以在两个平台进行充值，支付宝微信也不行</text> ，在我们平台录单后充值期间就不能在别的任何渠道去充值，不然余额会监控错误，损失自行承担！欠费着急的也需要等我们回调失败后再提交订单。</view>
+            </view>
+            <view class="roww6 roww">
+              <view class="titt">多久到账？超时怎么办？</view>
+              <view>1-72小时之内到账，月初月末高峰期适当延迟，超时联系客服撤单。</view>
+            </view>
+            <view class="roww7 roww">
+              <view class="titt">售后时间-<text>7天内</text></view>
+              <view>售后：充值成功后请及时查询到账情况，如有问题请在<text>7天内</text>联系客服进行处理，超时无法售后！务必通知提醒客户！</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="footer">
+        <view class="left" bindtap="toOrderDetailHandle">
+          <image mode="aspectFill" src="/assets/images/订单.png"></image>
+          <view>订单</view>
+        </view>
+        <view class="right">
+          <view class="r-col1">实付金额：</view>
+          <view class="r-col2">
+            <view class="money">￥{{curCard.pay_money}}</view>
+            <view class="discount">-{{curCard.coupon_money}}优惠</view>
+          </view>
+          <!-- <view class="r-col3" bindtap="rechargeHandle">立即充值</view> -->
+          <button class="r-col3 btn-submit btn" form-type="submit">立即充值</button>
+        </view>
+      </view>
+    </form>
+  </view>
+  <recharge-dropdown bindtap="rechargeDropdownMaskTap" bindaddPayorder="addPayorder" open="{{dialog.dropdown.open}}" curCard="{{curCard}}" />
+</view>
+
+<recharge-confirm dialogVisible="{{dialog.confirm}}" navHeight="{{compatibleInfo.navHeight}}" phone="{{rechargeDetail.phone}}" curCard="{{curCard}}" bindrechargeConfirmVisible="rechargeConfirmVisibleHandle" />
+
+<!-- <confirm dialogVisible="{{confirmDialogVisibile}}" bindconfirm="diaConfirmHandle" bindcancel="diaCancelHandle" content="确定要删除该地址吗？" title="提示" confirmText="{{confirmText}}" /> -->

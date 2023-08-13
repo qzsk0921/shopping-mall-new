@@ -1,0 +1,7 @@
+// module.exports = {
+//   parseCard: function (recharge_list, id) {
+//     recharge_list.some(item=>{
+//       if(item.id)
+//     })
+//   },
+// }

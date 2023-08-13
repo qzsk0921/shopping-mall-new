@@ -1,0 +1,33 @@
+<!--pages/mine/recharge/componts/recharge-confirm.wxml-->
+<!-- <text>pages/mine/recharge/componts/recharge-confirm.wxml</text> -->
+<!--components/Dialog/json-add.wxml-->
+<!-- <text>components/Dialog/json-add.wxml</text> -->
+<view class="dialog-wrap {{dialogVisible?'':'fadeout'}}" style="top:{{navHeight}}px">
+  <view class="mask" bindtap="dialogTapHandle"></view>
+  <view class="dialog">
+    <!-- <image class="icon-arrow" mode="aspectFill" src="/assets/images/popup_up.png"></image> -->
+    <view class="content">
+      <view class="l1">
+        话费充值
+      </view>
+      <view class="l2">
+        <view>充值户号：{{phone}}</view>
+        <view>充值金额：{{curCard.money}}元</view>
+      </view>
+      <view class="l3">
+        <view>售价{{curCard.pay_money}}元</view>
+        <view class="tip">请仔细核对号码，提交后无法退回</view>
+      </view>
+      <view class="l4">正常24小时到账，最长不超过72小时</view>
+      <view class="l5" bindtap="readStatusHanle">
+        <view class="checkbox {{compCurReadStatus?'active':''}}">
+          <image wx:if="{{compCurReadStatus}}" mode="aspectFill" src="/assets/images/勾选.png"></image>
+        </view>
+        <view>已阅读并同意<text>《充值须知》</text></view>
+      </view>
+      <view class="l6">
+        <view class="btn-try btn" bindtap="confimHandle">确认支付</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,127 @@
+/* pages/mine/recharge/componts/recharge-confirm.wxss */
+.dialog-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 10000;
+  text-align: center;
+  transition: all .4s;
+}
+
+.fadeout {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mask {
+  /* transition: all .4s; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, .5);
+}
+
+.dialog {
+  position: relative;
+  margin: 304rpx auto 0;
+  background: #FFFFFF;
+  border-radius: 18rpx;
+  padding: 48rpx 32rpx 40rpx;
+  width: 612rpx;
+  text-align: center;
+}
+
+.l1 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 38rpx;
+}
+
+.l2 {
+  margin-top: 48rpx;
+  width: 548rpx;
+  height: 148rpx;
+  background: #F6F6F6;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
+  padding: 20rpx;
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 38rpx;
+  text-align: left;
+}
+
+.l2 view {
+  margin-top: 12rpx;
+}
+
+.l3 {
+  margin-top: 24rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #F63E32;
+  line-height: 47rpx;
+}
+
+.l3 .tip {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: rgba(246, 62, 50, 0.5);
+  line-height: 33rpx;
+}
+
+.l4 {
+  margin-top: 20rpx;
+  height: 80rpx;
+  background: #FEEDDD;
+  border-radius: 28rpx 28rpx 28rpx 28rpx;
+  font-size: 32rpx;
+  color: #C39256;
+  line-height: 80rpx;
+}
+
+.l5 {
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 38rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.l5 .checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 80rpx 80rpx 80rpx 80rpx;
+  border: 2rpx solid #BBBBBB;
+  margin-right: 12rpx;
+}
+
+.l5 .checkbox.active {
+  border-color: transparent;
+}
+
+.l5 .checkbox image {
+  width: 100%;
+  height: 100%;
+}
+
+.l5 text {
+  color: #F63E32;
+}
+
+.l6 {
+  margin-top: 40rpx;
+  width: 548rpx;
+  height: 80rpx;
+  background: #FF1B46;
+  border-radius: 39rpx 39rpx 39rpx 39rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  color: #FFFFFF;
+}

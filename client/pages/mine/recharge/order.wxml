@@ -1,0 +1,37 @@
+<!--pages/mine/recharge/order.wxml-->
+<!-- <text>pages/mine/recharge/order.wxml</text> -->
+<view class="container container-order">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+    <scroll-view class="scroll-box hide-scrollbar section2 section2-normal" refresher-enabled="{{refresherEnabled}}" refresher-triggered="{{triggered}}" bindscrolltolower="scrollToLower" bindrefresherrefresh="scrollToRefresherrefresh" bindrefresherpulling="scrollToRefresherPull" bindrefresherrestore="scrollToRefresherStore" bindrefresherabort="scrollToRefresherAbort" scroll-y="true">
+      <view class="tabs-nav" bindtap='changeTab'>
+        <view wx:for="{{tabbar}}" wx:key="unique" data-index="{{index}}" class="tab {{tabIndex==index?'active':''}}">
+          <view calss="text" data-index="{{index}}">{{item}}</view>
+        </view>
+        <view class="tabs-line" style="transform:translateX({{tabWidth*tabIndex+tabWidth/2+'px'}})translateX(-50%)">
+        </view>
+      </view>
+      <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+listTop)+'px':compatibleInfo.systemInfo.screenHeight-(listTop)+'px'}}">
+        <view class="no-data" wx:if="{{orderList[0][tabIndex].cache.length==0}}">
+          <image mode="aspectFill" src="/assets/images/empty.png"></image>
+          <view class="text">暂无订单</view>
+        </view>
+        <view class='order-list business' wx:elif="{{orderList[0][tabIndex].cache.length}}">
+          <view class="card" style="{{item.translateX}}" wx:for="{{orderList[0][tabIndex].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toOrderHandle">
+            <view class="l1">
+ttttttttttttttttttttttt
+            </view>
+            <view class="l2">
+
+            </view>
+            <view class="l3">
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -3,89 +3,93 @@
     "urlCheck": true,
     "compileHotReLoad": true
   },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "shopping-mall-new",
   "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
     "miniprogram": {
       "list": [
         {
           "name": "",
           "pathName": "pages/profile/profile",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/location/index/index",
           "query": "from=lottery_of_mine",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/mine/vip/createVip",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/mine/vip/vip",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/mine/vip/score",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/authorization/phone",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/mine/lottery/invite",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/mine/lottery/awardRes",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/authorization/identity",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/groupbargain/headinvitation",
           "query": "invite_user_id=62",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/authorization/identity",
           "query": "",
-          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "话费充值",
+          "pathName": "pages/mine/recharge/recharge",
+          "query": "from=mine",
           "scene": null
         }
       ]
     }
-  },
-  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "projectname": "shopping-mall-new"
+  }
 }

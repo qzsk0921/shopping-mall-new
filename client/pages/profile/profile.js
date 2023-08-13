@@ -94,6 +94,12 @@ let options2 = [{
     imgName: 'my_members_level_1',
     name: '抽奖中心',
     url: '/pages/mine/lottery/lottery?from=mine'
+  },
+  {
+    id: 15,
+    imgName: 'my_icon_recharge',
+    name: '话费充值',
+    url: '/pages/mine/recharge/recharge?from=mine'
   }
 ]
 

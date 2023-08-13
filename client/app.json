@@ -49,6 +49,8 @@
     "pages/mine/lottery/score",
     "pages/mine/lottery/rule",
     "pages/mine/lottery/awardRes",
+    "pages/mine/recharge/recharge",
+    "pages/mine/recharge/order",
     "pages/groupbargain/list",
     "pages/groupbargain/memberList",
     "pages/groupbargain/result",

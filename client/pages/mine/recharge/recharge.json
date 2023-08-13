@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "top-navigation": "/components/navigation/commonnav",
+    "confirm": "/components/Dialog/confirm",
+    "recharge-confirm":"./components/recharge-confirm",
+    "recharge-dropdown":"./components/recharge-dropdown"
+  },
+  "navigationStyle": "custom"
+}
