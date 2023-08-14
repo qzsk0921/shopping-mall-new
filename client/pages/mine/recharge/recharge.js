@@ -79,7 +79,7 @@ create(store, {
   addPayorder() {
     addPayorder({
       phone: this.data.rechargeDetail.phone,
-      recharge_id: ''
+      recharge_id: this.data.curCard.id
     }).then(res => {
       // 调起微信支付
       this.wxPay(res.data)
