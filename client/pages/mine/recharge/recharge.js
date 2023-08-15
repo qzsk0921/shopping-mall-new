@@ -95,14 +95,10 @@ create(store, {
       'paySign': payModel.paySign,
       'success': function (res) {
         console.log(res)
-        // 支付成功后，杀掉订单确认页，刷新个人中心页面
-        // wx.switchTab({
-        //   url: '/pages/profile/profile',
-        // })
-
-        // wx.navigateTo({
-        //   url: `/pages/shop/order/detailOrder?order_id=${payModel.order_id}`,
-        // })
+        // 支付成功后，杀掉订单确认页，刷新订单详情
+        wx.navigateTo({
+          url: `/pages/mine/recharge/orderDetail?order_id=${payModel.order_id}`,
+        })
 
         // 获取消息下发权限(只在支付回调或tap手势事件能调用)
         // wx.requestSubscribeMessage({

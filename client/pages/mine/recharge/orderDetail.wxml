@@ -1,11 +1,45 @@
 <!--pages/mine/recharge/orderDetail.wxml-->
 <!-- <text>pages/mine/recharge/orderDetail.wxml</text> -->
 
-<view class="container container-order">
+<view class="container container-order_detail">
   <view class="fixed">
     <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
   </view>
   <view class="content">
-  
-  定啊水水</view>
+    <view class="r1">
+      <image mode="aspectFill" src="/assets/images/手机2.png"></image>
+      <view>{{orderDetail.title}}</view>
+    </view>
+    <view class="r2 r-between">
+      <view>充值账号</view>
+      <view>{{orderDetail.recharge_phone}}</view>
+    </view>
+    <view class="r3">
+      <view class="r3-1 r-between">
+        <view>充值账号</view>
+        <view>{{orderDetail.recharge_phone}}</view>
+      </view>
+      <view class="r3-2 r-between">
+        <view>优惠抵扣</view>
+        <view>-￥{{orderDetail.coupon_money}}</view>
+      </view>
+      <view class="r3-3 r-between">
+        <view>实付金额</view>
+        <view>￥{{orderDetail.pay_money}}</view>
+      </view>
+    </view>
+    <view class="r4">
+      <view class="r4-1 r-between">
+        <view>下单时间</view>
+        <view>{{orderDetail.create_time_str}}</view>
+      </view>
+      <view class="r4-2 r-between">
+        <view>订单编号</view>
+        <view>{{orderDetail.order_sn}}</view>
+      </view>
+    </view>
+    <view wx:if="{{orderDetail.status==0}}" class="r5 btn btn=pay" bindtap="payHandle">
+      立即充值
+    </view>
+  </view>
 </view>

@@ -1,8 +1,15 @@
 /* pages/mine/recharge/order.wxss */
 .container-order {
   background: #FBFBFB;
+  height: 100vh;
 }
-
+.content {
+}
+.scroll-box {
+  /* padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box; */
+  /* overflow: hidden; */
+}
 .tabs-nav {
   display: flex;
   position: relative;
@@ -62,7 +69,8 @@
   color: #949EA8;
 }
 
-.order-list {}
+.order-list {
+}
 
 .card {
   overflow: hidden;
