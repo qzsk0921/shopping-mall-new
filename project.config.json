@@ -22,8 +22,6 @@
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -53,12 +51,6 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "2.24.0",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "appid": "wx11729f975a9b0116",
   "condition": {
     "search": {
       "list": []
@@ -78,5 +70,11 @@
     "miniprogram": {
       "list": []
     }
+  },
+  "appid": "wx11729f975a9b0116",
+  "libVersion": "2.24.0",
+  "packOptions": {
+    "ignore": [],
+    "include": []
   }
 }

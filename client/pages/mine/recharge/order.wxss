@@ -72,3 +72,120 @@
   background: #FFFFFF;
   border-radius: 16rpx 16rpx 16rpx 16rpx;
 }
+
+.content .order-list {}
+
+.content .order-list .card {
+  padding: 20rpx 32rpx;
+}
+
+.content .order-list .card .l1 {
+  line-height: 80rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  color: #999999;
+  border-bottom: 2rpx solid #EEEEEE;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content .order-list .card .l1 .tip {
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 30rpx;
+}
+
+.content .order-list .card .l2 {
+  height: 136rpx;
+  display: flex;
+  align-items: center;
+}
+
+.content .order-list .card .l2 .l2-left image {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.content .order-list .card .l2 .l2-right {
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+  line-height: 28rpx;
+}
+
+.content .order-list .card .l2 .l2-right .tit {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 33rpx;
+  margin-bottom: 8rpx;
+}
+
+.content .order-list .card .l3 {
+  width: 638rpx;
+  height: 176rpx;
+  background: #F9F9F9;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
+  padding: 20rpx;
+  position: relative;
+}
+
+.content .order-list .card .l3 .l3-1 {
+  display: flex;
+  align-items: center;
+}
+
+.content .order-list .card .l3 .l3-1 .btn-copy {
+  width: 68rpx;
+  height: 46rpx;
+  background: #FFF0D0;
+  border-radius: 4rpx 4rpx 4rpx 4rpx;
+  font-size: 22rpx;
+  color: #C67347;
+  line-height: 46rpx;
+  text-align: center;
+  margin-left: 8rpx;
+}
+
+.content .order-list .card .l3 .l3-l {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 28rpx;
+  margin-top: 5rpx;
+}
+
+.content .order-list .card .l3-blod {
+  position: absolute;
+  bottom: 16rpx;
+  right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.content .order-list .card .l3-blod .text {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.content .order-list .card .l3-blod .blod {
+  font-size: 40rpx;
+  color: #F63E32;
+}
+
+.content .order-list .card .l4 {
+  margin-top: 20rpx;
+  text-align: right;
+}
+
+.content .order-list .card .l4 .btn-pay {
+  display: inline-block;
+  text-align: center;
+  width: 180rpx;
+  line-height: 64rpx;
+  background: #FD1B49;
+  border-radius: 32rpx 32rpx 32rpx 32rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+}

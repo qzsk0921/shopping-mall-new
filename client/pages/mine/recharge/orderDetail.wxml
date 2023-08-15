@@ -1,0 +1,11 @@
+<!--pages/mine/recharge/orderDetail.wxml-->
+<!-- <text>pages/mine/recharge/orderDetail.wxml</text> -->
+
+<view class="container container-order">
+  <view class="fixed">
+    <top-navigation navigationBarTitleText="{{navigationBarTitleText}}" navHeight="{{compatibleInfo.navHeight}}" navTop="{{compatibleInfo.menuButtonObject.top}}" menuButtonHeight="{{compatibleInfo.menuButtonObject.height}}" status="{{navStatus}}" color="#333" bgColor="#FFFFFF" />
+  </view>
+  <view class="content">
+  
+  定啊水水</view>
+</view>

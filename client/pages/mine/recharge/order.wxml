@@ -13,21 +13,40 @@
         <view class="tabs-line" style="transform:translateX({{tabWidth*tabIndex+tabWidth/2+'px'}})translateX(-50%)">
         </view>
       </view>
-      <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32+listTop)+'px':compatibleInfo.systemInfo.screenHeight-(listTop)+'px'}}">
-        <view class="no-data" wx:if="{{orderList[0][tabIndex].cache.length==0}}">
+      <view class="cont hide-scrollbar" style="height:{{compatibleInfo.isIphoneX?compatibleInfo.systemInfo.screenHeight-(32)+'px':compatibleInfo.systemInfo.screenHeight+'px'}}">
+        <view class="no-data" wx:if="{{orderList[tabIndex].cache.length==0}}">
           <image mode="aspectFill" src="/assets/images/empty.png"></image>
           <view class="text">暂无订单</view>
         </view>
-        <view class='order-list business' wx:elif="{{orderList[0][tabIndex].cache.length}}">
-          <view class="card" style="{{item.translateX}}" wx:for="{{orderList[0][tabIndex].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toOrderHandle">
+        <view class='order-list business' wx:elif="{{orderList[tabIndex].cache.length}}">
+          <view class="card" style="{{item.translateX}}" wx:for="{{orderList[tabIndex].cache}}" wx:key="unique" data-id="{{item.id}}" bindtap="toOrderHandle">
             <view class="l1">
-ttttttttttttttttttttttt
+              <view class="sn">订单编号：{{item.order_sn}}</view>
+              <view class="tip" wx:if="{{item.status==0}}">待支付</view>
             </view>
             <view class="l2">
-
+              <view class="l2-left">
+                <image mode="aspectFill" src="/assets/images/手机2.png"></image>
+              </view>
+              <view class="l2-right">
+                <view class="tit">{{item.title}}</view>
+                <view>下单时间：{{item.create_time_str}}</view>
+              </view>
             </view>
             <view class="l3">
-
+              <view class="l3-1 l3-l">
+                <view>充值账号：{{item.recharge_phone}}</view>
+                <view class="btn btn-copy">复制</view>
+              </view>
+              <view class="l3-2 l3-l">部分到账金额：{{item.reach_money}}</view>
+              <view class="l3-3 l3-l">优惠抵扣：￥{{item.coupon_money}}</view>
+              <view class="l3-blod">
+                <text class="text">实付：</text>
+                <text class="blod">{{item.pay_money}}</text>
+              </view>
+            </view>
+            <view class="l4" wx:if="{{item.status==0}}">
+              <view class="btn btn-pay" data-id="{{item.id}}" catchtap="repayHandle">立即支付</view>
             </view>
           </view>
         </view>

@@ -51,6 +51,7 @@
     "pages/mine/lottery/awardRes",
     "pages/mine/recharge/recharge",
     "pages/mine/recharge/order",
+    "pages/mine/recharge/orderDetail",
     "pages/groupbargain/list",
     "pages/groupbargain/memberList",
     "pages/groupbargain/result",

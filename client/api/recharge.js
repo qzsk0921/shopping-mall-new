@@ -47,3 +47,15 @@ export function getOrderDetail(data) {
     data
   })
 }
+
+/**
+ * 重新支付 /Recharge/re_pay
+ * @param {int} order_id require 订单id
+ */
+export function rePay(data) {
+  return request({
+    url: '/Recharge/re_pay',
+    method: 'post',
+    data
+  })
+}
