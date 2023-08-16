@@ -29,6 +29,7 @@ create(store, {
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
     compatibleInfo: null, //navHeight menuButtonObject systemInfo isIphoneX
     navigationBarTitleText: '话费充值',
     aBroadcast: null, //广播动画
@@ -75,34 +76,38 @@ create(store, {
     }
   },
   getPhoneNumber(e) {
-    console.log(e)
-    if (e.detail.encryptedData) {
-      const myData = {
-        encryptedData: e.detail.encryptedData,
-        iv: e.detail.iv,
-      }
-
-      this.updatePhone(myData).then(res => {
-        // const data = res.data.phone
-        // 1. 授权微信信息
-        // 2. 授权手机号
-        // 3. 进入成为会员页面（ 赠送1次抽奖机会）
-        this.store.data.userInfo['phone'] = res.data.phone
-        this.update()
-
-        this.setData({
-          'rechargeDetail.phone': res.data.phone
-        })
-
-      }).catch(res => {
-        wx.showToast({
-          icon: 'none',
-          title: res.msg,
-        })
-        console.log(res)
+    // console.log(e)
+    if (this.data.userInfo.phone) {
+      this.setData({
+        'rechargeDetail.phone': this.data.userInfo.phone
       })
     } else {
+      if (e.detail.encryptedData) {
+        const myData = {
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv,
+        }
 
+        this.updatePhone(myData).then(res => {
+          // const data = res.data.phone
+          // 1. 授权微信信息
+          // 2. 授权手机号
+          // 3. 进入成为会员页面（ 赠送1次抽奖机会）
+          this.store.data.userInfo['phone'] = res.data.phone
+          this.update()
+
+          this.setData({
+            'rechargeDetail.phone': res.data.phone
+          })
+
+        }).catch(res => {
+          wx.showToast({
+            icon: 'none',
+            title: res.msg,
+          })
+          console.log(res)
+        })
+      }
     }
   },
   toOrderDetailHandle() {

@@ -32,7 +32,8 @@
           <view class="form-item form-item-phone">
             <input type="number" name="phone" placeholder="请输入手机号" placeholder-class="input-placeholder" value="{{rechargeDetail.phone}}" maxlength="11" />
             <!-- <label>我的账号</label> -->
-            <button class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">我的账号</button>
+            <view wx:if="{{userInfo.phone}}" class="btn btn-phone" bindtap="getPhoneNumber">我的账号</view>
+            <button wx:else class="btn btn-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">我的账号</button>
           </view>
           <!-- </form> -->
           <view class="warn">
