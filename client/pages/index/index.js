@@ -540,6 +540,15 @@ create(store, {
     //   deep: true
     // }
   },
+  bannerClickHandle(e) {
+    // console.log(e)
+    const item = e.currentTarget.dataset.item
+    if (item.link) {
+      wx.navigateTo({
+        url: item.link,
+      })
+    }
+  },
   toCouponHandle() {
     // 授权校验
     if (!this.checkAuth()) return

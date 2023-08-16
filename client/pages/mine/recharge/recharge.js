@@ -6,6 +6,10 @@ import {
   addPayorder
 } from '../../../api/recharge'
 
+import {
+  updatePhone
+} from '../../../api/user'
+
 
 let aBroadcast = wx.createAnimation({
   duration: 500,
@@ -68,6 +72,37 @@ create(store, {
       },
       // deep: true,
       // immediate: true
+    }
+  },
+  getPhoneNumber(e) {
+    console.log(e)
+    if (e.detail.encryptedData) {
+      const myData = {
+        encryptedData: e.detail.encryptedData,
+        iv: e.detail.iv,
+      }
+
+      this.updatePhone(myData).then(res => {
+        // const data = res.data.phone
+        // 1. 授权微信信息
+        // 2. 授权手机号
+        // 3. 进入成为会员页面（ 赠送1次抽奖机会）
+        this.store.data.userInfo['phone'] = res.data.phone
+        this.update()
+
+        this.setData({
+          'rechargeDetail.phone': res.data.phone
+        })
+
+      }).catch(res => {
+        wx.showToast({
+          icon: 'none',
+          title: res.msg,
+        })
+        console.log(res)
+      })
+    } else {
+
     }
   },
   toOrderDetailHandle() {
@@ -225,6 +260,15 @@ create(store, {
         resolve(res)
       }).catch(err => {
         reject(err)
+      })
+    })
+  },
+  updatePhone(data) {
+    return new Promise((resolve, reject) => {
+      updatePhone(data).then(res => {
+        resolve(res)
+      }).catch(res => {
+        reject(res)
       })
     })
   },

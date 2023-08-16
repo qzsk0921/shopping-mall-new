@@ -109,7 +109,7 @@
   width: calc(100% - 140rpx);
 }
 
-.row3 .form-item-phone label {
+.row3 .form-item-phone .btn-phone {
   width: 140rpx;
   line-height: 72rpx;
   text-align: center;

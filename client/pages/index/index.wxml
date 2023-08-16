@@ -19,7 +19,7 @@
         <view class="page-section page-section-spacing swiper">
           <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="rgba(255, 255, 255, .6)" indicator-active-color="#ffffff" circular="true">
             <block wx:for="{{shopData.banner}}" wx:key="*this">
-              <swiper-item>
+              <swiper-item bindtap="bannerClickHandle" data-item="{{item}}">
                 <!-- <view class="swiper-item {{item.image_url}}"></view> -->
                 <image class="swiper-item icon-banner" src="{{item.image_url}}" mode="aspectFill"></image>
               </swiper-item>
