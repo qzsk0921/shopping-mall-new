@@ -47,43 +47,37 @@ create(store, {
   addressHandle() {
     // console.log('addressHandle')
     const that = this
-    // console.log(this.store.data.location.location.lat)
-    // const objectData = {
-    //   latitude: this.store.data.location.location.lat,
-    //   longitude: this.store.data.location.location.lng
-    // }
 
-    // 查询一下用户是否授权了地理位置 scope.userLocation
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        if (!res.authSetting['scope.userLocation']) {
-          wx.openSetting({
-            success(res) {
-              console.log(res.authSetting)
-              // res.authSetting = {
-              //   "scope.userInfo": true,
-              //   "scope.userLocation": true
-              // }
-              if (res.authSetting['scope.userLocation']) {
-                wx.authorize({
-                  scope: 'scope.userLocation',
-                  success() {
-                    that.chooseLocation()
-                  },
-                  fail(err) {
-                    console.log(err)
-                  }
-                })
-              }
-            }
-          })
-        } else {
-          that.chooseLocation()
-        }
-      }
-    })
-    // wx.openLocation(objectData)
+    // wx.chooseLocation 接口的使用将不再需要用户授权 scope.userLocation，满足使用条件的开发者可直接调用
+    // https://developers.weixin.qq.com/community/develop/doc/0006e45df2cac030e6edf367c56001
+    that.chooseLocation()
+
+    // // 查询一下用户是否授权了地理位置 scope.userLocation
+    // wx.getSetting({
+    //   success(res) {
+    //     console.log(res)
+    //     if (!res.authSetting['scope.userLocation']) {
+    //       wx.openSetting({
+    //         success(res) {
+    //           // console.log(res.authSetting)
+    //           if (res.authSetting['scope.userLocation']) {
+    //             wx.authorize({
+    //               scope: 'scope.userLocation',
+    //               success() {
+    //                 that.chooseLocation()
+    //               },
+    //               fail(err) {
+    //                 console.log(err)
+    //               }
+    //             })
+    //           }
+    //         }
+    //       })
+    //     } else {
+    //       that.chooseLocation()
+    //     }
+    //   }
+    // })
   },
   chooseLocation() {
     const that = this
