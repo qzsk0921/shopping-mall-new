@@ -270,12 +270,12 @@
   color: #333333;
 }
 
-.section4 .l1 .sn-box {
+.section4 .l1 .sn-box,.section4 .l7 .sn-box {
   display: flex;
   align-items: center;
 }
 
-.section4 .l1 .sn-box .btn-copy {
+.section4 .l1 .sn-box .btn-copy,.section4 .l7 .sn-box .btn-copy {
   margin-left: 14rpx;
   text-align: center;
   width: 78rpx;

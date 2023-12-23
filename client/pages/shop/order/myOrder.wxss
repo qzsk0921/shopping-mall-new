@@ -202,21 +202,23 @@
   margin: 18rpx 24rpx 0;
   padding: 24rpx 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   border-top: 2rpx solid #F2F2F2;
 }
-
+.card .l3 .l {
+  color: #FF723A;
+}
 .card .l3 .btn {
   text-align: center;
   width: 164rpx;
   height: 60rpx;
   line-height: 60rpx;
-  /* background: #FFFFFF; */
   border: 2rpx solid #DDDDDD;
   box-sizing: content-box;
   border-radius: 36rpx;
   font-size: 26rpx;
-  /* color: #333333; */
+  display: inline-block;
 }
 
 .card .l3 .btn:not(:first-child) {

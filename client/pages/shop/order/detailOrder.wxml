@@ -162,7 +162,7 @@
         <text>订单编号</text>
         <view class="sn-box">
           <text>{{orderData.order_sn}}</text>
-          <view class="btn btn-copy" bindtap="copyHandle">复制</view>
+          <view class="btn btn-copy" data-text="{{orderData.order_sn}}" bindtap="copyHandle">复制</view>
         </view>
       </view>
       <view class="l2 l">
@@ -176,6 +176,21 @@
       <view wx:if="{{orderData.status!=0}}" class="l4 l">
         <text>支付方式</text>
         <text>微信支付</text>
+      </view>
+      <view class="l5 l">
+        <text>订单状态</text>
+        <text>{{orderData.service_status==0?'待发货':orderData.service_status==1?'已发货':'未知'}}</text>
+      </view>
+      <view wx:if="{{orderData.logistics_company}}" class="l6 l">
+        <text>物流公司</text>
+        <text>{{orderData.logistics_company}}</text>
+      </view>
+      <view wx:if="{{orderData.logistics_sn}}" class="l7 l">
+        <text>物流单号</text>
+        <view class="sn-box">
+          <text>{{orderData.logistics_sn}}</text>
+          <view class="btn btn-copy" data-text="{{orderData.logistics_sn}}" bindtap="copyHandle">复制</view>
+        </view>
       </view>
     </view>
     <view class="section5">

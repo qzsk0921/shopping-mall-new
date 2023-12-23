@@ -6,6 +6,15 @@
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "projectname": "shopping-mall-new",
   "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
     "miniprogram": {
       "list": [
         {
@@ -84,6 +93,18 @@
           "name": "订单详情",
           "pathName": "pages/mine/recharge/orderDetail",
           "query": "order_id=3",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/shop/order/myOrder",
+          "query": "from=mine&type=0",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/shop/order/detailOrder",
+          "query": "order_id=206",
           "scene": null
         }
       ]

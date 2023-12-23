@@ -340,8 +340,10 @@ create(store, {
     })
   },
   // 复制订单编号
-  copyHandle() {
-    this.copyToClipboard(this.data.orderData.order_sn)
+  copyHandle(e) {
+    // this.copyToClipboard(this.data.orderData.order_sn)
+    console.log(e.currentTarget.dataset.text)
+    this.copyToClipboard(e.currentTarget.dataset.text)
   },
   // 复制到剪贴板
   copyToClipboard(data) {
